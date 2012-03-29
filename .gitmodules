@@ -1,0 +1,31 @@
+[submodule "bundle/fugitive"]
+    path = bundle/fugitive
+    url = https://github.com/tpope/vim-fugitive.git bundle/fugitive
+
+[submodule "bundle/gundo"]
+    path = bundle/gundo
+    url = https://github.com/sjl/gundo.vim.git bundle/gundo
+
+[submodule "bundle/mru"]
+    path = bundle/mru
+    url = https://github.com/vim-scripts/mru.vim.git bundle/mru
+
+[submodule "bundle/python-mode"]
+    path = bundle/python-mode
+    url = https://github.com/klen/python-mode.git bundle/python-mode
+
+[submodule "bundle/snipmate"]
+    path = bundle/snipmate
+    url = https://github.com/msanders/snipmate.vim.git bundle/snipmate
+
+[submodule "bundle/taglist"]
+    path = bundle/taglist
+    url = https://github.com/vim-scripts/taglist.vim.git bundle/taglist
+
+[submodule "bundle/the-NERD-tree"]
+    path = bundle/the-NERD-tree
+    url = https://github.com/vim-scripts/The-NERD-tree.git bundle/the-NERD-tree
+
+[submodule "bundle/addon-commenting"]
+	path = bundle/addon-commenting
+	url = https://github.com/vim-scripts/vim-addon-commenting.git
