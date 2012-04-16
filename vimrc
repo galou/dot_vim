@@ -37,7 +37,9 @@ nnoremap S :<C-U>exec "silent normal a".RepeatChar(nr2char(getchar()), v:count1)
 
 " autocommands
 if has("autocmd")
-	au BufNewFile, BufRead *.py set tabstop=4 shiftwidth=4 nonumber
+    "au BufNewFile, BufRead *.py set tabstop=4 shiftwidth=4 nonumber
+    au BufNewFile,BufRead *.py set nonumber fo-=t tw=79
+    au BufNewFile,BufRead *.FCMacro set filetype=python
     " load a template when creating a new file
     autocmd! BufNewFile * silent! 0r ~/.vim/template/template.%:e
 endif
