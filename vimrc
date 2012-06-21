@@ -40,6 +40,7 @@ if has("autocmd")
     "au BufNewFile, BufRead *.py set tabstop=4 shiftwidth=4 nonumber
     au BufNewFile,BufRead *.py set nonumber fo-=t tw=79
     au BufNewFile,BufRead *.FCMacro set filetype=python
+    au BufNewFile,BufRead *.nc set filetype=cpp
     " load a template when creating a new file
     autocmd! BufNewFile * silent! 0r ~/.vim/template/template.%:e
 endif
