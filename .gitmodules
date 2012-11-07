@@ -33,9 +33,22 @@
 [submodule "bundle/SimpylFold"]
 	path = bundle/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold.git
+
 [submodule "bundle/autojump"]
 	path = bundle/autojump
 	url = https://github.com/trotter/autojump.vim.git
+
 [submodule "bundle/vimtips-fortune"]
 	path = bundle/vimtips-fortune
 	url = https://github.com/hobbestigrou/vimtips-fortune.git
+
+[submodule "bundle/xml"]
+	path = bundle/xml
+	url = https://github.com/othree/xml.vim.git
+
+[submodule "bundle/command-t"]
+	path = bundle/command-t
+	url = https://github.com/wincent/Command-T.git
+[submodule "bundle/ipython"]
+	path = bundle/ipython
+	url = https://github.com/ivanov/vim-ipython.git

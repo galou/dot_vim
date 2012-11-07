@@ -1,0 +1,83 @@
+# full figure environment
+snippet insfig
+	\begin{figure}[h]
+	  \centering
+	  % orig:  --> 
+	  \includegraphics[width=\columnwidth]{${1:file}}
+	  \caption{${2}}
+	  \label{fig:${1}}
+	\end{figure}
+
+snippet inssubfig
+	\begin{figure}[h]
+	  \centering
+	  \subfigure[]{
+	    % orig:  --> 
+	    \includegraphics[width=0.45\columnwidth]{${1}}
+	    \label{fig:${2}}
+	  }
+	  \hfill
+	  \subfigure[]{
+	    % orig:  --> 
+	    \includegraphics[width=0.45\columnwidth]{${3}}
+	    \label{fig:${4}}
+	  }
+	  \caption{${5}}
+	\end{figure}
+
+
+snippet figref
+	Figure~\ref{fig:${1}}
+
+snippet instab
+	\begin{table}[h]
+	  \centering
+	  \caption{${1}}
+	  \begin{tabular}{${3:|c|c|}}
+	  \hline
+	  ${4} &  \\
+	  \hline
+	   &  \\
+	  \hline
+	  \end{tabular}
+	  \label{tab:${2}}
+	\end{table}
+
+snippet tabref
+	Table~\ref{tab:${1}}
+
+snippet inseq
+	\begin{equation}
+	  ${1}
+	  \label{eq:}
+	\end{equation}
+
+snippet eqref
+	Equation~(\ref{eq:${1}})
+
+snippet insalign
+	\begin{align}
+	  ${1}
+	  \label{eq:${2}}
+	\end{align}
+
+snippet insenum
+	\begin{enumerate}
+	  \item ${1}
+	\end{enumerate}
+
+snippet inslist
+	\begin{itemize}
+	  \item ${1}
+	\end{itemize}
+
+
+snippet ni
+	\noindent
+
+
+snippet pmat
+	\begin{pmatrix}
+	  ${1}
+	\end{pmatrix}
+
