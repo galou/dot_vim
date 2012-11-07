@@ -1,22 +1,22 @@
 [submodule "bundle/fugitive"]
     path = bundle/fugitive
-    url = https://github.com/tpope/vim-fugitive.git bundle/fugitive
+    url = https://github.com/tpope/vim-fugitive.git
 
 [submodule "bundle/gundo"]
     path = bundle/gundo
-    url = https://github.com/sjl/gundo.vim.git bundle/gundo
+    url = https://github.com/sjl/gundo.vim.git
 
 [submodule "bundle/mru"]
     path = bundle/mru
-    url = https://github.com/vim-scripts/mru.vim.git bundle/mru
+    url = https://github.com/vim-scripts/mru.vim.git
 
 [submodule "bundle/python-mode"]
     path = bundle/python-mode
-    url = https://github.com/klen/python-mode.git bundle/python-mode
+    url = https://github.com/klen/python-mode.git
 
 [submodule "bundle/the-NERD-tree"]
     path = bundle/the-NERD-tree
-    url = https://github.com/vim-scripts/The-NERD-tree.git bundle/the-NERD-tree
+    url = https://github.com/vim-scripts/The-NERD-tree.git
 
 [submodule "bundle/addon-commenting"]
 	path = bundle/addon-commenting
@@ -49,6 +49,7 @@
 [submodule "bundle/command-t"]
 	path = bundle/command-t
 	url = https://github.com/wincent/Command-T.git
+
 [submodule "bundle/ipython"]
 	path = bundle/ipython
 	url = https://github.com/ivanov/vim-ipython.git
