@@ -55,7 +55,6 @@ if has("autocmd")
     au BufNewFile *.py silent! 0r ~/.vim/template/template.%:e
     " load a template for all file types when creating a new file
     " au! BufNewFile * silent! 0r ~/.vim/template/template.%:e
-    au BufNewFile,BufRead *.go set filetype=go
 endif
 
 " Use CTRL-S for saving, also in Insert mode
@@ -67,14 +66,16 @@ inoremap <C-S>		<C-O>:update<CR>
 let g:pymode_options_other=0
 
 " vimtips-fortune options
-let g:fortune_vimtips_auto_display=1
+let g:fortune_vimtips_auto_display=0
 
 " latex-suite configuration
 let g:Tex_DefaultTargetFormat="pdf"
 
 " ipython configuration
+" I can't use mapping because <C-s> is overwritten.
 let g:ipy_perform_mappings = 0
 
+" I use a custom mapping for ipython (cf. ipy.vim).
 au BufNewFile,BufRead *.py map <buffer> <silent> <F5> :python run_this_file()<CR>
 au BufNewFile,BufRead *.py map <buffer> <silent> <F9> :python run_this_line()<CR>
 au BufNewFile,BufRead *.py map <buffer> <silent> <S-F9> :python run_these_lines()<CR>
