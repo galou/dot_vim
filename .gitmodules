@@ -53,3 +53,6 @@
 [submodule "bundle/ipython"]
 	path = bundle/ipython
 	url = https://github.com/ivanov/vim-ipython.git
+[submodule "bundle/bufexplorer"]
+	path = bundle/bufexplorer
+	url = https://github.com/c9s/bufexplorer.git
