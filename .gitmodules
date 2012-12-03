@@ -65,6 +65,11 @@
 [submodule "bundle/l9"]
 	path = bundle/l9
 	url = https://github.com/vim-scripts/L9.git
+
 [submodule "bundle/project"]
 	path = bundle/project
 	url = https://github.com/vim-scripts/project.tar.gz.git
+
+[submodule "bundle/ProjectBrowse"]
+	path = bundle/ProjectBrowse
+	url = https://github.com/vim-scripts/ProjectBrowse.git
