@@ -68,3 +68,12 @@ endif
 " latex-suite configuration
 let g:Tex_DefaultTargetFormat="pdf"
 
+" ProjectBrowse configuration
+let s:find_path='/usr/bin/find'
+let s:cache_path='$HOME/.cache/vim-projectbrowse-cache.txt'
+"let s:filter='-regex .*\.cpp\|.*\.hp?p?\|.*\.ops\|.*\.osd\|.*\.sh\|.*CMakeLists.txt\|.*\.xml'
+map <A-o> :ProjectBrowseCached<CR>
+
+" Project configuration
+" default: let g:proj_flags+="imstb"
+let g:proj_flags="mstbcg"
