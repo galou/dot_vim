@@ -65,11 +65,6 @@ if weekday != "Friday"
     let g:loaded_fortune_vimtips = 1
 endif
 
-" latex-suite configuration
-let g:Tex_DefaultTargetFormat="pdf"
-" Insert a new item
-imap <buffer> <leader>it <Plug>Tex_InsertItemOnThisLine
-
 " ProjectBrowse configuration
 let s:find_path='/usr/bin/find'
 let s:cache_path='$HOME/.cache/vim-projectbrowse-cache.txt'
