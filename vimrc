@@ -67,6 +67,8 @@ endif
 
 " latex-suite configuration
 let g:Tex_DefaultTargetFormat="pdf"
+" Insert a new item
+imap <buffer> <leader>it <Plug>Tex_InsertItemOnThisLine
 
 " ProjectBrowse configuration
 let s:find_path='/usr/bin/find'
@@ -77,3 +79,16 @@ map <A-o> :ProjectBrowseCached<CR>
 " Project configuration
 " default: let g:proj_flags+="imstb"
 let g:proj_flags="mstbcg"
+
+" Fugitive configuration
+autocmd BufReadPost fugitive://* set bufhidden=delete
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" tag configuration (look for a tag file recursively in parent dir).
+set tags=tags;/
+
+" FuzzyFinder configuration
+nnoremap \ff :FufFileWithFullCwd<CR>
+nnoremap \fb :FufBuffer<CR>
+nnoremap \fh :FufHelp<CR>
+nnoremap \ft :FufTag<CR>
