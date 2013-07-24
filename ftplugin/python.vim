@@ -5,8 +5,8 @@ setlocal tabstop=4
 setlocal shiftwidth=4
 setlocal expandtab
 
-setlocal formatoptions-=t
-setlocal formatoptions+=croqal
+setlocal formatoptions-=at
+setlocal formatoptions+=croql
 setlocal textwidth=79
 setlocal foldlevel=0
 setlocal autoindent
