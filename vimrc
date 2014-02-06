@@ -15,6 +15,7 @@ set autochdir
 set diffopt=vertical
 set wildmode=longest,list:longest
 set laststatus=2
+set title
 " insert the longest common prefix of all the suggestions
 set completeopt+=longest
 
@@ -83,7 +84,11 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set tags=tags;/
 
 " FuzzyFinder configuration
-nnoremap \ff :FufFileWithFullCwd<CR>
 nnoremap \fb :FufBuffer<CR>
+nnoremap \fd :FufBookmarkDir<CR>
+nnoremap \ff :FufFileWithFullCwd<CR>
+nnoremap \fg :call fuf#givenfile#launch('', 0, '>', split(system("git ls-tree -r --name-only HEAD"), "\n"))<CR>
 nnoremap \fh :FufHelp<CR>
+nnoremap \fl :FufLine<CR>
 nnoremap \ft :FufTag<CR>
+nnoremap \fq :FufQuickfix<CR>
