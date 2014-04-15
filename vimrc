@@ -18,6 +18,8 @@ set laststatus=2
 set title
 " insert the longest common prefix of all the suggestions
 set completeopt+=longest
+set tabstop=4
+set shiftwidth=4
 
 " viminfo option
 " :50  :  up to 50 lines of command-line history will be remembered

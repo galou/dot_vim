@@ -73,3 +73,6 @@
 [submodule "bundle/ProjectBrowse"]
 	path = bundle/ProjectBrowse
 	url = https://github.com/vim-scripts/ProjectBrowse.git
+[submodule "bundle/atp"]
+	path = bundle/atp
+	url = git://git.code.sf.net/p/atp-vim/code
