@@ -77,3 +77,6 @@
 [submodule "bundle/atp"]
 	path = bundle/atp
 	url = git://git.code.sf.net/p/atp-vim/code
+[submodule "bundle/ros"]
+	path = bundle/ros
+	url = https://github.com/taketwo/vim-ros.git
