@@ -80,3 +80,6 @@
 [submodule "bundle/ros"]
 	path = bundle/ros
 	url = https://github.com/taketwo/vim-ros.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
