@@ -3,3 +3,9 @@ template/
 vimrc.bundle
 .netrwhist
 tags*
+vim_phpdebug.sess
+bundle/FuzzyFinder/doc/tags
+bundle/FuzzyFinder/doc/tags-ja
+bundle/l9/doc/tags
+bundle/l9/doc/tags-ja
+bundle/project/doc/tags

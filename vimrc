@@ -47,6 +47,7 @@ if has("autocmd")
     au BufNewFile,BufRead *.FCMacro set filetype=python
     au BufNewFile,BufRead *.nc set filetype=cpp
     au BufNewFile,BufRead *.ops set filetype=cpp foldmethod=syntax
+    au BufNewFile,BufRead *.launch set filetype=xml
     " load a template when creating a new file
     au BufNewFile *.py silent! 0r ~/.vim/template/template.%:e
     " load a template for all file types when creating a new file
