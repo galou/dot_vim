@@ -86,3 +86,6 @@
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/cmakecomplete"]
+	path = bundle/cmakecomplete
+	url = https://github.com/whiledoing/cmakecomplete.git
