@@ -1,5 +1,8 @@
 setlocal linebreak
 setlocal showbreak=⏎
 setlocal spell
-nmap <buffer> j gj
-nmap <buffer> k gk
+map <buffer> j gj
+map <buffer> k gk
+
+" atp configuration
+let b:atp_Viewer = 'evince'
