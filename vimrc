@@ -58,6 +58,9 @@ noremap <C-S>		:update<CR>
 vnoremap <C-S>		<C-C>:update<CR>
 inoremap <C-S>		<C-O>:update<CR>
 
+" tag configuration (look for a tag file recursively in parent dir).
+set tags=tags;/
+
 " python-mode options
 let g:pymode_options_other=0
 let g:pymode_lint_checker="pyflakes"
@@ -82,8 +85,9 @@ let g:proj_flags="mstbcg"
 autocmd BufReadPost fugitive://* set bufhidden=delete
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-" tag configuration (look for a tag file recursively in parent dir).
-set tags=tags;/
+" ros-vim configuration
+let g:ros_make='current'
+let g:ros_build_system='catkin'
 
 " FuzzyFinder configuration
 nnoremap \fb :FufBuffer<CR>
