@@ -34,6 +34,7 @@ NeoBundle 'taketwo/vim-ros.git'
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'tpope/vim-surround.git'
 NeoBundle 'whiledoing/cmakecomplete.git'
+NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 NeoBundle 'git://git.code.sf.net/p/atp-vim/code'
 
 call neobundle#end()
