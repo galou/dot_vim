@@ -34,6 +34,7 @@ NeoBundle 'taketwo/vim-ros.git'
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'tpope/vim-surround.git'
 NeoBundle 'whiledoing/cmakecomplete.git'
+NeoBundle 'tpope/vim-unimpaired.git'
 NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 NeoBundle 'git://git.code.sf.net/p/atp-vim/code'
 
@@ -69,6 +70,7 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set hlsearch
+set noshowmode " Mode is shown by the powerline plugin
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
