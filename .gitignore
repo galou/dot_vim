@@ -6,7 +6,7 @@ tags*
 vim_phpdebug.sess
 
 # plugins handled by Neobundle
-bundle/.neobundle/
+bundle/.neobundle
 bundle/Command-T/
 bundle/FuzzyFinder/
 bundle/L9/
@@ -19,7 +19,6 @@ bundle/cmakecomplete/
 bundle/code/
 bundle/gundo.vim/
 bundle/mru.vim/
-bundle/neobundle.vim/
 bundle/project.tar.gz/
 bundle/python-mode/
 bundle/snipmate.vim/
