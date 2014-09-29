@@ -15,14 +15,15 @@ NeoBundle 'vim-scripts/vim-addon-commenting.git'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'sjl/gundo.vim.git'
 NeoBundle 'vim-scripts/mru.vim.git'
-" Python-mode completion is incompatible with YouCompleteMe
+" Python-mode completion is incompatible with YouCompleteMe (cf. below)
 NeoBundle 'klen/python-mode.git'
 NeoBundle 'vim-scripts/The-NERD-tree.git'
 " snipMate is incompatible with YouCompleteMe
 " NeoBundle 'msanders/snipmate.vim.git'
 " UltiSnips is used instead of snipMate because of compatibility with YCM
 NeoBundle 'vim-scripts/UltiSnips.git'
-" cf. also https://github.com/honza/vim-snippets
+" Default snippets for UltiSnips
+NeoBundle 'honza/vim-snippets.git'
 NeoBundle 'tmhedberg/SimpylFold.git'
 NeoBundle 'vim-scripts/taglist.vim.git'
 NeoBundle 'trotter/autojump.vim.git'
@@ -216,3 +217,10 @@ nnoremap <leader>fh :FufHelp<CR>
 nnoremap <leader>fl :FufLine<CR>
 nnoremap <leader>ft :FufTag<CR>
 nnoremap <leader>fq :FufQuickfix<CR>
+
+" UltiSnips compatibility with YouCompleteMe
+let g:UltiSnipsExpandTrigger="<c-e>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+

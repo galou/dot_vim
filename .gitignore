@@ -35,6 +35,7 @@ bundle/xml.vim/
 bundle/vim-unimpaired/
 bundle/cmake.vim/
 bundle/UltiSnips/
+bundle/vim-snippets/
 
 # System-wide plugins
 bundle/powerline/
