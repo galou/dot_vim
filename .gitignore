@@ -4,6 +4,7 @@ vimrc.bundle
 .netrwhist
 tags*
 vim_phpdebug.sess
+.ropeproject
 
 # plugins handled by Neobundle
 bundle/.neobundle
@@ -31,5 +32,14 @@ bundle/vim-ros/
 bundle/vim-surround/
 bundle/vimtips-fortune/
 bundle/xml.vim/
-bundle/powerline/
 bundle/vim-unimpaired/
+bundle/cmake.vim/
+
+# System-wide bundle
+bundle/powerline/
+autoload/youcompleteme.vim
+doc/tags
+doc/youcompleteme.txt
+plugin/youcompleteme.vim
+plugin/eclim.vim
+eclim/

@@ -5,7 +5,7 @@ endif
 
 set nocompatible
 
-" Neobundle activation
+" NeoBundle activation
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle/'))
 " Let NeoBundle manage NeoBundle (required)
@@ -15,6 +15,7 @@ NeoBundle 'vim-scripts/vim-addon-commenting.git'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'sjl/gundo.vim.git'
 NeoBundle 'vim-scripts/mru.vim.git'
+" Python-mode completion is incompatible with YouCompleteMe
 NeoBundle 'klen/python-mode.git'
 NeoBundle 'vim-scripts/The-NERD-tree.git'
 NeoBundle 'msanders/snipmate.vim.git'
@@ -35,10 +36,25 @@ NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'tpope/vim-surround.git'
 NeoBundle 'whiledoing/cmakecomplete.git'
 NeoBundle 'tpope/vim-unimpaired.git'
-NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
+" Powerline is installed with pip on Ubuntu, so don't install it here.
+" NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 NeoBundle 'git://git.code.sf.net/p/atp-vim/code'
+NeoBundle 'jalcine/cmake.vim'
+" Just to remember that YouCompleteMe could be installed.
+" On Ubuntu 14.04, it's offered system-wide and activated with
+" 'vim-addons install youcompleteme'.
+" NeoBundle 'Valloric/YouCompleteMe.git'
+"
+" delimitMate was not really satisfying (didn't insert <CR> after '{',
+" broke '.' for repeat last insert
+" https://github.com/Raimondi/delimitMate/issues/138)
+" NeoBundle 'Raimondi/delimitMate.git'
+
 
 call neobundle#end()
+
+" Use 'user-system-wide' powerline installation.
+set runtimepath+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 syntax on
 filetype plugin indent on
@@ -82,6 +98,11 @@ inoremap <C-U> <C-G>u<C-U>
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
+endif
+
+" Gui configuration
+if has('gui_running')
+	set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
 endif
 
 if has("vms")
@@ -140,16 +161,12 @@ if !exists(":DiffOrig")
 endif
 
 " Use CTRL-S for saving, also in Insert mode
-noremap <C-S>		:update<CR>
+nnoremap <C-S>		:update<CR>
 vnoremap <C-S>		<C-C>:update<CR>
 inoremap <C-S>		<C-O>:update<CR>
 
 " tag configuration (look for a tag file recursively in parent dir).
 set tags=tags;/
-
-" python-mode options
-let g:pymode_options_other=0
-let g:pymode_lint_checker="pyflakes"
 
 " Show vimtips-fortune on Fridays.
 let weekday=system("echo -n $(LANG=EN_us date +%A)")
@@ -169,18 +186,29 @@ let g:proj_flags="mstbcg"
 
 " Fugitive configuration
 autocmd BufReadPost fugitive://* set bufhidden=delete
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " ros-vim configuration
 let g:ros_make='current'
 let g:ros_build_system='catkin'
 
+" Syntastic configuration
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+
+" YouCompleteMe configuration
+let g:ycm_extra_conf_globlist = ['/home/gael/ros_indigo_ws/*']
+nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+
+" Python-mode configuration
+let g:pymode_rope_completion = 0  " Completion is done with YouCompleteMe
+
 " FuzzyFinder configuration
-nnoremap \fb :FufBuffer<CR>
-nnoremap \fd :FufBookmarkDir<CR>
-nnoremap \ff :FufFileWithFullCwd<CR>
-nnoremap \fg :call fuf#givenfile#launch('', 0, '>', split(system("git ls-tree -r --name-only HEAD"), "\n"))<CR>
-nnoremap \fh :FufHelp<CR>
-nnoremap \fl :FufLine<CR>
-nnoremap \ft :FufTag<CR>
-nnoremap \fq :FufQuickfix<CR>
+nnoremap <leader>fb :FufBuffer<CR>
+nnoremap <leader>fd :FufBookmarkDir<CR>
+nnoremap <leader>ff :FufFileWithFullCwd<CR>
+nnoremap <leader>fg :call fuf#givenfile#launch('', 0, '>', split(system("git ls-tree -r --name-only HEAD"), "\n"))<CR>
+nnoremap <leader>fh :FufHelp<CR>
+nnoremap <leader>fl :FufLine<CR>
+nnoremap <leader>ft :FufTag<CR>
+nnoremap <leader>fq :FufQuickfix<CR>

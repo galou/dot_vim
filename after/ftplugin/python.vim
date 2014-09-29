@@ -1,10 +1,5 @@
+" Some plugin sets number
 setlocal nonumber
-
-" <C-s> is overwritten by ipython plugin.
-" Use CTRL-S for saving, also in Insert mode
-noremap <C-S>		:update<CR>
-vnoremap <C-S>		<C-C>:update<CR>
-inoremap <C-S>		<C-O>:update<CR>
 
 " I use a custom mapping for ipython (cf. ipy.vim).
 map <buffer> <silent> <F5> :python run_this_file()<CR>

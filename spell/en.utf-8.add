@@ -46,3 +46,14 @@ IMU
 ISOBUS
 silviculture
 AutoMat's
+LaMa
+RPLAN
+FABMAP
+middleware
+HDF5
+SQLite3
+MySQL
+PostgreSQL
+frontend
+Delaunay
+CGAL
