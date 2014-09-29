@@ -34,8 +34,9 @@ bundle/vimtips-fortune/
 bundle/xml.vim/
 bundle/vim-unimpaired/
 bundle/cmake.vim/
+bundle/UltiSnips/
 
-# System-wide bundle
+# System-wide plugins
 bundle/powerline/
 autoload/youcompleteme.vim
 doc/tags

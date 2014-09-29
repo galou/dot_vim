@@ -18,7 +18,11 @@ NeoBundle 'vim-scripts/mru.vim.git'
 " Python-mode completion is incompatible with YouCompleteMe
 NeoBundle 'klen/python-mode.git'
 NeoBundle 'vim-scripts/The-NERD-tree.git'
-NeoBundle 'msanders/snipmate.vim.git'
+" snipMate is incompatible with YouCompleteMe
+" NeoBundle 'msanders/snipmate.vim.git'
+" UltiSnips is used instead of snipMate because of compatibility with YCM
+NeoBundle 'vim-scripts/UltiSnips.git'
+" cf. also https://github.com/honza/vim-snippets
 NeoBundle 'tmhedberg/SimpylFold.git'
 NeoBundle 'vim-scripts/taglist.vim.git'
 NeoBundle 'trotter/autojump.vim.git'
