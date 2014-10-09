@@ -44,7 +44,8 @@ NeoBundle 'tpope/vim-unimpaired.git'
 " Powerline is installed with pip on Ubuntu, so don't install it here.
 " NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 NeoBundle 'git://git.code.sf.net/p/atp-vim/code'
-NeoBundle 'jalcine/cmake.vim'
+" cmake.vim changes makeprg in a way that is incompatible with vim-ros
+" NeoBundle 'jalcine/cmake.vim'
 " Just to remember that YouCompleteMe could be installed.
 " On Ubuntu 14.04, it's offered system-wide and activated with
 " 'vim-addons install youcompleteme'.
@@ -92,6 +93,9 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set hlsearch
 set noshowmode " Mode is shown by the powerline plugin
+
+" Use the system clipboard as default clipboard
+" set clipboard=unnamedplus
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
