@@ -39,6 +39,9 @@ bundle/vim-snippets/
 bundle/vim-commentary/
 bundle/vim-sleuth/
 
+# Files handled by NeoBundle
+bundle/NeoBundle.lock
+
 # System-wide plugins
 bundle/powerline/
 autoload/youcompleteme.vim
