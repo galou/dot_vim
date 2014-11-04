@@ -12,18 +12,24 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'vim-scripts/vim-addon-commenting.git'
+" git integration
 NeoBundle 'tpope/vim-fugitive.git'
+" Undo management (:GundoToggle)
 NeoBundle 'sjl/gundo.vim.git'
+" Most recently used (:MRU)
 NeoBundle 'vim-scripts/mru.vim.git'
 " Python-mode completion is incompatible with YouCompleteMe (cf. below)
 NeoBundle 'klen/python-mode.git'
 NeoBundle 'vim-scripts/The-NERD-tree.git'
+
 " snipMate is incompatible with YouCompleteMe
 " NeoBundle 'msanders/snipmate.vim.git'
 " UltiSnips is used instead of snipMate because of compatibility with YCM
 NeoBundle 'vim-scripts/UltiSnips.git'
+
 " Default snippets for UltiSnips
 NeoBundle 'honza/vim-snippets.git'
+
 NeoBundle 'tmhedberg/SimpylFold.git'
 NeoBundle 'vim-scripts/taglist.vim.git'
 NeoBundle 'trotter/autojump.vim.git'
@@ -41,11 +47,18 @@ NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'tpope/vim-surround.git'
 NeoBundle 'whiledoing/cmakecomplete.git'
 NeoBundle 'tpope/vim-unimpaired.git'
-" Powerline is installed with pip on Ubuntu, so don't install it here.
-" NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
+" Automatic indent detection
+NeoBundle 'tpope/vim-sleuth.git'
+" Block commenting
+NeoBundle 'tpope/vim-commentary.git'
 NeoBundle 'git://git.code.sf.net/p/atp-vim/code'
+
 " cmake.vim changes makeprg in a way that is incompatible with vim-ros
 " NeoBundle 'jalcine/cmake.vim'
+
+" Powerline is installed with pip on Ubuntu, so don't install it here.
+" NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
+
 " Just to remember that YouCompleteMe could be installed.
 " On Ubuntu 14.04, it's offered system-wide and activated with
 " 'vim-addons install youcompleteme'.

@@ -36,6 +36,8 @@ bundle/vim-unimpaired/
 bundle/cmake.vim/
 bundle/UltiSnips/
 bundle/vim-snippets/
+bundle/vim-commentary/
+bundle/vim-sleuth/
 
 # System-wide plugins
 bundle/powerline/
