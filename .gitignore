@@ -38,6 +38,9 @@ bundle/UltiSnips/
 bundle/vim-snippets/
 bundle/vim-commentary/
 bundle/vim-sleuth/
+bundle/neomru.vim/
+bundle/unite.vim/
+bundle/vimproc.vim/
 
 # Files handled by NeoBundle
 bundle/NeoBundle.lock
