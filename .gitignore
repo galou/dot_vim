@@ -41,6 +41,7 @@ bundle/vim-sleuth/
 bundle/neomru.vim/
 bundle/unite.vim/
 bundle/vimproc.vim/
+bundle/tagbar/
 
 # Files handled by NeoBundle
 bundle/NeoBundle.lock

@@ -79,6 +79,9 @@ NeoBundle 'Shougo/vimproc.vim', {
 	    	\    }
 	    	\  }
 
+" A class outline viewer
+NeoBundle 'majutsushi/tagbar'
+
 call neobundle#end()
 
 " If there are uninstalled bundles found on startup,

@@ -160,3 +160,4 @@ nnoremap <leader>ug :Unite file_rec/git<CR>
 nnoremap <leader>ul :Unite line<CR>
 "nnoremap <leader>ut :Unite tag<CR>
 "nnoremap <leader>uq :FufQuickfix<CR>
+nnoremap <leader>um :Unite file_mru<CR>
