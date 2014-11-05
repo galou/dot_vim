@@ -42,6 +42,7 @@ bundle/neomru.vim/
 bundle/unite.vim/
 bundle/vimproc.vim/
 bundle/tagbar/
+bundle/vim-signify/
 
 # Files handled by NeoBundle
 bundle/NeoBundle.lock

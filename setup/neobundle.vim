@@ -82,6 +82,9 @@ NeoBundle 'Shougo/vimproc.vim', {
 " A class outline viewer
 NeoBundle 'majutsushi/tagbar'
 
+" Show a VCS diff using Vim's sign column
+NeoBundle 'mhinz/vim-signify'
+
 call neobundle#end()
 
 " If there are uninstalled bundles found on startup,
