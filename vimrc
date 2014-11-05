@@ -7,15 +7,21 @@ set nocompatible
 
 source ~/.vim/setup/neobundle.vim
 
+source ~/.vim/setup/ProjectBrowse.vim
+source ~/.vim/setup/project.tar.gz.vim
+source ~/.vim/setup/python-mode.vim
+source ~/.vim/setup/syntastic.vim
+source ~/.vim/setup/UltiSnips.vim
+source ~/.vim/setup/vim-fugitive.vim
+source ~/.vim/setup/vim-ros.vim
+source ~/.vim/setup/vimtips-fortune.vim
+source ~/.vim/setup/youcompleteme.vim
+
 " Use 'user-system-wide' powerline installation.
 set runtimepath+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 syntax on
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 " Windows always have the same size (doesn't work on Ubuntu)
 set equalalways
@@ -44,13 +50,6 @@ set noshowmode " Mode is shown by the powerline plugin
 
 " Use the system clipboard as default clipboard
 " set clipboard=unnamedplus
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -117,50 +116,31 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+" tag configuration (look for a tag file recursively in parent dir).
+set tags=tags;/
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key bindings
+
 " Use CTRL-S for saving, also in Insert mode
 nnoremap <C-S>		:update<CR>
 vnoremap <C-S>		<C-C>:update<CR>
 inoremap <C-S>		<C-O>:update<CR>
 
-" tag configuration (look for a tag file recursively in parent dir).
-set tags=tags;/
+" Don't use Ex mode, use Q for formatting
+map Q gq
 
-" Show vimtips-fortune on Fridays.
-let weekday=system("echo -n $(LANG=EN_us date +%A)")
-if weekday != "Friday"
-    let g:loaded_fortune_vimtips = 1
-endif
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
 
-" ProjectBrowse configuration
-let s:find_path='/usr/bin/find'
-let s:cache_path='$HOME/.cache/vim-projectbrowse-cache.txt'
-"let s:filter='-regex .*\.cpp\|.*\.hp?p?\|.*\.ops\|.*\.osd\|.*\.sh\|.*CMakeLists.txt\|.*\.xml'
 map <A-o> :ProjectBrowseCached<CR>
 
-" Project configuration
-" default: let g:proj_flags+="imstb"
-let g:proj_flags="mstbcg"
-
-" Fugitive configuration
-autocmd BufReadPost fugitive://* set bufhidden=delete
-"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-
-" ros-vim configuration
-let g:ros_make='current'
-let g:ros_build_system='catkin'
-
-" Syntastic configuration
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
-
-" YouCompleteMe configuration
-let g:ycm_extra_conf_globlist = ['/home/gael/ros_indigo_ws/*']
+" YouCompleteMe
 nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 
-" Python-mode configuration
-let g:pymode_rope_completion = 0  " Completion is done with YouCompleteMe
-
-" FuzzyFinder configuration
+" FuzzyFinder
 nnoremap <leader>fb :FufBuffer<CR>
 nnoremap <leader>fd :FufBookmarkDir<CR>
 nnoremap <leader>ff :FufFileWithFullCwd<CR>
@@ -170,9 +150,13 @@ nnoremap <leader>fl :FufLine<CR>
 nnoremap <leader>ft :FufTag<CR>
 nnoremap <leader>fq :FufQuickfix<CR>
 
-" UltiSnips compatibility with YouCompleteMe
-let g:UltiSnipsExpandTrigger="<c-e>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
-
+" Unite
+nnoremap <leader>uu :Unite file file_rec file_mru buffer<CR>
+nnoremap <leader>ub :Unite buffer<CR>
+nnoremap <leader>ud :Unite bookmark<CR>
+nnoremap <leader>uf :Unite file_rec<CR>
+nnoremap <leader>ug :Unite file_rec/git<CR>
+"nnoremap <leader>uh :Unite help<CR>
+nnoremap <leader>ul :Unite line<CR>
+"nnoremap <leader>ut :Unite tag<CR>
+"nnoremap <leader>uq :FufQuickfix<CR>
