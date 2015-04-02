@@ -5,6 +5,7 @@ endif
 
 set nocompatible
 
+" Plugin configuration
 source ~/.vim/setup/neobundle.vim
 
 source ~/.vim/setup/ProjectBrowse.vim
@@ -16,10 +17,13 @@ source ~/.vim/setup/vim-fugitive.vim
 source ~/.vim/setup/vim-ros.vim
 source ~/.vim/setup/vimtips-fortune.vim
 source ~/.vim/setup/youcompleteme.vim
+source ~/.vim/setup/vim-signify.vim
+source ~/.vim/setup/unite.vim
 
 " Use 'user-system-wide' powerline installation.
 set runtimepath+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
+" General configuration
 syntax on
 filetype plugin indent on
 
@@ -37,16 +41,17 @@ set tabstop=4
 set shiftwidth=4
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-set history=100		" keep 100 lines of command line history
+set history=500		" keep 500 lines of command line history
 " viminfo option
-" :100  :  up to 100 lines of command-line history will be remembered
+" :500  :  up to 100 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
-set viminfo+=:100
+set viminfo+=:500
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set hlsearch
 set noshowmode " Mode is shown by the powerline plugin
+set nobackup
 
 " Use the system clipboard as default clipboard
 " set clipboard=unnamedplus
@@ -58,17 +63,12 @@ endif
 
 " Gui configuration
 if has('gui_running')
-	set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
-endif
-
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
+  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
+  colorscheme torte
 endif
 
 " wildignore: files to ignore when tab-completing
-set wildignore=*.o,*.lo,*.pyc
+set wildignore=*.o,*.lo,*.pyc,*~
 
 " command :Calc as a calculator using python
 command! -nargs=+ Calc :!python -c "from math import *; print(<args>)"
@@ -88,23 +88,29 @@ if has("autocmd")
     au BufNewFile,BufRead *.FCMacro set filetype=python
     au BufNewFile,BufRead *.nc set filetype=cpp
     au BufNewFile,BufRead *.ops set filetype=cpp foldmethod=syntax
+    au BufNewFile,BufRead *.md setlocal filetype=markdown
     " load a template when creating a new file
     au BufNewFile *.py silent! 0r ~/.vim/template/template.%:e
     " load a template for all file types when creating a new file
     " au! BufNewFile * silent! 0r ~/.vim/template/template.%:e
 	
-	" For all text files set 'textwidth' to 78 characters.
-	autocmd FileType text setlocal textwidth=78
-	
-	" When editing a file, always jump to the last known cursor position.
-	" Don't do it when the position is invalid or when inside an event handler
-	" (happens when dropping a file on gvim).
-	" Also don't do it when the mark is in the first line, that is the default
-	" position when opening a file.
-	autocmd BufReadPost *
-				\ if line("'\"") > 1 && line("'\"") <= line("$") |
-				\   exe "normal! g`\"" |
-				\ endif
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
+
+    " For the ViewSourceWith plugin for Firefox
+    autocmd BufNewFile,BufRead /tmp/*.txt setlocal textwidth=0 linebreak showbreak=⏎\  
+    autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> j gj
+    autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> k gk
+
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    " Also don't do it when the mark is in the first line, that is the default
+    " position when opening a file.
+    autocmd BufReadPost *
+	  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+	  \   exe "normal! g`\"" |
+	  \ endif
 
 endif
 
@@ -161,3 +167,4 @@ nnoremap <leader>ul :Unite line<CR>
 "nnoremap <leader>ut :Unite tag<CR>
 "nnoremap <leader>uq :FufQuickfix<CR>
 nnoremap <leader>um :Unite file_mru<CR>
+nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>

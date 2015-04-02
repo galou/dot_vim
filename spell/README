@@ -1,0 +1,4 @@
+# cp /usr/share/hunspell/en_GB.aff
+# vim -c "mkspell! /tmp/lang en_GB.aff | qa"
+# mv /tmp/lang.utf-8.spl en_GB.utf-8.spl
+

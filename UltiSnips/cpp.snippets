@@ -1,6 +1,10 @@
-snippet ifndef "Personal #ifndef ..." b
-ifndef ${1}
-#define $1
-#endif // $1
+snippet ifsaturate "if (a < -max) a = -max;..."
+if (${1:val} < -${2:max})
+{
+	$1 = -$2;
+}
+else if ($1 > $2)
+{
+	$1 = $2;
+}
 endsnippet
-

@@ -57,3 +57,5 @@ PostgreSQL
 frontend
 Delaunay
 CGAL
+odometry
+exteroceptive
