@@ -87,6 +87,9 @@ NeoBundle 'majutsushi/tagbar'
 " Show a VCS diff using Vim's sign column
 NeoBundle 'mhinz/vim-signify'
 
+" MoinMoin syntax highlighting.
+NeoBundle 'vim-scripts/moin.vim.git'
+
 call neobundle#end()
 
 " If there are uninstalled bundles found on startup,
