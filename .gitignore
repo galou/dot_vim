@@ -43,6 +43,7 @@ bundle/unite.vim/
 bundle/vimproc.vim/
 bundle/tagbar/
 bundle/vim-signify/
+bundle/editorconfig-vim/
 
 # Files handled by NeoBundle
 bundle/NeoBundle.lock

@@ -45,6 +45,8 @@ NeoBundle 'tpope/vim-sleuth'
 " Block commenting
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'git://git.code.sf.net/p/atp-vim/code'
+" Editor agnostic configuration
+NeoBundle 'editorconfig/editorconfig-vim'
 
 " cmake.vim changes makeprg in a way that is incompatible with vim-ros
 " NeoBundle 'jalcine/cmake.vim'
