@@ -5,9 +5,9 @@ call unite#custom#profile('buffer', 'context', {
 		\ })
 
 " Use silversearch-ag instead of grep
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup --no-numbers'
+"let g:unite_source_grep_command = 'ag'
+"let g:unite_source_grep_default_opts = '--nocolor --nogroup --no-numbers'
 
 " Grep options
-"let g:unite_source_grep_default_opts = ''
-"let g:unite_source_grep_recursive_opt = '-R'
+let g:unite_source_grep_default_opts = ''
+let g:unite_source_grep_recursive_opt = '-R'

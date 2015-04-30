@@ -11,8 +11,13 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'sjl/gundo.vim'
 " Most recently used (:MRU)
 NeoBundle 'vim-scripts/mru.vim'
-" Python-mode completion is incompatible with YouCompleteMe (cf. below)
+
+" Python-mode
 NeoBundle 'klen/python-mode'
+
+" Python completion (included in YouCompleteMe)
+" NeoBundle 'davidhalter/jedi-vim.git'
+
 NeoBundle 'vim-scripts/The-NERD-tree'
 
 " snipMate is incompatible with YouCompleteMe
@@ -57,7 +62,7 @@ NeoBundle 'editorconfig/editorconfig-vim'
 " Just to remember that YouCompleteMe could be installed.
 " On Ubuntu 14.04, it's offered system-wide and activated with
 " 'vim-addons install youcompleteme'.
-" NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/YouCompleteMe'
 "
 " delimitMate was not really satisfying (didn't insert <CR> after '{',
 " broke '.' for repeat last insert
@@ -89,6 +94,10 @@ NeoBundle 'mhinz/vim-signify'
 
 " MoinMoin syntax highlighting.
 NeoBundle 'vim-scripts/moin.vim.git'
+
+" Syntax and occurences highlighting
+" requires Vim 7.4p330+
+" NeoBundle 'bbchung/clighter.git'
 
 call neobundle#end()
 

@@ -1,3 +1,5 @@
 " Python-mode configuration
 
-let g:pymode_rope_completion = 0  " Completion is done with YouCompleteMe
+" Python-mode completion is incompatible with YouCompleteMe
+" Completion is done with YouCompleteMe
+let g:pymode_rope_completion = 0

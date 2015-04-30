@@ -45,6 +45,9 @@ bundle/tagbar/
 bundle/vim-signify/
 bundle/editorconfig-vim/
 bundle/moin.vim/
+bundle/clighter/
+bundle/YouCompleteMe/
+bundle/jedi-vim/
 
 # Files handled by NeoBundle
 bundle/NeoBundle.lock

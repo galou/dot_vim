@@ -142,6 +142,10 @@ inoremap <C-U> <C-G>u<C-U>
 
 map <A-o> :ProjectBrowseCached<CR>
 
+" Select last pasted text with 'gb', cf.
+" http://vim.wikia.com/wiki/Selecting_your_pasted_text.
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " YouCompleteMe
 nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
