@@ -85,10 +85,11 @@ nnoremap <silent> S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count
 
 " autocommands
 if has("autocmd")
-    au BufNewFile,BufRead *.FCMacro set filetype=python
-    au BufNewFile,BufRead *.nc set filetype=cpp
-    au BufNewFile,BufRead *.ops set filetype=cpp foldmethod=syntax
+    au BufNewFile,BufRead *.FCMacro setlocal filetype=python
+    au BufNewFile,BufRead *.nc setlocal filetype=cpp
+    au BufNewFile,BufRead *.ops setlocal filetype=cpp foldmethod=syntax
     au BufNewFile,BufRead *.md setlocal filetype=markdown
+    au BufNewFile,BufRead *.ino setlocal filetype=c
     " load a template when creating a new file
     au BufNewFile *.py silent! 0r ~/.vim/template/template.%:e
     " load a template for all file types when creating a new file
@@ -111,6 +112,8 @@ if has("autocmd")
 	  \ if line("'\"") > 1 && line("'\"") <= line("$") |
 	  \   exe "normal! g`\"" |
 	  \ endif
+    " Don't do it for special files.
+    autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg0"
 
 endif
 

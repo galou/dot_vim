@@ -62,7 +62,14 @@ NeoBundle 'editorconfig/editorconfig-vim'
 " Just to remember that YouCompleteMe could be installed.
 " On Ubuntu 14.04, it's offered system-wide and activated with
 " 'vim-addons install youcompleteme'.
-NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/YouCompleteMe', {
+     \ 'build'      : {
+        \ 'unix'    : './install.sh --clang-completer --system-libclang',
+        \ 'cygwin'  : './install.sh --clang-completer --system-libclang'
+        \ }
+     \ }
+let g:neobundle#install_process_timeout = 600
+
 "
 " delimitMate was not really satisfying (didn't insert <CR> after '{',
 " broke '.' for repeat last insert
