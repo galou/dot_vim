@@ -89,7 +89,7 @@ if has("autocmd")
     au BufNewFile,BufRead *.nc setlocal filetype=cpp
     au BufNewFile,BufRead *.ops setlocal filetype=cpp foldmethod=syntax
     au BufNewFile,BufRead *.md setlocal filetype=markdown
-    au BufNewFile,BufRead *.ino setlocal filetype=c
+    au BufNewFile,BufRead *.ino setlocal filetype=cpp
     " load a template when creating a new file
     au BufNewFile *.py silent! 0r ~/.vim/template/template.%:e
     " load a template for all file types when creating a new file
@@ -175,3 +175,6 @@ nnoremap <leader>ul :Unite line<CR>
 "nnoremap <leader>uq :FufQuickfix<CR>
 nnoremap <leader>um :Unite file_mru<CR>
 nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>
+
+" Disable mappings to :Dbg
+let g:vim_debug_disable_mappings = 1

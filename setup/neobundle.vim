@@ -84,14 +84,14 @@ NeoBundle 'Shougo/neomru.vim'
 
 " Interactive command execution (for :Unite file_rec/async)
 NeoBundle 'Shougo/vimproc.vim', {
-			\    'build' : {
-	    	\      'windows' : 'tools\\update-dll-mingw',
-	    	\      'cygwin' : 'make -f make_cygwin.mak',
-	    	\      'mac' : 'make -f make_mac.mak',
-	    	\      'linux' : 'make',
-	    	\      'unix' : 'gmake',
-	    	\    }
-	    	\  }
+	       \    'build' : {
+	       \      'windows' : 'tools\\update-dll-mingw',
+	       \      'cygwin' : 'make -f make_cygwin.mak',
+	       \      'mac' : 'make -f make_mac.mak',
+	       \      'linux' : 'make',
+	       \      'unix' : 'gmake',
+	       \    }
+	       \  }
 
 " A class outline viewer
 NeoBundle 'majutsushi/tagbar'
@@ -105,6 +105,16 @@ NeoBundle 'vim-scripts/moin.vim.git'
 " Syntax and occurences highlighting
 " requires Vim 7.4p330+
 " NeoBundle 'bbchung/clighter.git'
+
+" Experimental minimap
+" NeoBundle 'severin-lemaignan/vim-minimap'
+
+" Automatic bracket insertion.
+" Deactivated because it adds a line above on "foo("
+" Two dependencies of lh-brackets
+" NeoBundle 'LucHermitte/lh-vim-lib'
+" NeoBundle 'LucHermitte/lh-dev'
+" NeoBundle 'LucHermitte/lh-brackets'
 
 call neobundle#end()
 
