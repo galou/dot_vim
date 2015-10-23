@@ -49,7 +49,10 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-sleuth'
 " Block commenting
 NeoBundle 'tpope/vim-commentary'
-NeoBundle 'git://git.code.sf.net/p/atp-vim/code'
+
+" Automatic LaTeX plugin.
+NeoBundle 'git://git.code.sf.net/p/atp-vim/code', {'name': 'atp-vim'}
+
 " Editor agnostic configuration
 NeoBundle 'editorconfig/editorconfig-vim'
 
@@ -110,11 +113,11 @@ NeoBundle 'vim-scripts/moin.vim.git'
 " NeoBundle 'severin-lemaignan/vim-minimap'
 
 " Automatic bracket insertion.
-" Deactivated because it adds a line above on "foo("
 " Two dependencies of lh-brackets
-" NeoBundle 'LucHermitte/lh-vim-lib'
-" NeoBundle 'LucHermitte/lh-dev'
-" NeoBundle 'LucHermitte/lh-brackets'
+" Not ideal because doesn't support redo, as of 2015-10.
+NeoBundle 'LucHermitte/lh-vim-lib'
+NeoBundle 'LucHermitte/lh-dev'
+NeoBundle 'LucHermitte/lh-brackets'
 
 call neobundle#end()
 

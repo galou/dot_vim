@@ -8,6 +8,7 @@ vim_phpdebug.sess
 
 # plugins handled by Neobundle
 bundle/.neobundle
+bundle/atp-vim/
 bundle/Command-T/
 bundle/FuzzyFinder/
 bundle/L9/
@@ -17,7 +18,6 @@ bundle/The-NERD-tree/
 bundle/autojump.vim/
 bundle/bufexplorer/
 bundle/cmakecomplete/
-bundle/code/
 bundle/gundo.vim/
 bundle/mru.vim/
 bundle/project.tar.gz/
@@ -48,6 +48,9 @@ bundle/moin.vim/
 bundle/clighter/
 bundle/YouCompleteMe/
 bundle/jedi-vim/
+bundle/lh-brackets/
+bundle/lh-dev/
+bundle/lh-vim-lib/
 
 # Files handled by NeoBundle
 bundle/NeoBundle.lock

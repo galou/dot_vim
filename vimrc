@@ -19,6 +19,7 @@ source ~/.vim/setup/vimtips-fortune.vim
 source ~/.vim/setup/youcompleteme.vim
 source ~/.vim/setup/vim-signify.vim
 source ~/.vim/setup/unite.vim
+source ~/.vim/setup/lh-brackets.vim
 
 " Use 'user-system-wide' powerline installation.
 set runtimepath+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
@@ -90,6 +91,7 @@ if has("autocmd")
     au BufNewFile,BufRead *.ops setlocal filetype=cpp foldmethod=syntax
     au BufNewFile,BufRead *.md setlocal filetype=markdown
     au BufNewFile,BufRead *.ino setlocal filetype=cpp
+    au BufNewFile,BufRead *.tikz setlocal filetype=tex
     " load a template when creating a new file
     au BufNewFile *.py silent! 0r ~/.vim/template/template.%:e
     " load a template for all file types when creating a new file
@@ -166,15 +168,17 @@ nnoremap <leader>fq :FufQuickfix<CR>
 " Unite
 nnoremap <leader>uu :Unite file file_rec file_mru buffer<CR>
 nnoremap <leader>ub :Unite buffer<CR>
-nnoremap <leader>ud :Unite bookmark<CR>
+nnoremap <Leader>u<S-b> :tabedit <bar> Unite buffer<CR>
 nnoremap <leader>uf :Unite file_rec<CR>
+nnoremap <Leader>u<S-f> :tabedit <bar> Unite file_rec<CR>
 nnoremap <leader>ug :Unite file_rec/git<CR>
+nnoremap <Leader>u<S-g> :tabedit <bar> Unite file_rec/git<CR>
+nnoremap <leader>uk :Unite bookmark<CR>
 "nnoremap <leader>uh :Unite help<CR>
 nnoremap <leader>ul :Unite line<CR>
 "nnoremap <leader>ut :Unite tag<CR>
-"nnoremap <leader>uq :FufQuickfix<CR>
 nnoremap <leader>um :Unite file_mru<CR>
+nnoremap <Leader>u<S-m> :tabedit <bar> Unite file_mru<CR>
 nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>
+nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_indigo_ws/src<CR>
 
-" Disable mappings to :Dbg
-let g:vim_debug_disable_mappings = 1
