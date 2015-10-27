@@ -39,7 +39,11 @@ NeoBundle 'c9s/bufexplorer'
 NeoBundle 'vim-scripts/FuzzyFinder'
 NeoBundle 'vim-scripts/L9'
 NeoBundle 'vim-scripts/project.tar.gz'
-NeoBundle 'vim-scripts/ProjectBrowse', {'branch': 'unix-eol'}
+
+" Project Management, deactivated because not used and problem with end of
+" lines.
+" NeoBundle 'vim-scripts/ProjectBrowse', {rev: 'unix-eol'}
+
 NeoBundle 'taketwo/vim-ros'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-surround'
