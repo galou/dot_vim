@@ -6,60 +6,13 @@ tags*
 vim_phpdebug.sess
 .ropeproject
 
-# plugins handled by Neobundle
-bundle/.neobundle
-bundle/atp-vim/
-bundle/Command-T/
-bundle/FuzzyFinder/
-bundle/L9/
-bundle/ProjectBrowse/
-bundle/SimpylFold/
-bundle/The-NERD-tree/
-bundle/autojump.vim/
-bundle/bufexplorer/
-bundle/cmakecomplete/
-bundle/gundo.vim/
-bundle/mru.vim/
-bundle/project.tar.gz/
-bundle/python-mode/
-bundle/snipmate.vim/
-bundle/syntastic/
-bundle/taglist.vim/
-bundle/vim-addon-commenting/
-bundle/vim-fugitive/
-bundle/vim-ipython/
-bundle/vim-ros/
-bundle/vim-surround/
-bundle/vimtips-fortune/
-bundle/xml.vim/
-bundle/vim-unimpaired/
-bundle/cmake.vim/
-bundle/UltiSnips/
-bundle/vim-snippets/
-bundle/vim-commentary/
-bundle/vim-sleuth/
-bundle/neomru.vim/
-bundle/unite.vim/
-bundle/vimproc.vim/
-bundle/tagbar/
-bundle/vim-signify/
-bundle/editorconfig-vim/
-bundle/moin.vim/
-bundle/clighter/
-bundle/YouCompleteMe/
-bundle/jedi-vim/
-bundle/lh-brackets/
-bundle/lh-dev/
-bundle/lh-vim-lib/
-bundle/code
-bundle/vim-pweave
-bundle/vim-airline
-
-# Files handled by NeoBundle
-bundle/NeoBundle.lock
+# plugins handled by dein
+bundle/merged
+bundle/.dein
+bundle/repos
+bundle/rollbacks
 
 # System-wide plugins
-bundle/powerline/
 autoload/youcompleteme.vim
 doc/tags
 doc/youcompleteme.txt

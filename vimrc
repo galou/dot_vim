@@ -6,7 +6,7 @@ endif
 set nocompatible
 
 " Plugin configuration
-source ~/.vim/setup/neobundle.vim
+source ~/.vim/setup/dein.vim
 
 source ~/.vim/setup/ProjectBrowse.vim
 source ~/.vim/setup/project.tar.gz.vim
