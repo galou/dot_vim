@@ -51,6 +51,9 @@ bundle/jedi-vim/
 bundle/lh-brackets/
 bundle/lh-dev/
 bundle/lh-vim-lib/
+bundle/code
+bundle/vim-pweave
+bundle/vim-airline
 
 # Files handled by NeoBundle
 bundle/NeoBundle.lock

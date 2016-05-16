@@ -16,7 +16,7 @@ NeoBundle 'vim-scripts/mru.vim'
 NeoBundle 'klen/python-mode'
 
 " Python completion (included in YouCompleteMe)
-" NeoBundle 'davidhalter/jedi-vim.git'
+"NeoBundle 'davidhalter/jedi-vim.git'
 
 NeoBundle 'vim-scripts/The-NERD-tree'
 
@@ -55,7 +55,7 @@ NeoBundle 'tpope/vim-sleuth'
 NeoBundle 'tpope/vim-commentary'
 
 " Automatic LaTeX plugin.
-NeoBundle 'git://git.code.sf.net/p/atp-vim/code', {'name': 'atp-vim'}
+NeoBundle 'http://git.code.sf.net/p/atp-vim/code', {'name': 'atp-vim'}
 
 " Editor agnostic configuration
 NeoBundle 'editorconfig/editorconfig-vim'
@@ -70,9 +70,8 @@ NeoBundle 'editorconfig/editorconfig-vim'
 " On Ubuntu 14.04, it's offered system-wide and activated with
 " 'vim-addons install youcompleteme'.
 NeoBundle 'Valloric/YouCompleteMe', {
-     \ 'build'      : {
-        \ 'unix'    : './install.sh --clang-completer --system-libclang',
-        \ 'cygwin'  : './install.sh --clang-completer --system-libclang'
+     \ 'build': {
+        \ 'linux': 'python install.py --clang-completer --gocode-completer',
         \ }
      \ }
 let g:neobundle#install_process_timeout = 600
@@ -119,9 +118,13 @@ NeoBundle 'vim-scripts/moin.vim.git'
 " Automatic bracket insertion.
 " Two dependencies of lh-brackets
 " Not ideal because doesn't support redo, as of 2015-10.
-NeoBundle 'LucHermitte/lh-vim-lib'
-NeoBundle 'LucHermitte/lh-dev'
-NeoBundle 'LucHermitte/lh-brackets'
+" NeoBundle 'LucHermitte/lh-vim-lib'
+" NeoBundle 'LucHermitte/lh-dev'
+" NeoBundle 'LucHermitte/lh-brackets'
+
+" Syntax highlighting support for Pweave files, scientific report with
+" LaTeX and Python.
+NeoBundle 'naught101/vim-pweave'
 
 call neobundle#end()
 
