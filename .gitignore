@@ -5,6 +5,9 @@ vimrc.bundle
 tags*
 vim_phpdebug.sess
 .ropeproject
+default_ycm_extra_conf.pyc
+spell/*.spl
+spell/*.sug
 
 # plugins handled by dein
 bundle/merged
