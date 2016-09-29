@@ -14,7 +14,7 @@ let g:dein#enable_notification=1
 call dein#add('tpope/vim-fugitive')
 
 " Snippets.
-call dein#add('vim-scripts/UltiSnips')
+call dein#add('SirVer/ultisnips')
 
 " Default snippets for UltiSnips
 call dein#add('honza/vim-snippets')
