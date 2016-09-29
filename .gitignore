@@ -11,6 +11,7 @@ bundle/merged
 bundle/.dein
 bundle/repos
 bundle/rollbacks
+bundle/temp
 
 # System-wide plugins
 autoload/youcompleteme.vim

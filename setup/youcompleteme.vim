@@ -10,5 +10,5 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " Whitelisted configuration files.
 let g:ycm_extra_conf_globlist = ['/home/gael/ros_indigo_ws/*']
 
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/default_ycm_extra_conf.py'
 

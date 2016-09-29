@@ -18,3 +18,9 @@ let g:unite_source_grep_recursive_opt = ''
 "These options were deactivated because they caused problem when jumping.
 "let g:unite_source_grep_default_opts = ''
 "let g:unite_source_grep_recursive_opt = '-R'
+
+" Let the Unite window open on grep.
+" cf. https://github.com/Shougo/unite.vim/issues/426.
+call unite#custom#profile('source/grep,source/gtags', 'context', {
+			\'no_quit' : 1
+			\ })

@@ -8,18 +8,18 @@ set nocompatible
 " Plugin configuration
 source ~/.vim/setup/dein.vim
 
-source ~/.vim/setup/ProjectBrowse.vim
-source ~/.vim/setup/project.tar.gz.vim
+" source ~/.vim/setup/ProjectBrowse.vim
+" source ~/.vim/setup/project.tar.gz.vim
 source ~/.vim/setup/python-mode.vim
-source ~/.vim/setup/syntastic.vim
+" source ~/.vim/setup/syntastic.vim
 source ~/.vim/setup/UltiSnips.vim
 source ~/.vim/setup/vim-fugitive.vim
 source ~/.vim/setup/vim-ros.vim
 source ~/.vim/setup/vimtips-fortune.vim
 source ~/.vim/setup/youcompleteme.vim
-source ~/.vim/setup/vim-signify.vim
+" source ~/.vim/setup/vim-signify.vim
 source ~/.vim/setup/unite.vim
-source ~/.vim/setup/lh-brackets.vim
+" source ~/.vim/setup/lh-brackets.vim
 
 " Use 'user-system-wide' powerline installation.
 set runtimepath+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
@@ -145,7 +145,7 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
-map <A-o> :ProjectBrowseCached<CR>
+" map <A-o> :ProjectBrowseCached<CR>
 
 " Select last pasted text with 'gb', cf.
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text.
@@ -182,3 +182,7 @@ nnoremap <Leader>u<S-m> :tabedit <bar> Unite file_mru<CR>
 nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>
 nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_indigo_ws/src<CR>
 
+" The following command is already in ftplugin/python.vim, cf.
+" https://github.com/Shougo/dein.vim/issues/101.
+" I use a custom mapping for ipython (cf. ipy.vim).
+let g:ipy_perform_mappings = 0
