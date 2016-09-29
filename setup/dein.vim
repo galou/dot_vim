@@ -89,6 +89,9 @@ call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 " A class outline viewer
 call dein#add('majutsushi/tagbar')
 
+" extended % matching for HTML, LaTeX, and many other languages
+call dein#add('tmhedberg/matchit')
+
 """""""""""""""""
 " Local plugins "
 """""""""""""""""
