@@ -1,5 +1,5 @@
 " dein activation
-set runtimepath^=~/.vim/bundle/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/bundle/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.vim/bundle'))
 " Let dein manage dein (required)
 call dein#add('Shougo/dein.vim')
@@ -94,8 +94,8 @@ call dein#add('majutsushi/tagbar')
 """""""""""""""""
 
 call dein#local('~/.vim/bundle/local/castem')
-call dein#local('~/.vim/bundle/local/orocos')
 call dein#local('~/.vim/bundle/local/mbdyn')
+call dein#local('~/.vim/bundle/local/orocos')
 
 """"""""""""""""""""""""""""""""
 " Not often used but practical "
