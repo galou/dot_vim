@@ -8,3 +8,8 @@ else if ($1 > $2)
 	$1 = $2;
 }
 endsnippet
+
+snippet coutdebug "cout << 'var: ' << var'"
+std::cout << "$1: " << (${1:var}) << std::endl;  // DEBUG
+endsnippet
+
