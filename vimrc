@@ -53,6 +53,8 @@ set incsearch		" do incremental searching
 set hlsearch
 set noshowmode " Mode is shown by the powerline plugin
 set nobackup
+"How to show whitespace in list mode.
+set listchars=eol:$,tab:↦‧
 
 " Use the system clipboard as default clipboard
 " set clipboard=unnamedplus
