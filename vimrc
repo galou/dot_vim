@@ -92,6 +92,8 @@ if has("autocmd")
     au BufNewFile,BufRead *.md setlocal filetype=markdown
     au BufNewFile,BufRead *.ino setlocal filetype=cpp
     au BufNewFile,BufRead *.tikz setlocal filetype=tex
+    au BufNewFile,BufRead *.nxc setlocal filetype=nxc
+
     " load a template when creating a new file
     au BufNewFile *.py silent! 0r ~/.vim/template/template.%:e
     " load a template for all file types when creating a new file

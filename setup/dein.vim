@@ -97,6 +97,9 @@ call dein#add('majutsushi/tagbar')
 " extended % matching for HTML, LaTeX, and many other languages
 call dein#add('tmhedberg/matchit')
 
+" Lego Mindstorms (nxc) syntax.
+call dein#add('vim-scripts/nxc.vim')
+
 """""""""""""""""
 " Local plugins "
 """""""""""""""""
