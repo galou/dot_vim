@@ -73,9 +73,12 @@ call dein#add('editorconfig/editorconfig-vim')
 " A code-completion engine.
 " On Ubuntu 14.04, it's also offered system-wide and activated with
 " 'vim-addons install youcompleteme'.
+" Lock to revision 'f928f7dd975d26b608d5310a9139dc5fc310e4a9' because newer
+" commits require vim 7.4.143+, not available on Ubuntu 14.04.
 call dein#add('Valloric/YouCompleteMe',
             \ {'build': 'python install.py --clang-completer --gocode-completer',
-            \  'timeout': 600
+            \  'timeout': 600,
+            \  'rev': 'f928f7dd975d26b608d5310a9139dc5fc310e4a9'
             \ }
             \ )
 
