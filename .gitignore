@@ -10,11 +10,11 @@ spell/*.spl
 spell/*.sug
 
 # plugins handled by dein
-bundle/merged
+bundle/vimrc/merged
 bundle/.dein
 bundle/repos
-bundle/rollbacks
-bundle/temp
+bundle/vimrc/rollbacks
+bundle/vimrc/temp
 
 # System-wide plugins
 autoload/youcompleteme.vim

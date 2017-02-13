@@ -13,6 +13,8 @@ let g:dein#enable_notification=1
 " git integration.
 call dein#add('tpope/vim-fugitive')
 
+" Interactive git log viewer.
+call dein#add('kablamo/vim-git-log')
 " Snippets.
 call dein#add('SirVer/ultisnips')
 
