@@ -1,53 +1,71 @@
 import os
-import os.path
-import fnmatch
 import logging
 import ycm_core
-import re
+
+# Directory where to find the file 'compile_commands.json' for out-of-source
+# builds.
+# This is not necessary to set BUILD_DIR if the build directory is called
+# `build` and is either inside the sources or at the same level.
+BUILD_DIR = ''
 
 BASE_FLAGS = [
-        '-Wall',
-        '-Wextra',
-        '-Werror',
-        '-Wno-long-long',
-        '-Wno-variadic-macros',
-        '-fexceptions',
-        '-ferror-limit=10000',
-        '-DNDEBUG',
-        '-std=c++11',
-        '-xc++',
-        '-I/usr/lib/',
-        '-I/usr/include/'
-        ]
+    '-Wall',
+    '-Wextra',
+    '-Werror',
+    '-fexceptions',
+    '-DNDEBUG',
+    # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
+    # language to use when compiling headers. So it will guess. Badly. So C++
+    # headers will be compiled as C headers. You don't want that so ALWAYS specify
+    # a "-std=<something>".
+    # For a C project, you would set this to something like 'c99' instead of
+    # 'c++11'.
+    '-std=c++11',
+    # '-stdlib=libstdc++',
+    '-stdlib=libc++',
+    # ...and the same thing goes for the magic -x option which specifies the
+    # language that the files to be compiled are written in. This is mostly
+    # relevant for c++ headers.
+    # For a C project, you would set this to 'c' instead of 'c++'.
+    '-x',
+    'c++',
+    '-isystem',
+    '/usr/include',
+    '-isystem',
+    '/usr/local/include',
+]
 
 SOURCE_EXTENSIONS = [
-        '.cpp',
-        '.cxx',
-        '.cc',
-        '.c',
-        '.m',
-        '.mm'
-        ]
+    '.cpp',
+    '.cxx',
+    '.cc',
+    '.c',
+    '.m',
+    '.mm'
+]
 
 SOURCE_DIRECTORIES = [
-        'src',
-        'lib'
-        ]
+    'src',
+    'lib'
+]
 
 HEADER_EXTENSIONS = [
-        '.h',
-        '.hxx',
-        '.hpp',
-        '.hh'
-        ]
+    '.h',
+    '.hxx',
+    '.hpp',
+    '.hh'
+]
 
 HEADER_DIRECTORIES = [
-        'include'
-        ]
+    'include'
+]
+
+DEFAULT_BUILD_DIR = 'build'
 
 def IsHeaderFile(filename):
     extension = os.path.splitext(filename)[1]
     return extension in HEADER_EXTENSIONS
+
 
 def GetCompilationInfoForFile(database, filename):
     if IsHeaderFile(filename):
@@ -70,7 +88,7 @@ def GetCompilationInfoForFile(database, filename):
         return None
     return database.GetCompilationInfoForFile(filename)
 
-def FindNearest(path, target, build_folder):
+def FindNearest(path, target, build_folder=None):
     candidate = os.path.join(path, target)
     if(os.path.isfile(candidate) or os.path.isdir(candidate)):
         logging.info("Found nearest " + target + " at " + candidate)
@@ -108,7 +126,7 @@ def MakeRelativePathsInFlagsAbsolute(flags, working_directory):
                 break
 
             if flag.startswith(path_flag):
-                path = flag[ len(path_flag): ]
+                path = flag[len(path_flag):]
                 new_flag = path_flag + os.path.join(working_directory, path)
                 break
 
@@ -119,17 +137,18 @@ def MakeRelativePathsInFlagsAbsolute(flags, working_directory):
 
 def FlagsForClangComplete(root):
     try:
-        clang_complete_path = FindNearest(root, '.clang_complete')
+        clang_complete_path = FindNearest(root, '.clang_complete', '.')
         clang_complete_flags = open(clang_complete_path, 'r').read().splitlines()
         return clang_complete_flags
     except:
         return None
 
+
 def FlagsForInclude(root):
     try:
         include_path = FindNearest(root, 'include')
-        flags = []
-        for dirroot, dirnames, filenames in os.walk(include_path):
+        flags = ['-I' + include_path]
+        for dirroot, dirnames, _ in os.walk(include_path):
             for dir_path in dirnames:
                 real_path = os.path.join(dirroot, dir_path)
                 flags = flags + ["-I" + real_path]
@@ -137,14 +156,15 @@ def FlagsForInclude(root):
     except:
         return None
 
+
 def FlagsForCompilationDatabase(root, filename):
     try:
         # Last argument of next function is the name of the build folder for
         # out of source projects
-        compilation_db_path = FindNearest(root, 'compile_commands.json', 'build')
+        compilation_db_path = FindNearest(root, 'compile_commands.json', DEFAULT_BUILD_DIR)
         compilation_db_dir = os.path.dirname(compilation_db_path)
         logging.info("Set compilation database directory to " + compilation_db_dir)
-        compilation_db =  ycm_core.CompilationDatabase(compilation_db_dir)
+        compilation_db = ycm_core.CompilationDatabase(compilation_db_dir)
         if not compilation_db:
             logging.info("Compilation database file found but unable to load")
             return None
@@ -153,16 +173,23 @@ def FlagsForCompilationDatabase(root, filename):
             logging.info("No compilation info for " + filename + " in compilation database")
             return None
         return MakeRelativePathsInFlagsAbsolute(
-                compilation_info.compiler_flags_,
-                compilation_info.compiler_working_dir_)
+            compilation_info.compiler_flags_,
+            compilation_info.compiler_working_dir_)
     except:
         return None
 
+
 def FlagsForFile(filename):
-    root = os.path.realpath(filename);
+    root = ''
+    if BUILD_DIR:
+        root = os.path.realpath(BUILD_DIR)
+    if not os.path.exists(root + '/compile_commands.json'):
+        root = os.path.realpath(filename)
     compilation_db_flags = FlagsForCompilationDatabase(root, filename)
     if compilation_db_flags:
-        final_flags = compilation_db_flags
+        # Add '-stdlib=libc++' so that the standard library is recognized.
+        # This is missing when using 'compile_commands.json' but clang needs it.
+        final_flags = compilation_db_flags + ['-stdlib=libc++']
     else:
         final_flags = BASE_FLAGS
         clang_flags = FlagsForClangComplete(root)
@@ -172,6 +199,6 @@ def FlagsForFile(filename):
         if include_flags:
             final_flags = final_flags + include_flags
     return {
-            'flags': final_flags,
-            'do_cache': True
-            }
+        'flags': final_flags,
+        'do_cache': True
+    }
