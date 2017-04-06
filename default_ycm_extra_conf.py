@@ -62,6 +62,7 @@ HEADER_DIRECTORIES = [
 
 DEFAULT_BUILD_DIR = 'build'
 
+
 def IsHeaderFile(filename):
     extension = os.path.splitext(filename)[1]
     return extension in HEADER_EXTENSIONS
@@ -88,30 +89,32 @@ def GetCompilationInfoForFile(database, filename):
         return None
     return database.GetCompilationInfoForFile(filename)
 
+
 def FindNearest(path, target, build_folder=None):
     candidate = os.path.join(path, target)
-    if(os.path.isfile(candidate) or os.path.isdir(candidate)):
+    if os.path.isfile(candidate) or os.path.isdir(candidate):
         logging.info("Found nearest " + target + " at " + candidate)
-        return candidate;
+        return candidate
 
-    parent = os.path.dirname(os.path.abspath(path));
-    if(parent == path):
-        raise RuntimeError("Could not find " + target);
+    parent = os.path.dirname(os.path.abspath(path))
+    if parent == path:
+        raise RuntimeError("Could not find " + target)
 
-    if(build_folder):
+    if build_folder:
         candidate = os.path.join(parent, build_folder, target)
-        if(os.path.isfile(candidate) or os.path.isdir(candidate)):
+        if os.path.isfile(candidate) or os.path.isdir(candidate):
             logging.info("Found nearest " + target + " in build folder at " + candidate)
-            return candidate;
+            return candidate
 
     return FindNearest(parent, target, build_folder)
+
 
 def MakeRelativePathsInFlagsAbsolute(flags, working_directory):
     if not working_directory:
         return list(flags)
     new_flags = []
     make_next_absolute = False
-    path_flags = [ '-isystem', '-I', '-iquote', '--sysroot=' ]
+    path_flags = ['-isystem', '-I', '-iquote', '--sysroot=']
     for flag in flags:
         new_flag = flag
 
