@@ -10,6 +10,10 @@ else if ($1 > $2)
 endsnippet
 
 snippet coutdebug "cout << 'var: ' << var'"
-std::cout << "$1: " << (${1:var}) << std::endl;  // DEBUG
+std::cout << "\033[1;35m%%%%% $1: " << (${1:var}) << "\033[0m" << std::endl;  // DEBUG
+endsnippet
+
+snippet std::coutdebug "cout << 'var: ' << var'"
+std::cout << "\033[1;35m%%%%% $1: " << (${1:var}) << "\033[0m" << std::endl;  // DEBUG
 endsnippet
 

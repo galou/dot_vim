@@ -67,3 +67,8 @@ set_target_properties(${1:target}
 	${0:"-O3 -Wall -pedantic"}
 )
 endsnippet
+
+snippet message_debug
+message(STATUS "$1: \${${1}}") # DEBUG
+endsnippet
+
