@@ -42,9 +42,9 @@ set tabstop=4
 set shiftwidth=4
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-set history=500		" keep 500 lines of command line history
+set history=1000		" keep that many lines of command line history
 " viminfo option
-" :500  :  up to 100 lines of command-line history will be remembered
+" :500  :  up to 500 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 set viminfo+=:500
 set ruler		" show the cursor position all the time
@@ -55,6 +55,13 @@ set noshowmode " Mode is shown by the powerline plugin
 set nobackup
 "How to show whitespace in list mode.
 set listchars=eol:$,tab:↦‧
+set smarttab
+" Automatically reloads the file if externally modified and unchanged in vim.
+set autoread
+
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j  " Delete comment character when joining commented lines
+endif  
 
 " Use the system clipboard as default clipboard
 " set clipboard=unnamedplus
@@ -68,6 +75,11 @@ endif
 if has('gui_running')
   set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
   colorscheme torte
+endif
+
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+  set t_Co=16
 endif
 
 " wildignore: files to ignore when tab-completing
@@ -185,6 +197,11 @@ nnoremap <leader>um :Unite file_mru<CR>
 nnoremap <Leader>u<S-m> :tabedit <bar> Unite file_mru<CR>
 nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>
 nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_indigo_ws/src<CR>
+
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
 
 " The following command is already in ftplugin/python.vim, cf.
 " https://github.com/Shougo/dein.vim/issues/101.

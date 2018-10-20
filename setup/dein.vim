@@ -57,6 +57,9 @@ call dein#add('tpope/vim-sleuth')
 " Block commenting.
 call dein#add('tpope/vim-commentary')
 
+" Set the `path` variable for more efficient jump to file (gf).
+call dein#add('tpope/vim-apathy')
+
 " Automatic LaTeX plugin.
 " The original is http (i.e. not https) and not supported by dein.
 " NeoBundle 'http://git.code.sf.net/p/atp-vim/code', {'name': 'atp-vim'}
@@ -75,12 +78,20 @@ call dein#add('editorconfig/editorconfig-vim')
 " 'vim-addons install youcompleteme'.
 " Lock to revision 'f928f7dd975d26b608d5310a9139dc5fc310e4a9' because newer
 " commits require vim 7.4.143+, not available on Ubuntu 14.04.
-call dein#add('Valloric/YouCompleteMe',
-            \ {'build': 'python install.py --clang-completer --gocode-completer',
-            \  'timeout': 600,
-            \  'rev': 'f928f7dd975d26b608d5310a9139dc5fc310e4a9'
-            \ }
-            \ )
+if (v:version < 800)
+            call dein#add('Valloric/YouCompleteMe',
+                        \ {'build': 'python install.py --clang-completer --gocode-completer',
+                        \  'timeout': 600,
+                        \  'rev': 'f928f7dd975d26b608d5310a9139dc5fc310e4a9'
+                        \ }
+                        \ )
+else
+            call dein#add('Valloric/YouCompleteMe',
+                        \ {'build': 'python install.py --clang-completer --gocode-completer',
+                        \  'timeout': 600
+                        \ }
+                        \ )
+endif
 
 " Browse files, buffers, lines ... (:Unite).
 call dein#add('Shougo/unite.vim')
@@ -121,6 +132,12 @@ call dein#add('naught101/vim-pweave')
 
 " MoinMoin syntax highlighting.
 call dein#add('vim-scripts/moin.vim.git')
+
+" JSON bindings.
+" aj provides a text object for the outermost JSON object, array, string, number, or keyword.
+" gqaj "pretty prints" (wraps/indents/sorts keys/otherwise cleans up) the JSON construct under the cursor.
+" gwaj takes the JSON object on the clipboard and extends it into the JSON object under the cursor.
+call dein#add('tpope/vim-jdaddy')
 
 """""""""""""""""""""""""""""""""""""""""""
 " Why not but short startup time prefered "
