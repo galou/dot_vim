@@ -5,21 +5,27 @@ endif
 
 set nocompatible
 
-" Plugin configuration
-source ~/.vim/setup/dein.vim
+if has('nvim')
+	let config_dir = "~/.config/nvim"
+else
+	let config_dir = "~/.vim"
+endif
 
-" source ~/.vim/setup/ProjectBrowse.vim
-" source ~/.vim/setup/project.tar.gz.vim
-source ~/.vim/setup/python-mode.vim
-" source ~/.vim/setup/syntastic.vim
-source ~/.vim/setup/UltiSnips.vim
-source ~/.vim/setup/vim-fugitive.vim
-source ~/.vim/setup/vim-ros.vim
-source ~/.vim/setup/vimtips-fortune.vim
-source ~/.vim/setup/youcompleteme.vim
-" source ~/.vim/setup/vim-signify.vim
-source ~/.vim/setup/unite.vim
-" source ~/.vim/setup/lh-brackets.vim
+" Plugin configuration
+execute "source ".config_dir."/setup/dein.vim"
+
+" execute "source ".config_dir."/setup/ProjectBrowse.vim"
+" execute "source ".config_dir."/setup/project.tar.gz.vim"
+execute "source ".config_dir."/setup/python-mode.vim"
+" execute "source ".config_dir."/setup/syntastic.vim"
+execute "source ".config_dir."/setup/UltiSnips.vim"
+execute "source ".config_dir."/setup/vim-fugitive.vim"
+execute "source ".config_dir."/setup/vim-ros.vim"
+execute "source ".config_dir."/setup/vimtips-fortune.vim"
+execute "source ".config_dir."/setup/youcompleteme.vim"
+" execute "source ".config_dir."/setup/vim-signify.vim"
+execute "source ".config_dir."/setup/unite.vim"
+" execute "source ".config_dir."/setup/lh-brackets.vim"
 
 " Use 'user-system-wide' powerline installation.
 set runtimepath+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
