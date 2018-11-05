@@ -30,9 +30,15 @@ BASE_FLAGS = [
     '-x',
     'c++',
     '-isystem',
+    '/usr/include/c++',
+    '-isystem',
     '/usr/include',
     '-isystem',
     '/usr/local/include',
+    '-isystem',
+    '/usr/include/clang/3.3/include',
+    '-isystem',
+    '/usr/include/x86_64-linux-gnu',
 ]
 
 SOURCE_EXTENSIONS = [

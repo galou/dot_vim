@@ -1,15 +1,17 @@
+# -*- coding: utf-8 -*-
 # Longer, detailed macro description
 
-__Title__ = ''
+__Name__ = ''
+__Comment__ = ''
 __Author__ = ''
 __Version__ = ''
-__Date__ = 'YYY-MM-DD'
-__Comment__ = ''
+__Date__ = 'YYYY-MM-DD'
+__License__ = ''
 __Web__ = 'http://forum.freecadweb.org/viewtopic.php?f=?&t=????'
 __Wiki__ = 'http://www.freecadweb.org/wiki/index.php?title=Macro_Title_Of_macro'
 __Icon__ = ''
-__IconW__ = ''
 __Help__ = ''
 __Status__ = ''
 __Requires__ = 'FreeCAD ?.??'
-__Communication__ = ''
+__Communication__ = 'https://github.com/FreeCAD/FreeCAD-macros/issues/'
+__Files__ = ''

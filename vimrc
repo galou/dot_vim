@@ -67,7 +67,7 @@ set autoread
 
 if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j  " Delete comment character when joining commented lines
-endif  
+endif
 
 " Use the system clipboard as default clipboard
 " set clipboard=unnamedplus
@@ -76,6 +76,8 @@ endif
 if has('mouse')
   set mouse=a
 endif
+
+colorscheme gaels
 
 " Gui configuration
 if has('gui_running')
@@ -107,6 +109,7 @@ nnoremap <silent> S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count
 " autocommands
 if has("autocmd")
     au BufNewFile,BufRead *.FCMacro setlocal filetype=python
+    au BufNewFile,BufRead *.fcmacro setlocal filetype=python
     au BufNewFile,BufRead *.nc setlocal filetype=cpp
     au BufNewFile,BufRead *.ops setlocal filetype=cpp foldmethod=syntax
     au BufNewFile,BufRead *.md setlocal filetype=markdown
@@ -115,10 +118,13 @@ if has("autocmd")
     au BufNewFile,BufRead *.nxc setlocal filetype=nxc
 
     " load a template when creating a new file
-    au BufNewFile *.py silent! 0r ~/.vim/template/template.%:e
+    execute "au BufNewFile *.py silent! 0r ".config_dir."/template/template.%:e"
+    execute "au BufNewFile *.tex silent! 0r ".config_dir."/template/template.%:e"
+    execute "au BufNewFile *.FCMacro silent! 0r ".config_dir."/template/template.%:e"
+    execute "au BufNewFile *.fcmacro silent! 0r ".config_dir."/template/template.%:e"
     " load a template for all file types when creating a new file
-    " au! BufNewFile * silent! 0r ~/.vim/template/template.%:e
-	
+    execute "au! BufNewFile * silent! 0r ".config_dir."/template/template.%:e"
+
     " For all text files set 'textwidth' to 78 characters.
     autocmd FileType text setlocal textwidth=78
 
@@ -176,6 +182,11 @@ nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 " YouCompleteMe
 nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gt :YcmCompleter GetType<CR>
+nnoremap <leader>go :YcmCompleter GetDoc<CR>
+nnoremap <leader>gp :YcmCompleter GetParent<CR>
+nnoremap <leader>gr :YcmCompleter RefactorRename
+nnoremap <leader>i :YcmCompleter FixIt<CR>
 
 " FuzzyFinder
 nnoremap <leader>fb :FufBuffer<CR>
@@ -201,8 +212,19 @@ nnoremap <leader>ul :Unite line<CR>
 "nnoremap <leader>ut :Unite tag<CR>
 nnoremap <leader>um :Unite file_mru<CR>
 nnoremap <Leader>u<S-m> :tabedit <bar> Unite file_mru<CR>
-nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>
-nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_indigo_ws/src<CR>
+" TODO: add if !empty($ROS_WORKSPACE)... , check syntax.
+if $HOST == "pcgael3"
+  nnoremap <leader>ur :Unite grep:$HOME/ros_melodic_ws/src<CR>
+  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_melodic_ws/src<CR>
+elseif $HOST == "pcagel2"
+  " Ubuntu 16.04.
+  nnoremap <leader>ur :Unite grep:$HOME/ros_kinetic_ws/src<CR>
+  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_kinetic_ws/src<CR>
+elseif $HOST == "pcgael"
+  " Ubuntu 14.04.
+  nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>
+  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_indigo_ws/src<CR>
+endif
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
