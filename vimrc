@@ -123,7 +123,7 @@ if has("autocmd")
     execute "au BufNewFile *.FCMacro silent! 0r ".config_dir."/template/template.%:e"
     execute "au BufNewFile *.fcmacro silent! 0r ".config_dir."/template/template.%:e"
     " load a template for all file types when creating a new file
-    execute "au! BufNewFile * silent! 0r ".config_dir."/template/template.%:e"
+    "execute "au BufNewFile * silent! 0r ".config_dir."/template/template.%:e"
 
     " For all text files set 'textwidth' to 78 characters.
     autocmd FileType text setlocal textwidth=78
@@ -212,8 +212,12 @@ nnoremap <leader>ul :Unite line<CR>
 "nnoremap <leader>ut :Unite tag<CR>
 nnoremap <leader>um :Unite file_mru<CR>
 nnoremap <Leader>u<S-m> :tabedit <bar> Unite file_mru<CR>
-" TODO: add if !empty($ROS_WORKSPACE)... , check syntax.
-if $HOST == "pcgael3"
+if !empty($ROS_WORKSPACE)
+  " Generic solution.
+  nnoremap <leader>ur :Unite grep:$ROS_WORKSPCE/src<CR>
+  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$ROS_WORKSPCE/src<CR>
+elseif $HOST == "pcgael3"
+  " Ubuntu 18.04.
   nnoremap <leader>ur :Unite grep:$HOME/ros_melodic_ws/src<CR>
   nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_melodic_ws/src<CR>
 elseif $HOST == "pcagel2"

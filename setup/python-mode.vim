@@ -7,5 +7,5 @@ let g:pymode_rope_completion = 0
 "let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8', 'mccabe']
 let g:pymode_lint_checkers = []
 
-" Let syntastic do the syntax checking.
+" Let syntastic do the syntax checking instead of python-mode.
 let g:pymode_lint_on_write = 0

@@ -18,6 +18,7 @@ if dein#load_state('~/.cache/dein')
 
   " Interactive git log viewer.
   call dein#add('kablamo/vim-git-log')
+
   " Snippets.
   call dein#add('SirVer/ultisnips')
 
@@ -60,15 +61,33 @@ if dein#load_state('~/.cache/dein')
   " Block commenting.
   call dein#add('tpope/vim-commentary')
 
+  " Repeat also for complex mapping (for example surround).
+  call dein#add('tpope/vim-repeat')
+
+  " vim-abolish provides:
+  " - ':Subvert': replace a word with another while respecting case and plural.
+  " - Change between variable conventions (dash-case, MixedCase, camelCase, ...).
+  "   Mapped to 'cr_', 'cr-', 'crm', 'crc', 'cr.', 
+  call dein#add('tpope/vim-abolish')
+
   " Set the `path` variable for more efficient jump to file (gf).
   call dein#add('tpope/vim-apathy')
 
   " Automatic LaTeX plugin.
   " The original is http (i.e. not https) and not supported by dein.
   " NeoBundle 'http://git.code.sf.net/p/atp-vim/code', {'name': 'atp-vim'}
-  call dein#add('coot/atp_vim',
-              \ {'on_ft': ['tex', 'bib', 'bst', 'sty']}
-              \ )
+  if has('pyx')
+    " Locked to version 676e because newer version use :pyx which doesn't exit in
+    " vim 7.4 nor in NeoVim.
+    call dein#add('coot/atp_vim',
+          \ {'on_ft': ['tex', 'bib', 'bst', 'sty']},
+          \  'rev': '676e710'}
+          \ )
+  else
+    call dein#add('coot/atp_vim',
+          \ {'on_ft': ['tex', 'bib', 'bst', 'sty']}
+          \ )
+  endif
 
   " Editor agnostic configuration.
   call dein#add('editorconfig/editorconfig-vim')
@@ -104,8 +123,14 @@ if dein#load_state('~/.cache/dein')
     endif
   endif
 
+  " C/C++ debugger for Neovim, based on LLDB.
+  call dein#add('critiqjo/lldb.nvim')
+
   " Browse files, buffers, lines ... (:Unite).
   call dein#add('Shougo/unite.vim')
+
+  " Unite plugin using locate
+  call dein#add('vim-scripts/unite-locate')
 
   " Most-recently-used support for Unite (:Unite file_mru)
   call dein#add('Shougo/neomru.vim')
@@ -121,6 +146,12 @@ if dein#load_state('~/.cache/dein')
 
   " Lego Mindstorms (nxc) syntax.
   call dein#add('vim-scripts/nxc.vim')
+
+  " Syntax checking.
+  call dein#add('vim-scripts/syntastic')
+
+  " ABB Rapid support.
+  call dein#add('KnoP-01/rapid-for-vim')
 
   """""""""""""""""
   " Local plugins "
@@ -141,14 +172,18 @@ if dein#load_state('~/.cache/dein')
   " LaTeX and Python.
   call dein#add('naught101/vim-pweave')
 
-  " MoinMoin syntax highlighting.
-  call dein#add('vim-scripts/moin.vim.git')
-
   " JSON bindings.
   " aj provides a text object for the outermost JSON object, array, string, number, or keyword.
-  " gqaj "pretty prints" (wraps/indents/sorts keys/otherwise cleans up) the JSON construct under the cursor.
+  " gqaj pretty prints (wraps/indents/sorts keys/otherwise cleans up) the JSON construct under the cursor.
   " gwaj takes the JSON object on the clipboard and extends it into the JSON object under the cursor.
   call dein#add('tpope/vim-jdaddy')
+
+  " Generation of .ycm_extra_conf.py
+  call dein#add('rdnetto/YCM-Generator')
+
+  " Rust support.
+  call dein#add('rust-lang/rust.vim')
+  call dein#add('racer-rust/vim-racer')
 
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
@@ -159,9 +194,6 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('trotter/autojump.vim')
 
   "call dein#add('vim-scripts/project.tar.gz')
-
-  " Syntax checking.
-  "call dein#add('scrooloose/syntastic')
 
   " Show a VCS diff using Vim's sign column
   "call dein#add('mhinz/vim-signify')
@@ -230,6 +262,12 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('LucHermitte/lh-vim-lib')
   "call dein#add('LucHermitte/lh-dev')
   "call dein#add('LucHermitte/lh-brackets')
+ 
+  """""""""""""""
+  " Interesting "
+  """""""""""""""
+  " More user-friendly registers.
+  " https://github.com/svermeulen/vim-easyclip
 
   call dein#end()
   call dein#save_state()
