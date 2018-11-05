@@ -10,6 +10,7 @@ spell/*.sug
 
 # plugins handled by dein
 bundle/merged
+bundle/.cache
 bundle/.dein
 bundle/repos
 bundle/rollbacks
