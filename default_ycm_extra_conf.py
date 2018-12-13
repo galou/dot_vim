@@ -22,7 +22,6 @@ BASE_FLAGS = [
     # 'c++11'.
     '-std=c++11',
     # '-stdlib=libstdc++',
-    '-stdlib=libc++',
     # ...and the same thing goes for the magic -x option which specifies the
     # language that the files to be compiled are written in. This is mostly
     # relevant for c++ headers.
