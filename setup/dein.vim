@@ -94,6 +94,10 @@ if dein#load_state('~/.cache/dein')
 
   " Powerline is installed with pip on Ubuntu, so don't install it here.
   "call dein#add('Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'})
+  if has('nvim')
+    " Use airline as alternative to unsupported powerline.
+    call dein#add('vim-airline/vim-airline')
+  endif
 
   " A code-completion engine.
   " On Ubuntu 14.04, it's also offered system-wide and activated with

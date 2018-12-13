@@ -26,9 +26,16 @@ execute "source ".config_dir."/setup/youcompleteme.vim"
 " execute "source ".config_dir."/setup/vim-signify.vim"
 execute "source ".config_dir."/setup/unite.vim"
 " execute "source ".config_dir."/setup/lh-brackets.vim"
+execute "source ".config_dir."/setup/airline.vim"
 
-" Use 'user-system-wide' powerline installation.
-set runtimepath+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+" Use 'user-system-wide' or 'system-wide' powerline installation.
+if has('nvim')
+	" No support for powerline in NeoVim
+	" set runtimepath+=/usr/lib/python2.7/dist-packages/powerline/bindings/vim
+	" set runtimepath+=/usr/lib/python3/dist-packages/powerline/bindings/vim
+else
+	set runtimepath+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+endif
 
 " General configuration
 syntax on
