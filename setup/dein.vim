@@ -157,6 +157,9 @@ if dein#load_state('~/.cache/dein')
   " ABB Rapid support.
   call dein#add('KnoP-01/rapid-for-vim')
 
+  " Syntax highlighting for i3 config.
+  call dein#add('mboughaba/i3config.vim')
+
   """""""""""""""""
   " Local plugins "
   """""""""""""""""

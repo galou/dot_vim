@@ -24,3 +24,5 @@ let g:unite_source_grep_recursive_opt = ''
 call unite#custom#profile('source/grep,source/gtags', 'context', {
 			\'no_quit' : 1
 			\ })
+
+let g:neomru#follow_links = 1
