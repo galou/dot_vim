@@ -79,11 +79,12 @@ if dein#load_state('~/.cache/dein')
   " Editor agnostic configuration.
   call dein#add('editorconfig/editorconfig-vim')
 
-  " Powerline is installed with pip on Ubuntu, so don't install it here.
-  "call dein#add('Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'})
   if has('nvim')
     " Use airline as alternative to unsupported powerline.
     call dein#add('vim-airline/vim-airline')
+  else
+    " Powerline is installed with pip on Ubuntu, so don't install it here.
+    "call dein#add('Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'})
   endif
 
   " A code-completion engine.
