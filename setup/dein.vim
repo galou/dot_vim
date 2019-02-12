@@ -163,6 +163,9 @@ if dein#load_state('~/.cache/dein')
   " Highlight yanked text briefly
   call dein#add('machakann/vim-highlightedyank')
 
+  " Syntax highlighting for i3 config.
+  call dein#add('mboughaba/i3config.vim')
+
   """""""""""""""""
   " Local plugins "
   """""""""""""""""

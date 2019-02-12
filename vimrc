@@ -166,6 +166,9 @@ if has("autocmd")
     " Don't do it for special files.
     autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg0"
 
+    " Open some files as archives.
+    autocmd BufReadCmd *.jar,*.fcstd call zip#Browse(expand("<amatch>"))
+
 endif
 
 " Convenient command to see the difference between the current buffer and the

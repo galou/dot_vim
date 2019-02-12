@@ -13,8 +13,8 @@ let g:ycm_semantic_triggers = {
             \ }
 
 " Show the Python2 warning on Fridays.
-let g:vimros_disable_python2_warning = 1
+let g:ros_disable_warnings = 1
 let weekday=system("echo -n $(LANG=EN_us date +%A)")
 if weekday == "Friday"
-    let g:vimros_disable_python2_warning = 0
+    let g:ros_disable_warnings = 0
 endif
