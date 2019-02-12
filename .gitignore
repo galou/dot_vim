@@ -7,14 +7,7 @@ vim_phpdebug.sess
 default_ycm_extra_conf.pyc
 spell/*.spl
 spell/*.sug
-
-# plugins handled by dein
-bundle/merged
-bundle/.cache
-bundle/.dein
-bundle/repos
-bundle/rollbacks
-bundle/temp
+.mypy_cache
 
 # System-wide plugins
 autoload/youcompleteme.vim
