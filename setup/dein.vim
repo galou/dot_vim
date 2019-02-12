@@ -73,21 +73,8 @@ if dein#load_state('~/.cache/dein')
   " Set the `path` variable for more efficient jump to file (gf).
   call dein#add('tpope/vim-apathy')
 
-  " Automatic LaTeX plugin.
-  " The original is http (i.e. not https) and not supported by dein.
-  " NeoBundle 'http://git.code.sf.net/p/atp-vim/code', {'name': 'atp-vim'}
-  if has('pyx')
-    " Locked to version 676e because newer version use :pyx which doesn't exit in
-    " vim 7.4 nor in NeoVim.
-    call dein#add('coot/atp_vim',
-          \ {'on_ft': ['tex', 'bib', 'bst', 'sty']},
-          \  'rev': '676e710'}
-          \ )
-  else
-    call dein#add('coot/atp_vim',
-          \ {'on_ft': ['tex', 'bib', 'bst', 'sty']}
-          \ )
-  endif
+  " TeX support, work better than atp with NeoVim.
+  call dein#add('lervag/vimtex')
 
   " Editor agnostic configuration.
   call dein#add('editorconfig/editorconfig-vim')
@@ -272,6 +259,9 @@ if dein#load_state('~/.cache/dein')
   """""""""""""""
   " More user-friendly registers.
   " https://github.com/svermeulen/vim-easyclip
+
+  " A solid language pack for Vim.
+  " https://github.com/sheerun/vim-polyglot
 
   call dein#end()
   call dein#save_state()

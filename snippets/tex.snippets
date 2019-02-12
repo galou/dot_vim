@@ -1,15 +1,6 @@
 # full figure environment
-snippet insfig
-	\begin{figure}[h]
-	  \centering
-	  % orig:  --> 
-	  \includegraphics[width=\columnwidth]{${1:file}}
-	  \caption{${2}}
-	  \label{fig:${1}}
-	\end{figure}
-
 snippet inssubfig
-	\begin{figure}[h]
+	\begin{figure}[ht]
 	  \centering
 	  \subfigure[]{
 	    % orig:  --> 
