@@ -114,6 +114,13 @@ if dein#load_state('~/.cache/dein')
     endif
   endif
 
+  " Alternative to YouCompleteMe based on the Language Server Protocol.
+  " Provides rename with LanguageClient#textDocument_rename().
+  call dein#add('autozimu/LanguageClient-neovim', {
+        \ 'rev': 'next',
+        \  'build': 'bash install.sh',
+        \ })
+
   " C/C++ debugger for Neovim, based on LLDB.
   call dein#add('critiqjo/lldb.nvim')
 
@@ -126,11 +133,17 @@ if dein#load_state('~/.cache/dein')
   " Most-recently-used support for Unite (:Unite file_mru)
   call dein#add('Shougo/neomru.vim')
 
+  " Tag source for Unite
+  call dein#add('tsukkee/unite-tag')
+
   " Interactive command execution (for :Unite file_rec/async)
   call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
-  " A class outline viewer
+  " A class outline viewer, requires ctags.
   call dein#add('majutsushi/tagbar')
+
+  " Regenerate tag files on the go.
+  call dein#add('ludovicchabant/vim-gutentags')
 
   " extended % matching for HTML, LaTeX, and many other languages
   call dein#add('tmhedberg/matchit')
@@ -143,6 +156,12 @@ if dein#load_state('~/.cache/dein')
 
   " ABB Rapid support.
   call dein#add('KnoP-01/rapid-for-vim')
+
+  " Support for csv files
+  call dein#add('chrisbra/csv.vim')
+
+  " Highlight yanked text briefly
+  call dein#add('machakann/vim-highlightedyank')
 
   """""""""""""""""
   " Local plugins "

@@ -10,5 +10,11 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " Whitelisted configuration files.
 let g:ycm_extra_conf_globlist = ['/home/gael/ros_indigo_ws/*']
 
-let g:ycm_global_ycm_extra_conf = '~/.vim/default_ycm_extra_conf.py'
+execute "source ".config_dir."/setup/airline.vim"
+execute "let g:ycm_global_ycm_extra_conf = '".config_dir."/default_ycm_extra_conf.py'"
 
+" Possible symbols:
+" error: ✗(\u2717), ✖
+" warning: ⚠ (\u26A0),  (\uf071) with Font Awesome.
+let g:ycm_error_symbol = "✗"
+let g:ycm_warning_symbol = ""

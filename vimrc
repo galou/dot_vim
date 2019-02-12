@@ -11,6 +11,13 @@ else
 	let config_dir = "~/.vim"
 endif
 
+" Program to use for evaluating Python code. Setting this makes NeoVim's
+" startup faster.
+let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog  = '/usr/bin/python2'
+" To disable Python 2 support:
+"let g:loaded_python_provider = 1
+
 " Plugin configuration
 execute "source ".config_dir."/setup/dein.vim"
 
@@ -28,6 +35,7 @@ execute "source ".config_dir."/setup/unite.vim"
 " execute "source ".config_dir."/setup/lh-brackets.vim"
 execute "source ".config_dir."/setup/airline.vim"
 execute "source ".config_dir."/setup/vimtex.vim"
+execute "source ".config_dir."/setup/gutentags.vim"
 
 " Use 'user-system-wide' or 'system-wide' powerline installation.
 if has('nvim')
@@ -41,6 +49,11 @@ endif
 " General configuration
 syntax on
 filetype plugin indent on
+
+if has('nvim')
+	" Cf. https://thoughtbot.com/upcase/videos/neat-little-neovim-features.
+	set inccommand=nosplit
+endif
 
 " Windows always have the same size (doesn't work on Ubuntu)
 set equalalways
@@ -181,11 +194,23 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
-" map <A-o> :ProjectBrowseCached<CR>
-
 " Select last pasted text with 'gb', cf.
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text.
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+" Use `ALT+{h,j,k,l}` to navigate windows from any mode:
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
 
 " YouCompleteMe
 nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -195,6 +220,17 @@ nnoremap <leader>go :YcmCompleter GetDoc<CR>
 nnoremap <leader>gp :YcmCompleter GetParent<CR>
 nnoremap <leader>gr :YcmCompleter RefactorRename
 nnoremap <leader>i :YcmCompleter FixIt<CR>
+
+" LanguageClient-neovim (for supported and configured languages).
+function! LC_maps()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    "nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr> " already defined
+    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+  endif
+endfunction
+
+autocmd FileType * call LC_maps()
 
 " FuzzyFinder
 nnoremap <leader>fb :FufBuffer<CR>
@@ -237,6 +273,8 @@ elseif $HOST == "pcgael"
   nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>
   nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_indigo_ws/src<CR>
 endif
+nnoremap <leader>ut :Unite tag<CR>
+nnoremap <Leader>u<S-t> :tabedit <bar> Unite tag<CR>
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
