@@ -167,6 +167,14 @@ if dein#load_state('~/.cache/dein')
   " Syntax highlighting for i3 config.
   call dein#add('mboughaba/i3config.vim')
 
+  " Integration of cheatsheets from https://cht.sh/.
+  " <leader>KK: show in pager.
+  " <leader>KB: show in buffer.
+  " <leader>Kp, <leader>KP, <leader>KR: paste
+  " <leader>KE: query the error
+  " <leader>KC: toggle comments (switch comments off)
+  call dein#add('dbemiamine/cheat.sh-vim')
+
   """""""""""""""""
   " Local plugins "
   """""""""""""""""
