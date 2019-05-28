@@ -49,6 +49,11 @@ if dein#load_state('~/.cache/dein')
               \ {'on_ft': 'python'}
               \ )
 
+  call dein#add('broesler/jupyter-vim',
+              \ {'on_ft': 'python'}
+              \ )
+
+
   " Manage parentheses and similar.
   call dein#add('tpope/vim-surround')
 
@@ -173,7 +178,7 @@ if dein#load_state('~/.cache/dein')
   " <leader>Kp, <leader>KP, <leader>KR: paste
   " <leader>KE: query the error
   " <leader>KC: toggle comments (switch comments off)
-  call dein#add('dbemiamine/cheat.sh-vim')
+  call dein#add('dbeniamine/cheat.sh-vim')
 
   """""""""""""""""
   " Local plugins "
@@ -206,6 +211,10 @@ if dein#load_state('~/.cache/dein')
   " Rust support.
   call dein#add('rust-lang/rust.vim')
   call dein#add('racer-rust/vim-racer')
+
+  " Treat new lines from pasted text differently than typed ones.
+  " Allow to indent already indented text.
+  call dein#add('ConradIrwin/vim-bracketed-paste')
 
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
