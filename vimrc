@@ -168,7 +168,6 @@ if has("autocmd")
 
     " Open some files as archives.
     autocmd BufReadCmd *.jar,*.fcstd call zip#Browse(expand("<amatch>"))
-
 endif
 
 " Convenient command to see the difference between the current buffer and the
@@ -259,10 +258,11 @@ nnoremap <leader>ul :Unite line<CR>
 "nnoremap <leader>ut :Unite tag<CR>
 nnoremap <leader>um :Unite file_mru<CR>
 nnoremap <Leader>u<S-m> :tabedit <bar> Unite file_mru<CR>
+nnoremap <C-t> <ESC>:Unite tab<CR>
 if !empty($ROS_WORKSPACE)
   " Generic solution.
-  nnoremap <leader>ur :Unite grep:$ROS_WORKSPCE/src<CR>
-  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$ROS_WORKSPCE/src<CR>
+  nnoremap <leader>ur :Unite grep:$ROS_WORKSPACE/src<CR>
+  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$ROS_WORKSPACE/src<CR>
 elseif $HOST == "pcgael3"
   " Ubuntu 18.04.
   nnoremap <leader>ur :Unite grep:$HOME/ros_melodic_ws/src<CR>
