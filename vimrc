@@ -220,7 +220,6 @@ nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gt :YcmCompleter GetType<CR>
 nnoremap <leader>go :YcmCompleter GetDoc<CR>
 nnoremap <leader>gp :YcmCompleter GetParent<CR>
-nnoremap <leader>gr :YcmCompleter RefactorRename
 nnoremap <leader>i :YcmCompleter FixIt<CR>
 
 " LanguageClient-neovim (for supported and configured languages).
