@@ -120,6 +120,8 @@ if dein#load_state('~/.cache/dein')
     endif
   endif
 
+  call dein#add('vim-scripts/Conque-GDB')
+
   " Alternative to YouCompleteMe based on the Language Server Protocol.
   " Provides rename with LanguageClient#textDocument_rename().
   call dein#add('autozimu/LanguageClient-neovim', {
