@@ -2,3 +2,14 @@ snippet print_debug
 print('\033[1;35m%%%%% $1: {}\033[0m'.format(${1})) # DEBUG
 endsnippet
 
+snippet rospy_info_debug
+rospy.loginfo('$1: {}'.format(${1})) # DEBUG
+endsnippet
+
+snippet rospy_warn_debug
+rospy.logwarn('$1: {}'.format(${1})) # DEBUG
+endsnippet
+
+snippet rospy_err_debug
+rospy.logerr('$1: {}'.format(${1})) # DEBUG
+endsnippet
