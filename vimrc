@@ -47,8 +47,8 @@ else
 endif
 
 " General configuration
-syntax on
 filetype plugin indent on
+syntax on
 
 if has('nvim')
 	" Cf. https://thoughtbot.com/upcase/videos/neat-little-neovim-features.
