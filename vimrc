@@ -143,6 +143,7 @@ if has("autocmd")
     execute "au BufNewFile *.tex silent! 0r ".config_dir."/template/template.%:e"
     execute "au BufNewFile *.FCMacro silent! 0r ".config_dir."/template/template.%:e"
     execute "au BufNewFile *.fcmacro silent! 0r ".config_dir."/template/template.%:e"
+    execute "au BufNewFile *.h silent! 0r ".config_dir."/template/template.%:e"
     " load a template for all file types when creating a new file
     "execute "au BufNewFile * silent! 0r ".config_dir."/template/template.%:e"
 

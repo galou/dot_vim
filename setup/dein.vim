@@ -234,7 +234,6 @@ if dein#load_state('~/.cache/dein')
   " Experimental minimap
   "call dein#add('severin-lemaignan/vim-minimap')
 
-
   """""""""""""""""""""""""""""""""""""""""""""
   " Functionalities provided by other plugins "
   """""""""""""""""""""""""""""""""""""""""""""
