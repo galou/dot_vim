@@ -72,7 +72,7 @@ if dein#load_state('~/.cache/dein')
   " vim-abolish provides:
   " - ':Subvert': replace a word with another while respecting case and plural.
   " - Change between variable conventions (dash-case, MixedCase, camelCase, ...).
-  "   Mapped to 'cr_', 'cr-', 'crm', 'crc', 'cr.', 
+  "   Mapped to 'cr_', 'cr-', 'crm', 'crc', 'cr.',
   call dein#add('tpope/vim-abolish')
 
   " Set the `path` variable for more efficient jump to file (gf).
@@ -181,6 +181,10 @@ if dein#load_state('~/.cache/dein')
   " <leader>KE: query the error
   " <leader>KC: toggle comments (switch comments off)
   call dein#add('dbeniamine/cheat.sh-vim')
+
+  " Switch between header and source file.
+  " Alternatively: https://github.com/LucHermitte/alternate-lite
+  call dein#add('derekwyatt/vim-fswitch')
 
   """""""""""""""""
   " Local plugins "
@@ -294,7 +298,7 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('LucHermitte/lh-vim-lib')
   "call dein#add('LucHermitte/lh-dev')
   "call dein#add('LucHermitte/lh-brackets')
- 
+
   """""""""""""""
   " Interesting "
   """""""""""""""
