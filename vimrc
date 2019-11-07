@@ -22,20 +22,21 @@ let g:python_host_prog  = '/usr/bin/python2'
 execute "source ".config_dir."/setup/dein.vim"
 
 " execute "source ".config_dir."/setup/ProjectBrowse.vim"
+" execute "source ".config_dir."/setup/lh-brackets.vim"
 " execute "source ".config_dir."/setup/project.tar.gz.vim"
-execute "source ".config_dir."/setup/python-mode.vim"
 " execute "source ".config_dir."/setup/syntastic.vim"
+" execute "source ".config_dir."/setup/vim-signify.vim"
 execute "source ".config_dir."/setup/UltiSnips.vim"
+execute "source ".config_dir."/setup/airline.vim"
+execute "source ".config_dir."/setup/alternate-lite.vim"
+execute "source ".config_dir."/setup/gutentags.vim"
+execute "source ".config_dir."/setup/python-mode.vim"
+execute "source ".config_dir."/setup/unite.vim"
 execute "source ".config_dir."/setup/vim-fugitive.vim"
 execute "source ".config_dir."/setup/vim-ros.vim"
+execute "source ".config_dir."/setup/vimtex.vim"
 execute "source ".config_dir."/setup/vimtips-fortune.vim"
 execute "source ".config_dir."/setup/youcompleteme.vim"
-" execute "source ".config_dir."/setup/vim-signify.vim"
-execute "source ".config_dir."/setup/unite.vim"
-" execute "source ".config_dir."/setup/lh-brackets.vim"
-execute "source ".config_dir."/setup/airline.vim"
-execute "source ".config_dir."/setup/vimtex.vim"
-execute "source ".config_dir."/setup/gutentags.vim"
 
 " Use 'user-system-wide' or 'system-wide' powerline installation.
 if has('nvim')
@@ -215,6 +216,9 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+" Write the directory for the current file.
+nmap <Leader>md :!mkdir -p %:p:h<cr>
+
 " YouCompleteMe
 nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
@@ -288,3 +292,6 @@ endif
 " https://github.com/Shougo/dein.vim/issues/101.
 " I use a custom mapping for ipython (cf. ipy.vim).
 let g:ipy_perform_mappings = 0
+
+" FSHeaderAbove is defined in setup/alternate-lite.vim.
+command! A FSHeaderAbove
