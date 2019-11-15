@@ -22,6 +22,10 @@ hi DiffChange   cterm=none    ctermfg=none  ctermbg=none
 hi DiffDelete   cterm=none    ctermfg=236   ctermbg=none
 hi DiffText     cterm=bold    ctermfg=221   ctermbg=none
 
+hi SpellBad     cterm=none    ctermfg=247   ctermbg=none
+"hi MatchParen   cterm=bold    ctermfg=245   ctermbg=none
+hi MatchParen   cterm=bold   ctermbg=none
+
 let g:colors_name = "gaels"
 
 " vim: sw=2
