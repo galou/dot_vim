@@ -86,6 +86,8 @@ set listchars=eol:$,tab:↦‧
 set smarttab
 " Automatically reloads the file if externally modified and unchanged in vim.
 set autoread
+" Automatically executes .nvimrc if found.
+set exrc
 
 if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j  " Delete comment character when joining commented lines
