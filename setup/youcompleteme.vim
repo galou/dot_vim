@@ -10,6 +10,9 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 " Whitelisted configuration files.
 let g:ycm_extra_conf_globlist = ['/home/gael/ros_indigo_ws/*']
 
+" Populate the location list.
+let g:ycm_always_populate_location_list=1
+
 execute "let g:ycm_global_ycm_extra_conf = '".config_dir."/default_ycm_extra_conf.py'"
 
 " Possible symbols:
