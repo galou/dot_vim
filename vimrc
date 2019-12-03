@@ -130,6 +130,9 @@ nnoremap <SPACE> :<C-U>exec "silent normal i".nr2char(getchar())<CR>
 "nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 nnoremap <silent> S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
+" Map 'Y' to yank until the end of the line.
+nnoremap Y y$
+
 " autocommands
 if has("autocmd")
     au BufNewFile,BufRead *.FCMacro setlocal filetype=python
