@@ -267,7 +267,7 @@ nnoremap <leader>ul :Unite line<CR>
 "nnoremap <leader>ut :Unite tag<CR>
 nnoremap <leader>um :Unite file_mru<CR>
 nnoremap <Leader>u<S-m> :tabedit <bar> Unite file_mru<CR>
-nnoremap <C-t> <ESC>:Unite tab<CR>
+nnoremap <C-t> <ESC>:Unite tab<CR>i
 if !empty($ROS_WORKSPACE)
   " Generic solution.
   nnoremap <leader>ur :Unite grep:$ROS_WORKSPACE/src<CR>
