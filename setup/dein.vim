@@ -120,6 +120,9 @@ if dein#load_state('~/.cache/dein')
     endif
   endif
 
+  " Configure YouCompleteMe thanks to cmake compile information.
+  call dein#add('kgreenek/vim-ros-ycm')
+
   call dein#add('vim-scripts/Conque-GDB')
 
   " Alternative to YouCompleteMe based on the Language Server Protocol.

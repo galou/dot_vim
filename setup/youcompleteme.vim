@@ -8,7 +8,7 @@ let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Whitelisted configuration files.
-let g:ycm_extra_conf_globlist = ['/home/gael/ros_indigo_ws/*']
+let g:ycm_extra_conf_globlist = ['/home/gael/ros_melodic_ws/.ycm_extra_conf.py']
 
 " Populate the location list.
 let g:ycm_always_populate_location_list=1
