@@ -1,0 +1,249 @@
+" Set 'background' back to the default.  The value can't always be estimated
+" and is then guessed.
+hi clear Normal
+set background&
+
+" Remove all existing highlighting and set the defaults.
+hi clear
+
+" Load the syntax highlighting defaults, if it's enabled.
+if exists("syntax_on")
+  syntax reset
+endif
+
+hi link Boolean Constant
+hi link Character Constant
+hi ColorColumn cterm=none ctermfg=none ctermbg=1
+hi Comment cterm=none ctermfg=14 ctermbg=none
+hi Conceal cterm=none ctermfg=7 ctermbg=242
+hi link Conditional Statement
+hi Constant cterm=none ctermfg=13 ctermbg=none
+hi Cursor cterm=none ctermfg=none ctermbg=none
+hi CursorColumn cterm=none ctermfg=none ctermbg=242
+hi CursorLine cterm=underline ctermfg=none ctermbg=none
+hi CursorLineNr cterm=none ctermfg=11 ctermbg=none
+hi link Debug Special
+hi link Define PreProc
+hi link Delimiter Special
+hi DiffAdd cterm=none ctermfg=none ctermbg=4
+hi DiffChange cterm=none ctermfg=none ctermbg=5
+hi DiffDelete cterm=none ctermfg=12 ctermbg=6
+hi DiffText cterm=bold ctermfg=none ctermbg=9
+hi Directory cterm=none ctermfg=159 ctermbg=none
+hi link EndOfBuffer NonText
+hi Error cterm=none ctermfg=15 ctermbg=9
+hi ErrorMsg cterm=none ctermfg=15 ctermbg=1
+hi link Exception Statement
+hi link Float Constant
+hi FoldColumn cterm=none ctermfg=14 ctermbg=242
+hi Folded cterm=none ctermfg=14 ctermbg=242
+hi link Function Identifier
+hi Identifier cterm=bold ctermfg=14 ctermbg=none
+hi Ignore cterm=none ctermfg=0 ctermbg=none
+hi IncSearch cterm=reverse ctermfg=none ctermbg=none
+hi link Include PreProc
+hi link Keyword Statement
+hi link Label Statement
+hi LineNr cterm=none ctermfg=11 ctermbg=none
+hi link Macro PreProc
+hi MatchParen cterm=none ctermfg=none ctermbg=6
+hi ModeMsg cterm=bold ctermfg=none ctermbg=none
+hi MoreMsg cterm=none ctermfg=121 ctermbg=none
+hi MsgArea cterm=none ctermfg=none ctermbg=none
+hi link MsgSeparator StatusLine
+hi NonText cterm=none ctermfg=12 ctermbg=none
+hi Normal cterm=none ctermfg=none ctermbg=none
+hi link NormalFloat Pmenu
+hi NormalNC cterm=none ctermfg=none ctermbg=none
+hi link Number Constant
+hi link NvimAnd Statement
+hi link NvimArrow Special
+hi link NvimAssignment Statement
+hi link NvimAssignmentWithAddition Statement
+hi link NvimAssignmentWithConcatenation Statement
+hi link NvimAssignmentWithSubtraction Statement
+hi link NvimAugmentedAssignment Statement
+hi link NvimBinaryMinus Statement
+hi link NvimBinaryOperator Statement
+hi link NvimBinaryPlus Statement
+hi link NvimCallingParenthesis Special
+hi link NvimColon Special
+hi link NvimComma Special
+hi link NvimComparison Statement
+hi link NvimComparisonModifier Statement
+hi link NvimConcat Statement
+hi link NvimConcatOrSubscript Statement
+hi link NvimContainer Special
+hi link NvimCurly Special
+hi link NvimDict Special
+hi link NvimDivision Statement
+hi link NvimDoubleQuote Constant
+hi link NvimDoubleQuotedBody Constant
+hi link NvimDoubleQuotedEscape Special
+hi link NvimDoubleQuotedUnknownEscape Error
+hi link NvimEnvironmentName Identifier
+hi link NvimEnvironmentSigil Type
+hi link NvimFigureBrace NvimInternalError
+hi link NvimFloat Constant
+hi link NvimIdentifier Identifier
+hi link NvimIdentifierKey Identifier
+hi link NvimIdentifierName Identifier
+hi link NvimIdentifierScope Identifier
+hi link NvimIdentifierScopeDelimiter Identifier
+hi NvimInternalError cterm=none ctermfg=9 ctermbg=9
+hi link NvimInvalid Error
+hi link NvimInvalidAnd Error
+hi link NvimInvalidArrow Error
+hi link NvimInvalidAssignment Error
+hi link NvimInvalidAssignmentWithAddition Error
+hi link NvimInvalidAssignmentWithConcatenation Error
+hi link NvimInvalidAssignmentWithSubtraction Error
+hi link NvimInvalidAugmentedAssignment Error
+hi link NvimInvalidBinaryMinus Error
+hi link NvimInvalidBinaryOperator Error
+hi link NvimInvalidBinaryPlus Error
+hi link NvimInvalidCallingParenthesis Error
+hi link NvimInvalidColon Error
+hi link NvimInvalidComma Error
+hi link NvimInvalidComparison Error
+hi link NvimInvalidComparisonModifier Error
+hi link NvimInvalidConcat Error
+hi link NvimInvalidConcatOrSubscript Error
+hi link NvimInvalidContainer Error
+hi link NvimInvalidCurly Error
+hi link NvimInvalidDelimiter Error
+hi link NvimInvalidDict Error
+hi link NvimInvalidDivision Error
+hi link NvimInvalidDoubleQuote Error
+hi link NvimInvalidDoubleQuotedBody Constant
+hi link NvimInvalidDoubleQuotedEscape Special
+hi link NvimInvalidDoubleQuotedUnknownEscape Error
+hi link NvimInvalidEnvironmentName Error
+hi link NvimInvalidEnvironmentSigil Error
+hi link NvimInvalidFigureBrace Error
+hi link NvimInvalidFloat Error
+hi link NvimInvalidIdentifier Error
+hi link NvimInvalidIdentifierKey Error
+hi link NvimInvalidIdentifierName Error
+hi link NvimInvalidIdentifierScope Error
+hi link NvimInvalidIdentifierScopeDelimiter Error
+hi link NvimInvalidLambda Error
+hi link NvimInvalidList Error
+hi link NvimInvalidMod Error
+hi link NvimInvalidMultiplication Error
+hi link NvimInvalidNestingParenthesis Error
+hi link NvimInvalidNot Error
+hi link NvimInvalidNumber Error
+hi link NvimInvalidNumberPrefix Error
+hi link NvimInvalidOperator Error
+hi link NvimInvalidOptionName Error
+hi link NvimInvalidOptionScope Error
+hi link NvimInvalidOptionScopeDelimiter Error
+hi link NvimInvalidOptionSigil Error
+hi link NvimInvalidOr Error
+hi link NvimInvalidParenthesis Error
+hi link NvimInvalidPlainAssignment Error
+hi link NvimInvalidRegister Error
+hi link NvimInvalidSingleQuote Error
+hi link NvimInvalidSingleQuotedBody Constant
+hi link NvimInvalidSingleQuotedQuote Special
+hi link NvimInvalidSingleQuotedUnknownEscape NvimInternalError
+hi link NvimInvalidSpacing ErrorMsg
+hi link NvimInvalidString Error
+hi link NvimInvalidStringBody Constant
+hi link NvimInvalidStringQuote Error
+hi link NvimInvalidStringSpecial Special
+hi link NvimInvalidSubscript Error
+hi link NvimInvalidSubscriptBracket Error
+hi link NvimInvalidSubscriptColon Error
+hi link NvimInvalidTernary Error
+hi link NvimInvalidTernaryColon Error
+hi link NvimInvalidUnaryMinus Error
+hi link NvimInvalidUnaryOperator Error
+hi link NvimInvalidUnaryPlus Error
+hi link NvimInvalidValue Error
+hi link NvimLambda Special
+hi link NvimList Special
+hi link NvimMod Statement
+hi link NvimMultiplication Statement
+hi link NvimNestingParenthesis Special
+hi link NvimNot Statement
+hi link NvimNumber Constant
+hi link NvimNumberPrefix Type
+hi link NvimOperator Statement
+hi link NvimOptionName Identifier
+hi link NvimOptionScope Identifier
+hi link NvimOptionScopeDelimiter Identifier
+hi link NvimOptionSigil Type
+hi link NvimOr Statement
+hi link NvimParenthesis Special
+hi link NvimPlainAssignment Statement
+hi link NvimRegister Special
+hi link NvimSingleQuote Constant
+hi link NvimSingleQuotedBody Constant
+hi link NvimSingleQuotedQuote Special
+hi link NvimSingleQuotedUnknownEscape NvimInternalError
+hi link NvimSpacing Normal
+hi link NvimString Constant
+hi link NvimStringBody Constant
+hi link NvimStringQuote Constant
+hi link NvimStringSpecial Special
+hi link NvimSubscript Special
+hi link NvimSubscriptBracket Special
+hi link NvimSubscriptColon Special
+hi link NvimTernary Statement
+hi link NvimTernaryColon Statement
+hi link NvimUnaryMinus Statement
+hi link NvimUnaryOperator Statement
+hi link NvimUnaryPlus Statement
+hi link Operator Statement
+hi Pmenu cterm=none ctermfg=0 ctermbg=13
+hi PmenuSbar cterm=none ctermfg=none ctermbg=248
+hi PmenuSel cterm=none ctermfg=242 ctermbg=0
+hi PmenuThumb cterm=none ctermfg=none ctermbg=15
+hi link PreCondit PreProc
+hi PreProc cterm=none ctermfg=81 ctermbg=none
+hi Question cterm=none ctermfg=121 ctermbg=none
+hi link QuickFixLine Search
+hi RedrawDebugClear cterm=none ctermfg=none ctermbg=11
+hi RedrawDebugComposed cterm=none ctermfg=none ctermbg=10
+hi RedrawDebugNormal cterm=reverse ctermfg=none ctermbg=none
+hi RedrawDebugRecompose cterm=none ctermfg=none ctermbg=9
+hi link Repeat Statement
+hi Search cterm=none ctermfg=0 ctermbg=11
+hi SignColumn cterm=none ctermfg=14 ctermbg=242
+hi Special cterm=none ctermfg=224 ctermbg=none
+hi link SpecialChar Special
+hi link SpecialComment Special
+hi SpecialKey cterm=none ctermfg=81 ctermbg=none
+hi SpellBad cterm=none ctermfg=none ctermbg=9
+hi SpellCap cterm=none ctermfg=none ctermbg=12
+hi SpellLocal cterm=none ctermfg=none ctermbg=14
+hi SpellRare cterm=none ctermfg=none ctermbg=13
+hi Statement cterm=none ctermfg=11 ctermbg=none
+hi StatusLine cterm=bold ctermfg=none ctermbg=none
+hi StatusLineNC cterm=reverse ctermfg=none ctermbg=none
+hi link StorageClass Type
+hi link String Constant
+hi link Structure Type
+hi link Substitute Search
+hi TabLine cterm=underline ctermfg=15 ctermbg=242
+hi TabLineFill cterm=reverse ctermfg=none ctermbg=none
+hi TabLineSel cterm=bold ctermfg=none ctermbg=none
+hi link Tag Special
+hi TermCursor cterm=reverse ctermfg=none ctermbg=none
+hi TermCursorNC cterm=none ctermfg=none ctermbg=none
+hi Title cterm=none ctermfg=225 ctermbg=none
+hi Todo cterm=none ctermfg=0 ctermbg=11
+hi Type cterm=none ctermfg=121 ctermbg=none
+hi link Typedef Type
+hi Underlined cterm=underline ctermfg=81 ctermbg=none
+hi VertSplit cterm=reverse ctermfg=none ctermbg=none
+hi Visual cterm=none ctermfg=none ctermbg=242
+hi VisualNC cterm=none ctermfg=none ctermbg=none
+hi WarningMsg cterm=none ctermfg=224 ctermbg=none
+hi link Whitespace NonText
+hi WildMenu cterm=none ctermfg=0 ctermbg=11
+hi lCursor cterm=none ctermfg=none ctermbg=none
+
+let g:colors_name = 'nvim050-full'
