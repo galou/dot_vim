@@ -1,0 +1,107 @@
+" This is the default color scheme in Neovim 0.2.2.
+
+" Set 'background' back to the default.  The value can't always be estimated
+" and is then guessed.
+hi clear Normal
+set background&
+
+" Remove all existing highlighting and set the defaults.
+hi clear
+
+" Load the syntax highlighting defaults, if it's enabled.
+if exists("syntax_on")
+  syntax reset
+endif
+
+
+hi link Boolean Constant
+hi link Character Constant
+hi ColorColumn cterm=none ctermfg=none ctermbg=224
+hi Comment cterm=none ctermfg=4 ctermbg=none
+hi Conceal cterm=none ctermfg=7 ctermbg=242
+hi link Conditional Statement
+hi Constant cterm=none ctermfg=1 ctermbg=none
+hi Cursor cterm=none ctermfg=none ctermbg=none
+hi CursorColumn cterm=none ctermfg=none ctermbg=7
+hi CursorLine cterm=underline ctermfg=none ctermbg=none
+hi CursorLineNr cterm=none ctermfg=130 ctermbg=none
+hi link Debug Special
+hi link Define PreProc
+hi link Delimiter Special
+hi DiffAdd cterm=none ctermfg=none ctermbg=81
+hi DiffChange cterm=none ctermfg=none ctermbg=225
+hi DiffDelete cterm=none ctermfg=12 ctermbg=159
+hi DiffText cterm=bold ctermfg=none ctermbg=9
+hi Directory cterm=none ctermfg=4 ctermbg=none
+hi link EndOfBuffer NonText
+hi Error cterm=none ctermfg=15 ctermbg=9
+hi ErrorMsg cterm=none ctermfg=15 ctermbg=1
+hi link Exception Statement
+hi link Float Constant
+hi FoldColumn cterm=none ctermfg=4 ctermbg=248
+hi Folded cterm=none ctermfg=4 ctermbg=248
+hi link Function Identifier
+hi Identifier cterm=none ctermfg=6 ctermbg=none
+hi Ignore cterm=none ctermfg=15 ctermbg=none
+hi IncSearch cterm=reverse ctermfg=none ctermbg=none
+hi link Include PreProc
+hi link Keyword Statement
+hi link Label Statement
+hi LineNr cterm=none ctermfg=130 ctermbg=none
+hi link Macro PreProc
+hi MatchParen cterm=none ctermfg=none ctermbg=14
+hi ModeMsg cterm=bold ctermfg=none ctermbg=none
+hi MoreMsg cterm=none ctermfg=2 ctermbg=none
+hi NonText cterm=none ctermfg=12 ctermbg=none
+hi Normal cterm=none ctermfg=none ctermbg=none
+hi NormalNC cterm=none ctermfg=none ctermbg=none
+hi link Number Constant
+hi link Operator Statement
+hi Pmenu cterm=none ctermfg=0 ctermbg=225
+hi PmenuSbar cterm=none ctermfg=none ctermbg=248
+hi PmenuSel cterm=none ctermfg=0 ctermbg=7
+hi PmenuThumb cterm=none ctermfg=none ctermbg=0
+hi link PreCondit PreProc
+hi PreProc cterm=none ctermfg=5 ctermbg=none
+hi Question cterm=none ctermfg=2 ctermbg=none
+hi link QuickFixLine Search
+hi link Repeat Statement
+hi Search cterm=none ctermfg=none ctermbg=11
+hi SignColumn cterm=none ctermfg=4 ctermbg=248
+hi Special cterm=none ctermfg=5 ctermbg=none
+hi link SpecialChar Special
+hi link SpecialComment Special
+hi SpecialKey cterm=none ctermfg=4 ctermbg=none
+hi SpellBad cterm=none ctermfg=none ctermbg=224
+hi SpellCap cterm=none ctermfg=none ctermbg=81
+hi SpellLocal cterm=none ctermfg=none ctermbg=14
+hi SpellRare cterm=none ctermfg=none ctermbg=225
+hi Statement cterm=none ctermfg=130 ctermbg=none
+hi StatusLine cterm=bold ctermfg=none ctermbg=none
+hi StatusLineNC cterm=reverse ctermfg=none ctermbg=none
+hi link StorageClass Type
+hi link String Constant
+hi link Structure Type
+hi link Substitute Search
+hi TabLine cterm=underline ctermfg=0 ctermbg=7
+hi TabLineFill cterm=reverse ctermfg=none ctermbg=none
+hi TabLineSel cterm=bold ctermfg=none ctermbg=none
+hi link Tag Special
+hi TermCursor cterm=reverse ctermfg=none ctermbg=none
+hi TermCursorNC cterm=none ctermfg=none ctermbg=none
+hi Title cterm=none ctermfg=5 ctermbg=none
+hi Todo cterm=none ctermfg=0 ctermbg=11
+hi Type cterm=none ctermfg=2 ctermbg=none
+hi link Typedef Type
+hi Underlined cterm=underline ctermfg=5 ctermbg=none
+hi VertSplit cterm=reverse ctermfg=none ctermbg=none
+hi Visual cterm=none ctermfg=none ctermbg=7
+hi VisualNC cterm=none ctermfg=none ctermbg=none
+hi WarningMsg cterm=none ctermfg=1 ctermbg=none
+hi link Whitespace NonText
+hi WildMenu cterm=none ctermfg=0 ctermbg=11
+hi lCursor cterm=none ctermfg=none ctermbg=none
+
+let g:colors_name = "nvim022-full"
+
+" vim: sw=2
