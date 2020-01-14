@@ -1,7 +1,4 @@
-" From iijo.vim.
-
-" This is the adapted default color scheme.  It doesn't define the Normal
-" highlighting, it uses whatever the colors used to be.
+" This is the default color scheme in Neovim 0.2.2.
 
 " Set 'background' back to the default.  The value can't always be estimated
 " and is then guessed.
@@ -31,7 +28,7 @@ hi TabLine cterm=underline ctermfg=0 ctermbg=7
 hi TabLineFill cterm=reverse ctermfg=none ctermbg=none
 hi TabLineSel cterm=bold ctermfg=none ctermbg=none
 hi Directory cterm=none ctermfg=4 ctermbg=none
-hi Search cterm=none ctermfg=none ctermbg=132
+hi Search cterm=none ctermfg=none ctermbg=11
 hi IncSearch cterm=reverse ctermfg=none ctermbg=none
 hi StatusLine cterm=bold ctermfg=none ctermbg=none
 hi StatusLineNC cterm=reverse ctermfg=none ctermbg=none
@@ -40,7 +37,7 @@ hi Question cterm=none ctermfg=2 ctermbg=none
 hi Title cterm=none ctermfg=5 ctermbg=none
 hi ModeMsg cterm=bold ctermfg=none ctermbg=none
 hi MoreMsg cterm=none ctermfg=2 ctermbg=none
-hi MatchParen cterm=bold ctermfg=none ctermbg=none
+hi MatchParen cterm=none ctermfg=none ctermbg=14
 hi Visual cterm=none ctermfg=none ctermbg=7
 hi VisualNOS cterm=none ctermfg=none ctermbg=none
 hi NonText cterm=none ctermfg=12 ctermbg=none
@@ -83,10 +80,10 @@ hi Type cterm=none ctermfg=2 ctermbg=none
 hi link StorageClass Type
 hi link Structure Type
 hi link Typedef Type
-hi DiffAdd cterm=bold ctermfg=221 ctermbg=none
-hi DiffChange cterm=none ctermfg=none ctermbg=none
-hi DiffDelete cterm=none ctermfg=236 ctermbg=none
-hi DiffText cterm=bold ctermfg=221 ctermbg=none
+hi DiffAdd cterm=none ctermfg=none ctermbg=81
+hi DiffChange cterm=none ctermfg=none ctermbg=225
+hi DiffDelete cterm=none ctermfg=12 ctermbg=159
+hi DiffText cterm=bold ctermfg=none ctermbg=9
 hi diffAdded cterm=none ctermfg=none ctermbg=none
 hi diffChanged cterm=none ctermfg=none ctermbg=none
 hi diffRemoved cterm=none ctermfg=none ctermbg=none
@@ -95,11 +92,11 @@ hi Pmenu cterm=none ctermfg=0 ctermbg=225
 hi PmenuSel cterm=none ctermfg=0 ctermbg=7
 hi PmenuSbar cterm=none ctermfg=none ctermbg=248
 hi PmenuThumb cterm=none ctermfg=none ctermbg=0
-hi SpellBad cterm=none ctermfg=247 ctermbg=none
+hi SpellBad cterm=none ctermfg=none ctermbg=224
 hi SpellCap cterm=none ctermfg=none ctermbg=81
 hi SpellLocal cterm=none ctermfg=none ctermbg=14
 hi SpellRare cterm=none ctermfg=none ctermbg=225
 
-let g:colors_name = "gaels"
+let g:colors_name = "nvim022"
 
 " vim: sw=2
