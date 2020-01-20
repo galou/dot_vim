@@ -99,10 +99,12 @@ if dein#load_state('~/.cache/dein')
   " commits require vim 7.4.143+, not available on Ubuntu 14.04.
   if has('nvim')
     call dein#add('Valloric/YouCompleteMe',
-                \ {'build': 'python install.py --clang-completer --gocode-completer',
+                \ {'build': 'python3 install.py --clang-completer',
                 \  'timeout': 600
                 \ }
                 \ )
+                " '--gocode-completer' requires go >= 1.11, so deactivated on
+                " Ubuntu 18.04 which has 1.10.
   else
     if (v:version < 800)
       call dein#add('Valloric/YouCompleteMe',
