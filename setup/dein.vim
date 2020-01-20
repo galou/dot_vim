@@ -75,6 +75,11 @@ if dein#load_state('~/.cache/dein')
   "   Mapped to 'cr_', 'cr-', 'crm', 'crc', 'cr.',
   call dein#add('tpope/vim-abolish')
 
+  " Argumentative aids with manipulating and moving between function
+  " arguments.
+  " Shifting arguments with `<,` and `>,`.
+  call dein#add('PeterRincker/vim-argumentative')
+
   " Set the `path` variable for more efficient jump to file (gf).
   call dein#add('tpope/vim-apathy')
 
