@@ -51,7 +51,7 @@ hi ErrorMsg cterm=none ctermfg=15 ctermbg=1
 hi WarningMsg cterm=none ctermfg=1 ctermbg=none
 hi Ignore cterm=none ctermfg=15 ctermbg=none
 hi SpecialKey cterm=none ctermfg=4 ctermbg=none
-hi Constant cterm=none ctermfg=1 ctermbg=none
+hi Constant cterm=none ctermfg=13 ctermbg=none
 hi link String Constant
 hi StringDelimiter cterm=none ctermfg=none ctermbg=none
 hi link Character Constant
