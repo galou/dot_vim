@@ -30,6 +30,11 @@ if dein#load_state('~/.cache/dein')
               \ {'on_ft': 'python'}
               \ )
 
+  " Basic support for .env files, ':Dotenv {file}'.
+  call dein#add('tpope/vim-dotenv',
+              \ {'on_ft': 'python'}
+              \ )
+
   call dein#add('vim-scripts/The-NERD-tree')
 
   " Show a tip on vim startup.
