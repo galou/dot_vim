@@ -8,3 +8,39 @@ snippet insfig "Personal figure environment" b
 \end{figure}
 endsnippet
 
+snippet figref "Figure reference"
+Fig.~\ref{fig:${1}}
+endsnippet
+
+snippet inssubfig "Personal subfigure environment" b
+\begin{figure}[ht]
+  \centering
+  \subfigure[${3}]{
+    % orig:  --> 
+    \includegraphics[width=0.45\columnwidth]{${1}}
+    \label{fig:$1}
+  }
+  \subfigure[${4}]{
+    % orig:  --> 
+    \includegraphics[width=0.45\columnwidth]{${2}}
+    \label{fig:$2}
+  }
+  \caption{}
+  \label{fig:}
+\end{figure}
+endsnippet
+
+snippet instab "Personal table environment" b
+\begin{table}[ht]
+  \centering
+  \caption{${1}}
+  % orig:  --> 
+  \begin{tabular}{cc}
+  \end{tabular}
+  \label{tab:${2}}
+\end{table}
+endsnippet
+
+snippet tabref "Table reference"
+Tab.~\ref{tab:${1}}
+endsnippet
