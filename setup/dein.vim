@@ -174,6 +174,9 @@ if dein#load_state('~/.cache/dein')
   " Lego Mindstorms (nxc) syntax.
   call dein#add('vim-scripts/nxc.vim')
 
+  " SIP syntax (Python binding for C++).
+  call dein#add('vim-scripts/sip.vim')
+
   " Syntax checking.
   call dein#add('vim-scripts/syntastic')
 

@@ -143,6 +143,7 @@ if has("autocmd")
     au BufNewFile,BufRead *.ino setlocal filetype=cpp
     au BufNewFile,BufRead *.tikz setlocal filetype=tex
     au BufNewFile,BufRead *.nxc setlocal filetype=nxc
+    au BufNewFile,BufRead *.sip setlocal filetype=sip
 
     " load a template when creating a new file
     execute "au BufNewFile *.py silent! 0r ".config_dir."/template/template.%:e"
