@@ -140,7 +140,7 @@ if dein#load_state('~/.cache/dein')
   " Then install gadgets with
   " './install_gadget.py --enable-python -enable-c --enable-bash --enable-go'.
   " An extra step is required to use 'gadgets' for vimspector (installed via
-  " 'install_gadget.py'): 
+  " 'install_gadget.py'):
   " 'ln -s \
   "     ~/.cache/dein/repos/github/puremourning/vimspector/gadgets \
   "     ~/.cache/dein/.cache/init.vim/.dein/gadgets'.
@@ -247,6 +247,18 @@ if dein#load_state('~/.cache/dein')
   " Treat new lines from pasted text differently than typed ones.
   " Allow to indent already indented text.
   call dein#add('ConradIrwin/vim-bracketed-paste')
+
+  """"""""""""""""""
+  " In testing phase
+  """"""""""""""""""
+
+  " Dependency of vim-ranger.
+  if has('nvim')
+    call dein#add('rbgrouleff/bclose.vim')
+  endif
+
+  " Integrate ranger in vim.
+  call dein#add('francoiscabrol/ranger.vim')
 
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
