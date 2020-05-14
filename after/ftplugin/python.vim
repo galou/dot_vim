@@ -2,18 +2,18 @@
 setlocal nonumber
 
 " I use a custom mapping for ipython (cf. ipy.vim).
-map <buffer> <silent> <F5> :python run_this_file()<CR>
-map <buffer> <silent> <F9> :python run_this_line()<CR>
-map <buffer> <silent> <S-F9> :python run_these_lines()<CR>
-map <buffer> <silent> <leader>d :py get_doc_buffer()<CR>
-map <buffer> <silent> <leader>s :py if update_subchannel_msgs(force=True): echo("vim-ipython shell updated",'Operator')<CR>
-map <buffer> <silent> <C-F9> :python toggle_reselect()<CR>
-imap <buffer> <F5> <C-O><F5>
-imap <buffer> <F9> <C-O><F9>
-map <buffer> <silent> <F12> :python run_command("plt.show()")<cr>
-imap <buffer> <silent> <F12> :python run_command("plt.show()")<cr>
-map <buffer> <silent> <S-F12> :python run_command("plt.close('all')")<cr>
-imap <buffer> <silent> <S-F12> :python run_command("plt.close('all')")<cr>
+" map <buffer> <silent> <F5> :python run_this_file()<CR>
+" map <buffer> <silent> <F9> :python run_this_line()<CR>
+" map <buffer> <silent> <S-F9> :python run_these_lines()<CR>
+" map <buffer> <silent> <leader>d :py get_doc_buffer()<CR>
+" map <buffer> <silent> <leader>s :py if update_subchannel_msgs(force=True): echo("vim-ipython shell updated",'Operator')<CR>
+" map <buffer> <silent> <C-F9> :python toggle_reselect()<CR>
+" imap <buffer> <F5> <C-O><F5>
+" imap <buffer> <F9> <C-O><F9>
+" map <buffer> <silent> <F12> :python run_command("plt.show()")<cr>
+" imap <buffer> <silent> <F12> :python run_command("plt.show()")<cr>
+" map <buffer> <silent> <S-F12> :python run_command("plt.close('all')")<cr>
+" imap <buffer> <silent> <S-F12> :python run_command("plt.close('all')")<cr>
 
 "pi custom
 "map <silent> <C-Return> :python run_this_file()<CR>
