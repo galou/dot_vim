@@ -135,7 +135,15 @@ if dein#load_state('~/.cache/dein')
   " Configure YouCompleteMe thanks to cmake compile information.
   call dein#add('kgreenek/vim-ros-ycm')
 
-  call dein#add('vim-scripts/Conque-GDB')
+  " Debugging in vim.
+  call dein#add('puremourning/vimspector')
+  " Then install gadgets with
+  " './install_gadget.py --enable-python -enable-c --enable-bash --enable-go'.
+  " An extra step is required to use 'gadgets' for vimspector (installed via
+  " 'install_gadget.py'): 
+  " 'ln -s \
+  "     ~/.cache/dein/repos/github/puremourning/vimspector/gadgets \
+  "     ~/.cache/dein/.cache/init.vim/.dein/gadgets'.
 
   " Alternative to YouCompleteMe based on the Language Server Protocol.
   " Provides rename with LanguageClient#textDocument_rename().
