@@ -7,14 +7,18 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_enable_balloons = 1
 
-let g:syntastic_error_symbol = "\u2717"
-let g:syntastic_warning_symbol = "\u26A0"
+" error: ✗(\u2717), ✖
+" warning: ⚠ (\u26A0),  (\uf071) with Font Awesome.
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = ""
 
 "let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 let g:syntastic_yaml_checkers=['yamlxs']
 
-" As of 2018-02-26, pylint or python seems to be buggy and doesn't recognize
-" variables passed as function arguments as know.
-let g:syntastic_python_checkers = ['pyflakes']
-
+" Force Python 3.
+" Cf.  https://stackoverflow.com/questions/23177561/switch-python-version-for-vim-syntastic
+" for further options.
+let g:syntastic_python_flake8_exec = 'python3'
+let g:syntastic_python_flake8_exe = 'python3 -m flake8'
+let g:syntastic_python_checkers = ['flake8']

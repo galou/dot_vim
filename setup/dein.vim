@@ -135,6 +135,9 @@ if dein#load_state('~/.cache/dein')
   " Configure YouCompleteMe thanks to cmake compile information.
   call dein#add('kgreenek/vim-ros-ycm')
 
+  " Help complete parameters of functions (requires YouCompleteMe).
+  call dein#add('tenfyzhong/CompleteParameter.vim')
+
   " Debugging in vim.
   call dein#add('puremourning/vimspector')
   " Then install gadgets with

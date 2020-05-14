@@ -20,3 +20,4 @@ execute "let g:ycm_global_ycm_extra_conf = '".config_dir."/default_ycm_extra_con
 " warning: ⚠ (\u26A0),  (\uf071) with Font Awesome.
 let g:ycm_error_symbol = "✗"
 let g:ycm_warning_symbol = ""
+
