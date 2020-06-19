@@ -9,8 +9,11 @@ let g:syntastic_enable_balloons = 1
 
 " error: ✗(\u2717), ✖
 " warning: ⚠ (\u26A0),  (\uf071) with Font Awesome.
+" style:  (\uf5ad) with Font Awesome. Default: 'S>'
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = ""
+let g:syntastic_style_warning_symbol = ""
+let g:syntastic_style_error_symbol = ""
 
 "let g:syntastic_cpp_compiler_options = ' -std=c++11'
 

@@ -18,27 +18,8 @@ let g:python_host_prog  = '/usr/bin/python2'
 " To disable Python 2 support:
 "let g:loaded_python_provider = 1
 
-" Plugin configuration
-execute "source ".config_dir."/setup/dein.vim"
-
-" execute "source ".config_dir."/setup/ProjectBrowse.vim"
-" execute "source ".config_dir."/setup/lh-brackets.vim"
-" execute "source ".config_dir."/setup/project.tar.gz.vim"
-" execute "source ".config_dir."/setup/vim-signify.vim"
-execute "source ".config_dir."/setup/UltiSnips.vim"
-execute "source ".config_dir."/setup/airline.vim"
-execute "source ".config_dir."/setup/alternate-lite.vim"
-execute "source ".config_dir."/setup/gutentags.vim"
-execute "source ".config_dir."/setup/python-mode.vim"
-execute "source ".config_dir."/setup/ranger.vim"
-execute "source ".config_dir."/setup/syntastic.vim"
-execute "source ".config_dir."/setup/unite.vim"
-execute "source ".config_dir."/setup/vim-fugitive.vim"
-execute "source ".config_dir."/setup/vim-ros.vim"
-execute "source ".config_dir."/setup/vimperator.vim"
-execute "source ".config_dir."/setup/vimtex.vim"
-execute "source ".config_dir."/setup/vimtips-fortune.vim"
-execute "source ".config_dir."/setup/youcompleteme.vim"
+" Plugin configuration in dein.vim.
+execute "source ".config_dir."/dein.vim"
 
 " Use 'user-system-wide' or 'system-wide' powerline installation.
 if has('nvim')
@@ -67,7 +48,9 @@ set wildmode=longest,list:longest
 set laststatus=2
 set title
 " insert the longest common prefix of all the suggestions
-set completeopt+=longest
+set completeopt+=longest " For YouCompleteMe
+"set completeopt-=longest " For Kite
+"set completeopt+=noinsert " For Kite
 set tabstop=4
 set shiftwidth=4
 " allow backspacing over everything in insert mode
@@ -160,7 +143,7 @@ if has("autocmd")
     autocmd FileType text setlocal textwidth=78
 
     " For the ViewSourceWith plugin for Firefox
-    autocmd BufNewFile,BufRead /tmp/*.txt setlocal textwidth=0 linebreak showbreak=⏎\  
+    autocmd BufNewFile,BufRead /tmp/*.txt setlocal textwidth=0 showbreak=⏎\  linebreak
     autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> j gj
     autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> k gk
 
@@ -175,6 +158,7 @@ if has("autocmd")
 	  \ endif
     " Don't do it for special files.
     autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg0"
+    autocmd BufReadPost svn-commit.tmp exe "normal! gg0"
 
     " Open some files as archives.
     autocmd BufReadCmd *.jar,*.fcstd call zip#Browse(expand("<amatch>"))
@@ -291,15 +275,12 @@ endif
 nnoremap <leader>ut :Unite tag<CR>
 nnoremap <Leader>u<S-t> :tabedit <bar> Unite tag<CR>
 
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+" Use <C-H> to clear the highlighting of :set hlsearch.
+if maparg('<C-H>', 'n') ==# ''
+nnoremap <silent> <C-H> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-H>
 endif
 
 " The following command is already in ftplugin/python.vim, cf.
 " https://github.com/Shougo/dein.vim/issues/101.
 " I use a custom mapping for ipython (cf. ipy.vim).
 let g:ipy_perform_mappings = 0
-
-" FSHeaderAbove is defined in setup/alternate-lite.vim.
-command! A FSHeaderAbove

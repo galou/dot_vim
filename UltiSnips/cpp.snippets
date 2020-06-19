@@ -9,11 +9,23 @@ else if ($1 > $2)
 }
 endsnippet
 
-snippet coutdebug "cout << 'var: ' << var'"
+snippet coutdebug "cout << 'var: ' << var"
 std::cout << "\033[1;35m%%%%% $1: " << (${1:var}) << "\033[0m" << std::endl;  // DEBUG
 endsnippet
 
-snippet std_coutdebug "cout << 'var: ' << var'"
+snippet std_coutdebug "cout << 'var: ' << var"
 std::cout << "\033[1;35m%%%%% $1: " << (${1:var}) << "\033[0m" << std::endl;  // DEBUG
+endsnippet
+
+snippet coutdebug_noargs "cout << 'text'"
+std::cout << "\033[1;35m%%%%% $1\033[0m" << std::endl;  // DEBUG
+endsnippet
+
+snippet std_coutdebug_noargs "cout << 'text'"
+std::cout << "\033[1;35m%%%%% $1\033[0m" << std::endl;  // DEBUG
+endsnippet
+
+snippet qdebug "qDebug() << 'var: ' << var'"
+qDebug() << "\033[1;35m%%%%% $1: " << (${1:var}) << "\033[0m";  // DEBUG
 endsnippet
 

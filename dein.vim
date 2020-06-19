@@ -1,6 +1,11 @@
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
+" To uninstall a plugin:
+" - Remove call dein#add() in this file
+" - :call map(dein#check_clean(), "delete(v:val, 'rf')")
+" - :call dein#recache_runtimepath()
+
 if dein#load_state('~/.cache/dein')
   call dein#begin(expand('~/.cache/dein'))
 
@@ -141,15 +146,16 @@ if dein#load_state('~/.cache/dein')
   " Debugging in vim.
   call dein#add('puremourning/vimspector')
   " Then install gadgets with
-  " './install_gadget.py --enable-python -enable-c --enable-bash --enable-go'.
+  " './install_gadget.py --enable-python --enable-c --enable-bash --enable-go'.
   " An extra step is required to use 'gadgets' for vimspector (installed via
   " 'install_gadget.py'):
   " 'ln -s \
-  "     ~/.cache/dein/repos/github/puremourning/vimspector/gadgets \
+  "     ~/.cache/dein/repos/github.com/puremourning/vimspector/gadgets \
   "     ~/.cache/dein/.cache/init.vim/.dein/gadgets'.
 
   " Alternative to YouCompleteMe based on the Language Server Protocol.
-  " Provides rename with LanguageClient#textDocument_rename().
+  " Provides refactor with LanguageClient#textDocument_rename().
+  " First activate with `:LanguageClientStart`.
   call dein#add('autozimu/LanguageClient-neovim', {
         \ 'rev': 'next',
         \  'build': 'bash install.sh',
@@ -262,6 +268,38 @@ if dein#load_state('~/.cache/dein')
 
   " Integrate ranger in vim.
   call dein#add('francoiscabrol/ranger.vim')
+
+  " Show diffs in git repositories.
+  call dein#add('airblade/vim-gitgutter')
+
+  " Manage tabs.
+  " Enter vim-tabmode with <leader><Tab> or :TabmodeEnter.
+  call dein#add('Iron-E/vim-tabmode')
+
+  " Dependency of vim-tabmode.
+  " nvim-libmodal would be better but is incompatible with 'vim-tabmode' as of
+  " 2020-05-21.
+  call dein#add('Iron-E/vim-libmodal')
+
+  " Various helper for C++.
+  " <C-X>i: add #include for symbol under cursor.
+  " <M-i>: add #include for symbol under cursor and add scope.
+  call dein#add('LucHermitte/lh-cpp')
+
+  " Dependencies for lh-cpp!
+  call dein#add('LucHermitte/lh-vim-lib') " Dependency of mu-template.
+  call dein#add('LucHermitte/lh-style') " Dependency of mu-template.
+  call dein#add('LucHermitte/lh-tags')
+  call dein#add('LucHermitte/lh-dev') " Dependency of mu-template.
+  call dein#add('LucHermitte/lh-brackets') " Dependency of mu-template.
+  call dein#add('LucHermitte/searchInRuntime')
+  call dein#add('LucHermitte/mu-template')
+  call dein#add('tomtom/stakeholders_vim')
+  " call dein#add('LucHermitte/alternate-lite')
+
+  " Set some variables for project scope.
+  " Drop a '_vimrc_local.vim' file into any project root directory to use.
+  call dein#add('LucHermitte/local_vimrc')
 
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "

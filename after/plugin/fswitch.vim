@@ -1,5 +1,9 @@
 " First h then hpp, whereas the default is the inverse.
-let g:fswitchdst = 'h,hpp'
+autocmd BufEnter *.cpp let b:fswitchdst = 'h,hpp'
+
+" `reg:|src/\(.*\)/src|src/\1/include|` for some/path/src/something/{src,include}/package_name.
+" `reg:|src/\(.*\)/\([^w]\+\)/src|src/\1/\2/include/\2|` for some/path/src/something/package_name/{src,include/package_name}.
+autocmd BufEnter *.cpp let b:fswitchlocs = 'reg:|src/\(.*\)/\([^w]\+\)/src|src/\1/\2/include/\2|,reg:|src|include|,reg:|src|include/*|'
 
 function! s:fs_header_above()
     let ext = expand('%:e')
