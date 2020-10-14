@@ -122,13 +122,16 @@ nnoremap Y y$
 if has("autocmd")
     au BufNewFile,BufRead *.FCMacro setlocal filetype=python
     au BufNewFile,BufRead *.fcmacro setlocal filetype=python
-    au BufNewFile,BufRead *.nc setlocal filetype=cpp
-    au BufNewFile,BufRead *.ops setlocal filetype=cpp foldmethod=syntax
-    au BufNewFile,BufRead *.md setlocal filetype=markdown
     au BufNewFile,BufRead *.ino setlocal filetype=cpp
-    au BufNewFile,BufRead *.tikz setlocal filetype=tex
+    au BufNewFile,BufRead *.launch setlocal filetype=xml
+    au BufNewFile,BufRead *.md setlocal filetype=markdown
+    au BufNewFile,BufRead *.nc setlocal filetype=cpp
     au BufNewFile,BufRead *.nxc setlocal filetype=nxc
+    au BufNewFile,BufRead *.ops setlocal filetype=cpp foldmethod=syntax
+    au BufNewFile,BufRead *.sdf setlocal filetype=xml
     au BufNewFile,BufRead *.sip setlocal filetype=sip
+    au BufNewFile,BufRead *.tikz setlocal filetype=tex
+    au BufNewFile,BufRead *.world setlocal filetype=xml
 
     " load a template when creating a new file
     execute "au BufNewFile *.py silent! 0r ".config_dir."/template/template.%:e"
