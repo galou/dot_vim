@@ -270,16 +270,14 @@ if dein#load_state('~/.cache/dein')
   call dein#add('francoiscabrol/ranger.vim')
 
   " Show diffs in git repositories.
+  " Enable with :GitGutterEnable.
   call dein#add('airblade/vim-gitgutter')
 
   " Manage tabs.
   " Enter vim-tabmode with <leader><Tab> or :TabmodeEnter.
-  call dein#add('Iron-E/vim-tabmode')
-
+  call dein#add('Iron-E/nvim-tabmode')
   " Dependency of vim-tabmode.
-  " nvim-libmodal would be better but is incompatible with 'vim-tabmode' as of
-  " 2020-05-21.
-  call dein#add('Iron-E/vim-libmodal')
+  call dein#add('Iron-E/nvim-libmodal')
 
   " Various helper for C++.
   " <C-X>i: add #include for symbol under cursor.
@@ -357,7 +355,7 @@ if dein#load_state('~/.cache/dein')
 
   " Project Management.
   " Deactivated because not used and problem with end of lines.
-  "call dein#add('vim-scripts/ProjectBrowse', {rev: 'unix-eol'}
+  "call dein#add('vim-scripts/ProjectBrowse', {rev: 'unix-eol'})
 
   " cmake.vim changes makeprg in a way that is incompatible with vim-ros
   "call dein#add('jalcine/cmake.vim')
@@ -386,6 +384,8 @@ if dein#load_state('~/.cache/dein')
 
   " A solid language pack for Vim.
   " https://github.com/sheerun/vim-polyglot
+
+  " Better? vim-surround: https://github.com/machakann/vim-sandwich.
 
   call dein#end()
   call dein#save_state()
