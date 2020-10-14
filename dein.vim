@@ -279,6 +279,11 @@ if dein#load_state('~/.cache/dein')
   " Dependency of vim-tabmode.
   call dein#add('Iron-E/nvim-libmodal')
 
+  " Set some variables for project scope.
+  " Drop a '_vimrc_local.vim' file into any project root directory to use.
+  " Also takes .editorconfig into account.
+  call dein#add('LucHermitte/local_vimrc')
+
   " Various helper for C++.
   " <C-X>i: add #include for symbol under cursor.
   " <M-i>: add #include for symbol under cursor and add scope.
