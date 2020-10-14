@@ -295,6 +295,9 @@ xmap ga <Plug>(EasyAlign)
 
 xmap <silent> O :sort u<CR>
 
+" Clap.
+noremap <C-C> :Clap<cr>
+
 " Search and highlight but not jump.
 " TODO: solve the recursive-function issue.
 " nnoremap * :keepjumps normal *``<cr>
