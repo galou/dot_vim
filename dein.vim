@@ -284,6 +284,11 @@ if dein#load_state('~/.cache/dein')
   " Also takes .editorconfig into account.
   call dein#add('LucHermitte/local_vimrc')
 
+  " Show cursors jumps.
+  if has('nvim')
+    call dein#add('danilamihailov/beacon.nvim')
+  endif
+
   " Various helper for C++.
   " <C-X>i: add #include for symbol under cursor.
   " <M-i>: add #include for symbol under cursor and add scope.
