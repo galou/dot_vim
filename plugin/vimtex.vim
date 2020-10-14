@@ -8,3 +8,5 @@ endif
 " Use zathura for its support for backward search.
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_options = '--unique @pdf\#src:@tex:@line:@col'
+
+let g:tex_flavor = 'latex'
