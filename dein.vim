@@ -260,6 +260,9 @@ if dein#load_state('~/.cache/dein')
   """"""""""""""""""
   " In testing phase
   """"""""""""""""""
+  " Open Jupyter notebooks (*.ipynb) thanks to the external jupytext
+  " executable.
+  call dein#add('goerz/jupytext.vim')
 
   " Integrate ranger in vim.
   call dein#add('francoiscabrol/ranger.vim')
@@ -317,6 +320,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('LucHermitte/local_vimrc')
   " Edit tables the spreadsheet way in Markdown.
   " Requires -- a patched version of -- sc-im.
+  " As of 2020-10-14, requires the branch markdown-import of https://github.com/mipmip/sc-im.
   call dein#add('mipmip/vim-scimark')
 
   """""""""""""""""""""""""""""""""""""""""""
