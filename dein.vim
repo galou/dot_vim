@@ -318,9 +318,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tomtom/stakeholders_vim')
   " call dein#add('LucHermitte/alternate-lite')
 
-  " Set some variables for project scope.
-  " Drop a '_vimrc_local.vim' file into any project root directory to use.
-  call dein#add('LucHermitte/local_vimrc')
   " Edit tables the spreadsheet way in Markdown.
   " Requires -- a patched version of -- sc-im.
   " As of 2020-10-14, requires the branch markdown-import of https://github.com/mipmip/sc-im.
