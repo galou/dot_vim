@@ -260,6 +260,9 @@ if dein#load_state('~/.cache/dein')
   """"""""""""""""""
   " In testing phase
   """"""""""""""""""
+  " Additional 'icons'.
+  call dein#add('ryanoasis/vim-devicons')
+
   " Open Jupyter notebooks (*.ipynb) thanks to the external jupytext
   " executable.
   call dein#add('goerz/jupytext.vim')
