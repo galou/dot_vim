@@ -295,6 +295,9 @@ xmap ga <Plug>(EasyAlign)
 
 xmap <silent> O :sort u<CR>
 
+" Recommended toggle for localsearch.
+nmap <leader>/ <Plug>localsearch_toggle
+
 " Clap.
 noremap <C-C> :Clap<cr>
 

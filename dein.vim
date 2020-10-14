@@ -326,6 +326,10 @@ if dein#load_state('~/.cache/dein')
   " As of 2020-10-14, requires the branch markdown-import of https://github.com/mipmip/sc-im.
   call dein#add('mipmip/vim-scimark')
 
+  " Search for different pattern in different buffers.
+  " Activate with "<leader>/"
+  call dein#add('mox-mox/vim-localsearch')
+
   " Alternative to Unite.
   " Then `:Clap install-binary`.
   call dein#add('liuchengxu/vim-clap', {'do': 'vim -c "Clap install-binary" -es'})
