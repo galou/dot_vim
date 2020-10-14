@@ -261,13 +261,12 @@ if dein#load_state('~/.cache/dein')
   " In testing phase
   """"""""""""""""""
 
+  " Integrate ranger in vim.
+  call dein#add('francoiscabrol/ranger.vim')
   " Dependency of vim-ranger.
   if has('nvim')
     call dein#add('rbgrouleff/bclose.vim')
   endif
-
-  " Integrate ranger in vim.
-  call dein#add('francoiscabrol/ranger.vim')
 
   " Show diffs in git repositories.
   " Enable with :GitGutterEnable.
@@ -316,6 +315,9 @@ if dein#load_state('~/.cache/dein')
   " Set some variables for project scope.
   " Drop a '_vimrc_local.vim' file into any project root directory to use.
   call dein#add('LucHermitte/local_vimrc')
+  " Edit tables the spreadsheet way in Markdown.
+  " Requires -- a patched version of -- sc-im.
+  call dein#add('mipmip/vim-scimark')
 
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
