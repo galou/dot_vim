@@ -289,6 +289,10 @@ if dein#load_state('~/.cache/dein')
     call dein#add('danilamihailov/beacon.nvim')
   endif
 
+  " Align things over several rows.
+  " Mapped to ga in visual mode (e.g. ga= to align on first equal sign).
+  call dein#add('junegunn/vim-easy-align')
+
   " Various helper for C++.
   " <C-X>i: add #include for symbol under cursor.
   " <M-i>: add #include for symbol under cursor and add scope.

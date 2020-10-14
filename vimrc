@@ -280,10 +280,21 @@ nnoremap <Leader>u<S-t> :tabedit <bar> Unite tag<CR>
 
 " Use <C-H> to clear the highlighting of :set hlsearch.
 if maparg('<C-H>', 'n') ==# ''
-nnoremap <silent> <C-H> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-H>
+	" nnoremap <silent> <C-H> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-H>
+	nnoremap <silent> <C-H> :nohlsearch<CR>
 endif
 
 " The following command is already in ftplugin/python.vim, cf.
 " https://github.com/Shougo/dein.vim/issues/101.
 " I use a custom mapping for ipython (cf. ipy.vim).
 let g:ipy_perform_mappings = 0
+
+" Start easy-align with ga in normal and visual mode.
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+
+xmap <silent> O :sort u<CR>
+
+" Search and highlight but not jump.
+" TODO: solve the recursive-function issue.
+" nnoremap * :keepjumps normal *``<cr>
