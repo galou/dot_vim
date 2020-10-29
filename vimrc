@@ -301,6 +301,11 @@ nmap <leader>/ <Plug>localsearch_toggle
 " Clap.
 noremap <C-C> :Clap<cr>
 
+" BufTerm.
+" Terminal Toggle
+nnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
+tnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
+
 " Search and highlight but not jump.
 " TODO: solve the recursive-function issue.
 " nnoremap * :keepjumps normal *``<cr>

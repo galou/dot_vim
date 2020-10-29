@@ -302,6 +302,10 @@ if dein#load_state('~/.cache/dein')
   " Enable with `:IndentGuidesEnable`.
   call dein#add('nathanaelkane/vim-indent-guides')
 
+  " Manage a terminal buffer easierly.
+  " Bound to '<leader>tt'
+  call dein#add('itmecho/bufterm.nvim')
+
   " Various helper for C++.
   " <C-X>i: add #include for symbol under cursor.
   " <M-i>: add #include for symbol under cursor and add scope.
