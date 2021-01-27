@@ -345,6 +345,11 @@ if dein#load_state('~/.cache/dein')
   " Dependency of `:Clap tags`.
   call dein#add('liuchengxu/vista.vim.git')
 
+  " Run code chunks.
+  " :'<,'>SnipRun
+  " Extra manual step: `cp target/release/sniprun $HOME/.cache/dein/.cache/init.vim/.dein/target/release/sniprun`.
+  call dein#add('michaelb/sniprun', {'do': 'bash install.sh'})
+
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
   """""""""""""""""""""""""""""""""""""""""""
