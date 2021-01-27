@@ -134,7 +134,6 @@ if has("autocmd")
     au BufNewFile,BufRead *.world setlocal filetype=xml
 
     " load a template when creating a new file
-    execute "au BufNewFile *.py silent! 0r ".config_dir."/template/template.%:e"
     execute "au BufNewFile *.tex silent! 0r ".config_dir."/template/template.%:e"
     execute "au BufNewFile *.FCMacro silent! 0r ".config_dir."/template/template.%:e"
     execute "au BufNewFile *.fcmacro silent! 0r ".config_dir."/template/template.%:e"
@@ -297,6 +296,13 @@ xmap <silent> O :sort u<CR>
 
 " Recommended toggle for localsearch.
 nmap <leader>/ <Plug>localsearch_toggle
+
+" Refactoring with clang-rename (save the file before running).
+" Provided by the `clang-tools` package on Ubuntu.
+noremap <leader>cr :pyf /usr/lib/llvm-6.0/share/clang/clang-rename.py<cr>
+
+" Include fixer with clang-include-fixer.
+noremap <leader>cf :pyf /usr/lib/llvm-6.0/share/clang/clang-include-fixer.py<cr>
 
 " Clap.
 noremap <C-C> :Clap<cr>
