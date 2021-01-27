@@ -63,7 +63,6 @@ if dein#load_state('~/.cache/dein')
               \ {'on_ft': 'python'}
               \ )
 
-
   " Manage parentheses and similar.
   call dein#add('tpope/vim-surround')
 
@@ -414,6 +413,18 @@ if dein#load_state('~/.cache/dein')
   "call dein#add('LucHermitte/lh-vim-lib')
   "call dein#add('LucHermitte/lh-dev')
   "call dein#add('LucHermitte/lh-brackets')
+  " Nicer tab line with buffers and tabs.
+  " I would prefer not to show hidden buffers.
+  " There was also an issue with the current completer.
+  "call dein#add('bagrat/vim-buffet')
+
+  " Nicer tabs.
+  " Was not working as I expected as of 2020-11-18.
+  "call dein#add('romgrk/barbar.nvim')
+  " Dependencies of barbar.
+  " Maybe some plugin uses nvim-web-devicons.
+  call dein#add('kyazdani42/nvim-web-devicons')
+  "call dein#add('romgrk/lib.kom')
 
   """""""""""""""
   " Interesting "
@@ -425,6 +436,17 @@ if dein#load_state('~/.cache/dein')
   " https://github.com/sheerun/vim-polyglot
 
   " Better? vim-surround: https://github.com/machakann/vim-sandwich.
+
+  """"""""""""""""
+  " Incompatible "
+  """"""""""""""""
+
+  " Replacement for netrw and The-NERD-tree.
+  " Requires Python>=3.8.
+  " Even the legacy branch is compatible because it requires Python>=3.7.
+  " if has('nvim')
+  "   call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'do': 'python3 -m chadtree deps'})
+  " endif
 
   call dein#end()
   call dein#save_state()
