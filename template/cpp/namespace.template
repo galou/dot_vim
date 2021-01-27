@@ -20,13 +20,13 @@ MuT:    let s:namespaces = type(s:namespace) == type([]) ? s:namespace : [s:name
 MuT:  else
 MuT:    let s:namespaces = type(s:namespace) == type([]) ? s:namespace : split(s:namespace, "::")
 MuT:  endif
-VimL: let s:ns_open   = empty(s:namespaces) ? ["namespace{"] : map(copy(s:namespaces), '"namespace ".v:val."{"')
-VimL: let s:ns_close  = empty(s:namespaces) ? ["} /* Anonymous namespace . */"] : map(copy(s:namespaces), '"}".(s:ns_join ? "" : "/* namespace ".v:val." */")')
+VimL: let s:ns_open   = empty(s:namespaces) ? ["namespace {"] : map(copy(s:namespaces), '"namespace ".v:val."\n{"')
+VimL: let s:ns_close  = empty(s:namespaces) ? ["} /* Anonymous namespace . */"] : map(copy(s:namespaces), '"}".(s:ns_join ? "" : " /* namespace ".v:val." */")')
 VimL: let s:ns_join_s = s:ns_join ? " " : "\n"
 <+join(s:ns_open, s:ns_join_s)+>
 MuT:  let s:def_content = s:Param('content', lh#marker#txt())
 ¡s:Surround(1, s:def_content)¡
-MuT:  let s:ns_comment = s:ns_join && !empty(s:namespaces) ? ("/* namespace ".join(s:namespaces, "::") . " */".(len(s:namespaces)>1 ? "s": "")) : ""
+MuT:  let s:ns_comment = s:ns_join && !empty(s:namespaces) ? (" /* namespace ".join(s:namespaces, "::") . " */".(len(s:namespaces)>1 ? "s": "")) : ""
 <+join(s:ns_close, s:ns_join_s)+><+s:ns_comment+>
 MuT:  if ! s:Param('included', 0)
 <+s:TerminalPlaceHolder()+>
