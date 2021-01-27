@@ -52,7 +52,7 @@ if dein#load_state('~/.cache/dein')
               \ )
 
   " Editing ROS source files.
-  call dein#add('taketwo/vim-ros')
+  " call dein#add('taketwo/vim-ros')
 
   call dein#add('othree/xml.vim',
               \ )
