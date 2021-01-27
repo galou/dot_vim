@@ -330,6 +330,10 @@ if dein#load_state('~/.cache/dein')
   " As of 2020-10-14, requires the branch markdown-import of https://github.com/mipmip/sc-im.
   call dein#add('mipmip/vim-scimark')
 
+  " Use Wandbox (https://wandbox.org/) in vim.
+  " :Wandbox
+  call dein#add('rhysd/wandbox-vim')
+
   " Search for different pattern in different buffers.
   " Activate with "<leader>/"
   call dein#add('mox-mox/vim-localsearch')
