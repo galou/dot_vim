@@ -350,6 +350,10 @@ if dein#load_state('~/.cache/dein')
   " Extra manual step: `cp target/release/sniprun $HOME/.cache/dein/.cache/init.vim/.dein/target/release/sniprun`.
   call dein#add('michaelb/sniprun', {'do': 'bash install.sh'})
 
+  " Diff on part of files.
+  " Visual selection + :'<,'>Linediff twice on non-overlapping parts.
+  call dein#add('AndrewRadev/linediff.vim.git')
+
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
   """""""""""""""""""""""""""""""""""""""""""
