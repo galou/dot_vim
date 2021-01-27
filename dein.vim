@@ -40,7 +40,9 @@ if dein#load_state('~/.cache/dein')
               \ {'on_ft': 'python'}
               \ )
 
-  call dein#add('vim-scripts/The-NERD-tree')
+  if has('vim')
+    call dein#add('vim-scripts/The-NERD-tree')
+  endif
 
   " Show a tip on vim startup.
   call dein#add('hobbestigrou/vimtips-fortune')
@@ -256,22 +258,12 @@ if dein#load_state('~/.cache/dein')
   " Allow to indent already indented text.
   call dein#add('ConradIrwin/vim-bracketed-paste')
 
-  """"""""""""""""""
-  " In testing phase
-  """"""""""""""""""
   " Additional 'icons'.
   call dein#add('ryanoasis/vim-devicons')
 
   " Open Jupyter notebooks (*.ipynb) thanks to the external jupytext
   " executable.
   call dein#add('goerz/jupytext.vim')
-
-  " Integrate ranger in vim.
-  call dein#add('francoiscabrol/ranger.vim')
-  " Dependency of vim-ranger.
-  if has('nvim')
-    call dein#add('rbgrouleff/bclose.vim')
-  endif
 
   " Show diffs in git repositories.
   " Enable with :GitGutterEnable.
@@ -305,10 +297,22 @@ if dein#load_state('~/.cache/dein')
   " Bound to '<leader>tt'
   call dein#add('itmecho/bufterm.nvim')
 
+  " Integrate ranger in vim.
+  " Replace with chadtree in the future.
+  call dein#add('francoiscabrol/ranger.vim')
+  " Dependency of vim-ranger.
+  if has('nvim')
+    call dein#add('rbgrouleff/bclose.vim')
+  endif
+
+  """"""""""""""""""
+  " In testing phase
+  """"""""""""""""""
+
   " Various helper for C++.
   " <C-X>i: add #include for symbol under cursor.
   " <M-i>: add #include for symbol under cursor and add scope.
-  call dein#add('LucHermitte/lh-cpp')
+  " call dein#add('LucHermitte/lh-cpp')
 
   " Dependencies for lh-cpp!
   call dein#add('LucHermitte/lh-vim-lib') " Dependency of mu-template.
@@ -407,12 +411,6 @@ if dein#load_state('~/.cache/dein')
   " requires Vim 7.4p330+
   "call dein#add('bbchung/clighter.git')
 
-  " Automatic bracket insertion.
-  " Two dependencies of lh-brackets
-  " Not ideal because doesn't support redo, as of 2015-10.
-  "call dein#add('LucHermitte/lh-vim-lib')
-  "call dein#add('LucHermitte/lh-dev')
-  "call dein#add('LucHermitte/lh-brackets')
   " Nicer tab line with buffers and tabs.
   " I would prefer not to show hidden buffers.
   " There was also an issue with the current completer.
