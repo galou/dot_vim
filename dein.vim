@@ -295,15 +295,8 @@ if dein#load_state('~/.cache/dein')
 
   " Manage a terminal buffer easierly.
   " Bound to '<leader>tt'
+  " Alternatively, cf. https://github.com/caenrique/nvim-toggle-terminal.
   call dein#add('itmecho/bufterm.nvim')
-
-  " Integrate ranger in vim.
-  " Replace with chadtree in the future.
-  call dein#add('francoiscabrol/ranger.vim')
-  " Dependency of vim-ranger.
-  if has('nvim')
-    call dein#add('rbgrouleff/bclose.vim')
-  endif
 
   """"""""""""""""""
   " In testing phase
@@ -354,6 +347,15 @@ if dein#load_state('~/.cache/dein')
   " Visual selection + :'<,'>Linediff twice on non-overlapping parts.
   call dein#add('AndrewRadev/linediff.vim.git')
 
+  " User ranger as file browser.
+  " The difference with francoiscabrol/ranger.vim is the rnvimr is a floating
+  " window.
+  " Inside ranger:
+  " - <C-t>: tabedit,
+  " - <C-x>: split,
+  " - <C-v>: vsplit,
+  call dein#add('kevinhwang91/rnvimr.git', {'rev': 'main'})
+
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
   """""""""""""""""""""""""""""""""""""""""""
@@ -399,6 +401,17 @@ if dein#load_state('~/.cache/dein')
   " buffer/file/command/tag/etc explorer with fuzzy matching
   " Deactivated in favor of Unite.
   "call dein#add('vim-scripts/FuzzyFinder')
+
+  " Integrate ranger in vim.
+  " Replace with chadtree in the future?
+  " Replaced with rnvimr.
+  " ranger.vim has the issue that the directory is incorrect on the second
+  " invokation.
+  " call dein#add('francoiscabrol/ranger.vim')
+  " Dependency of vim-ranger.
+  " if has('nvim')
+  "   call dein#add('rbgrouleff/bclose.vim')
+  " endif
 
   """"""""""""""""""""""""""""""""""
   " Useless or problematic plugins "
