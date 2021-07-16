@@ -47,10 +47,6 @@ if dein#load_state('~/.cache/dein')
   " Show a tip on vim startup.
   call dein#add('hobbestigrou/vimtips-fortune')
 
-  call dein#add('whiledoing/cmakecomplete',
-              \ {'on_ft': 'cmake'}
-              \ )
-
   " Editing ROS source files.
   " call dein#add('taketwo/vim-ros')
 
@@ -108,42 +104,6 @@ if dein#load_state('~/.cache/dein')
     "call dein#add('Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'})
   endif
 
-  " A code-completion engine.
-  " On Ubuntu 14.04, it's also offered system-wide and activated with
-  " 'vim-addons install youcompleteme'.
-  " Lock to revision 'f928f7dd975d26b608d5310a9139dc5fc310e4a9' because newer
-  " commits require vim 7.4.143+, not available on Ubuntu 14.04.
-  if has('nvim')
-    call dein#add('Valloric/YouCompleteMe',
-                \ {'build': 'python3 install.py --clang-completer',
-                \  'timeout': 600
-                \ }
-                \ )
-                " '--gocode-completer' requires go >= 1.11, so deactivated on
-                " Ubuntu 18.04 which has 1.10.
-  else
-    if (v:version < 800)
-      call dein#add('Valloric/YouCompleteMe',
-                  \ {'build': 'python install.py --clang-completer --gocode-completer',
-                  \  'timeout': 600,
-                  \  'rev': 'f928f7dd975d26b608d5310a9139dc5fc310e4a9'
-                  \ }
-                  \ )
-    else
-      call dein#add('Valloric/YouCompleteMe',
-                  \ {'build': 'python install.py --clang-completer --gocode-completer',
-                  \  'timeout': 600
-                  \ }
-                  \ )
-    endif
-  endif
-
-  " Configure YouCompleteMe thanks to cmake compile information.
-  call dein#add('kgreenek/vim-ros-ycm')
-
-  " Help complete parameters of functions (requires YouCompleteMe).
-  call dein#add('tenfyzhong/CompleteParameter.vim')
-
   " Debugging in vim.
   call dein#add('puremourning/vimspector')
   " Then install gadgets with
@@ -153,14 +113,6 @@ if dein#load_state('~/.cache/dein')
   " 'ln -s \
   "     ~/.cache/dein/repos/github.com/puremourning/vimspector/gadgets \
   "     ~/.cache/dein/.cache/init.vim/.dein/gadgets'.
-
-  " Alternative to YouCompleteMe based on the Language Server Protocol.
-  " Provides refactor with LanguageClient#textDocument_rename().
-  " First activate with `:LanguageClientStart`.
-  call dein#add('autozimu/LanguageClient-neovim', {
-        \ 'rev': 'next',
-        \  'build': 'bash install.sh',
-        \ })
 
   " C/C++ debugger for Neovim, based on LLDB.
   call dein#add('critiqjo/lldb.nvim')
@@ -364,6 +316,14 @@ if dein#load_state('~/.cache/dein')
     call dein#add('rmagatti/auto-session')
   endif
 
+  " Provides some configurations for the built-in LSP client.
+  if has('nvim')
+    call dein#add('neovim/nvim-lspconfig')
+  endif
+
+  " Provide autocompletion (i.e. no need to `<C-x><C-o>`.
+  call dein#add('hrsh7th/nvim-compe')
+
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
   """""""""""""""""""""""""""""""""""""""""""
@@ -420,6 +380,54 @@ if dein#load_state('~/.cache/dein')
   " if has('nvim')
   "   call dein#add('rbgrouleff/bclose.vim')
   " endif
+
+  " A code-completion engine.
+  " On Ubuntu 14.04, it's also offered system-wide and activated with
+  " 'vim-addons install youcompleteme'.
+  " Lock to revision 'f928f7dd975d26b608d5310a9139dc5fc310e4a9' because newer
+  " commits require vim 7.4.143+, not available on Ubuntu 14.04.
+  " if has('nvim')
+  "   call dein#add('Valloric/YouCompleteMe',
+  "               \ {'build': 'python3 install.py --clang-completer',
+  "               \  'timeout': 600
+  "               \ }
+  "               \ )
+  "               " '--gocode-completer' requires go >= 1.11, so deactivated on
+  "               " Ubuntu 18.04 which has 1.10.
+  " else
+  "   if (v:version < 800)
+  "     call dein#add('Valloric/YouCompleteMe',
+  "                 \ {'build': 'python install.py --clang-completer --gocode-completer',
+  "                 \  'timeout': 600,
+  "                 \  'rev': 'f928f7dd975d26b608d5310a9139dc5fc310e4a9'
+  "                 \ }
+  "                 \ )
+  "   else
+  "     call dein#add('Valloric/YouCompleteMe',
+  "                 \ {'build': 'python install.py --clang-completer --gocode-completer',
+  "                 \  'timeout': 600
+  "                 \ }
+  "                 \ )
+  "   endif
+  " endif
+
+  " Configure YouCompleteMe thanks to cmake compile information.
+  " call dein#add('kgreenek/vim-ros-ycm')
+
+  " Help complete parameters of functions (requires YouCompleteMe).
+  " call dein#add('tenfyzhong/CompleteParameter.vim')
+
+  " call dein#add('whiledoing/cmakecomplete',
+  "             \ {'on_ft': 'cmake'}
+  "             \ )
+
+  " Alternative to YouCompleteMe based on the Language Server Protocol.
+  " Provides refactor with LanguageClient#textDocument_rename().
+  " First activate with `:LanguageClientStart`.
+  " call dein#add('autozimu/LanguageClient-neovim', {
+  "       \ 'rev': 'next',
+  "       \  'build': 'bash install.sh',
+  "       \ })
 
   """"""""""""""""""""""""""""""""""
   " Useless or problematic plugins "

@@ -48,9 +48,10 @@ set wildmode=longest,list:longest
 set laststatus=2
 set title
 " insert the longest common prefix of all the suggestions
-set completeopt+=longest " For YouCompleteMe
+"set completeopt+=longest " For YouCompleteMe
 "set completeopt-=longest " For Kite
 "set completeopt+=noinsert " For Kite
+set completeopt=menuone,noselect
 set tabstop=4
 set shiftwidth=4
 " allow backspacing over everything in insert mode
@@ -109,14 +110,6 @@ command! -nargs=+ Calc :!python -c "from math import *; print(<args>)"
 function! RepeatChar(char, count)
   return repeat(a:char, a:count)
 endfunction
-"nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
-"nnoremap <SPACE> i_<ESC>r
-nnoremap <SPACE> :<C-U>exec "silent normal i".nr2char(getchar())<CR>
-"nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
-nnoremap <silent> S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
-
-" Map 'Y' to yank until the end of the line.
-nnoremap Y y$
 
 " autocommands
 if has("autocmd")
@@ -146,8 +139,6 @@ if has("autocmd")
 
     " For the ViewSourceWith plugin for Firefox
     autocmd BufNewFile,BufRead /tmp/*.txt setlocal textwidth=0 showbreak=⏎\  linebreak
-    autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> j gj
-    autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> k gk
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
@@ -177,141 +168,5 @@ endif
 " tag configuration (look for a tag file recursively in parent dir).
 set tags=tags;/
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Key bindings
-
-" Use CTRL-S for saving, also in Insert mode
-nnoremap <C-S>		:update<CR>
-vnoremap <C-S>		<C-C>:update<CR>
-inoremap <C-S>		<C-O>:update<CR>
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" Select last pasted text with 'gb', cf.
-" http://vim.wikia.com/wiki/Selecting_your_pasted_text.
-nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" Use `ALT+{h,j,k,l}` to navigate windows from any mode:
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
-
-" Write the directory for the current file.
-nmap <Leader>md :!mkdir -p %:p:h<cr>
-
-" YouCompleteMe
-nnoremap <leader>gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gt :YcmCompleter GetType<CR>
-nnoremap <leader>go :YcmCompleter GetDoc<CR>
-nnoremap <leader>gp :YcmCompleter GetParent<CR>
-nnoremap <leader>i :YcmCompleter FixIt<CR>
-
-" LanguageClient-neovim (for supported and configured languages).
-function! LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    "nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr> " already defined
-    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-  endif
-endfunction
-
-autocmd FileType * call LC_maps()
-
-" FuzzyFinder
-nnoremap <leader>fb :FufBuffer<CR>
-nnoremap <leader>fd :FufBookmarkDir<CR>
-nnoremap <leader>ff :FufFileWithFullCwd<CR>
-nnoremap <leader>fg :call fuf#givenfile#launch('', 0, '>', split(system("git ls-tree -r --name-only HEAD"), "\n"))<CR>
-nnoremap <leader>fh :FufHelp<CR>
-nnoremap <leader>fl :FufLine<CR>
-nnoremap <leader>ft :FufTag<CR>
-nnoremap <leader>fq :FufQuickfix<CR>
-
-" Unite
-nnoremap <leader>uu :Unite file file_rec file_mru buffer<CR>
-nnoremap <leader>ub :Unite buffer<CR>
-nnoremap <Leader>u<S-b> :tabedit <bar> Unite buffer<CR>
-nnoremap <leader>uf :Unite file_rec<CR>
-nnoremap <Leader>u<S-f> :tabedit <bar> Unite file_rec<CR>
-nnoremap <leader>ug :Unite file_rec/git<CR>
-nnoremap <Leader>u<S-g> :tabedit <bar> Unite file_rec/git<CR>
-nnoremap <leader>uk :Unite bookmark<CR>
-"nnoremap <leader>uh :Unite help<CR>
-nnoremap <leader>ul :Unite line<CR>
-"nnoremap <leader>ut :Unite tag<CR>
-nnoremap <leader>um :Unite file_mru<CR>
-nnoremap <Leader>u<S-m> :tabedit <bar> Unite file_mru<CR>
-nnoremap <C-t> <ESC>:Unite tab<CR>i
-if !empty($ROS_WORKSPACE)
-  " Generic solution.
-  nnoremap <leader>ur :Unite grep:$ROS_WORKSPACE/src<CR>
-  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$ROS_WORKSPACE/src<CR>
-elseif $HOST == "pcgael3"
-  " Ubuntu 18.04.
-  nnoremap <leader>ur :Unite grep:$HOME/ros_melodic_ws/src<CR>
-  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_melodic_ws/src<CR>
-elseif $HOST == "pcagel2"
-  " Ubuntu 16.04.
-  nnoremap <leader>ur :Unite grep:$HOME/ros_kinetic_ws/src<CR>
-  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_kinetic_ws/src<CR>
-elseif $HOST == "pcgael"
-  " Ubuntu 14.04.
-  nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>
-  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_indigo_ws/src<CR>
-endif
-nnoremap <leader>ut :Unite tag<CR>
-nnoremap <Leader>u<S-t> :tabedit <bar> Unite tag<CR>
-
-" Use <C-H> to clear the highlighting of :set hlsearch.
-if maparg('<C-H>', 'n') ==# ''
-	" nnoremap <silent> <C-H> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-H>
-	nnoremap <silent> <C-H> :nohlsearch<CR>
-endif
-
-" The following command is already in ftplugin/python.vim, cf.
-" https://github.com/Shougo/dein.vim/issues/101.
-" I use a custom mapping for ipython (cf. ipy.vim).
-let g:ipy_perform_mappings = 0
-
-" Start easy-align with ga in normal and visual mode.
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
-
-xmap <silent> O :sort u<CR>
-
-" Recommended toggle for localsearch.
-nmap <leader>/ <Plug>localsearch_toggle
-
-" Refactoring with clang-rename (save the file before running).
-" Provided by the `clang-tools` package on Ubuntu.
-noremap <leader>cr :pyf /usr/lib/llvm-6.0/share/clang/clang-rename.py<cr>
-
-" Include fixer with clang-include-fixer.
-noremap <leader>cf :pyf /usr/lib/llvm-6.0/share/clang/clang-include-fixer.py<cr>
-
-" Clap.
-noremap <C-C> :Clap<cr>
-
-" BufTerm.
-" Terminal Toggle
-nnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
-tnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
-
-" Search and highlight but not jump.
-" TODO: solve the recursive-function issue.
-" nnoremap * :keepjumps normal *``<cr>
+" Key-bindings.
+execute "source ".config_dir."/bindings.vim"
