@@ -333,15 +333,16 @@ if dein#load_state('~/.cache/dein')
 
   " Alternative to Unite.
   " Then `:Clap install-binary`.
-  call dein#add('liuchengxu/vim-clap', {'do': 'vim -c "Clap install-binary" -es'})
+  call dein#add('liuchengxu/vim-clap', {'build': 'vim -c "Clap install-binary" -es'})
 
   " Dependency of `:Clap tags`.
   call dein#add('liuchengxu/vista.vim.git')
 
   " Run code chunks.
   " :'<,'>SnipRun
-  " Extra manual step: `cp target/release/sniprun $HOME/.cache/dein/.cache/init.vim/.dein/target/release/sniprun`.
-  call dein#add('michaelb/sniprun', {'do': 'bash install.sh'})
+  " Extra manual step: `cp $HOME/.cache/dein/repos/github.com/michaelb/sniprun/target/release/sniprun $HOME/.cache/dein/.cache/init.vim/.dein/target/release/sniprun`.
+  " Possibly `mkdir -p $HOME/.cache/dein/.cache/init.vim/.dein/target/release` before.
+  call dein#add('michaelb/sniprun', {'build': 'bash install.sh'})
 
   " Diff on part of files.
   " Visual selection + :'<,'>Linediff twice on non-overlapping parts.
@@ -423,7 +424,7 @@ if dein#load_state('~/.cache/dein')
 
   " Project Management.
   " Deactivated because not used and problem with end of lines.
-  "call dein#add('vim-scripts/ProjectBrowse', {rev: 'unix-eol'})
+  "call dein#add('vim-scripts/ProjectBrowse', {'rev': 'unix-eol'})
 
   " cmake.vim changes makeprg in a way that is incompatible with vim-ros
   "call dein#add('jalcine/cmake.vim')
@@ -469,7 +470,7 @@ if dein#load_state('~/.cache/dein')
   " Requires Python>=3.8.
   " Even the legacy branch is compatible because it requires Python>=3.7.
   " if has('nvim')
-  "   call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'do': 'python3 -m chadtree deps'})
+  "   call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'build': 'python3 -m chadtree deps'})
   " endif
 
   call dein#end()
