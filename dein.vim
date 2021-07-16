@@ -357,6 +357,13 @@ if dein#load_state('~/.cache/dein')
   " - <C-v>: vsplit,
   call dein#add('kevinhwang91/rnvimr.git', {'rev': 'main'})
 
+  " Auto-sessions.
+  " `nvim .` to avoid. `:RestoreSession` to force.
+  " `:SaveSession` to force save.
+  if has('nvim')
+    call dein#add('rmagatti/auto-session')
+  endif
+
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
   """""""""""""""""""""""""""""""""""""""""""
