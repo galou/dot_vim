@@ -18,6 +18,14 @@ snippet print_debug_noargs
 print('\033[1;35m%%%%% $1\033[0m') # DEBUG
 endsnippet
 
+snippet print_debug_nocolor
+print('%%%%% $1: {}'.format(${1})) # DEBUG
+endsnippet
+
+snippet print_debug_noargs_nocolor
+print('%%%%% $1') # DEBUG
+endsnippet
+
 snippet rospy_info_debug
 rospy.loginfo('$1: {}'.format(${1})) # DEBUG
 endsnippet
