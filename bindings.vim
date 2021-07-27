@@ -128,7 +128,9 @@ noremap <C-C> :Clap<cr>
 " Terminal Toggle
 nnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
 tnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
+
 " LSP
+" Cf. also plugin/lspconfig.vim.
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
@@ -174,8 +176,6 @@ local servers = {
   "dockerls",
   "dotls",
   "gopls",
-  "html",
-  "jsonls",
   "pyright",
   "rust_analyzer",
   "texlab",
@@ -189,6 +189,32 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+-- Special cases.
+require'lspconfig'.jsonls.setup {
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+    },
+  commands = {
+    Format = {
+      function()
+	vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+      end
+      }
+    }
+}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.html.setup {
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+    },
+  capabilities = capabilities,
+}
 EOF
 
 " Compe bindings

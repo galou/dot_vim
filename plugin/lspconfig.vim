@@ -1,11 +1,16 @@
+" According to
+" https://www.reddit.com/r/neovim/comments/ol6fqq/050_language_server_client_qa_w_mjlbach_me/,
+" setup{} should be called only once and this is done in ../bindings.vim.
+finish
+
 lua << EOF
-require'lspconfig'.bashls.setup{}  -- bash
--- require'lspconfig'.ccls.setup{}  -- C,C++
-require'lspconfig'.clangd.setup{}  -- C,C++
-require'lspconfig'.cmake.setup{}  -- cmake
-require'lspconfig'.dockerls.setup{} -- dockerfile
-require'lspconfig'.dotls.setup{} -- Graphviz dot
-require'lspconfig'.gopls.setup{} -- Go
+require'lspconfig'.bashls.setup{}  -- bash (npm i -g bash-language-server)
+-- require'lspconfig'.ccls.setup{}  -- C,C++ (apt install ccls)
+require'lspconfig'.clangd.setup{}  -- C,C++ (apt install clangd)
+require'lspconfig'.cmake.setup{}  -- cmake (pip3 install cmake-language-server)
+require'lspconfig'.dockerls.setup{} -- dockerfile (npm install -g dockerfile-language-server-nodejs)
+require'lspconfig'.dotls.setup{} -- Graphviz dot (npm i -g dot-language-server)
+require'lspconfig'.gopls.setup{} -- Go (GO111MODULE=on go get golang.org/x/tools/gopls@latest)
 -- require'lspconfig'.jedi_language_server.setup{} -- Python, alternative to pyright
 require'lspconfig'.jsonls.setup {
     commands = {
@@ -15,12 +20,12 @@ require'lspconfig'.jsonls.setup {
         end
       }
     }
-} -- json, cf. https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#jsonls.
+} -- json, cf. https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#jsonls (npm i -g vscode-langservers-extracted).
 -- require'lspconfig'.pylsp.setup{} -- Python
-require'lspconfig'.pyright.setup{} -- Python
-require'lspconfig'.rust_analyzer.setup{} -- Rust
-require'lspconfig'.texlab.setup{} -- LaTeX
-require'lspconfig'.yamlls.setup{} -- yaml
+require'lspconfig'.pyright.setup{} -- Python (npm i -g pyright)
+require'lspconfig'.rust_analyzer.setup{} -- Rust (rustup +nightly component add rust-analyzer-preview)
+require'lspconfig'.texlab.setup{} -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
+require'lspconfig'.yamlls.setup{} -- yaml (npm i -g yaml-language-server) 
 EOF
 
 " Special configuration for html (activation of snippet support).
@@ -32,5 +37,5 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require'lspconfig'.html.setup {
   capabilities = capabilities,
-}
+} -- HTML (npm i -g vscode-langservers-extracted)
 EOF
