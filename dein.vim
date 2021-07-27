@@ -330,6 +330,9 @@ if dein#load_state('~/.cache/dein')
   " Minimap.
   call dein#add('wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'})
 
+  " Replacement for :make.
+  call dein#add('neomake/neomake')
+
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
   """""""""""""""""""""""""""""""""""""""""""
