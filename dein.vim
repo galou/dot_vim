@@ -333,6 +333,10 @@ if dein#load_state('~/.cache/dein')
   " Replacement for :make.
   call dein#add('neomake/neomake')
 
+  " Easily configure neomake to recognize your PlatformIO project's include
+  " path.
+  call dein#add('coddingtonbear/neomake-platformio')
+
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
   """""""""""""""""""""""""""""""""""""""""""
