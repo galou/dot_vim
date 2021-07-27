@@ -327,6 +327,9 @@ if dein#load_state('~/.cache/dein')
   " Fade inactive buffers.
   call dein#add('TaDaa/vimade')
 
+  " Minimap.
+  call dein#add('wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'})
+
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
   """""""""""""""""""""""""""""""""""""""""""
