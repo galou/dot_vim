@@ -324,6 +324,9 @@ if dein#load_state('~/.cache/dein')
   " Provide autocompletion (i.e. no need to `<C-x><C-o>`.
   call dein#add('hrsh7th/nvim-compe')
 
+  " Fade inactive buffers.
+  call dein#add('TaDaa/vimade')
+
   """""""""""""""""""""""""""""""""""""""""""
   " Why not but short startup time prefered "
   """""""""""""""""""""""""""""""""""""""""""
@@ -492,4 +495,8 @@ if dein#load_state('~/.cache/dein')
   call dein#save_state()
 
 endif  " if dein#load_state('~/.cache/dein')
+
+if dein#check_install()
+  call dein#install()
+endif
 
