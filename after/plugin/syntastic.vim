@@ -1,6 +1,9 @@
 " Syntastic configuration
 
-let g:syntastic_check_on_open = 1
+" Use passive mode.
+let g:syntastic_mode_map = {"mode": "passive"}
+
+let g:syntastic_check_on_open = 0
 
 " Don't run checker before exiting.
 let g:syntastic_check_on_wq = 0
