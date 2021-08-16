@@ -167,7 +167,7 @@ end
 vim.cmd [[ autocmd CursorMoved * lua PrintDiagnostics() ]]
 
 -- Customize text for completion types.
-local icons = require "plugin/lspconfig"
+local icons = require "lspconfig_icons"
 icons.setup()
 
 EOF
