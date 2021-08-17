@@ -45,9 +45,8 @@ local servers = {
   "dockerls", -- dockerfile (npm install -g dockerfile-language-server-nodejs)
   "dotls", -- Graphviz dot (npm i -g dot-language-server)
   "gopls", -- Go (GO111MODULE=on go get golang.org/x/tools/gopls@latest)
-  -- "jedi_language_server", -- Python, alternative to pyright
+  "jedi_language_server", -- Python, alternative to pyright
   -- "pylsp", -- Python
-  "pyright", -- Python, requires node >= 14 (npm i -g pyright)
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
   "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
   "yamlls" -- yaml (npm i -g yaml-language-server)
@@ -64,7 +63,7 @@ end
 -- Special cases.
 
 -- Cf. https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#jsonls.
-require'lspconfig'.jsonls.setup {
+nvim_lsp.jsonls.setup {
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
@@ -72,7 +71,7 @@ require'lspconfig'.jsonls.setup {
   commands = {
     Format = {
       function()
-	vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+        vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
       end
       }
     }
@@ -83,12 +82,22 @@ require'lspconfig'.jsonls.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require'lspconfig'.html.setup {
+nvim_lsp.html.setup {
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
     },
   capabilities = capabilities,
+}
+
+-- Servers without autostart.
+-- pyright: Python, requires node >= 14 (npm i -g pyright)
+nvim_lsp.pyright.setup {
+  autostart = false,
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  }
 }
 
 -- Change diagnostic symbols in the gutter.
