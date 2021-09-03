@@ -90,6 +90,30 @@ nvim_lsp.html.setup {
   capabilities = capabilities,
 }
 
+-- hook to nvim-lspconfig
+-- Grammar checker for LaTeX and Markdown.
+require("grammar-guard").init()
+
+-- setup LSP config
+nvim_lsp.grammar_guard.setup({
+  settings = {
+    ltex = {
+      enabled = { "latex", "tex", "bib", "markdown" },
+        language = "en",
+        diagnosticSeverity = "information",
+        setenceCacheSize = 2000,
+        additionalRules = {
+          enablePickyRules = true,
+          motherTongue = "fr",
+        },
+        trace = { server = "verbose" },
+        dictionary = {},
+        disabledRules = {},
+        hiddenFalsePositives = {},
+    },
+  },
+})
+
 -- Servers without autostart.
 -- pyright: Python, requires node >= 14 (npm i -g pyright)
 nvim_lsp.pyright.setup {

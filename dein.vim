@@ -304,9 +304,13 @@ if dein#load_state('~/.cache/dein')
   " - <C-v>: vsplit,
   call dein#add('kevinhwang91/rnvimr.git', {'rev': 'main'})
 
-  " Provides some configurations for the built-in LSP client.
+  " Provide some configurations for the built-in LSP client.
   if has('nvim')
     call dein#add('neovim/nvim-lspconfig')
+  endif
+
+  if has('nvim')
+    call dein#add('brymer-meneses/grammar-guard.nvim')
   endif
 
   " Provide autocompletion (i.e. no need to `<C-x><C-o>`.
