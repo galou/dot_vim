@@ -30,11 +30,6 @@ if dein#load_state('~/.cache/dein')
   " Default snippets for UltiSnips
   call dein#add('honza/vim-snippets')
 
-  " Python-mode
-  call dein#add('klen/python-mode',
-              \ {'on_ft': 'python'}
-              \ )
-
   " Basic support for .env files, ':Dotenv {file}'.
   call dein#add('tpope/vim-dotenv',
               \ {'on_ft': 'python'}
@@ -309,13 +304,6 @@ if dein#load_state('~/.cache/dein')
   " - <C-v>: vsplit,
   call dein#add('kevinhwang91/rnvimr.git', {'rev': 'main'})
 
-  " Auto-sessions.
-  " `nvim .` to avoid. `:RestoreSession` to force.
-  " `:SaveSession` to force save.
-  if has('nvim')
-    call dein#add('rmagatti/auto-session')
-  endif
-
   " Provides some configurations for the built-in LSP client.
   if has('nvim')
     call dein#add('neovim/nvim-lspconfig')
@@ -478,6 +466,12 @@ if dein#load_state('~/.cache/dein')
   " Maybe some plugin uses nvim-web-devicons.
   call dein#add('kyazdani42/nvim-web-devicons')
   "call dein#add('romgrk/lib.kom')
+
+  " Auto-sessions.
+  " `nvim .` to avoid. `:RestoreSession` to force.
+  " `:SaveSession` to force save.
+  " Pollutes the directory where vim is launched with '~/.cache/nvim/sessions'.
+  " call dein#add('rmagatti/auto-session')
 
   """""""""""""""
   " Interesting "
