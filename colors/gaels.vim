@@ -99,6 +99,7 @@ hi SpellBad cterm=none ctermfg=247 ctermbg=none
 hi SpellCap cterm=none ctermfg=none ctermbg=81
 hi SpellLocal cterm=none ctermfg=none ctermbg=14
 hi SpellRare cterm=none ctermfg=none ctermbg=225
+hi LspDiagnosticsDefaultError cterm=none ctermfg=30 ctermbg=none
 
 let g:colors_name = "gaels"
 
