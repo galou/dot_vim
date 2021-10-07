@@ -1,14 +1,14 @@
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
-	finish
+  finish
 endif
 
 set nocompatible
 
 if has('nvim')
-	let config_dir = "~/.config/nvim"
+  let config_dir = "~/.config/nvim"
 else
-	let config_dir = "~/.vim"
+  let config_dir = "~/.vim"
 endif
 
 " Program to use for evaluating Python code. Setting this makes NeoVim's
@@ -26,11 +26,11 @@ execute "source ".config_dir."/dein.vim"
 
 " Use 'user-system-wide' or 'system-wide' powerline installation.
 if has('nvim')
-	" No support for powerline in NeoVim
-	" set runtimepath+=/usr/lib/python2.7/dist-packages/powerline/bindings/vim
-	" set runtimepath+=~/.local/lib/python3.6/site-packages/powerline/bindings/vim
+  " No support for powerline in NeoVim
+  " set runtimepath+=/usr/lib/python2.7/dist-packages/powerline/bindings/vim
+  " set runtimepath+=~/.local/lib/python3.6/site-packages/powerline/bindings/vim
 else
-	set runtimepath+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+  set runtimepath+=~/.local/lib/python3.6/site-packages/powerline/bindings/vim
 endif
 
 " General configuration
@@ -38,8 +38,9 @@ filetype plugin indent on
 syntax on
 
 if has('nvim')
-	" Cf. https://thoughtbot.com/upcase/videos/neat-little-neovim-features.
-	set inccommand=nosplit
+  " Highlight search and perform live replace.
+  " Cf. https://thoughtbot.com/upcase/videos/neat-little-neovim-features.
+  set inccommand=nosplit
 endif
 
 " Windows always have the same size (doesn't work on Ubuntu)
@@ -59,14 +60,14 @@ set tabstop=4
 set shiftwidth=4
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-set history=1000		" keep that many lines of command line history
+set history=1000  " keep that many lines of command line history
 " viminfo option
 " :500  :  up to 500 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 set viminfo+=:500
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set ruler  " show the cursor position all the time
+set showcmd  " display incomplete commands
+set incsearch  " do incremental searching
 set hlsearch
 set noshowmode " Mode is shown by the powerline plugin
 set nobackup
@@ -79,7 +80,8 @@ set autoread
 set exrc
 
 if v:version > 703 || v:version == 703 && has("patch541")
-  set formatoptions+=j  " Delete comment character when joining commented lines
+  " Delete comment character when joining commented lines.
+  set formatoptions+=j
 endif
 
 " Use the system clipboard as default clipboard
@@ -149,9 +151,9 @@ if has("autocmd")
     " Also don't do it when the mark is in the first line, that is the default
     " position when opening a file.
     autocmd BufReadPost *
-	  \ if line("'\"") > 1 && line("'\"") <= line("$") |
-	  \   exe "normal! g`\"" |
-	  \ endif
+          \ if line("'\"") > 1 && line("'\"") <= line("$") |
+          \   exe "normal! g`\"" |
+          \ endif
     " Don't do it for special files.
     autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg0"
     autocmd BufReadPost svn-commit.tmp exe "normal! gg0"
@@ -165,7 +167,7 @@ endif
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+        \ | wincmd p | diffthis
 endif
 
 " tag configuration (look for a tag file recursively in parent dir).
@@ -173,3 +175,8 @@ set tags=tags;/
 
 " Key-bindings.
 execute "source ".config_dir."/bindings.vim"
+
+" Configuration for lua plugins.
+lua << EOF
+require('comment') -- lua/comment.lua.
+EOF

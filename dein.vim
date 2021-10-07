@@ -66,7 +66,12 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tpope/vim-sleuth')
 
   " Block commenting.
-  call dein#add('tpope/vim-commentary')
+  if has('nvim')
+    " Support line comment (gc{move}) or block comment (gb{move}).
+    call dein#add('numToStr/Comment.nvim')
+  else
+    call dein#add('tpope/vim-commentary')
+  endif
 
   " Repeat also for complex mapping (for example surround).
   call dein#add('tpope/vim-repeat')
