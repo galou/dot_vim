@@ -314,6 +314,7 @@ if dein#load_state('~/.cache/dein')
   endif
 
   " Provide autocompletion (i.e. no need to `<C-x><C-o>`.
+  " Alternatives: https://github.com/ms-jpq/coq_nvim.
   call dein#add('hrsh7th/nvim-compe')
 
   " Fade inactive buffers.

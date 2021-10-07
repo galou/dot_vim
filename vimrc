@@ -15,8 +15,11 @@ endif
 " startup faster.
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog  = '/usr/bin/python2'
-" To disable Python 2 support:
-"let g:loaded_python_provider = 1
+
+" Disable some unused providers.
+let g:loaded_python_provider = 1  " Python 2.
+let g:loaded_ruby_provider = 1
+let g:loaded_perl_provider = 1
 
 " Plugin configuration in dein.vim.
 execute "source ".config_dir."/dein.vim"
