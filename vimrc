@@ -179,4 +179,5 @@ execute "source ".config_dir."/bindings.vim"
 " Configuration for lua plugins.
 lua << EOF
 require('comment') -- lua/comment.lua.
+require('mini_cfg')
 EOF

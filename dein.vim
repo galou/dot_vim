@@ -174,6 +174,12 @@ if dein#load_state('~/.cache/dein')
   " Alternatively: https://github.com/LucHermitte/alternate-lite
   call dein#add('derekwyatt/vim-fswitch')
 
+  " Collection of minimal, independent, and fast Lua modules.
+  " mini.completion: two-stage completion, used to show the signature.
+  " mini.cursorword: highlight word under cursor.
+  " mini.trailspace: Automatically highlight trailing whitespaces.
+  call dein#add('echasnovski/mini.nvim')
+
   """""""""""""""""
   " Local plugins "
   """""""""""""""""
