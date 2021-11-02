@@ -1,5 +1,3 @@
-
-lua << EOF
 local nvim_lsp = require('lspconfig')
 
 -- Use an on_attach function to only map the following keys
@@ -114,6 +112,24 @@ nvim_lsp.grammar_guard.setup({
   },
 })
 
+-- lemminx requires setting `cmd`.
+-- Installation script:
+--   cd /tmp
+--   git clone --recursive https://github.com/eclipse/lemminx.git
+--   cd lemminx
+--   ./mvnw clean package
+--   mkdir ~/.local/share/lemminx
+--   cp /tmp/lemminx/org.eclipse.lemminx/target/org.eclipse.lemminx-uber.jar ~/.local/share/lemminx
+--   cat << EOF > ~/.local/bin/xml-language-server-lemminx
+--   #!/bin/bash
+--
+--   java -jar ~/.local/share/lemminx/org.eclipse.lemminx-uber.jar
+--   EOF
+--   chmod ug+x ~/.local/bin/xml-language-server-lemminx
+nvim_lsp.lemminx.setup {
+  cmd = {"xml-language-server-lemminx"},
+}
+
 -- Servers without autostart.
 -- pyright: Python, requires node >= 14 (npm i -g pyright)
 nvim_lsp.pyright.setup {
@@ -204,4 +220,3 @@ vim.cmd [[ autocmd CursorMoved * lua PrintDiagnostics() ]]
 local icons = require "lspconfig_icons"
 icons.setup()
 
-EOF

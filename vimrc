@@ -180,4 +180,5 @@ execute "source ".config_dir."/bindings.vim"
 lua << EOF
 require('comment') -- lua/comment.lua.
 require('mini_cfg')
+require('lspconfig_cfg')
 EOF
