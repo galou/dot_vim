@@ -33,3 +33,44 @@ snippet DEBUG "debug includes"
 #include <iostream> // DEBUG
 #include <QDebug> // DEBUG
 endsnippet
+
+snippet RD "RCLCPP_DEBUG"
+RCLCPP_ERROR(get_logger(), "$1");
+endsnippet
+
+snippet RDS "RCLCPP_DEBUG_STREAM"
+RCLCPP_DEBUG_STREAM(get_logger(), "$1");
+endsnippet
+
+snippet RI "RCLCPP_INFO"
+RCLCPP_INFO(get_logger(), "$1");
+endsnippet
+
+snippet RIS "RCLCPP_INFO_STREAM"
+RCLCPP_INFO_STREAM(get_logger(), "$1");
+endsnippet
+
+snippet RW "RCLCPP_WARN"
+RCLCPP_WARN(get_logger(), "$1");
+endsnippet
+
+snippet RWS "RCLCPP_ERROR_WARNM"
+RCLCPP_WARN_STREAM(get_logger(), "$1");
+endsnippet
+
+snippet RE "RCLCPP_ERROR"
+RCLCPP_ERROR(get_logger(), "$1");
+endsnippet
+
+snippet RES "RCLCPP_ERROR_STREAM"
+RCLCPP_ERROR_STREAM(get_logger(), "$1");
+endsnippet
+
+snippet RF "RCLCPP_FATAL"
+RCLCPP_FATAL(get_logger(), "$1");
+endsnippet
+
+snippet RFS "RCLCPP_FATAL_STREAM"
+RCLCPP_FATAL_STREAM(get_logger(), "$1");
+endsnippet
+
