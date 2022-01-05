@@ -318,6 +318,8 @@ if dein#load_state('~/.cache/dein')
   " Provide some configurations for the built-in LSP client.
   if has('nvim')
     call dein#add('neovim/nvim-lspconfig')
+    " Provide some installation scripts for some LSP servers.
+    call dein#add('williamboman/nvim-lsp-installer')
   endif
 
   if has('nvim')
