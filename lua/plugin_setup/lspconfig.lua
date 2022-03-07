@@ -33,6 +33,8 @@ local on_attach = function(client, bufnr)
 
 end
 
+-- nvim-cmp integration.
+local cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
@@ -41,8 +43,8 @@ local servers = {
   "clangd",  -- C,C++ (apt install clangd)
   "cmake",  -- cmake (pip3 install cmake-language-server)
   "dockerls", -- dockerfile (npm install -g dockerfile-language-server-nodejs)
-  "dotls", -- Graphviz dot (npm i -g dot-language-server)
-  "gopls", -- Go (GO111MODULE=on go get golang.org/x/tools/gopls@latest)
+  "dotls", -- Graphviz dot (https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally, then `npm i -g dot-language-server`)
+  "gopls", -- Go (GO111MODULE=on go get golang.org/x/tools/gopls@latest) or sudo snap install gopls
   "jedi_language_server", -- Python, alternative to pyright
   -- "pylsp", -- Python
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
@@ -54,7 +56,8 @@ for _, server in ipairs(servers) do
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
-    }
+    },
+    capabilities = cmp_capabilities
   }
 end
 

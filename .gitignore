@@ -8,6 +8,7 @@ default_ycm_extra_conf.pyc
 spell/*.spl
 spell/*.sug
 .mypy_cache
+/plugin/packer_compiled.lua
 
 # System-wide plugins
 autoload/youcompleteme.vim

@@ -48,50 +48,25 @@ nnoremap <silent> S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count
 autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> j gj
 autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> k gk
 
-" FuzzyFinder
-nnoremap <leader>fb :FufBuffer<CR>
-nnoremap <leader>fd :FufBookmarkDir<CR>
-nnoremap <leader>ff :FufFileWithFullCwd<CR>
-nnoremap <leader>fg :call fuf#givenfile#launch('', 0, '>', split(system("git ls-tree -r --name-only HEAD"), "\n"))<CR>
-nnoremap <leader>fh :FufHelp<CR>
-nnoremap <leader>fl :FufLine<CR>
-nnoremap <leader>ft :FufTag<CR>
-nnoremap <leader>fq :FufQuickfix<CR>
-
-" Unite
-nnoremap <leader>uu :Unite file file_rec file_mru buffer<CR>
-nnoremap <leader>ub :Unite buffer<CR>
-nnoremap <Leader>u<S-b> :tabedit <bar> Unite buffer<CR>
-nnoremap <leader>uf :Unite file_rec<CR>
-nnoremap <Leader>u<S-f> :tabedit <bar> Unite file_rec<CR>
-nnoremap <leader>ug :Unite file_rec/git<CR>
-nnoremap <Leader>u<S-g> :tabedit <bar> Unite file_rec/git<CR>
-nnoremap <leader>uk :Unite bookmark<CR>
-"nnoremap <leader>uh :Unite help<CR>
-nnoremap <leader>ul :Unite line<CR>
-"nnoremap <leader>ut :Unite tag<CR>
-nnoremap <leader>um :Unite file_mru<CR>
-nnoremap <Leader>u<S-m> :tabedit <bar> Unite file_mru<CR>
-nnoremap <C-t> <ESC>:Unite tab<CR>i
-if !empty($ROS_WORKSPACE)
-  " Generic solution.
-  nnoremap <leader>ur :Unite grep:$ROS_WORKSPACE/src<CR>
-  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$ROS_WORKSPACE/src<CR>
-elseif $HOST == "pcgael3"
-  " Ubuntu 18.04.
-  nnoremap <leader>ur :Unite grep:$HOME/ros_melodic_ws/src<CR>
-  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_melodic_ws/src<CR>
-elseif $HOST == "pcagel2"
-  " Ubuntu 16.04.
-  nnoremap <leader>ur :Unite grep:$HOME/ros_kinetic_ws/src<CR>
-  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_kinetic_ws/src<CR>
-elseif $HOST == "pcgael"
-  " Ubuntu 14.04.
-  nnoremap <leader>ur :Unite grep:$HOME/ros_indigo_ws/src<CR>
-  nnoremap <Leader>u<S-r> :tabedit <bar> Unite grep:$HOME/ros_indigo_ws/src<CR>
-endif
-nnoremap <leader>ut :Unite tag<CR>
-nnoremap <Leader>u<S-t> :tabedit <bar> Unite tag<CR>
+" Telescope
+inoremap <C-t> <ESC><cmd>Telescope tele_tabby<CR>
+nnoremap <C-t> <cmd>Telescope tele_tabby<CR>
+nnoremap <leader>f/ <cmd>Telescope search_history<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<CR>
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope git_file<CR>
+nnoremap <Leader>f<S-g> <cmd>Telescope live_grep<CR>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fi <cmd>Telescope jumplist<CR>
+nnoremap <leader>fk <cmd>Telescope commands<CR>
+nnoremap <leader>f<S-k> <cmd>Telescope command_history<CR>
+nnoremap <leader>fm <cmd>Telescope frecency<CR>
+nnoremap <leader>fo <cmd>Telescope vim_options<CR>
+nnoremap <leader>fp <cmd>Telescope project<CR>
+nnoremap <leader>fr <cmd>lua require'telescope'.extensions.ros.packages{cwd=os.getenv("ROS_WORKSPACE") or "."}<CR>
+nnoremap <Leader>f<S-r> <cmd>lua require'telescope.builtin'.live_grep({search_dirs={os.getenv('ROS_WORKSPACE'), '/opt/ros', '.'}})<CR>
+nnoremap <leader>fs <cmd>Telescope lsp_document_symbols<CR>
+nnoremap <leader>ft <cmd>Telescope tags<CR>
 
 " Use <C-H> to clear the highlighting of :set hlsearch.
 if maparg('<C-H>', 'n') ==# ''
@@ -151,11 +126,16 @@ tnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
 " <leader>q
 " <leader>f
 
-" Compe bindings
-" Bindings <Tab> and <S-Tab> defined in plugin/compe.vim.
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
+" Bindings defined by cmp in `lua/plugin_setup/cmp.lua`, when the completion
+" dialog is open.
+" <Tab>
+" <S-Tab>
+" <C-n>
+" <C-p>
+" <Down>
+" <Up>
+" <C-Space>
+" <CR>
+" <C-b>
+" <C-f>
+" <C-e>

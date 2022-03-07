@@ -25,7 +25,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('kablamo/vim-git-log')
 
   " Snippets.
-  call dein#add('SirVer/ultisnips')
+  call dein#add('L3MON4D3/LuaSnip')
+  call dein#add('rafamadriz/friendly-snippets')  " Some common snippets.
+
+  " call dein#add('SirVer/ultisnips')
 
   " Default snippets for UltiSnips
   call dein#add('honza/vim-snippets')
@@ -206,7 +209,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tpope/vim-jdaddy')
 
   " Generation of .ycm_extra_conf.py
-  call dein#add('rdnetto/YCM-Generator')
+  " call dein#add('rdnetto/YCM-Generator')
 
   " Rust support.
   call dein#add('rust-lang/rust.vim')
@@ -236,7 +239,7 @@ if dein#load_state('~/.cache/dein')
   " Set some variables for project scope.
   " Drop a '_vimrc_local.vim' file into any project root directory to use.
   " Also takes .editorconfig into account.
-  call dein#add('LucHermitte/local_vimrc')
+  " call dein#add('LucHermitte/local_vimrc')
 
   " Show cursors jumps.
   if has('nvim')
@@ -266,14 +269,14 @@ if dein#load_state('~/.cache/dein')
   " call dein#add('LucHermitte/lh-cpp')
 
   " Dependencies for lh-cpp!
-  call dein#add('LucHermitte/lh-vim-lib') " Dependency of mu-template.
-  call dein#add('LucHermitte/lh-style') " Dependency of mu-template.
-  call dein#add('LucHermitte/lh-tags')
-  call dein#add('LucHermitte/lh-dev') " Dependency of mu-template.
-  call dein#add('LucHermitte/lh-brackets') " Dependency of mu-template.
-  call dein#add('LucHermitte/searchInRuntime')
-  call dein#add('LucHermitte/mu-template')
-  call dein#add('tomtom/stakeholders_vim')
+  " call dein#add('LucHermitte/lh-vim-lib') " Dependency of mu-template.
+  " call dein#add('LucHermitte/lh-style') " Dependency of mu-template.
+  " call dein#add('LucHermitte/lh-tags')
+  " call dein#add('LucHermitte/lh-dev') " Dependency of mu-template.
+  " call dein#add('LucHermitte/lh-brackets') " Dependency of mu-template.
+  " call dein#add('LucHermitte/searchInRuntime')
+  " call dein#add('LucHermitte/mu-template')
+  " call dein#add('tomtom/stakeholders_vim')
   " call dein#add('LucHermitte/alternate-lite')
 
   " Edit tables the spreadsheet way in Markdown.
@@ -322,13 +325,31 @@ if dein#load_state('~/.cache/dein')
     call dein#add('williamboman/nvim-lsp-installer')
   endif
 
+  " Asynchronous Lint Engine: asynchronous linting.
+  if has('nvim')
+    call dein#add('dense-analysis/ale')
+  endif
+
   if has('nvim')
     call dein#add('brymer-meneses/grammar-guard.nvim')
   endif
 
   " Provide autocompletion (i.e. no need to `<C-x><C-o>`.
   " Alternatives: https://github.com/ms-jpq/coq_nvim.
-  call dein#add('hrsh7th/nvim-compe')
+  " Deprecates hrsh7th/compe.
+  call dein#add('hrsh7th/nvim-cmp')
+  " Completion sources for cmp.
+  call dein#add('hrsh7th/cmp-buffer')
+  call dein#add('hrsh7th/cmp-cmdline')
+  call dein#add('hrsh7th/cmp-nvim-lsp')
+  call dein#add('hrsh7th/cmp-nvim-lua')
+  call dein#add('hrsh7th/cmp-path')
+  call dein#add('kdheepak/cmp-latex-symbols')
+  call dein#add('lukas-reineke/cmp-rg')  " ripgrep the current directory.
+  " call dein#add('quangnguyen30192/cmp-nvim-ultisnips')
+  call dein#add('saadparwaiz1/cmp_luasnip')
+  " Additional functionnalities for cmp.
+  call dein#add('lukas-reineke/cmp-under-comparator')  " Sort private members at the end.
 
   " Fade inactive buffers.
   call dein#add('TaDaa/vimade')

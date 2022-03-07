@@ -74,9 +74,9 @@ hi link Tag Special
 hi link Delimiter Special
 hi link SpecialComment Special
 hi link Debug Special
-hi PreProc cterm=none ctermfg=5 ctermbg=none
-hi link Include PreProc
-hi link Define PreProc
+hi PreProc cterm=none ctermfg=15 ctermbg=none
+hi Include ctermfg=28
+hi link Define Include
 hi link Macro PreProc
 hi link PreCondit PreProc
 hi Type cterm=none ctermfg=2 ctermbg=none
@@ -95,11 +95,22 @@ hi Pmenu cterm=none ctermfg=0 ctermbg=225
 hi PmenuSel cterm=none ctermfg=0 ctermbg=7
 hi PmenuSbar cterm=none ctermfg=none ctermbg=248
 hi PmenuThumb cterm=none ctermfg=none ctermbg=0
-hi SpellBad cterm=none ctermfg=247 ctermbg=none
+hi SpellBad cterm=undercurl ctermfg=none ctermbg=none
 hi SpellCap cterm=none ctermfg=none ctermbg=81
 hi SpellLocal cterm=none ctermfg=none ctermbg=14
 hi SpellRare cterm=none ctermfg=none ctermbg=225
 hi LspDiagnosticsDefaultError cterm=none ctermfg=30 ctermbg=none
+hi link TSField Normal
+hi link TSInclude Include
+hi link TSNamespace Normal
+hi link TSOperator Normal
+hi link TSProperty Normal
+hi link TSPunctBracket Normal
+hi link TSPunctDelimiter Normal
+hi link TSPunctSpecial Normal
+hi link TSType Normal
+hi link cppTSFunction Normal
+hi link TelescopeSelection Normal
 
 let g:colors_name = "gaels"
 

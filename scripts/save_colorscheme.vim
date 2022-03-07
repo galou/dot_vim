@@ -1,3 +1,6 @@
+" Save the current highlights, either all of them or only the only in s:names.
+" Cf. https://stackoverflow.com/a/59732573/1749379.
+
 " If g:save_all_highlights is 1, save all highlight colors known by vim,
 " otherwise save the one listed in s:names below.
 if exists('g:save_all_highlights')

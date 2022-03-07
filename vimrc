@@ -1,3 +1,5 @@
+"  Cf. https://github.com/AyeSpacey/Nvimfy for clearer configuration with lua.
+
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -21,17 +23,10 @@ let g:loaded_python_provider = 1  " Python 2.
 let g:loaded_ruby_provider = 1
 let g:loaded_perl_provider = 1
 
-" Plugin configuration in dein.vim.
-execute "source ".config_dir."/dein.vim"
-
-" Use 'user-system-wide' or 'system-wide' powerline installation.
-if has('nvim')
-  " No support for powerline in NeoVim
-  " set runtimepath+=/usr/lib/python2.7/dist-packages/powerline/bindings/vim
-  " set runtimepath+=~/.local/lib/python3.6/site-packages/powerline/bindings/vim
-else
-  set runtimepath+=~/.local/lib/python3.6/site-packages/powerline/bindings/vim
-endif
+" Load plugins.
+lua << EOF
+require('plugin_setup/packer') -- file `lua/plugin_setup/packer.lua`.
+EOF
 
 " General configuration
 filetype plugin indent on
@@ -79,10 +74,8 @@ set autoread
 " Automatically executes .nvimrc if found.
 set exrc
 
-if v:version > 703 || v:version == 703 && has("patch541")
-  " Delete comment character when joining commented lines.
-  set formatoptions+=j
-endif
+" Delete comment character when joining commented lines.
+set formatoptions+=j
 
 " Use the system clipboard as default clipboard
 " set clipboard=unnamedplus
@@ -111,55 +104,69 @@ set wildignore=*.o,*.lo,*.pyc,*~
 " command :Calc as a calculator using python
 command! -nargs=+ Calc :!python -c "from math import *; print(<args>)"
 
+" Returns the the highlight group under the cursor.
+" Cf. https://stackoverflow.com/a/37040415/1749379.
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+
 " Tip from http://vim.wikia.com/wiki/Insert_a_single_character
 function! RepeatChar(char, count)
   return repeat(a:char, a:count)
 endfunction
 
+" Use Treesitter as folding method.
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 " autocommands
 if has("autocmd")
-    au BufNewFile,BufRead *.FCMacro setlocal filetype=python
-    au BufNewFile,BufRead *.fcmacro setlocal filetype=python
-    au BufNewFile,BufRead *.ino setlocal filetype=cpp
-    au BufNewFile,BufRead *.launch setlocal filetype=xml
-    au BufNewFile,BufRead *.md setlocal filetype=markdown
-    au BufNewFile,BufRead *.nc setlocal filetype=cpp
-    au BufNewFile,BufRead *.nxc setlocal filetype=nxc
-    au BufNewFile,BufRead *.ops setlocal filetype=cpp foldmethod=syntax
-    au BufNewFile,BufRead *.sdf setlocal filetype=xml
-    au BufNewFile,BufRead *.sip setlocal filetype=sip
-    au BufNewFile,BufRead *.tikz setlocal filetype=tex
-    au BufNewFile,BufRead *.world setlocal filetype=xml
 
-    " load a template when creating a new file
-    execute "au BufNewFile *.tex silent! 0r ".config_dir."/template/template.%:e"
-    execute "au BufNewFile *.FCMacro silent! 0r ".config_dir."/template/template.%:e"
-    execute "au BufNewFile *.fcmacro silent! 0r ".config_dir."/template/template.%:e"
-    execute "au BufNewFile *.h silent! 0r ".config_dir."/template/template.%:e"
-    " load a template for all file types when creating a new file
-    "execute "au BufNewFile * silent! 0r ".config_dir."/template/template.%:e"
+  au VimResized * wincmd =
 
-    " For all text files set 'textwidth' to 78 characters.
-    autocmd FileType text setlocal textwidth=78
+  au BufNewFile,BufRead *.FCMacro setlocal filetype=python
+  au BufNewFile,BufRead *.fcmacro setlocal filetype=python
+  au BufNewFile,BufRead *.ino setlocal filetype=cpp
+  au BufNewFile,BufRead *.launch setlocal filetype=xml
+  au BufNewFile,BufRead *.md setlocal filetype=markdown
+  au BufNewFile,BufRead *.nc setlocal filetype=cpp
+  au BufNewFile,BufRead *.nxc setlocal filetype=nxc
+  au BufNewFile,BufRead *.ops setlocal filetype=cpp
+  au BufNewFile,BufRead *.sdf setlocal filetype=xml
+  au BufNewFile,BufRead *.sip setlocal filetype=sip
+  au BufNewFile,BufRead *.tikz setlocal filetype=tex
+  au BufNewFile,BufRead *.world setlocal filetype=xml
 
-    " For the ViewSourceWith plugin for Firefox
-    autocmd BufNewFile,BufRead /tmp/*.txt setlocal textwidth=0 showbreak=⏎\  linebreak
+  " load a template when creating a new file
+  execute "au BufNewFile *.tex silent! 0r ".config_dir."/template/template.%:e"
+  execute "au BufNewFile *.FCMacro silent! 0r ".config_dir."/template/template.%:e"
+  execute "au BufNewFile *.fcmacro silent! 0r ".config_dir."/template/template.%:e"
+  execute "au BufNewFile *.h silent! 0r ".config_dir."/template/template.%:e"
+  " load a template for all file types when creating a new file
+  "execute "au BufNewFile * silent! 0r ".config_dir."/template/template.%:e"
 
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
-    " Also don't do it when the mark is in the first line, that is the default
-    " position when opening a file.
-    autocmd BufReadPost *
-          \ if line("'\"") > 1 && line("'\"") <= line("$") |
-          \   exe "normal! g`\"" |
-          \ endif
-    " Don't do it for special files.
-    autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg0"
-    autocmd BufReadPost svn-commit.tmp exe "normal! gg0"
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
 
-    " Open some files as archives.
-    autocmd BufReadCmd *.jar,*.fcstd call zip#Browse(expand("<amatch>"))
+  " For the ViewSourceWith Firefox plugin.
+  autocmd BufNewFile,BufRead /tmp/*.txt setlocal textwidth=0 showbreak=⏎\  linebreak
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+  " Don't do it for special files.
+  autocmd BufReadPost COMMIT_EDITMSG exe "normal! gg0"
+  autocmd BufReadPost svn-commit.tmp exe "normal! gg0"
+
+  " Open some files as archives.
+  autocmd BufReadCmd *.jar,*.fcstd call zip#Browse(expand("<amatch>"))
 endif
 
 " Convenient command to see the difference between the current buffer and the
@@ -178,7 +185,11 @@ execute "source ".config_dir."/bindings.vim"
 
 " Configuration for lua plugins.
 lua << EOF
-require('comment') -- lua/comment.lua.
-require('mini_cfg')
-require('lspconfig_cfg')
+require('plugin_setup/cmp') -- file `lua/plugin_setup/cmp.lua`.
+require('plugin_setup/comment')
+require('plugin_setup/lspconfig')
+require('plugin_setup/luasnip')
+require('plugin_setup/mini')
+require('plugin_setup/nvim_treesitter')
+require('plugin_setup/telescope')
 EOF

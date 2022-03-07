@@ -1,0 +1,92 @@
+{
+  "ifsaturate": {
+    "prefix": "ifs",
+    "description": "if (a < -max) a = -max;...",
+    "body": ["if (${1:val} < -${2:max})", "{", "\t$1 = -$2;", "}", "else if ($1 > $2)", "{", "\t$1 = $2;", "}"]
+  },
+  "coutdebug": {
+    "prefix": "cout_debug",
+    "description": "cout << 'var: ' << var",
+    "body": ["std::cout << \"\\033[1;35m%%%%% $0: \" << (${0:var}) << \"\\033[0m\" << std::endl;  // DEBUG"]
+  },
+  "std::std_coutdebug": {
+    "prefix": "std::cout",
+    "description": "cout << 'var: ' << var",
+    "body": ["\\033[1;35m%%%%% $1: \" << (${1:var}) << \"\\033[0m\" << std::endl;  // DEBUG"]
+  },
+  "coutdebug_noargs": {
+    "prefix": "std::cout",
+    "description": "cout << 'text'",
+    "body": ["std::cout << \"\\033[1;35m%%%%% $1\\033[0m\" << std::endl;  // DEBUG"]
+  },
+  "std_coutdebug_noargs": {
+    "prefix": "std::cout",
+    "description": "cout << 'text'",
+    "body": ["std::cout << \"\\033[1;35m%%%%% $1\\033[0m\" << std::endl;  // DEBUG"]
+  },
+  "qdebug": {
+    "prefix": "qdebug",
+    "description":  "qDebug() << 'var: ' << var'",
+    "body": ["qDebug() << \"\\033[1;35m%%%%% $1: \" << (${1:var}) << \"\\033[0m\";  // DEBUG"]
+  },
+  "RD": {
+    "prefix": "RD",
+    "description":  "RCLCPP_DEBUG",
+    "body": ["RCLCPP_DEBUG(get_logger(), \"$1\");"]
+  },
+  "RDS": {
+    "prefix": "RDS",
+    "description":  "RCLCPP_DEBUG_STREAM",
+    "body": ["RCLCPP_DEBUG_STREAM(get_logger(), \"$1\");"]
+  },
+  "RI": {
+    "prefix": "RI",
+    "description":  "RCLCPP_INFO",
+    "body": ["RCLCPP_INFO(get_logger(), \"$1\");"]
+  },
+  "RIS": {
+    "prefix": "RIS",
+    "description":  "RCLCPP_INFO_STREAM",
+    "body": ["RCLCPP_INFO_STREAM(get_logger(), \"$1\");"]
+  },
+  "RW": {
+    "prefix": "RW",
+    "description":  "RCLCPP_WARN",
+    "body": ["RCLCPP_WARN(get_logger(), \"$1\");"]
+  },
+  "RWS": {
+    "prefix": "RWS",
+    "description":  "RCLCPP_WARN_STREAM",
+    "body": ["RCLCPP_WARN_STREAM(get_logger(), \"$1\");"]
+  },
+  "RE": {
+    "prefix": "RE",
+    "description":  "RCLCPP_ERROR",
+    "body": ["RCLCPP_ERROR(get_logger(), \"$1\");"]
+  },
+  "RES": {
+    "prefix": "RES",
+    "description":  "RCLCPP_ERROR_STREAM",
+    "body": ["RCLCPP_ERROR_STREAM(get_logger(), \"$1\");"]
+  },
+  "RF": {
+    "prefix": "RF",
+    "description":  "RCLCPP_FATAL",
+    "body": ["RCLCPP_FATAL(get_logger(), \"$1\");"]
+  },
+  "RFS": {
+    "prefix": "RFS",
+    "description":  "RCLCPP_FATAL_STREAM",
+    "body": ["RCLCPP_FATAL_STREAM(get_logger(), \"$1\");"]
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for (${1:size_t} ${2:i} = ${3:0}; $2 < ${4:length}; $2++)",
+      "{",
+      "\t$0",
+      "}"
+    ],
+    "description": "Code snippet for 'for' loop"
+  }
+}
