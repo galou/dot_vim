@@ -9,6 +9,8 @@ spell/*.spl
 spell/*.sug
 .mypy_cache
 /plugin/packer_compiled.lua
+/package-lock.json
+/package.json
 
 # System-wide plugins
 autoload/youcompleteme.vim
