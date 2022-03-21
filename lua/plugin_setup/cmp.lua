@@ -72,7 +72,7 @@ cmp.setup({
     ['<C-c>'] = cmp.mapping(function(fallback)
       if ls.choice_active() then
         ls.change_choice(1)
-      else
+      elseif (fallback ~= nil) then
         fallback()
       end
     end),
@@ -80,7 +80,7 @@ cmp.setup({
     ['<S-c>'] = cmp.mapping(function(fallback)
       if ls.choice_active() then
         ls.change_choice(1)
-      else
+      elseif (fallback ~= nil) then
         fallback()
       end
     end),
