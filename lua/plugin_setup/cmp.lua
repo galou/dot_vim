@@ -20,30 +20,56 @@ cmp.setup({
   mapping = {
     -- cmp.SelectBehavior.Insert changes the already typed text, Select not.
     ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif ls.expand_or_jumpable() then
+        ls.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
+      elseif (fallback ~= nil) then
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif ls.jumpable(-1) then
+        ls.jump(-1)
+      elseif ls.choice_active() then
+        ls.change_choice(-1)
+      elseif (fallback ~= nil) then
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<C-Tab>"] = cmp.mapping(function(fallback)
       if ls.expand_or_jumpable() then
         ls.expand_or_jump()
       elseif cmp.visible() then
         cmp.select_next_item()
       elseif has_words_before() then
         cmp.complete()
-      else
+      elseif (fallback ~= nil) then
         fallback()
       end
     end, { "i", "s" }),
 
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    -- <C-S-Tab> requires special support from the terminal emulator.
+    -- Cf. https://www.reddit.com/r/neovim/comments/mbj8m5/how_to_setup_ctrlshiftkey_mappings_in_neovim_and/.
+    ["<C-S-Tab>"] = cmp.mapping(function(fallback)
       if ls.jumpable(-1) then
         ls.jump(-1)
       elseif cmp.visible() then
-        cmp.select_prev_item()
-      elseif ls.choice_active() then
-        ls.change_choice(-1)
-      else
+        cmp.select_next_item()
+      elseif has_words_before() then
+        cmp.complete()
+      elseif (fallback ~= nil) then
         fallback()
       end
     end, { "i", "s" }),
 
-    ['<C-c>'] = cmp.mapping(function(callback)
+    ['<C-c>'] = cmp.mapping(function(fallback)
       if ls.choice_active() then
         ls.change_choice(1)
       else
@@ -51,7 +77,7 @@ cmp.setup({
       end
     end),
 
-    ['<S-c>'] = cmp.mapping(function(callback)
+    ['<S-c>'] = cmp.mapping(function(fallback)
       if ls.choice_active() then
         ls.change_choice(1)
       else
