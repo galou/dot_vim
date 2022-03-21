@@ -9,6 +9,10 @@ map Q gq
 " Map 'Y' to yank until the end of the line.
 nnoremap Y y$
 
+" Map '*' to stay on the current word.
+" TODO: jumps backward in history when there is only one match.
+" nnoremap * *<C-O>
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
