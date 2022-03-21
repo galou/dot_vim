@@ -307,6 +307,19 @@ return require('packer').startup(function()
     requires = {'nvim-treesitter/nvim-treesitter'},
   }
 
+  -- Create intelligent implementations for C++.
+  -- Provides:
+  -- - TSCppMakeConcreteClass: create a concrete class implementing all the
+  --     pure virtual functions.
+  -- - TSCppRuleOf3: adds the missing function declarations to the class to
+  --     obey the Rule of 3.
+  -- - TSCppRuleOf5: adds the missing function declarations to the class to
+  --     obey the Rule of 5.
+  use {'Badhi/nvim-treesitter-cpp-tools',
+    requires = 'nvim-treesitter/nvim-treesitter',
+    ft = {'cpp'}
+  }
+
   -- Standalone UI for nvim-lsp progress.
   use {'j-hui/fidget.nvim',
     config = function() require'fidget'.setup{} end,
