@@ -1,3 +1,19 @@
+-- General configuration.
+local ls = require('luasnip')
+
+-- ls.config.set_config {
+--   -- Allow jumping in the last snippet even after leaving the snippet.
+--   history = true,
+--
+--   -- Dynamically update the text fiels.
+--   updateevents = "TextChanged,TextChangedI",
+--
+--   region_check_events = "CursorMoved,CursorHold,InsertEnter",
+--   delete_check_events = "InsertLeave",
+--
+--   -- enable_autosnippets = true,
+-- }
+
 -- Show a popup on choiceNode.
 local current_nsid = vim.api.nvim_create_namespace("LuaSnipChoiceListSelections")
 local current_win = nil
@@ -85,23 +101,39 @@ augroup END
 -- End `Show a popup on choiceNode`.
 
 -- Snippets from friendly-snippets.
-require('luasnip.loaders.from_vscode').lazy_load {
-  paths = {
-    vim.fn.stdpath "data" .. "/site/pack/packer/start/friendly-snippets",
-  },
-  exclude = {
-    'cpp',  -- Deactivated because most snippets assume opening curly bracket on the same line.
-  },
-}
+-- require('luasnip.loaders.from_vscode').lazy_load {
+--   paths = {
+--     vim.fn.stdpath "data" .. "/site/pack/packer/start/friendly-snippets",
+--   },
+--   exclude = {
+--     'cpp',  -- Deactivated because most snippets assume opening curly bracket on the same line.
+--   },
+-- }
 
 -- Personal snippets defined in lua.
-require('luasnip.cpp') -- `{config}/lua/luasnip/cpp.lua`.
-require('luasnip.python')
+-- local make = function(tbl)
+--   local result = {}
+--   for k, v in pairs(tbl) do
+--     table.insert(result, (snippet({ trig = k, desc = v.desc }, shortcut(v))))
+--   end
+--
+--   return result
+-- end
+--
+-- for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/luasnip/*.lua", true)) do
+--   local ft = vim.fn.fnamemodify(ft_path, ":t:r")
+--   ls.snippets[ft] = make(loadfile(ft_path)())
+-- end
+
+-- This will append all snippets from `lua/luasnippets/{filetype}.lua`.
+-- If you use a different directory, say `lua/snippets`, use `load({paths = "~/snippets"})`.
+-- Cf. https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#lua-snippets-loader.
+require('luasnip.loaders.from_lua').lazy_load()
 
 -- Personal snippets defined in LSP snippet language.
-require('luasnip.loaders.from_vscode').lazy_load {
-  paths = {
-    vim.fn.stdpath "config" .. "/snippets/vscode_snippets",
-  }
-}
+-- require('luasnip.loaders.from_vscode').lazy_load {
+--   paths = {
+--     vim.fn.stdpath "config" .. "/snippets/vscode_snippets",
+--   }
+-- }
 
