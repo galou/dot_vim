@@ -101,39 +101,23 @@ augroup END
 -- End `Show a popup on choiceNode`.
 
 -- Snippets from friendly-snippets.
--- require('luasnip.loaders.from_vscode').lazy_load {
---   paths = {
---     vim.fn.stdpath "data" .. "/site/pack/packer/start/friendly-snippets",
---   },
---   exclude = {
---     'cpp',  -- Deactivated because most snippets assume opening curly bracket on the same line.
---   },
--- }
+require('luasnip.loaders.from_vscode').lazy_load {
+  paths = {
+    vim.fn.stdpath "data" .. "/site/pack/packer/start/friendly-snippets",
+  },
+  exclude = {
+    'cpp',  -- Deactivated because most snippets assume opening curly bracket on the same line.
+  },
+}
 
--- Personal snippets defined in lua.
--- local make = function(tbl)
---   local result = {}
---   for k, v in pairs(tbl) do
---     table.insert(result, (snippet({ trig = k, desc = v.desc }, shortcut(v))))
---   end
---
---   return result
--- end
---
--- for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/luasnip/*.lua", true)) do
---   local ft = vim.fn.fnamemodify(ft_path, ":t:r")
---   ls.snippets[ft] = make(loadfile(ft_path)())
--- end
-
--- This will append all snippets from `lua/luasnippets/{filetype}.lua`.
--- If you use a different directory, say `lua/snippets`, use `load({paths = "~/snippets"})`.
+-- This will append all snippets from `{config}/snippets/luasnippets/{filetype}.lua`.
 -- Cf. https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#lua-snippets-loader.
-require('luasnip.loaders.from_lua').lazy_load()
+require('luasnip.loaders.from_lua').lazy_load({paths = vim.fn.stdpath 'config' .. '/snippets/luasnippets'})
 
 -- Personal snippets defined in LSP snippet language.
--- require('luasnip.loaders.from_vscode').lazy_load {
---   paths = {
---     vim.fn.stdpath "config" .. "/snippets/vscode_snippets",
---   }
--- }
+require('luasnip.loaders.from_vscode').lazy_load {
+  paths = {
+    vim.fn.stdpath "config" .. "/snippets/vscode_snippets",
+  }
+}
 
