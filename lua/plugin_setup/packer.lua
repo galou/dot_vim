@@ -409,6 +409,14 @@ return require('packer').startup(function()
     config = function() require('plugin_setup/nvim_bqf') end,
   }
 
+  -- File browser
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    config = function() require'nvim-tree'.setup {} end
+  }
   ---------------------------------------------
   -- Why not but short startup time prefered --
   ---------------------------------------------

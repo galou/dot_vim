@@ -100,13 +100,14 @@ noremap <leader>cr :pyf /usr/lib/llvm-6.0/share/clang/clang-rename.py<cr>
 " Include fixer with clang-include-fixer.
 noremap <leader>cf :pyf /usr/lib/llvm-6.0/share/clang/clang-include-fixer.py<cr>
 
-" Clap.
-noremap <C-C> :Clap<cr>
-
 " BufTerm.
 " Terminal Toggle
 nnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
 tnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
+
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
 
 " LSP
 " Bindings for LSP must be done at the same time as servers configuration.
