@@ -32,52 +32,52 @@
   "RD": {
     "prefix": "RD",
     "description":  "RCLCPP_DEBUG",
-    "body": ["RCLCPP_DEBUG(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_DEBUG(LOGGER, \"$1\");"]
   },
   "RDS": {
     "prefix": "RDS",
     "description":  "RCLCPP_DEBUG_STREAM",
-    "body": ["RCLCPP_DEBUG_STREAM(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_DEBUG_STREAM(LOGGER, \"$1\");"]
   },
   "RI": {
     "prefix": "RI",
     "description":  "RCLCPP_INFO",
-    "body": ["RCLCPP_INFO(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_INFO(LOGGER, \"$1\");"]
   },
   "RIS": {
     "prefix": "RIS",
     "description":  "RCLCPP_INFO_STREAM",
-    "body": ["RCLCPP_INFO_STREAM(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_INFO_STREAM(LOGGER, \"$1\");"]
   },
   "RW": {
     "prefix": "RW",
     "description":  "RCLCPP_WARN",
-    "body": ["RCLCPP_WARN(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_WARN(LOGGER, \"$1\");"]
   },
   "RWS": {
     "prefix": "RWS",
     "description":  "RCLCPP_WARN_STREAM",
-    "body": ["RCLCPP_WARN_STREAM(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_WARN_STREAM(LOGGER, \"$1\");"]
   },
   "RE": {
     "prefix": "RE",
     "description":  "RCLCPP_ERROR",
-    "body": ["RCLCPP_ERROR(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_ERROR(LOGGER, \"$1\");"]
   },
   "RES": {
     "prefix": "RES",
     "description":  "RCLCPP_ERROR_STREAM",
-    "body": ["RCLCPP_ERROR_STREAM(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_ERROR_STREAM(LOGGER, \"$1\");"]
   },
   "RF": {
     "prefix": "RF",
     "description":  "RCLCPP_FATAL",
-    "body": ["RCLCPP_FATAL(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_FATAL(LOGGER, \"$1\");"]
   },
   "RFS": {
     "prefix": "RFS",
     "description":  "RCLCPP_FATAL_STREAM",
-    "body": ["RCLCPP_FATAL_STREAM(get_logger(), \"$1\");"]
+    "body": ["RCLCPP_FATAL_STREAM(LOGGER, \"$1\");"]
   },
   "for": {
     "prefix": "for",

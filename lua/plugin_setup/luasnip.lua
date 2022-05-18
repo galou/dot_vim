@@ -121,3 +121,4 @@ require('luasnip.loaders.from_vscode').lazy_load {
   }
 }
 
+vim.api.nvim_command('command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()')
