@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -45,8 +45,7 @@ local servers = {
   "dockerls", -- dockerfile (npm install -g dockerfile-language-server-nodejs)
   "dotls", -- Graphviz dot (https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally, then `npm i -g dot-language-server`)
   "gopls", -- Go (GO111MODULE=on go get golang.org/x/tools/gopls@latest) or sudo snap install gopls
-  "jedi_language_server", -- Python, alternative to pyright
-  -- "pylsp", -- Python
+  "pylsp", -- Python
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
   "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
   "yamlls" -- yaml (npm i -g yaml-language-server)
@@ -142,6 +141,12 @@ nvim_lsp.pyright.setup {
     debounce_text_changes = 150,
   }
 }
+-- Python, alternative to pyright
+nvim_lsp.jedi_language_server.setup {
+  autostart = false,
+  on_attach = on_attach,
+}
+
 
 -- Change diagnostic symbols in the gutter.
 -- Possible symbols:
@@ -155,45 +160,37 @@ for type, sign in pairs(signs) do
 end
 
 -- Show only the worst sign in the gutter.
--- Cf. https://www.reddit.com/r/neovim/comments/mvhfw7/can_built_in_lsp_diagnostics_be_limited_to_show_a/gvd8rb9?utm_source=share&utm_medium=web2x&context=3
--- Capture real implementation of function that sets signs
-local orig_set_signs = vim.lsp.diagnostic.set_signs
-local set_signs_limited = function(diagnostics, bufnr, client_id, sign_ns, opts)
+-- From :help diagnostic-handlers-example.
+local ns = vim.api.nvim_create_namespace("severe-diagnostics")
 
-  -- original func runs some checks, which I think is worth doing
-  -- but maybe overkill
-  if not diagnostics then
-    diagnostics = diagnostic_cache[bufnr][client_id]
-  end
+-- Get a reference to the original signs handler
+local orig_signs_handler = vim.diagnostic.handlers.signs
 
-  -- early escape
-  if not diagnostics then
-    return
-  end
+-- Override the built-in signs handler
+vim.diagnostic.handlers.signs = {
+  show = function(_, bufnr, _, opts)
+    -- Get all diagnostics from the whole buffer rather than just the
+    -- diagnostics passed to the handler
+    local diagnostics = vim.diagnostic.get(bufnr)
 
-  -- Work out max severity diagnostic per line
-  local max_severity_per_line = {}
-  for _, d in pairs(diagnostics) do
-    if max_severity_per_line[d.range.start.line] then
-      local current_d = max_severity_per_line[d.range.start.line]
-      if d.severity < current_d.severity then
-        max_severity_per_line[d.range.start.line] = d
+    -- Find the "worst" diagnostic per line
+    local max_severity_per_line = {}
+    for _, d in pairs(diagnostics) do
+      local m = max_severity_per_line[d.lnum]
+      if not m or d.severity < m.severity then
+        max_severity_per_line[d.lnum] = d
       end
-    else
-      max_severity_per_line[d.range.start.line] = d
     end
-  end
 
-  -- map to list
-  local filtered_diagnostics = {}
-  for _, v in pairs(max_severity_per_line) do
-    table.insert(filtered_diagnostics, v)
-  end
-
-  -- call original function
-  orig_set_signs(filtered_diagnostics, bufnr, client_id, sign_ns, opts)
-end
-vim.lsp.diagnostic.set_signs = set_signs_limited
+    -- Pass the filtered diagnostics (with our custom namespace) to
+    -- the original handler
+    local filtered_diagnostics = vim.tbl_values(max_severity_per_line)
+    orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
+  end,
+  hide = function(_, bufnr)
+    orig_signs_handler.hide(ns, bufnr)
+  end,
+}
 
 -- Print diagnostics in the message area.
 function PrintDiagnostics(opts, bufnr, line_nr, client_id)
