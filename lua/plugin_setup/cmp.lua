@@ -155,8 +155,68 @@ cmp.setup.cmdline('/', {
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- `cmp.config.mapping.cmd_line` + <Up> + <Down>
+cmd_mapping = function(override)
+  local mapping = require('cmp.config.mapping')
+  local misc = require('cmp.utils.misc')
+  return misc.merge(override or {}, {
+    ['<Tab>'] = {
+      c = function()
+        local cmp = require('cmp')
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          feedkeys.call(keymap.t('<C-z>'), 'n')
+        end
+      end,
+    },
+    ['<S-Tab>'] = {
+      c = function()
+        local cmp = require('cmp')
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          feedkeys.call(keymap.t('<C-z>'), 'n')
+        end
+      end,
+    },
+    ['<C-n>'] = {
+      c = function(fallback)
+        local cmp = require('cmp')
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+    },
+    ['<C-p>'] = {
+      c = function(fallback)
+        local cmp = require('cmp')
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
+    },
+    ['<C-e>'] = {
+      c = mapping.close(),
+    },
+    ['<Up>'] = {
+      c = function(fallback)
+        fallback()
+      end,
+    },
+    ['<Down>'] = {
+      c = function(fallback)
+        fallback()
+      end,
+    },
+  })
+end
 cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmd_mapping(),
   sources = cmp.config.sources({
     { name = 'path',
     },
