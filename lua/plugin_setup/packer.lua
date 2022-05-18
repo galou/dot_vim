@@ -68,7 +68,7 @@ return require('packer').startup(function()
   -- Supports line comment (gc{move}) or block comment (gb{move}).
   use 'numToStr/Comment.nvim'
 
-  -- Repeat also for complex mapping (for example surround).
+  -- Repeat ('.') also for complex mapping (for example surround).
   use 'tpope/vim-repeat'
 
   -- vim-abolish provides:
@@ -146,6 +146,26 @@ return require('packer').startup(function()
     config = function() require('telescope').load_extension('vimspector') end,
   }
 
+  -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
+  -- Alternatives: https://github.com/ms-jpq/coq_nvim.
+  -- Deprecates hrsh7th/compe.
+  use {'hrsh7th/nvim-cmp',
+    requires = {
+      -- Completion sources for cmp.
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-cmdline'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+      {'hrsh7th/cmp-path'},
+      {'kdheepak/cmp-latex-symbols'},
+      {'lukas-reineke/cmp-rg'},  -- ripgrep the current directory.
+      -- {'quangnguyen30192/cmp-nvim-ultisnips'},
+      {'saadparwaiz1/cmp_luasnip'},
+      -- Additional functionnalities for cmp.
+      {'lukas-reineke/cmp-under-comparator'} -- Sort private members at the end.
+    }
+  }
+
   -- A class outline viewer, requires ctags.
   use 'majutsushi/tagbar'
 
@@ -160,9 +180,6 @@ return require('packer').startup(function()
 
   -- SIP syntax (Python binding for C++).
   use 'vim-scripts/sip.vim'
-
-  -- Syntax checking.
-  use 'vim-scripts/syntastic'
 
   -- ABB Rapid support.
   use 'KnoP-01/rapid-for-vim'
@@ -251,7 +268,7 @@ return require('packer').startup(function()
   -- Run code chunks.
   -- :'<,'>SnipRun
   use {'michaelb/sniprun',
-    build = 'bash install.sh'
+    run = 'bash install.sh'
   }
 
   -- Diff on part of files.
@@ -359,26 +376,6 @@ return require('packer').startup(function()
   use 'dense-analysis/ale'
 
   use 'brymer-meneses/grammar-guard.nvim'
-
-  -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
-  -- Alternatives: https://github.com/ms-jpq/coq_nvim.
-  -- Deprecates hrsh7th/compe.
-  use {'hrsh7th/nvim-cmp',
-    requires = {
-      -- Completion sources for cmp.
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-cmdline'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
-      {'hrsh7th/cmp-path'},
-      {'kdheepak/cmp-latex-symbols'},
-      {'lukas-reineke/cmp-rg'},  -- ripgrep the current directory.
-      -- {'quangnguyen30192/cmp-nvim-ultisnips'},
-      {'saadparwaiz1/cmp_luasnip'},
-      -- Additional functionnalities for cmp.
-      {'lukas-reineke/cmp-under-comparator'} -- Sort private members at the end.
-    }
-  }
 
   -- Fade inactive buffers.
   use 'TaDaa/vimade'
@@ -537,6 +534,10 @@ return require('packer').startup(function()
   -- use {'junegunn/fzf',
   --   run = function() vim.fn['fzf#install']() end,
   -- }
+
+  -- Syntax checking.
+  -- Replaced by nvim-treesitter.
+  -- use 'vim-scripts/syntastic'
 
   ------------------------------------
   -- Useless or problematic plugins --
