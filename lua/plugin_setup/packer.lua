@@ -417,6 +417,11 @@ return require('packer').startup(function()
     },
     config = function() require'nvim-tree'.setup {} end
   }
+
+  -- Used to be as autocommand but the autocommand didn't open folds.
+  use {'https://git.sr.ht/~jhn/remember.nvim',
+    config = function() require('remember').setup {} end,
+  }
   ---------------------------------------------
   -- Why not but short startup time prefered --
   ---------------------------------------------
