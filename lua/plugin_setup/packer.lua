@@ -97,7 +97,7 @@ return require('packer').startup(function()
   -- Debugging in vim.
   use {'puremourning/vimspector',
     -- run = './install_gadget.py --enable-python --enable-c --enable-bash --enable-go',
-    run = ':VimspectorInstall python c bash go'
+    run = ':VimspectorInstall python c bash go'  -- post-install/update hook.
   }
 
   -- Browse files, buffers, lines ...
@@ -108,7 +108,7 @@ return require('packer').startup(function()
   -- Frequent/recent files for Telescope.
   use {'nvim-telescope/telescope-frecency.nvim',
     requires = {{"tami5/sqlite.lua"}, {'nvim-telescope/telescope.nvim'}},
-    config = function() require('telescope').load_extension('frecency') end,
+    config = function() require('telescope').load_extension('frecency') end, -- plugin setup at vim startup.
   }
   -- Project-based file search for Telescope.
   use {'nvim-telescope/telescope-project.nvim',
@@ -366,6 +366,7 @@ return require('packer').startup(function()
   -- Edit tables the spreadsheet way in Markdown.
   -- Requires -- a patched version of -- sc-im.
   -- As of 2020-10-14, requires the branch markdown-import of https://github.com/mipmip/sc-im.
+  -- Provides :OpenInScim.
   use 'mipmip/vim-scimark'
 
   -- Use Wandbox (https://wandbox.org/) in vim.
@@ -602,6 +603,10 @@ return require('packer').startup(function()
   -- https://github.com/sheerun/vim-polyglot
 
   -- Better? vim-surround: https://github.com/machakann/vim-sandwich.
+
+  -- Alternative to vimspector.
+  -- Debug Adapter Protocol client implementation.
+  -- use 'mfussenegger/nvim-dap'
 
   ------------------
   -- Incompatible --

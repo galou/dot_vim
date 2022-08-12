@@ -178,5 +178,6 @@ require('plugin_setup/lspconfig')
 require('plugin_setup/luasnip')
 require('plugin_setup/mini')
 require('plugin_setup/nvim_treesitter')
+require('plugin_setup/scimark')
 require('plugin_setup/telescope')
 EOF
