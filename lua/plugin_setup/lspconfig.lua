@@ -49,6 +49,7 @@ local servers = {
   "ltex",  -- LaTeX, Markdown, and others. Installed by mason.
   "pylsp", -- Python (https://github.com/python-lsp/python-lsp-server, pip3 install python-lsp-server)
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
+  "sumneko_lua",  -- Lua, installed by mason.
   "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
   "yamlls" -- yaml (npm i -g yaml-language-server)
   }
@@ -145,6 +146,25 @@ local ns = vim.api.nvim_create_namespace("severe-diagnostics")
 
 -- Get a reference to the original signs handler
 local orig_signs_handler = vim.diagnostic.handlers.signs
+
+-- Configure virtual text to show only error messages.
+vim.diagnostic.config({
+  virtual_text = {
+    severity = {
+      min = vim.diagnostic.severity.ERROR,
+    },
+  },
+  severity_sort = true,
+})
+
+-- Configure underline's min level.
+-- vim.diagnostic.config({
+--   underline = {
+--     severity = {
+--       min = vim.diagnostic.severity.ERROR,
+--     },
+--   },
+-- })
 
 -- Override the built-in signs handler
 vim.diagnostic.handlers.signs = {
