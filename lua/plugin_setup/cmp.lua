@@ -145,15 +145,6 @@ cmp.setup({
   },
 })
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer',
-      max_item_count = 3,
-    }
-  }
-})
-
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 -- `cmp.config.mapping.cmd_line` + <Up> + <Down>
 cmd_mapping = function(override)
@@ -215,6 +206,17 @@ cmd_mapping = function(override)
     },
   })
 end
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+  mapping = cmd_mapping(),
+  sources = {
+    { name = 'buffer',
+      max_item_count = 3,
+    }
+  }
+})
+
 cmp.setup.cmdline(':', {
   mapping = cmd_mapping(),
   sources = cmp.config.sources({
