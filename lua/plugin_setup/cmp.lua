@@ -1,5 +1,5 @@
 -- Setup nvim-cmp.
-local cmp = require'cmp'
+local cmp = require('cmp')
 local ls = require('luasnip')
 
 local has_words_before = function()
@@ -103,6 +103,8 @@ cmp.setup({
     }),
   },
 
+  -- Different groups define different priorities. The 2nd group will be called
+  -- if the first one doesn't return anything.
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' }, -- For luasnip users.
@@ -150,6 +152,8 @@ cmp.setup({
 cmd_mapping = function(override)
   local mapping = require('cmp.config.mapping')
   local misc = require('cmp.utils.misc')
+  local feedkeys = require('cmp.utils.feedkeys')
+  local keymap = require('cmp.utils.keymap')
   return misc.merge(override or {}, {
     ['<Tab>'] = {
       c = function()
@@ -220,11 +224,29 @@ cmp.setup.cmdline('/', {
 cmp.setup.cmdline(':', {
   mapping = cmd_mapping(),
   sources = cmp.config.sources({
-    { name = 'path',
+    {
+      name = 'cmdline',
+      name = 'path',
     },
-    { name = 'cmdline',
-    }
   })
 })
 
--- Cf. lspconfig_cfg.lua for further configuration.
+-- Use spell suggestions.
+cmp.setup.filetype('rst', {
+  sources = cmp.config.sources({
+    {
+      name = 'spell',
+    },
+  })
+})
+
+-- Use spell suggestions.
+cmp.setup.filetype('text', {
+  sources = cmp.config.sources({
+    {
+      name = 'spell',
+    },
+  })
+})
+
+-- Cf. lspconfig.lua for further configuration.

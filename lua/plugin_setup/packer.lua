@@ -1,7 +1,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 return require('packer').startup(function()
@@ -152,6 +152,7 @@ return require('packer').startup(function()
   use {'hrsh7th/nvim-cmp',
     requires = {
       -- Completion sources for cmp.
+      {'f3fora/cmp-spell'}, -- Suggestion from spell.
       {'hrsh7th/cmp-buffer'},
       {'hrsh7th/cmp-cmdline'},
       {'hrsh7th/cmp-nvim-lsp'},
@@ -162,7 +163,7 @@ return require('packer').startup(function()
       -- {'quangnguyen30192/cmp-nvim-ultisnips'},
       {'saadparwaiz1/cmp_luasnip'},
       -- Additional functionnalities for cmp.
-      {'lukas-reineke/cmp-under-comparator'} -- Sort private members at the end.
+      {'lukas-reineke/cmp-under-comparator'}, -- Sort private members at the end.
     }
   }
 
@@ -620,6 +621,9 @@ return require('packer').startup(function()
   -- Debug Adapter Protocol client implementation.
   -- use 'mfussenegger/nvim-dap'
 
+  -- Project management (per-project sessions, ..):
+  -- https://github.com/charludo/projectmgr.nvim
+
   ------------------
   -- Incompatible --
   ------------------
@@ -633,7 +637,7 @@ return require('packer').startup(function()
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if packer_bootstrap then
+  if Packer_bootstrap then
     require('packer').sync()
   end
 end
