@@ -19,3 +19,8 @@ doc/youcompleteme.txt
 plugin/youcompleteme.vim
 plugin/eclim.vim
 eclim/
+
+# Symbolic link to an external resource.
+spell/cs.utf-8.add
+spell/en.utf-8.add
+spell/fr.utf-8.add
