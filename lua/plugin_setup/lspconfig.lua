@@ -45,7 +45,9 @@ local servers = {
   "dockerls", -- dockerfile (npm install -g dockerfile-language-server-nodejs)
   "dotls", -- Graphviz dot (https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally, then `npm i -g dot-language-server`)
   "gopls", -- Go (GO111MODULE=on go get golang.org/x/tools/gopls@latest) or sudo snap install gopls
-  "pylsp", -- Python
+  "lemminx", -- xml, (https://github.com/eclipse/lemminx.git), installed by mason.
+  "ltex",  -- LaTeX, Markdown, and others. Installed by mason.
+  "pylsp", -- Python (https://github.com/python-lsp/python-lsp-server, pip3 install python-lsp-server)
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
   "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
   "yamlls" -- yaml (npm i -g yaml-language-server)
@@ -90,30 +92,8 @@ nvim_lsp.html.setup {
   capabilities = capabilities,
 }
 
--- hook to nvim-lspconfig
--- Grammar checker for LaTeX and Markdown.
-require("grammar-guard").init()
-
--- setup LSP config
-nvim_lsp.grammar_guard.setup({
-  settings = {
-    ltex = {
-      enabled = { "latex", "tex", "bib", "markdown" },
-        language = "en",
-        diagnosticSeverity = "information",
-        setenceCacheSize = 2000,
-        additionalRules = {
-          enablePickyRules = true,
-          motherTongue = "fr",
-        },
-        trace = { server = "verbose" },
-        dictionary = {},
-        disabledRules = {},
-        hiddenFalsePositives = {},
-    },
-  },
-})
-
+-- Alternative installation for lemminx (for xml).
+-- Can be normally installed with the mason.nvim plugin (:LspInstall).
 -- lemminx requires setting `cmd`.
 -- Installation script:
 --   cd /tmp
@@ -128,9 +108,9 @@ nvim_lsp.grammar_guard.setup({
 --   java -jar ~/.local/share/lemminx/org.eclipse.lemminx-uber.jar
 --   EOF
 --   chmod ug+x ~/.local/bin/xml-language-server-lemminx
-nvim_lsp.lemminx.setup {
-  cmd = {"xml-language-server-lemminx"},
-}
+-- nvim_lsp.lemminx.setup {
+--   cmd = {"xml-language-server-lemminx"},
+-- }
 
 -- Servers without autostart.
 -- pyright: Python, requires node >= 14 (npm i -g pyright)

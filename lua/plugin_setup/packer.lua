@@ -312,8 +312,22 @@ return require('packer').startup(function()
   use {'neovim/nvim-lspconfig',
   }
 
-  -- Provide some installation scripts for some LSP servers.
-  use 'williamboman/nvim-lsp-installer'
+  -- Provide some installation scripts for some LSP servers, DAP servers,
+  -- linters, and formatters.
+  -- Replacement for 'williamboman/nvim-lsp-installer'
+  use {'williamboman/mason.nvim',
+    config = function() require('mason').setup({}) end,
+  }
+
+  -- Companion to mason.nvim.
+  -- Provides :LspInstall.
+  use {'williamboman/mason-lspconfig.nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'williamboman/mason.nvim',
+    },
+    config = function() require('mason-lspconfig').setup({}) end,
+  }
 
 
   use {'nvim-treesitter/nvim-treesitter',
@@ -375,8 +389,6 @@ return require('packer').startup(function()
 
   -- Asynchronous Lint Engine: asynchronous linting.
   use 'dense-analysis/ale'
-
-  use 'brymer-meneses/grammar-guard.nvim'
 
   -- Fade inactive buffers.
   use 'TaDaa/vimade'
