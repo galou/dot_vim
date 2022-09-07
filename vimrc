@@ -174,6 +174,7 @@ execute "source ".config_dir."/bindings.vim"
 lua << EOF
 require('plugin_setup/cmp') -- file `lua/plugin_setup/cmp.lua`.
 require('plugin_setup/comment')
+require('plugin_setup/gitsigns')
 require('plugin_setup/lspconfig')
 require('plugin_setup/luasnip')
 require('plugin_setup/mini')

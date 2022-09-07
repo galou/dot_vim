@@ -216,6 +216,95 @@ return require('packer').startup(function()
   -- Show cursors jumps.
   use 'danilamihailov/beacon.nvim'
 
+  -- Interface to cycle through git diffs.
+  -- :Diffview..
+  use {'sindrets/diffview.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',  -- Utility functions.
+      'kyazdani42/nvim-web-devicons',
+    }
+  }
+
+  -- Jump to the last location when opening.
+  -- Used to be as autocommand but the autocommand didn't open folds.
+  use {'https://git.sr.ht/~jhn/remember.nvim',
+    config = function() require('remember').setup {} end,
+  }
+
+  -- Provide some configurations for the built-in LSP client.
+  use {'neovim/nvim-lspconfig',
+  }
+
+  -- Provide some installation scripts for some LSP servers, DAP servers,
+  -- linters, and formatters.
+  -- Replacement for 'williamboman/nvim-lsp-installer'
+  use {'williamboman/mason.nvim',
+    config = function() require('mason').setup({}) end,
+  }
+
+  -- Companion to mason.nvim.
+  -- Provides :LspInstall.
+  use {'williamboman/mason-lspconfig.nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'williamboman/mason.nvim',
+    },
+    config = function() require('mason-lspconfig').setup({}) end,
+  }
+
+  use {'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+
+  use {'nvim-treesitter/playground',
+    requires = {'nvim-treesitter/nvim-treesitter'},
+  }
+
+  -- Improve layout and preview of the Quickfix window.
+  -- Shortcuts:
+  --   t: open in a new tab
+  --   T: open in a new tab, keep quickfix open
+  --   crtl-v: open in a new vertical split
+  --   crtl-x: open in a new horizontal split
+  --   <: previous quickfix list
+  --   >: next quickfix list
+  --   p: toggle preview (P: temporarily)
+  --   zf: open fzf
+  --   crtl-t: in fzf, open in a new tab
+  --   crtl-v: in fzf, open in a new vertical split
+  --   crtl-x: in fzf, open in a new horizontal split
+  use {'kevinhwang91/nvim-bqf',
+    ft = 'qf',
+    config = function() require('plugin_setup/nvim_bqf') end,
+  }
+
+  -- Diff on part of files.
+  -- Visual selection + :'<,'>Linediff twice on non-overlapping parts.
+  use 'AndrewRadev/linediff.vim'
+
+  -- Run code chunks.
+  -- :'<,'>SnipRun
+  use {'michaelb/sniprun',
+    run = 'bash install.sh'
+  }
+
+  -- Align things over several rows.
+  -- Mapped to ga in visual mode (e.g. ga= to align on first equal sign).
+  use 'junegunn/vim-easy-align'
+
+  -- Visualize indent.
+  -- Enable with `:IndentGuidesEnable`.
+  use 'nathanaelkane/vim-indent-guides'
+
+  -- Manage a terminal buffer easierly.
+  -- Bound to '<leader>tt'
+  -- Alternatively, cf. https://github.com/caenrique/nvim-toggle-terminal.
+  use 'itmecho/bufterm.nvim'
+
+  -- Search for different pattern in different buffers.
+  -- Activate with "<leader>/"
+  use 'mox-mox/vim-localsearch'
+
   -------------------
   -- Local plugins --
   -------------------
@@ -262,41 +351,15 @@ return require('packer').startup(function()
 
   -- Manage tabs.
   -- Enter vim-tabmode with <leader><Tab> or :TabmodeEnter.
+  -- Can be replaced by barbar.nvim.
   use {'Iron-E/nvim-tabmode',
     requires = {{'Iron-E/nvim-libmodal'}}
   }
-
-  -- Run code chunks.
-  -- :'<,'>SnipRun
-  use {'michaelb/sniprun',
-    run = 'bash install.sh'
-  }
-
-  -- Diff on part of files.
-  -- Visual selection + :'<,'>Linediff twice on non-overlapping parts.
-  use 'AndrewRadev/linediff.vim'
 
   -- Set some variables for project scope.
   -- Drop a '_vimrc_local.vim' file into any project root directory to use.
   -- Also takes .editorconfig into account.
   -- use 'LucHermitte/local_vimrc'
-
-  -- Align things over several rows.
-  -- Mapped to ga in visual mode (e.g. ga= to align on first equal sign).
-  use 'junegunn/vim-easy-align'
-
-  -- Visualize indent.
-  -- Enable with `:IndentGuidesEnable`.
-  use 'nathanaelkane/vim-indent-guides'
-
-  -- Manage a terminal buffer easierly.
-  -- Bound to '<leader>tt'
-  -- Alternatively, cf. https://github.com/caenrique/nvim-toggle-terminal.
-  use 'itmecho/bufterm.nvim'
-
-  -- Search for different pattern in different buffers.
-  -- Activate with "<leader>/"
-  use 'mox-mox/vim-localsearch'
 
   -- User ranger as file browser.
   -- The difference with francoiscabrol/ranger.vim is the rnvimr is a floating
@@ -307,36 +370,6 @@ return require('packer').startup(function()
   -- - <C-v>: vsplit,
   use {'kevinhwang91/rnvimr',
     branch = 'lua'
-  }
-
-  -- Provide some configurations for the built-in LSP client.
-  use {'neovim/nvim-lspconfig',
-  }
-
-  -- Provide some installation scripts for some LSP servers, DAP servers,
-  -- linters, and formatters.
-  -- Replacement for 'williamboman/nvim-lsp-installer'
-  use {'williamboman/mason.nvim',
-    config = function() require('mason').setup({}) end,
-  }
-
-  -- Companion to mason.nvim.
-  -- Provides :LspInstall.
-  use {'williamboman/mason-lspconfig.nvim',
-    requires = {
-      'neovim/nvim-lspconfig',
-      'williamboman/mason.nvim',
-    },
-    config = function() require('mason-lspconfig').setup({}) end,
-  }
-
-
-  use {'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-
-  use {'nvim-treesitter/playground',
-    requires = {'nvim-treesitter/nvim-treesitter'},
   }
 
   -- Create intelligent implementations for C++.
@@ -405,37 +438,24 @@ return require('packer').startup(function()
   -- path.
   use 'coddingtonbear/neomake-platformio'
 
-  -- Improve layout and preview of the Quickfix window.
-  -- Shortcuts:
-  --   t: open in a new tab
-  --   T: open in a new tab, keep quickfix open
-  --   crtl-v: open in a new vertical split
-  --   crtl-x: open in a new horizontal split
-  --   <: previous quickfix list
-  --   >: next quickfix list
-  --   p: toggle preview (P: temporarily)
-  --   zf: open fzf
-  --   crtl-t: in fzf, open in a new tab
-  --   crtl-v: in fzf, open in a new vertical split
-  --   crtl-x: in fzf, open in a new horizontal split
-  use {'kevinhwang91/nvim-bqf',
-    ft = 'qf',
-    config = function() require('plugin_setup/nvim_bqf') end,
-  }
+  -- Show hunks and add them to the index.
+  -- `:Gitsigns toggle_signs` then `<leader>hs`.
+  -- Has more features then gitgutter but gitgutter better handles folds, as of
+  -- 2022-09-01.
+  use {'lewis6991/gitsigns.nvim'}
 
   -- File browser
+  -- :Neotree
   use {
-    'kyazdani42/nvim-tree.lua',
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icon
-    },
-    config = function() require'nvim-tree'.setup {} end
+      "MunifTanjim/nui.nvim",  -- UI Component Library.
+      "kyazdani42/nvim-web-devicons",  -- not strictly required, but recommended
+      "nvim-lua/plenary.nvim",  -- Utility functions.
+    }
   }
 
-  -- Used to be as autocommand but the autocommand didn't open folds.
-  use {'https://git.sr.ht/~jhn/remember.nvim',
-    config = function() require('remember').setup {} end,
-  }
   ---------------------------------------------
   -- Why not but short startup time prefered --
   ---------------------------------------------
@@ -592,18 +612,28 @@ return require('packer').startup(function()
   -- use 'bagrat/vim-buffet'
 
   -- Nicer tabs.
-  -- Was not working as I expected as of 2020-11-18.
-  -- use 'romgrk/barbar.nvim'
-  -- Dependencies of barbar.
-  -- Maybe some plugin uses nvim-web-devicons.
-  use 'kyazdani42/nvim-web-devicons'
-  -- use 'romgrk/lib.kom'
+  -- Messes with `gt` and doesn't play nicely with splits as of 2022-09-01.
+  -- use {'romgrk/barbar.nvim',
+  --   requires = {
+  --     'kyazdani42/nvim-web-devicons',
+  --   }
+  -- }
 
   -- Auto-sessions.
   -- `nvim .` to avoid. `:RestoreSession` to force.
   -- `:SaveSession` to force save.
   -- Pollutes the directory where vim is launched with '~/.cache/nvim/sessions'.
   -- use 'rmagatti/auto-session'
+
+  -- File browser
+  -- Doesn't make the tree automatically jump to show the current directory.
+  -- use {
+  --   'kyazdani42/nvim-tree.lua',
+  --   requires = {
+  --     'kyazdani42/nvim-web-devicons', -- optional, for file icon
+  --   },
+  --   config = function() require'nvim-tree'.setup {} end
+  -- }
 
   -----------------
   -- Interesting --

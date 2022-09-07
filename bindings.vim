@@ -105,7 +105,7 @@ noremap <leader>cf :pyf /usr/lib/llvm-6.0/share/clang/clang-include-fixer.py<cr>
 nnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
 tnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
 
-nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <C-n> :NeoTreeShowToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
 
@@ -145,6 +145,27 @@ nnoremap <leader>n :NvimTreeFindFile<CR>
 " <C-f>
 " <C-e>
 
+" barbar
+" inoremap <C-t> <ESC><cmd>BufferPick<CR>
+" nnoremap <C-t> <cmd>BufferPick<CR>
+" inoremap <C-<PageUp>> <ESC><cmd>BufferPrevious<CR>
+" nnoremap <C-<PageUp>> <cmd>BufferPrevious<CR>
+" inoremap <C-<PageDown>> <ESC><cmd>BufferNext<CR>
+" nnoremap <C-<PageDown>> <cmd>BufferNext<CR>
+
+" Gitsigns bindings defined in lua/plugin_setup/gitsigns.lua.
+" <leader>hs  ':Gitsigns stage_hunk<CR>')
+" <leader>hr  ':Gitsigns reset_hunk<CR>')
+" <leader>hS  gs.stage_buffer)
+" <leader>hu  gs.undo_stage_hunk)
+" <leader>hR  gs.reset_buffer)
+" <leader>hp  gs.preview_hunk)
+" <leader>hb  function() gs.blame_line{full=true} end)
+" <leader>tb  gs.toggle_current_line_blame)
+" <leader>hd  gs.diffthis)
+" <leader>hD  function() gs.diffthis('~') end)
+" <leader>td  gs.toggle_deleted)
+"ih  ':<C-U>Gitsigns select_hunk<CR>')
 
 " LuaSnip bindings.
 lua << EOF
