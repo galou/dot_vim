@@ -412,8 +412,7 @@ return require('packer').startup(function()
   -- }
 
   -- Edit tables the spreadsheet way in Markdown.
-  -- Requires -- a patched version of -- sc-im.
-  -- As of 2020-10-14, requires the branch markdown-import of https://github.com/mipmip/sc-im.
+  -- Requires sc-im (https://github.com/andmarti1424/sc-im.git).
   -- Provides :OpenInScim.
   use 'mipmip/vim-scimark'
 
