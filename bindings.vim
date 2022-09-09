@@ -54,7 +54,7 @@ autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> k gk
 
 " Telescope
 inoremap <C-t> <ESC><cmd>Telescope tele_tabby<CR>
-nnoremap <C-t> <cmd>Telescope tele_tabby<CR>
+nnoremap <C-t> <cmd>Telescope tele_tabby list<CR>
 nnoremap <leader>f/ <cmd>Telescope search_history<CR>
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
