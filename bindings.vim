@@ -49,8 +49,8 @@ nnoremap <SPACE> :<C-U>exec "silent normal i".nr2char(getchar())<CR>
 "nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 nnoremap <silent> S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
-autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> j gj
-autocmd BufNewFile,BufRead /tmp/*.txt map <buffer> k gk
+autocmd FileType text map <buffer> j gj
+autocmd FileType text map <buffer> k gk
 
 " Telescope
 inoremap <C-t> <ESC><cmd>Telescope tele_tabby<CR>

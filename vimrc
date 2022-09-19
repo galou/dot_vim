@@ -153,7 +153,7 @@ if has("autocmd")
   autocmd BufNewFile,BufRead /tmp/*.txt setlocal textwidth=0 showbreak=⏎\  linebreak
 
   " Open some files as archives.
-  autocmd BufReadCmd *.jar,*.fcstd call zip#Browse(expand("<amatch>"))
+  autocmd BufReadCmd *.jar,*.fcstd,*.h5p call zip#Browse(expand("<amatch>"))
 endif
 
 " Convenient command to see the difference between the current buffer and the
