@@ -455,6 +455,13 @@ return require('packer').startup(function()
     }
   }
 
+  -- Sets filetype for dotfiles in chezmoi source path.
+  use {'alker0/chezmoi.vim'}
+
+  -- Runs `chezmoi apply` on save.
+  -- Doesn't work since chezmoi creates a temporary file to edit (2022-09).
+  use {'Lilja/vim-chezmoi'}
+
   ---------------------------------------------
   -- Why not but short startup time prefered --
   ---------------------------------------------
