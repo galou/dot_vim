@@ -51,7 +51,7 @@ return require('packer').startup(function()
     ft = {'python'}
   }
 
-  use {'broesler/jupyter-vim',
+  use {'jupyter-vim/jupyter-vim',
     ft = {'python'}
   }
 
