@@ -1,4 +1,4 @@
-" Save the current highlights, either all of them or only the only in s:names.
+" Save the current highlights, either all of them or only the ones in s:names.
 " Cf. https://stackoverflow.com/a/59732573/1749379.
 
 " If g:save_all_highlights is 1, save all highlight colors known by vim,
