@@ -256,7 +256,15 @@ return require('packer').startup(function()
     run = ':TSUpdate'
   }
 
+  -- Debug TreeSitter.
+  -- Offers :TSHighlightCapturesUnderCursor.
   use {'nvim-treesitter/playground',
+    requires = {'nvim-treesitter/nvim-treesitter'},
+  }
+
+  -- Always show the function prototype.
+  -- :TSContextToggle.
+  use {'nvim-treesitter/nvim-treesitter-context',
     requires = {'nvim-treesitter/nvim-treesitter'},
   }
 
