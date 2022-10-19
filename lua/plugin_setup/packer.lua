@@ -268,6 +268,18 @@ return require('packer').startup(function()
     requires = {'nvim-treesitter/nvim-treesitter'},
   }
 
+  -- Jump or move elements according to their function
+  -- E.g. move arguments in a function prototype, elements in a list.
+  -- <A-j>, <A-k>: visual select something and swap it with an element of the same level.
+  -- HJKL: in visual mode select according to node levels.
+  -- vx, vn: in normal mode, enter visual mode and select master or current node, resp.
+  -- vU, vD: in normal mode, swap master nodes (vu, vd for current nodes).
+  -- gfu + f or j: in normal mode, jump to the previous, next function declaration.
+  -- <A-n>, <A-p>: in normal mode, repeat the last jump.
+  use {'ziontee113/syntax-tree-surfer',
+    requires = {'nvim-treesitter/nvim-treesitter'},
+  }
+
   -- Improve layout and preview of the Quickfix window.
   -- Shortcuts:
   --   t: open in a new tab
