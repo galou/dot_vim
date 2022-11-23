@@ -3,6 +3,14 @@
 " This is the adapted default color scheme.  It doesn't define the Normal
 " highlighting, it uses whatever the colors used to be.
 
+" Terminal colors
+" #!/bin/bash
+" for ((i=16; i<256; i++)); do
+"     printf "\e[48;5;${i}m%03d" $i;
+"     printf '\e[0m';
+"     [ ! $((($i - 15) % 6)) -eq 0 ] && printf ' ' || printf '\n'
+" done
+
 " Set 'background' back to the default.  The value can't always be estimated
 " and is then guessed.
 hi clear Normal
@@ -100,6 +108,8 @@ hi SpellCap cterm=none ctermfg=none ctermbg=81
 hi SpellLocal cterm=none ctermfg=none ctermbg=14
 hi SpellRare cterm=none ctermfg=none ctermbg=225
 hi LspDiagnosticsDefaultError cterm=none ctermfg=30 ctermbg=none
+
+" Treesitter highlighting.
 hi link TSField Normal
 hi link TSInclude Include
 hi link TSNamespace Normal
@@ -111,6 +121,9 @@ hi link TSPunctSpecial Normal
 hi link TSType Normal
 hi link cppTSFunction Normal
 hi link TelescopeSelection Normal
+
+" treesitter-context.
+hi TreesitterContext ctermfg=0 ctermbg=244
 
 let g:colors_name = "gaels"
 
