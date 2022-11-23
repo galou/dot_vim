@@ -7,12 +7,12 @@
   "coutdebug": {
     "prefix": "cout_debug",
     "description": "cout << 'var: ' << var",
-    "body": ["std::cout << \"\\033[1;35m%%%%% $0: \" << (${0:var}) << \"\\033[0m\" << std::endl;  // DEBUG"]
+    "body": ["std::cout << \"\\033[1;35m%%%%% $0: \" << std::boolalpha << (${0:var}) << \"\\033[0m\" << std::endl;  // DEBUG"]
   },
   "std::std_coutdebug": {
     "prefix": "std::cout",
     "description": "cout << 'var: ' << var",
-    "body": ["\\033[1;35m%%%%% $1: \" << (${1:var}) << \"\\033[0m\" << std::endl;  // DEBUG"]
+    "body": ["\\033[1;35m%%%%% $1: \" << std::boolalpha << (${1:var}) << \"\\033[0m\" << std::endl;  // DEBUG"]
   },
   "coutdebug_noargs": {
     "prefix": "std::cout",
