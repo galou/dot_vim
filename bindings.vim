@@ -6,9 +6,6 @@ inoremap <C-S>		<C-O>:update<CR>
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-" Map 'Y' to yank until the end of the line.
-nnoremap Y y$
-
 " Map '*' to stay on the current word.
 " TODO: jumps backward in history when there is only one match.
 " nnoremap * *<C-O>
