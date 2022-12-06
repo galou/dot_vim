@@ -279,6 +279,12 @@ return require('packer').startup(function()
     requires = {'nvim-treesitter/nvim-treesitter'},
   }
 
+  -- Toggle between one-liner and "open" code.
+  -- :TSJToggle, :TSJSplit, :TSJJoin.
+  use {'Wansmer/treesj',
+    requires = { 'nvim-treesitter' },
+  }
+
   -- Improve layout and preview of the Quickfix window.
   -- Shortcuts:
   --   t: open in a new tab
