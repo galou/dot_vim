@@ -23,14 +23,16 @@ let g:loaded_python_provider = 1  " Python 2.
 let g:loaded_ruby_provider = 1
 let g:loaded_perl_provider = 1
 
-" Load plugins.
-lua << EOF
-require('plugin_setup/packer') -- file `lua/plugin_setup/packer.lua`.
-EOF
-
 " General configuration
 filetype plugin indent on
 syntax on
+
+" Load plugins.
+if has('nvim')
+  lua require('plugin_setup/packer') -- file `lua/plugin_setup/packer.lua`.
+endif
+
+" Custom filetypes are defined in ~/.config/nvim/filetype.lua.
 
 if has('nvim')
   " Highlight search and perform live replace.
@@ -123,20 +125,8 @@ set foldexpr=nvim_treesitter#foldexpr()
 " autocommands
 if has("autocmd")
 
+  " Resize windows equally on VimResized event.
   au VimResized * wincmd =
-
-  au BufNewFile,BufRead *.FCMacro setlocal filetype=python
-  au BufNewFile,BufRead *.fcmacro setlocal filetype=python
-  au BufNewFile,BufRead *.ino setlocal filetype=cpp
-  au BufNewFile,BufRead *.launch setlocal filetype=xml
-  au BufNewFile,BufRead *.md setlocal filetype=markdown
-  au BufNewFile,BufRead *.nc setlocal filetype=cpp
-  au BufNewFile,BufRead *.nxc setlocal filetype=nxc
-  au BufNewFile,BufRead *.ops setlocal filetype=cpp
-  au BufNewFile,BufRead *.sdf setlocal filetype=xml
-  au BufNewFile,BufRead *.sip setlocal filetype=sip
-  au BufNewFile,BufRead *.tikz setlocal filetype=tex
-  au BufNewFile,BufRead *.world setlocal filetype=xml
 
   " load a template when creating a new file
   execute "au BufNewFile *.tex silent! 0r ".config_dir."/template/template.%:e"
@@ -171,15 +161,18 @@ set tags=tags;/
 execute "source ".config_dir."/bindings.vim"
 
 " Configuration for lua plugins.
-lua << EOF
-require('plugin_setup/cmp') -- file `lua/plugin_setup/cmp.lua`.
-require('plugin_setup/comment')
-require('plugin_setup/gitsigns')
-require('plugin_setup/lspconfig')
-require('plugin_setup/luasnip')
-require('plugin_setup/mini')
-require('plugin_setup/nvim_treesitter')
-require('plugin_setup/scimark')
-require('plugin_setup/surround')
-require('plugin_setup/telescope')
+if has('nvim')
+  lua << EOF
+  require('plugin_setup/cmp') -- file `lua/plugin_setup/cmp.lua`.
+  require('plugin_setup/comment')
+  require('plugin_setup/gitsigns')
+  require('plugin_setup/lspconfig')
+  require('plugin_setup/luasnip')
+  require('plugin_setup/mini')
+  require('plugin_setup/noice')
+  require('plugin_setup/nvim_treesitter')
+  require('plugin_setup/scimark')
+  require('plugin_setup/surround')
+  require('plugin_setup/telescope')
 EOF
+endif
