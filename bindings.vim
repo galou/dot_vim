@@ -14,9 +14,9 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
-" Select last pasted text with 'gb', cf.
+" Select last pasted text with 'gV', cf.
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text.
-nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+nnoremap <expr> gV '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " Search and highlight but not jump.
 " TODO: solve the recursive-function issue.
@@ -42,7 +42,7 @@ nmap <Leader>md :!mkdir -p %:p:h<cr>
 " RepeatChar defined in init.vim.
 "nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
 "nnoremap <SPACE> i_<ESC>r
-nnoremap <SPACE> :<C-U>exec "silent normal i".nr2char(getchar())<CR>
+nnoremap <silent> <SPACE> :<C-U>exec "silent normal i".nr2char(getchar())<CR>
 "nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 nnoremap <silent> S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
@@ -79,11 +79,6 @@ endif
 " https://github.com/Shougo/dein.vim/issues/101.
 " I use a custom mapping for ipython (cf. ipy.vim).
 let g:ipy_perform_mappings = 0
-
-" Start easy-align with ga in normal and visual mode.
-" Normally mapped to ga display hex,ascii value of char under cursor.
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
 
 xmap <silent> O :sort u<CR>
 
@@ -164,8 +159,12 @@ nnoremap <leader>n :NvimTreeFindFile<CR>
 " <leader>td  gs.toggle_deleted)
 "ih  ':<C-U>Gitsigns select_hunk<CR>')
 
+" mini.Align mapping (lua/plugin_setup/mini.lua).
+" ga start align.
+" gA start align with preview.
+
 " Bindings configuration in lua.
-lua << EOF
-require('bindings') -- file `lua/bindings.lua`.
-EOF
+if has('nvim')
+	lua require('bindings') -- file `lua/bindings.lua`.
+endif
 

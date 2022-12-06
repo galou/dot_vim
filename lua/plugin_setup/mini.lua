@@ -1,3 +1,8 @@
+-- mini.align
+-- gA and ga (without preview)
+-- For markdown and rst tables: `|tm ` = split:|, trim, merge:' '
+require('mini.align').setup({})
+
 -- require('mini.completion').setup({
 --   -- Delay (debounce type, in ms) between certain Neovim event and action.
 --   -- This can be used to (virtually) disable certain automatic actions by

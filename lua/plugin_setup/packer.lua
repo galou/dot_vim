@@ -207,10 +207,11 @@ return require('packer').startup(function()
   use 'derekwyatt/vim-fswitch'
 
   -- Collection of minimal, independent, and fast Lua modules.
+  -- mini.align: text alignment, replacement of 'junegunn/vim-easy-align'.
   -- mini.completion: two-stage completion, used to show the signature.
   -- mini.cursorword: highlight word under cursor.
   -- mini.trailspace: Automatically highlight trailing whitespaces:
-  -- `lua MiniTrailspace.trim()`.
+  --   `lua MiniTrailspace.trim()`.
   use 'echasnovski/mini.nvim'
 
   -- Show cursors jumps.
@@ -307,10 +308,6 @@ return require('packer').startup(function()
   use {'michaelb/sniprun',
     run = 'bash install.sh'
   }
-
-  -- Align things over several rows.
-  -- Mapped to ga in visual mode (e.g. ga= to align on first equal sign).
-  use 'junegunn/vim-easy-align'
 
   -- Visualize indent.
   -- Enable with `:IndentGuidesEnable`.
