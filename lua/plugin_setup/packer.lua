@@ -228,9 +228,7 @@ return require('packer').startup(function()
 
   -- Jump to the last location when opening.
   -- Used to be as autocommand but the autocommand didn't open folds.
-  use {'https://git.sr.ht/~jhn/remember.nvim',
-    config = function() require('remember').setup {} end,
-  }
+  use 'ethanholz/nvim-lastplace'
 
   -- Provide some configurations for the built-in LSP client.
   use {'neovim/nvim-lspconfig',
