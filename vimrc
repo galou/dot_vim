@@ -174,6 +174,7 @@ if has('nvim')
   require('plugin_setup/scimark')
   require('plugin_setup/surround')
   require('plugin_setup/telescope')
+  require('plugin_setup/treesitter_context')
   require('plugin_setup/treesj')
 EOF
 endif
