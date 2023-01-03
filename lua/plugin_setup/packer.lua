@@ -326,6 +326,9 @@ return require('packer').startup(function()
   -- Activate with "<leader>/"
   use 'mox-mox/vim-localsearch'
 
+  -- More `increment` (<C-a>)
+  use {'monaqa/dial.nvim'}
+
   -------------------
   -- Local plugins --
   -------------------

@@ -1,3 +1,5 @@
+local opts = {noremap = true, silent = true}
+
 -- LuaSnip
 -- -------
 
@@ -24,7 +26,6 @@ end, { silent = true })
 -- Cf. https://github.com/ziontee113/syntax-tree-surfer.
 
 local sts = require('syntax-tree-surfer')
-local opts = {noremap = true, silent = true}
 
 -- Normal Mode Swapping:
 -- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
@@ -82,3 +83,40 @@ vim.keymap.set("n", "<A-n>", function()
 vim.keymap.set("n", "<A-p>", function()
       sts.filtered_jump("default", false) --> false means jump backwards
   end, opts)
+
+-- dial (improved increment)
+-- -------------------------
+-- Use [count]g<C-a> in line-wise or block-wise visual mode to
+-- increment by [count] at each line relative to its predecessor.
+local dm = require('dial.map')
+vim.keymap.set("n", "<C-a>", dm.inc_normal(), opts)
+vim.keymap.set("n", "<C-x>", dm.dec_normal(), opts)
+vim.keymap.set("v", "<C-a>", dm.inc_visual(), opts)
+vim.keymap.set("v", "<C-x>", dm.dec_visual(), opts)
+vim.keymap.set("v", "g<C-a>", dm.inc_gvisual(), opts)
+vim.keymap.set("v", "g<C-x>", dm.dec_gvisual(), opts)
+
+-- Enable only for specific FileType
+-- Cf. plugin_setup/dial.lua.
+local groups = {
+  "cpp",
+  "python",  -- C,C++ (apt install clangd)
+  }
+for _, g in ipairs(groups) do
+  local cpp_dial_augroup = vim.api.nvim_create_augroup(g .. "Dial", { clear = true })
+  vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+      pattern = g,
+      callback = function()
+        vim.keymap.set("n", "<C-a>", dm.inc_normal(g), opts)
+        vim.keymap.set("n", "<C-x>", dm.dec_normal(g), opts)
+        vim.keymap.set("v", "<C-a>", dm.inc_visual(g), opts)
+        vim.keymap.set("v", "<C-x>", dm.dec_visual(g), opts)
+        vim.keymap.set("v", "g<C-a>", dm.inc_gvisual(g), opts)
+        vim.keymap.set("v", "g<C-x>", dm.dec_gvisual(g), opts)
+      end,
+      group = cpp_dial_augroup,
+    }
+  )
+end
