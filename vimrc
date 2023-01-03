@@ -75,6 +75,9 @@ set smarttab
 set autoread
 " Automatically executes .nvimrc if found.
 set exrc
+" Use GUI colors in terminal.
+" Required by noice for some animations.
+set termguicolors
 
 " Delete comment character when joining commented lines.
 set formatoptions+=j
