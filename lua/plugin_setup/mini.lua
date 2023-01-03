@@ -1,3 +1,116 @@
+-- mini.ai
+-- text objects with count (count is either level or neighbor)
+-- `va)a)` or `v2a)`: select 2-nd level parantheses
+-- `?`: user prompt
+-- `t`: tag
+-- `f`: function call, with function name
+-- `a`: function argument
+-- `.`: a number
+-- `d`: a date with format YYYY-MM-DD
+-- Generic keys:
+-- `b`: brackets
+-- `q`: quotes (",',`)
+
+-- Expand the region [a,e] with the new region [new_a, new_e]
+-- Return the original region if the new region is outside it.
+-- Start and end are inclusive.
+local function expand_bbox(a, e, new_a, new_e)
+  if ((new_a == nil)
+      or (new_e == nil)
+      or (new_e < a)
+      or (new_a > e)) then
+    return a, e
+  end
+  return math.min(a, new_a), math.max(e, new_e)
+end
+
+-- Specialized string.find for numbers (int, float, xEy)
+local function find_number(s, init)
+  -- The following piece of code was supposed to avoid selecting
+  -- also the following character when the cursor is on it.
+  -- if string.find(string.sub(s, init, init), '[+%-0-9.a-fA-FxXoO]') == nil then
+  --   -- Cursor not on a number.
+  --   return nil
+  -- end
+  local patterns = {
+    '[+-]?%.?%d+',  -- 123, -.123, .123
+    '[+-]?%d+%.?%d*[eE]?[+-]?%d+',  -- 123, -123.45, +45.64e3
+    '0?[xX]?%x+',  -- F5, 0xF5, 0XAA
+    '0?[oO]?%x+',  -- 0o45
+  }
+  local first_a = 1000000
+  local last_e = init
+  local at_least_one_match = false
+  for i = 1, #patterns do
+    local a, e = string.find(s, patterns[i], init)
+    if a ~= nil then
+      first_a = math.min(a, first_a)
+      at_least_one_match = true
+    end
+    first_a, last_e = expand_bbox(first_a, last_e, a, e)
+  end
+  if not at_least_one_match then
+    return nil, nil
+  end
+  return first_a, last_e
+end
+
+-- Return the region `{from, to}` for text object number
+-- Bug: return the number plus the following character if the cursor is on the following character.
+local function get_number_region(_, _, table)
+  local line_nr = table.reference_region.to.line
+  local col_nr = table.reference_region.to.col
+  local line = vim.fn.getline(line_nr)
+  local a, e = find_number(line, col_nr)
+  local from = {line = line_nr, col = 1}
+  local to = {line = line_nr, col = 1}
+  if a ~= nil then
+    -- We have a found but we need to expand towards the beginning of the line.
+    from.col = a
+    to.col = e
+    local last_a = a
+    for col=(col_nr - 1),1,-1 do
+      local aa, _ = find_number(line, col)
+      if aa == last_a then
+        return { from = from, to = to }
+      else
+        from.col = col
+        last_a = aa
+      end
+    end
+  else
+    return nil
+  end
+end
+
+local gen_spec = require('mini.ai').gen_spec
+
+require('mini.ai').setup({
+    custom_textobjects = {
+      -- Whole buffer
+      g = function()
+        local from = { line = 1, col = 1 }
+        local to = {
+          line = vim.fn.line('$'), col = math.max(vim.fn.getline('$'):len(), 1)
+        }
+        return { from = from, to = to }
+      end,
+
+      -- A number.
+      -- 123
+      -- 12345.6789
+      -- -12345.6789
+      -- -12345.6789e4
+      ['.'] = get_number_region,
+      -- ['.'] = gen_spec.treesitter({ a = '@number', i = '@number' }),
+
+      -- A date [YY]YY-MM-DD
+      -- 2022-09-01
+      -- %f[%d] = %d after, not %d before
+      d = { '()%f[%d]%d?%d?%d%d%-%d%d%-%d%d()' },
+  }
+})
+
 -- mini.align
 -- gA and ga (without preview)
 -- For markdown and rst tables: `|tm ` = split:|, trim, merge:' '
