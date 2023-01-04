@@ -399,7 +399,7 @@ hi! link @variable Identifier
 hi! link TelescopeSelection Normal
 
 " treesitter-context.
-hi TreesitterContext ctermfg=0 guifg=Black ctermbg=244 guibg=#808080
+hi TreesitterContext ctermfg=0 guifg=Black ctermbg=241 guibg=#626262
 
 let g:colors_name = "gaels"
 
