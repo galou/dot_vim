@@ -52,7 +52,9 @@ autocmd FileType text map <buffer> k gk
 " Telescope
 inoremap <C-t> <ESC><cmd>Telescope tele_tabby<CR>
 nnoremap <C-t> <cmd>Telescope tele_tabby list<CR>
-nnoremap <leader>f/ <cmd>Telescope search_history<CR>
+nnoremap <leader>f" <cmd>Telescope registers<CR>
+" nnoremap <leader>f/ <cmd>Telescope search_history<CR>  " Doesn't bring much
+nnoremap <leader>f/ :vimgrep /<C-r>// %<CR><cmd>Telescope quickfix<CR>  " Search with vimgrep (to quickfix) and Telescope quickfix
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fg <cmd>Telescope git_file<CR>
@@ -67,7 +69,7 @@ nnoremap <leader>fp <cmd>Telescope project<CR>
 nnoremap <leader>fr <cmd>lua require'telescope'.extensions.ros.packages{cwd=os.getenv("ROS_WORKSPACE") or "."}<CR>
 nnoremap <Leader>f<S-r> <cmd>lua require'telescope.builtin'.live_grep({search_dirs={os.getenv('ROS_WORKSPACE'), '/opt/ros', '.'}})<CR>
 nnoremap <leader>fs <cmd>Telescope lsp_document_symbols<CR>
-nnoremap <leader>ft <cmd>Telescope tags<CR>
+nnoremap <leader>ft <cmd>Telescope current_buffer_tags<CR> " Slow
 
 " Use <C-H> to clear the highlighting of :set hlsearch.
 if maparg('<C-H>', 'n') ==# ''
