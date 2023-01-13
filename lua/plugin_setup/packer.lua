@@ -55,9 +55,6 @@ return require('packer').startup(function()
     ft = {'python'}
   }
 
-  -- Manage parentheses and similar.
-  use 'tpope/vim-surround'
-
   -- Pairs of handy bracket mappings.
   use 'tpope/vim-unimpaired'
 
@@ -68,7 +65,7 @@ return require('packer').startup(function()
   -- Supports line comment (gc{move}) or block comment (gb{move}).
   use 'numToStr/Comment.nvim'
 
-  -- Repeat ('.') also for complex mapping (for example surround).
+  -- Repeat ('.') also for complex mapping.
   use 'tpope/vim-repeat'
 
   -- vim-abolish provides:
@@ -674,8 +671,6 @@ return require('packer').startup(function()
 
   -- A solid language pack for Vim.
   -- https://github.com/sheerun/vim-polyglot
-
-  -- Better? vim-surround: https://github.com/machakann/vim-sandwich.
 
   -- Alternative to vimspector.
   -- Debug Adapter Protocol client implementation.

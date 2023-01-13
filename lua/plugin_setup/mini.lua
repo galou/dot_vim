@@ -171,5 +171,24 @@ require('mini.cursorword').setup({
 require('mini.indentscope').setup({})
 vim.g.miniindentscope_disable=true
 
+-- Manage pairs of parentheses, brackets, ...
+-- Add surrounding with Sa (in visual mode or on motion).
+-- Delete surrounding with Sd.
+-- Replace surrounding with Sc.
+-- Find surrounding with Sf or SF (move cursor right or left).
+-- Highlight surrounding with Sh.
+-- Change number of neighbor lines with Sn (see |MiniSurround-algorithm|).
+require('mini.surround').setup({
+    mappings = {
+      add = 'Sa', -- Add surrounding in Normal and Visual modes
+      delete = 'Sd', -- Delete surrounding
+      find = 'Sf', -- Find surrounding (to the right)
+      find_left = 'SF', -- Find surrounding (to the left)
+      highlight = 'Sh', -- Highlight surrounding
+      update_n_lines = 'Sn', -- Update `n_lines`
+      replace = 'Sc', -- Replace surrounding, default `sr`.
+    },
+})
+
 require('mini.trailspace').setup({})
 
