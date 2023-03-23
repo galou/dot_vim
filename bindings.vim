@@ -105,25 +105,24 @@ nnoremap <leader>n :NvimTreeFindFile<CR>
 
 " LSP
 " Bindings for LSP must be done at the same time as servers configuration.
-" Cf. plugin/lspconfig.vim.
+" Cf. lua/plugin_setup/lspconfig.lua.
 " Configured bindings:
+" <leader>K
+" <leader>ca
+" <leader>e
 " <leader>gD
 " <leader>gd
-" <leader>K
 " <leader>gi
 " <leader>go
-" <leader>wa
-" <leader>wr
-" <leader>wl
-" <leader>gt
-" <leader>rn
-" <leader>ca
 " <leader>gr
-" <leader>e
+" <leader>gt
+" <leader>q
+" <leader>rn
+" <leader>wa
+" <leader>wl
+" <leader>wr
 " [d
 " ]d
-" <leader>q
-" <leader>f
 
 " Bindings defined by cmp in `lua/plugin_setup/cmp.lua`, when the completion
 " dialog is open.

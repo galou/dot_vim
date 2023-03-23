@@ -11,6 +11,7 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = {noremap=true, silent=true, buffer=bufnr}
   local set = vim.keymap.set
+  set('n', '<leader>K', vim.lsp.buf.hover, opts)
   set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   set('n', '<leader>e', vim.diagnostic.open_float, opts)
   set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
@@ -19,7 +20,6 @@ local on_attach = function(client, bufnr)
   set('n', '<leader>go', vim.lsp.buf.signature_help, opts)
   set('n', '<leader>gr', vim.lsp.buf.references, opts)
   set('n', '<leader>gt', vim.lsp.buf.type_definition, opts)
-  set('n', '<leader>K', vim.lsp.buf.hover, opts)
   set('n', '<leader>q', vim.diagnostic.setloclist, opts)
   set('n', '<leader>rn', vim.lsp.buf.rename, opts)
   set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -36,19 +36,20 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- map buffer local keybindings when the language server attaches
 local servers = {
   "bashls",  -- bash (npm i -g bash-language-server)
-  -- "clangd",  -- C,C++ (apt install ccls)
   "clangd",  -- C,C++ (apt install clangd)
   "cmake",  -- cmake (pip3 install cmake-language-server)
   "dockerls", -- dockerfile (npm install -g dockerfile-language-server-nodejs)
   "dotls", -- Graphviz dot (https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally, then `npm i -g dot-language-server`)
   "gopls", -- Go (GO111MODULE=on go get golang.org/x/tools/gopls@latest) or sudo snap install gopls
+  "jsonls", -- :LspInstall jsonls.
   "lemminx", -- xml, (https://github.com/eclipse/lemminx.git), installed by mason.
   "ltex",  -- LaTeX, Markdown, and others. Installed by mason.
+  "lua_ls",  -- Lua, installed by mason.
   "pylsp", -- Python (https://github.com/python-lsp/python-lsp-server, pip3 install python-lsp-server)
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
-  "sumneko_lua",  -- Lua, installed by mason.
   "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
   "yamlls" -- yaml (npm i -g yaml-language-server)
+  -- "clangd",  -- C,C++ (apt install ccls)
   }
 for _, server in ipairs(servers) do
   nvim_lsp[server].setup {
