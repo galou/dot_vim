@@ -208,6 +208,7 @@ return require('packer').startup(function()
   -- mini.completion: two-stage completion, used to show the signature.
   -- mini.cursorword: highlight word under cursor.
   -- mini.trailspace: Automatically highlight trailing whitespaces:
+  -- mini.surround: Add surrounding brackets.
   --   `lua MiniTrailspace.trim()`.
   use 'echasnovski/mini.nvim'
 
@@ -254,6 +255,7 @@ return require('packer').startup(function()
 
   -- Debug TreeSitter.
   -- Offers :TSHighlightCapturesUnderCursor.
+  -- :TSPlaygroundToggle, show TS tree.
   use {'nvim-treesitter/playground',
     requires = {'nvim-treesitter/nvim-treesitter'},
   }
