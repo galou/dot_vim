@@ -1,4 +1,4 @@
-local nvim_lsp = require('lspconfig')
+local lspconfig = require('lspconfig')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -52,7 +52,7 @@ local servers = {
   -- "clangd",  -- C,C++ (apt install ccls)
   }
 for _, server in ipairs(servers) do
-  nvim_lsp[server].setup {
+  lspconfig[server].setup {
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
@@ -63,8 +63,20 @@ end
 
 -- Special cases.
 
+lspconfig.pylsp.setup({
+  on_attach = on_attach,
+  settings = {
+    pylsp = {
+      plugins = {
+	pyls_black = { enabled = true },
+	isort = { enabled = true, profile = "black" },
+      },
+    },
+  },
+})
+
 -- Cf. https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#jsonls.
-nvim_lsp.jsonls.setup {
+lspconfig.jsonls.setup {
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
@@ -83,7 +95,7 @@ nvim_lsp.jsonls.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-nvim_lsp.html.setup {
+lspconfig.html.setup {
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
@@ -107,13 +119,13 @@ nvim_lsp.html.setup {
 --   java -jar ~/.local/share/lemminx/org.eclipse.lemminx-uber.jar
 --   EOF
 --   chmod ug+x ~/.local/bin/xml-language-server-lemminx
--- nvim_lsp.lemminx.setup {
+-- lspconfig.lemminx.setup {
 --   cmd = {"xml-language-server-lemminx"},
 -- }
 
 -- Servers without autostart.
 -- pyright: Python, requires node >= 14 (npm i -g pyright)
-nvim_lsp.pyright.setup {
+lspconfig.pyright.setup {
   autostart = false,
   on_attach = on_attach,
   flags = {
@@ -121,7 +133,7 @@ nvim_lsp.pyright.setup {
   }
 }
 -- Python, alternative to pyright
-nvim_lsp.jedi_language_server.setup {
+lspconfig.jedi_language_server.setup {
   autostart = false,
   on_attach = on_attach,
 }
