@@ -260,6 +260,22 @@ return require('packer').startup(function()
   use {'https://git.sr.ht/~p00f/clangd_extensions.nvim',
   }
 
+  -- Github's Copilot.
+  -- Instead of the official copilot plugin (use {'github/copilot.vim'}).
+  use {'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',  -- Lazy-load with :Copilot.
+    event = 'InsertEnter',  -- Lazy-load on InsertEnter.
+    config = function() require('plugin_setup.copilot') end,
+  }
+
+  -- Integration of zbirenbaum/copilot with cmp.
+  use {'zbirenbaum/copilot-cmp',
+    after = {'copilot.lua'},
+    config = function ()
+      require('copilot_cmp').setup()
+    end
+  }
+
   use {'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }

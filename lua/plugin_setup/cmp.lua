@@ -227,8 +227,11 @@ cmp.setup.cmdline(':', {
   mapping = cmd_mapping(),
   sources = cmp.config.sources({
     {
-      name = 'cmdline',
-      name = 'path',
+      {name = 'cmdline'},
+    { name = 'copilot' },
+    },
+    {
+      {name = 'path'},
     },
   })
 })

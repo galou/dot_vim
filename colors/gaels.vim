@@ -398,6 +398,14 @@ hi! link @variable Identifier
 
 hi! link TelescopeSelection Normal
 
+" LSP
+hi! link @lsp.type.macro.cpp Normal  " Originally links to PreProc
+hi DiagnosticUnnecessary ctermfg=19 guifg=Blue3  " Originally links to Comment
+
+" copilot.lua.
+hi! link CopilotAnnotation Comment
+hi CopilotSuggestion ctermfg=239 guifg=Grey42
+
 " treesitter-context.
 hi TreesitterContext ctermfg=0 guifg=Black ctermbg=241 guibg=#626262
 
