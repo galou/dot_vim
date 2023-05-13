@@ -47,8 +47,9 @@ local servers = {
   "lua_ls",  -- Lua, installed by mason.
   "pylsp", -- Python (https://github.com/python-lsp/python-lsp-server, pip3 install python-lsp-server)
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
+  "spectral", -- yaml (:LspInstall spectral)
   "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
-  "yamlls" -- yaml (npm i -g yaml-language-server)
+  -- "yamlls" -- yaml (npm i -g yaml-language-server)
   }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {
