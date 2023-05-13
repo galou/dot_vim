@@ -36,7 +36,7 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- map buffer local keybindings when the language server attaches
 local servers = {
   "bashls",  -- bash (npm i -g bash-language-server)
-  "clangd",  -- C,C++ (apt install clangd)
+  -- "clangd",  -- C,C++ (:LspInstall), configured in clangd_extensions.lua.
   "cmake",  -- cmake (pip3 install cmake-language-server)
   "dockerls", -- dockerfile (npm install -g dockerfile-language-server-nodejs)
   "dotls", -- Graphviz dot (https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally, then `npm i -g dot-language-server`)
@@ -49,7 +49,6 @@ local servers = {
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
   "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
   "yamlls" -- yaml (npm i -g yaml-language-server)
-  -- "clangd",  -- C,C++ (apt install ccls)
   }
 for _, server in ipairs(servers) do
   lspconfig[server].setup {

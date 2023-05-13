@@ -252,6 +252,14 @@ return require('packer').startup(function()
     config = function() require('mason-lspconfig').setup({}) end,
   }
 
+  -- Extra features for clangd LSP.
+  -- Configuration in `clangd_extensions.lua`.
+  -- :ClangdSymbolInfo
+  -- :ClangdTypeHierarchy
+  -- :ClangdSwitchHeader
+  use {'https://git.sr.ht/~p00f/clangd_extensions.nvim',
+  }
+
   use {'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }

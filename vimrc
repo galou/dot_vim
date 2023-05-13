@@ -168,11 +168,12 @@ execute "source ".config_dir."/bindings.vim"
 " Configuration for lua plugins.
 if has('nvim')
   lua << EOF
-  require('plugin_setup/cmp') -- file `lua/plugin_setup/cmp.lua`.
+  require('plugin_setup/clangd_extensions') -- file `lua/plugin_setup/clangd_extensions.lua`.
+  require('plugin_setup/cmp')
   require('plugin_setup/comment')
   require('plugin_setup/dial')
   require('plugin_setup/gitsigns')
-  require('plugin_setup/lspconfig')
+  require('plugin_setup/lspconfig')  -- Must be after mason and mason-lspconfig.
   require('plugin_setup/luasnip')
   require('plugin_setup/mini')
   require('plugin_setup/nvim-lastplace')
