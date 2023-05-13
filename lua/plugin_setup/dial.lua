@@ -1,3 +1,4 @@
+-- Plugin for more `increment` (<C-a>)
 local augend = require("dial.augend")
 
 require("dial.config").augends:register_group{

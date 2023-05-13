@@ -186,6 +186,9 @@ return require('packer').startup(function()
   use 'chrisbra/csv.vim'
 
   -- Highlight yanked text briefly
+  -- Can also be done via autocmd
+  -- (https://alpha2phi.medium.com/neovim-for-beginners-lua-autocmd-and-keymap-functions-3bdfe0bebe42)
+  -- but not nice with hl_IncSearch.
   use 'machakann/vim-highlightedyank'
 
   -- Syntax highlighting for i3 config.
@@ -410,7 +413,7 @@ return require('packer').startup(function()
 
   -- Standalone UI for nvim-lsp progress.
   use {'j-hui/fidget.nvim',
-    config = function() require'fidget'.setup{} end,
+    config = function() require('fidget').setup{} end,
   }
 
   ----------------------

@@ -57,7 +57,7 @@ nnoremap <leader>f" <cmd>Telescope registers<CR>
 nnoremap <leader>f/ :vimgrep /<C-r>// %<CR><cmd>Telescope quickfix<CR>  " Search with vimgrep (to quickfix) and Telescope quickfix
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
-nnoremap <leader>fg <cmd>Telescope git_file<CR>
+nnoremap <leader>fg <cmd>Telescope git_files<CR>
 nnoremap <Leader>f<S-g> <cmd>Telescope live_grep<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fi <cmd>Telescope jumplist<CR>

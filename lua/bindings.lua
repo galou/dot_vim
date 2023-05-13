@@ -95,28 +95,3 @@ vim.keymap.set("v", "<C-a>", dm.inc_visual(), opts)
 vim.keymap.set("v", "<C-x>", dm.dec_visual(), opts)
 vim.keymap.set("v", "g<C-a>", dm.inc_gvisual(), opts)
 vim.keymap.set("v", "g<C-x>", dm.dec_gvisual(), opts)
-
--- Enable only for specific FileType
--- Cf. plugin_setup/dial.lua.
-local groups = {
-  "cpp",
-  "python",  -- C,C++ (apt install clangd)
-  }
-for _, g in ipairs(groups) do
-  local cpp_dial_augroup = vim.api.nvim_create_augroup(g .. "Dial", { clear = true })
-  vim.api.nvim_create_autocmd(
-    "FileType",
-    {
-      pattern = g,
-      callback = function()
-        vim.keymap.set("n", "<C-a>", dm.inc_normal(g), opts)
-        vim.keymap.set("n", "<C-x>", dm.dec_normal(g), opts)
-        vim.keymap.set("v", "<C-a>", dm.inc_visual(g), opts)
-        vim.keymap.set("v", "<C-x>", dm.dec_visual(g), opts)
-        vim.keymap.set("v", "g<C-a>", dm.inc_gvisual(g), opts)
-        vim.keymap.set("v", "g<C-x>", dm.dec_gvisual(g), opts)
-      end,
-      group = cpp_dial_augroup,
-    }
-  )
-end

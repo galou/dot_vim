@@ -130,7 +130,7 @@ cmp.setup({
   formatting = {
     format = function(entry, vim_item)
       -- Kind icons
-      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
       -- Source
       vim_item.menu = ({
         buffer = "[Buffer]",
@@ -149,7 +149,7 @@ cmp.setup({
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 -- `cmp.config.mapping.cmd_line` + <Up> + <Down>
-cmd_mapping = function(override)
+local cmd_mapping = function(override)
   local mapping = require('cmp.config.mapping')
   local misc = require('cmp.utils.misc')
   local feedkeys = require('cmp.utils.feedkeys')
@@ -235,7 +235,7 @@ cmp.setup.cmdline(':', {
 cmp.setup.filetype('rst', {
   sources = cmp.config.sources({
     {
-      name = 'spell',
+      {name = 'spell'},
     },
   })
 })
@@ -244,7 +244,7 @@ cmp.setup.filetype('rst', {
 cmp.setup.filetype('text', {
   sources = cmp.config.sources({
     {
-      name = 'spell',
+      {name = 'spell'},
     },
   })
 })
