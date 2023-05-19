@@ -235,6 +235,17 @@ return require('packer').startup(function()
   use {'neovim/nvim-lspconfig',
   }
 
+  -- Per-project LSP configuration.
+  -- `:LspSettings buffer`: Open the global settings file that
+  --                        matches the current buffer.
+  -- `:LspSettings local buffer`: Open the local settings file
+  --                              of the server corresponding
+  --                              to the current buffer.
+  use {'tamago324/nlsp-settings.nvim',
+    requires = {'neovim/nvim-lspconfig'},
+    -- Optional: 'rcarriga/nvim-notify'
+  }
+
   -- Provide some installation scripts for some LSP servers, DAP servers,
   -- linters, and formatters.
   -- Replacement for 'williamboman/nvim-lsp-installer'

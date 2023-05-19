@@ -182,6 +182,7 @@ if has('nvim')
   require('plugin_setup/lspconfig')  -- Must be after mason and mason-lspconfig.
   require('plugin_setup/luasnip')
   require('plugin_setup/mini')
+  require('plugin_setup/nlspsettings')
   require('plugin_setup/nvim-lastplace')
   require('plugin_setup/nvim_treesitter')
   require('plugin_setup/scimark')
