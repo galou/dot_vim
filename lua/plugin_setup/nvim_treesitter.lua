@@ -1,3 +1,5 @@
+-- Configuration for https://github.com/nvim-treesitter/nvim-treesitter.
+
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {
@@ -9,6 +11,7 @@ require'nvim-treesitter.configs'.setup {
     "dockerfile",
     "dot",
     "go",
+    "html",
     "json",
     "julia",
     "latex",
@@ -87,3 +90,6 @@ require'nvim-treesitter.configs'.setup {
   },
 
 }
+
+-- Use the html parser for xml files.
+vim.treesitter.language.register('html', 'xml')
