@@ -209,6 +209,10 @@ require('mini.surround').setup({
       update_n_lines = 'Sn', -- Update `n_lines`
       replace = 'Sc', -- Replace surrounding, default `sr`.
     },
+    -- Whether to respect selection type:
+    -- - Place surroundings on separate lines in linewise mode.
+    -- - Place surroundings on each line in blockwise mode.
+    respect_selection_type = true,
 })
 
 require('mini.trailspace').setup({})
