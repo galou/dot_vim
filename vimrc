@@ -82,6 +82,9 @@ set termguicolors
 " Delete comment character when joining commented lines.
 set formatoptions+=j
 
+" Indent after <p> (cf. :h html-indent).
+let g:html_indent_inctags = "p"
+
 " Use the system clipboard as default clipboard
 " set clipboard=unnamedplus
 
@@ -147,6 +150,9 @@ if has("autocmd")
 
   " Open some files as archives.
   autocmd BufReadCmd *.jar,*.fcstd,*.h5p call zip#Browse(expand("<amatch>"))
+
+  " From Skills.move
+  autocmd BufRead /tmp/tmp_www.skillsmove*.txt setlocal filetype=html spell spelllang=en_gb clipboard=unnamedplus shiftwidth=2 expandtab
 endif
 
 " Convenient command to see the difference between the current buffer and the

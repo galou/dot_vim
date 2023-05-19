@@ -38,6 +38,7 @@ local servers = {
   "bashls",  -- bash (npm i -g bash-language-server)
   -- "clangd",  -- C,C++ (:LspInstall), configured in clangd_extensions.lua.
   "cmake",  -- cmake (pip3 install cmake-language-server)
+  "cssls",  -- CSS (LspInstall cssls)
   "dockerls", -- dockerfile (npm install -g dockerfile-language-server-nodejs)
   "dotls", -- Graphviz dot (https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally, then `npm i -g dot-language-server`)
   "gopls", -- Go (GO111MODULE=on go get golang.org/x/tools/gopls@latest) or sudo snap install gopls
