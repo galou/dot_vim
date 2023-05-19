@@ -366,6 +366,29 @@ return require('packer').startup(function()
   -- More `increment` (<C-a>)
   use {'monaqa/dial.nvim'}
 
+  -- Notifications as pop-up rather than :messages.
+  use {'rcarriga/nvim-notify',
+  }
+
+  -- Completely replace the UI for messages, cmdline and the popupmenu.
+  -- use {'folke/noice.nvim',
+  --   requires = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     'MunifTanjim/nui.nvim',
+  --     -- OPTIONAL:
+  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+  --     --   If not available, we use `mini` as the fallback
+  --     'rcarriga/nvim-notify',
+  --     {'nvim-treesitter', opt = true},
+  --   }
+  -- }
+
+  ------------------
+  -- Color themes --
+  ------------------
+
+  -- use 'folke/tokyonight.nvim'
+
   -------------------
   -- Local plugins --
   -------------------
