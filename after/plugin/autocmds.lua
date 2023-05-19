@@ -24,7 +24,7 @@ local copilot_suggestion = api.nvim_create_augroup('copilot_suggestion', { clear
 api.nvim_create_autocmd(
   'FileType',
   {
-    pattern = {'cpp', 'lua', 'python'},
+    pattern = {'cpp', 'gitcommit', 'lua', 'python'},
     command = 'Copilot suggestion',
     group = copilot_suggestion,
   }
