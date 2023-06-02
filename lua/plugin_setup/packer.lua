@@ -104,7 +104,10 @@ return require('packer').startup(function()
   }
   -- Frequent/recent files for Telescope.
   use {'nvim-telescope/telescope-frecency.nvim',
-    requires = {{"tami5/sqlite.lua"}, {'nvim-telescope/telescope.nvim'}},
+    requires = {
+      {'kkharji/sqlite.lua'},
+      {'nvim-telescope/telescope.nvim'},
+    },
     config = function() require('telescope').load_extension('frecency') end, -- plugin setup at vim startup.
   }
   -- Project-based file search for Telescope.
@@ -276,7 +279,7 @@ return require('packer').startup(function()
   use {'zbirenbaum/copilot.lua',
     cmd = 'Copilot',  -- Lazy-load with :Copilot.
     event = 'InsertEnter',  -- Lazy-load on InsertEnter.
-    config = function() require('plugin_setup.copilot') end,
+    config = function() require('plugin_setup/copilot') end,
   }
 
   -- Integration of zbirenbaum/copilot with cmp.
@@ -382,6 +385,11 @@ return require('packer').startup(function()
   --     {'nvim-treesitter', opt = true},
   --   }
   -- }
+
+  -- Displays interactive vertical scrollbars and signs.
+  use {'dstein64/nvim-scrollview',
+    config = function() require('plugin_setup/nvim-scrollview') end,
+  }
 
   ------------------
   -- Color themes --
