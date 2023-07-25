@@ -97,6 +97,23 @@ return require('packer').startup(function()
     run = ':VimspectorInstall python c bash go'  -- post-install/update hook.
   }
 
+  -- Debugging in vim with the Debug Adapter Protocol.
+  -- :lua require('dap').continue() to launch.
+  use {'mfussenegger/nvim-dap',
+    -- config = function() require('plugin_setup/nvim-dap') end,
+  }
+
+  -- Extensions for nvim-dap.
+  use {'mfussenegger/nvim-dap-python',
+    requires = {'mfussenegger/nvim-dap'},
+    config = function() require('dap-python').setup('python') end,
+  }
+
+  -- UI extension for 'nvim-dap'
+  use {'rcarriga/nvim-dap-ui',
+    requires = {'mfussenegger/nvim-dap'},
+  }
+
   -- Browse files, buffers, lines ...
   -- Replacement for the deprecated 'Shougo/unite.vim'.
   use {'nvim-telescope/telescope.nvim',
@@ -742,10 +759,6 @@ return require('packer').startup(function()
 
   -- A solid language pack for Vim.
   -- https://github.com/sheerun/vim-polyglot
-
-  -- Alternative to vimspector.
-  -- Debug Adapter Protocol client implementation.
-  -- use 'mfussenegger/nvim-dap'
 
   -- Project management (per-project sessions, ..):
   -- https://github.com/charludo/projectmgr.nvim
