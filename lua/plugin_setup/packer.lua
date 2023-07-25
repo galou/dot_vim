@@ -283,6 +283,27 @@ return require('packer').startup(function()
     config = function() require('mason-lspconfig').setup({}) end,
   }
 
+  -- LSP extra functionnalities.
+  -- :Lspsaga finder: UI to show LSP methods search result.
+  -- :LspSaga show_buf_diagnostics: UI to show buffer diagnostics.
+  -- :Lspsaga diagnostic_jump_next and :Lspsaga diagnostic_jump_prev.
+  -- :Lspsaga code_action: UI to show code actions.
+  -- :Lspsaga rename: UI to rename symbols.
+  -- :Lspsaga signature_help: UI to show signature help.
+  -- :Lspsaga preview_definition: UI to show definition preview.
+  -- :Lspsaga hover_doc: UI to show hover doc.
+  -- :Lspsaga incoming_calls and :Lspsaga outgoing_calls.
+  use {'nvimdev/lspsaga.nvim',
+    requires = {
+        'nvim-treesitter/nvim-treesitter',  -- optional
+        'nvim-tree/nvim-web-devicons', -- optional
+    },
+    after = 'nvim-lspconfig',
+    config = function()
+        require('lspsaga').setup({})
+    end,
+  }
+
   -- Extra features for clangd LSP.
   -- Configuration in `clangd_extensions.lua`.
   -- :ClangdSymbolInfo
