@@ -370,8 +370,8 @@ return require('packer').startup(function()
   use {'monaqa/dial.nvim'}
 
   -- Notifications as pop-up rather than :messages.
-  use {'rcarriga/nvim-notify',
-  }
+  -- `:lua vim.notify = require('notify')` to activate.
+  use {'rcarriga/nvim-notify'}
 
   -- Completely replace the UI for messages, cmdline and the popupmenu.
   -- use {'folke/noice.nvim',

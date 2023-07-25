@@ -8,9 +8,9 @@ endif
 set nocompatible
 
 if has('nvim')
-  let config_dir = "~/.config/nvim"
+  let g:config_dir = "~/.config/nvim"
 else
-  let config_dir = "~/.vim"
+  let g:config_dir = "~/.vim"
 endif
 
 " Program to use for evaluating Python code. Setting this makes NeoVim's

@@ -381,8 +381,8 @@ hi @constructor cterm=bold gui=bold ctermfg=245 guifg=#8a8a8a ctermbg=NONE
 hi! link @field Identifier
 hi! link @float Number
 hi! link @function Function
-hi! link @function.call Normal
 hi! link @function.builtin Normal
+hi! link @function.call Normal
 hi! link @include Include
 hi! link @namespace Normal
 hi! link @operator Normal
@@ -393,6 +393,7 @@ hi! link @punctSpecial Normal
 hi! link @punctuation.bracket Normal
 hi! link @punctuation.delimiter Normal
 hi! link @string String
+hi! link @text.uri.html Normal
 hi! link @type Normal
 hi! link @variable Identifier
 

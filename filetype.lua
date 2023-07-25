@@ -9,6 +9,7 @@ vim.filetype.add({
     nxc = 'nxc',
     ops = 'cpp',
     proto = 'vrml',
+    repos = 'yaml',
     sdf = 'xml',
     sip = 'sip',
     tikz = 'tex',
