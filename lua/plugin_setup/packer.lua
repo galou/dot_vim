@@ -578,7 +578,7 @@ return require('packer').startup(function()
   -- :Neotree
   use {
     "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
+    branch = "v3.x",
     requires = {
       "MunifTanjim/nui.nvim",  -- UI Component Library.
       "kyazdani42/nvim-web-devicons",  -- not strictly required, but recommended
