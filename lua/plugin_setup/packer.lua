@@ -517,6 +517,7 @@ return require('packer').startup(function()
 
   -- Standalone UI for nvim-lsp progress.
   use {'j-hui/fidget.nvim',
+    branch = 'legacy',  -- Fixed on 2023-06-19 before announced breaking changes.
     config = function() require('fidget').setup{} end,
   }
 
