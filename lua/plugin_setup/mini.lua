@@ -108,6 +108,8 @@ require('mini.ai').setup({
       -- 2022-09-01
       -- %f[%d] = %d after, not %d before
       d = { '()%f[%d]%d?%d?%d%d%-%d%d%-%d%d()' },
+
+      f = gen_spec.treesitter({ a = '@function_definition.outer', i = '@function_definition.inner' }),
   }
 })
 
