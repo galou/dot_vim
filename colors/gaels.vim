@@ -410,6 +410,9 @@ hi CopilotSuggestion ctermfg=239 guifg=Grey42
 " treesitter-context.
 hi TreesitterContext ctermfg=0 guifg=Black ctermbg=241 guibg=#626262
 
+" mini.lua
+hi MiniClueNextKey ctermfg=0 guifg=Black
+
 let g:colors_name = "gaels"
 
 " vim: sw=2
