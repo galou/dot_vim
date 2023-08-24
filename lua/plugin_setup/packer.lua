@@ -180,6 +180,7 @@ return require('packer').startup(function()
       {'hrsh7th/cmp-path'},
       {'kdheepak/cmp-latex-symbols'},
       {'lukas-reineke/cmp-rg'},  -- ripgrep the current directory.
+      {'petertriho/cmp-git'}, -- Completion from git commit messages.
       -- {'quangnguyen30192/cmp-nvim-ultisnips'},
       {'saadparwaiz1/cmp_luasnip'},
       -- Additional functionnalities for cmp.
