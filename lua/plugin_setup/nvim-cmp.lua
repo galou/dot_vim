@@ -1,9 +1,13 @@
--- Setup nvim-cmp.
+-- Setup nvim-cmp (https://github.com/hrsh7th/nvim-cmp).
+
 local cmp = require('cmp')
 local ls = require('luasnip')
 
 local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local line_col = vim.api.nvim_win_get_cursor(0)
+  local line = line_col[1]  -- TODO: use unpack when compatible.
+  local col = line_col[2]
+  print('line: ' .. line .. ', col: ' .. col) -- DEBUG
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
@@ -251,6 +255,15 @@ cmp.setup.filetype('text', {
     {
       {name = 'spell'},
     },
+  })
+})
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+  }, {
+    { name = 'buffer' },
   })
 })
 

@@ -186,7 +186,7 @@ return require('packer').startup(function()
       {'lukas-reineke/cmp-under-comparator'}, -- Sort private members at the end.
     },
     config = function()
-      require('plugin_setup.cmp')
+      require('plugin_setup.nvim-cmp')
       require('plugin_setup.luasnip')
     end,
   }
