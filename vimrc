@@ -79,6 +79,9 @@ set exrc
 " Required by noice for some animations.
 set termguicolors
 
+set number
+set relativenumber
+
 " Delete comment character when joining commented lines.
 set formatoptions+=j
 

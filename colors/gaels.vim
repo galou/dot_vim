@@ -292,7 +292,9 @@ endif
 hi Normal cterm=NONE gui=NONE ctermfg=245 guifg=#8a8a8a ctermbg=NONE
 hi Cursor cterm=NONE gui=NONE ctermfg=NONE ctermbg=NONE
 hi CursorLine cterm=underline gui=underline ctermfg=NONE ctermbg=NONE
-hi LineNr cterm=NONE gui=NONE ctermfg=130 guifg=#af5f00 ctermbg=NONE
+hi LineNrAbove cterm=NONE gui=NONE ctermfg=130 guifg=#af5f00 ctermbg=NONE
+hi LineNr cterm=NONE gui=NONE ctermfg=3 guifg=olive ctermbg=NONE
+hi LineNrBelow cterm=NONE gui=NONE ctermfg=130 guifg=#af5f00 ctermbg=NONE
 hi CursorLineNR cterm=NONE gui=NONE ctermfg=130 guifg=#af5f00 ctermbg=NONE
 hi CursorColumn cterm=NONE gui=NONE ctermfg=NONE ctermbg=7 guibg=#c0c0c0
 hi FoldColumn cterm=NONE gui=NONE ctermfg=4 guifg=#0d73cc ctermbg=248 guibg=#a8a8a8  " 4 should correspond to #0d73cc
