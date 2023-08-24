@@ -69,7 +69,8 @@ nnoremap <leader>fp <cmd>Telescope project<CR>
 nnoremap <leader>fr <cmd>lua require'telescope'.extensions.ros.packages{cwd=os.getenv("ROS_WORKSPACE") or "."}<CR>
 nnoremap <Leader>f<S-r> <cmd>lua require'telescope.builtin'.live_grep({search_dirs={os.getenv('ROS_WORKSPACE'), '/opt/ros', '.'}})<CR>
 nnoremap <leader>fs <cmd>Telescope lsp_document_symbols<CR>
-nnoremap <leader>ft <cmd>Telescope current_buffer_tags<CR> " Slow
+" nnoremap <leader>ft <cmd>Telescope current_buffer_tags<CR> " Slow
+nnoremap <leader>ft <cmd>lua require('telescope').extensions.aerial.aerial()<CR>
 
 " Use <C-H> to clear the highlighting of :set hlsearch.
 if maparg('<C-H>', 'n') ==# ''

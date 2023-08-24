@@ -450,6 +450,16 @@ return require('packer').startup(function()
     config = function() require('plugin_setup.nvim-scrollview') end,
   }
 
+  -- Code outline window.
+  -- :AerialToggle
+  -- :AerialToggle! to stay in the same window.
+  -- The configuration doesn't work yet, `:lua require('aerial').setup({})`
+  -- needs to be called manully.
+  use {'stevearc/aerial.nvim',
+    config = function() require('aerial').setup({}) end,
+    cmd = {'AerialToggle', 'AerialNavToggle', 'Aerial*'},
+  }
+
   ------------------
   -- Color themes --
   ------------------

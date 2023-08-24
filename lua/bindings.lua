@@ -95,3 +95,7 @@ vim.keymap.set("v", "<C-a>", dm.inc_visual(), opts)
 vim.keymap.set("v", "<C-x>", dm.dec_visual(), opts)
 vim.keymap.set("v", "g<C-a>", dm.inc_gvisual(), opts)
 vim.keymap.set("v", "g<C-x>", dm.dec_gvisual(), opts)
+
+-- Aerial
+-- ------
+vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
