@@ -63,7 +63,9 @@ return require('packer').startup(function()
 
   -- Block commenting.
   -- Supports line comment (gc{move}) or block comment (gb{move}).
-  use 'numToStr/Comment.nvim'
+  use {'numToStr/Comment.nvim',
+    config = function() require('plugin_setup.comment') end,
+  }
 
   -- Repeat ('.') also for complex mapping.
   use 'tpope/vim-repeat'
@@ -118,6 +120,7 @@ return require('packer').startup(function()
   -- Replacement for the deprecated 'Shougo/unite.vim'.
   use {'nvim-telescope/telescope.nvim',
     requires = {'nvim-lua/plenary.nvim'},
+    config = function() require('plugin_setup.telescope') end,
   }
   -- Frequent/recent files for Telescope.
   use {'nvim-telescope/telescope-frecency.nvim',
@@ -181,7 +184,11 @@ return require('packer').startup(function()
       {'saadparwaiz1/cmp_luasnip'},
       -- Additional functionnalities for cmp.
       {'lukas-reineke/cmp-under-comparator'}, -- Sort private members at the end.
-    }
+    },
+    config = function()
+      require('plugin_setup.cmp')
+      require('plugin_setup.luasnip')
+    end,
   }
 
   -- A class outline viewer, requires ctags.
@@ -233,7 +240,9 @@ return require('packer').startup(function()
   -- mini.trailspace: Automatically highlight trailing whitespaces:
   -- mini.surround: Add surrounding brackets.
   --   `lua MiniTrailspace.trim()`.
-  use 'echasnovski/mini.nvim'
+  use {'echasnovski/mini.nvim',
+    config = function() require('plugin_setup.mini') end,
+  }
 
   -- Show cursors jumps.
   use 'danilamihailov/beacon.nvim'
@@ -249,10 +258,8 @@ return require('packer').startup(function()
 
   -- Jump to the last location when opening.
   -- Used to be as autocommand but the autocommand didn't open folds.
-  use 'ethanholz/nvim-lastplace'
-
-  -- Provide some configurations for the built-in LSP client.
-  use {'neovim/nvim-lspconfig',
+  use {'ethanholz/nvim-lastplace',
+    config = function() require('plugin_setup.nvim-lastplace') end,
   }
 
   -- Per-project LSP configuration.
@@ -264,6 +271,7 @@ return require('packer').startup(function()
   use {'tamago324/nlsp-settings.nvim',
     requires = {'neovim/nvim-lspconfig'},
     -- Optional: 'rcarriga/nvim-notify'
+    config = function() require('plugin_setup.nlspsettings') end,
   }
 
   -- Provide some installation scripts for some LSP servers, DAP servers,
@@ -304,12 +312,19 @@ return require('packer').startup(function()
     end,
   }
 
+  -- Provide some configurations for the built-in LSP client.
+  use {'neovim/nvim-lspconfig',
+    config = function() require('plugin_setup.nvim-lspconfig') end,  -- Must be after mason and mason-lspconfig.
+  }
+
   -- Extra features for clangd LSP.
   -- Configuration in `clangd_extensions.lua`.
   -- :ClangdSymbolInfo
   -- :ClangdTypeHierarchy
   -- :ClangdSwitchHeader
   use {'https://git.sr.ht/~p00f/clangd_extensions.nvim',
+    config = function() require('plugin_setup.clangd_extensions') end,
+    commit = '798e377ec859087132b81d2f347b5080580bd6b1', -- Bug in 6d0bf368 (2023-05-23) with virtual text.
   }
 
   -- Github's Copilot.
@@ -317,7 +332,7 @@ return require('packer').startup(function()
   use {'zbirenbaum/copilot.lua',
     cmd = 'Copilot',  -- Lazy-load with :Copilot.
     event = 'InsertEnter',  -- Lazy-load on InsertEnter.
-    config = function() require('plugin_setup/copilot') end,
+    config = function() require('plugin_setup.copilot') end,
   }
 
   -- Integration of zbirenbaum/copilot with cmp.
@@ -329,7 +344,8 @@ return require('packer').startup(function()
   }
 
   use {'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    config = function() require('plugin_setup.nvim-treesitter') end,
   }
 
   -- Debug TreeSitter.
@@ -343,6 +359,7 @@ return require('packer').startup(function()
   -- :TSContextToggle.
   use {'nvim-treesitter/nvim-treesitter-context',
     requires = {'nvim-treesitter/nvim-treesitter'},
+    config = function() require('plugin_setup.nvim-treesitter-context') end,
   }
 
   -- Jump or move elements according to their function
@@ -360,7 +377,8 @@ return require('packer').startup(function()
   -- Toggle between one-liner and "open" code.
   -- :TSJToggle, :TSJSplit, :TSJJoin.
   use {'Wansmer/treesj',
-    requires = { 'nvim-treesitter' },
+    requires = {'nvim-treesitter'},
+    config = function() require('plugin_setup.treesj') end,
   }
 
   -- Improve layout and preview of the Quickfix window.
@@ -378,7 +396,7 @@ return require('packer').startup(function()
   --   crtl-x: in fzf, open in a new horizontal split
   use {'kevinhwang91/nvim-bqf',
     ft = 'qf',
-    config = function() require('plugin_setup/nvim_bqf') end,
+    config = function() require('plugin_setup.nvim_bqf') end,
   }
 
   -- Diff on part of files.
@@ -404,8 +422,11 @@ return require('packer').startup(function()
   -- Activate with "<leader>/"
   use 'mox-mox/vim-localsearch'
 
-  -- More `increment` (<C-a>)
-  use {'monaqa/dial.nvim'}
+  -- More `increment` commands (<C-a>, <C-x>).
+  -- Alternatively: RutaTang/compter.nvim.
+  use {'monaqa/dial.nvim',
+    config = function() require('plugin_setup.dial') end,
+  }
 
   -- Notifications as pop-up rather than :messages.
   -- `:lua vim.notify = require('notify')` to activate.
@@ -426,7 +447,7 @@ return require('packer').startup(function()
 
   -- Displays interactive vertical scrollbars and signs.
   use {'dstein64/nvim-scrollview',
-    config = function() require('plugin_setup/nvim-scrollview') end,
+    config = function() require('plugin_setup.nvim-scrollview') end,
   }
 
   ------------------
@@ -545,7 +566,9 @@ return require('packer').startup(function()
   -- Edit tables the spreadsheet way in Markdown.
   -- Requires sc-im (https://github.com/andmarti1424/sc-im.git).
   -- Provides :OpenInScim.
-  use 'mipmip/vim-scimark'
+  use {'mipmip/vim-scimark',
+    config = function() require('plugin_setup.scimark') end,
+  }
 
   -- Use Wandbox (https://wandbox.org/) in vim.
   -- :Wandbox
@@ -572,7 +595,9 @@ return require('packer').startup(function()
   -- `:Gitsigns toggle_signs` then `<leader>hs`.
   -- Has more features then gitgutter but gitgutter better handles folds, as of
   -- 2022-09-01.
-  use {'lewis6991/gitsigns.nvim'}
+  use {'lewis6991/gitsigns.nvim',
+    config = function() require('plugin_setup.gitsigns') end,
+  }
 
   -- File browser
   -- :Neotree

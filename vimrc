@@ -170,25 +170,3 @@ set tags=tags;/
 
 " Key-bindings.
 execute "source ".config_dir."/bindings.vim"
-
-" Configuration for lua plugins.
-if has('nvim')
-  lua << EOF
-  require('plugin_setup/clangd_extensions') -- file `lua/plugin_setup/clangd_extensions.lua`.
-  require('plugin_setup/cmp')
-  require('plugin_setup/comment')
-  require('plugin_setup/dial')
-  require('plugin_setup/gitsigns')
-  require('plugin_setup/lspconfig')  -- Must be after mason and mason-lspconfig.
-  require('plugin_setup/luasnip')
-  require('plugin_setup/mini')
-  require('plugin_setup/nlspsettings')
-  require('plugin_setup/nvim-lastplace')
-  require('plugin_setup/nvim_treesitter')
-  require('plugin_setup/scimark')
-  require('plugin_setup/surround')
-  require('plugin_setup/telescope')
-  require('plugin_setup/treesitter_context')
-  require('plugin_setup/treesj')
-EOF
-endif
