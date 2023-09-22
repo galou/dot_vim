@@ -22,6 +22,9 @@ nnoremap <expr> gV '`[' . strpart(getregtype(), 0, 1) . '`]'
 " TODO: solve the recursive-function issue.
 " nnoremap * :keepjumps normal *``<cr>
 
+" TODO
+" :'a,'by* -- Yank range into paste -- yank to paste buffer (ex mode)
+
 " Use `ALT+{h,j,k,l}` to navigate windows from any mode:
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j

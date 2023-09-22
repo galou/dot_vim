@@ -400,6 +400,7 @@ hi! link @type Normal
 hi! link @variable Identifier
 
 hi! link TelescopeSelection Normal
+hi MiniJump gui=underline term=underline cterm=underline
 
 " LSP
 hi! link @lsp.type.macro.cpp Normal  " Originally links to PreProc

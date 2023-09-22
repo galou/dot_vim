@@ -237,9 +237,13 @@ require('mini.cursorword').setup({
 })
 
 -- Activate but disable.
--- let g:miniindentscope_disable=v:false or let g:miniindentscope_disable=v:false to enable.
+-- let g:miniindentscope_disable=v:false or let b:miniindentscope_disable=v:false to enable.
 require('mini.indentscope').setup({})
-vim.g.miniindentscope_disable=true
+vim.g.miniindentscope_diable=true
+
+-- Improved f, t, F, T.
+-- Repeat with f, t, F, T.
+require('mini.jump').setup({})
 
 -- Manage pairs of parentheses, brackets, ...
 -- Add surrounding with Sa (in visual mode or on motion).
@@ -248,6 +252,9 @@ vim.g.miniindentscope_disable=true
 -- Find surrounding with Sf or SF (move cursor right or left).
 -- Highlight surrounding with Sh.
 -- Change number of neighbor lines with Sn (see |MiniSurround-algorithm|).
+-- 'f' for function name.
+-- 't' for tag.
+-- '?' for interactive.
 require('mini.surround').setup({
     mappings = {
       add = 'Sa', -- Add surrounding in Normal and Visual modes

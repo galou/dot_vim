@@ -19,8 +19,9 @@ require('scrollview').setup({
   search_symbol = {'.', '⬥'},
 
   -- Configuration of `diagnostics` signs.
+  diagnostics_severities = {vim.diagnostic.severity.ERROR},
   diagnostics_error_symbol = '',
-  diagnostics_warn_symbol = '', -- '',
-  diagnostics_info_symbol = '', -- '',
-  diagnostics_hint_symbol = '', -- '',
+  diagnostics_warn_symbol = '', -- '', supposed to be unused
+  diagnostics_info_symbol = '', -- '', supposed to be unused
+  diagnostics_hint_symbol = '', -- '', supposed to be unused
 })
