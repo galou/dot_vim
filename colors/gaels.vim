@@ -414,7 +414,7 @@ hi CopilotSuggestion ctermfg=239 guifg=Grey42
 hi TreesitterContext ctermfg=0 guifg=Black ctermbg=241 guibg=#626262
 
 " mini.lua
-hi MiniClueNextKey ctermfg=0 guifg=Black
+hi MiniClueNextKey ctermfg=0 guifg=Black  " next key label in clue window
 
 let g:colors_name = "gaels"
 

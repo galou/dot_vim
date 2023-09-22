@@ -165,6 +165,11 @@ return require('packer').startup(function()
     requires = {{'nvim-telescope/telescope.nvim'}, {'puremourning/vimspector'}},
     config = function() require('telescope').load_extension('vimspector') end,
   }
+  -- Tab switching for Telescope.
+  use {'LukasPietzschmann/telescope-tabs',
+	requires = {'nvim-telescope/telescope.nvim'},
+	config = function() require'telescope-tabs'.setup({}) end,
+}
 
   -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
   -- Alternatives: https://github.com/ms-jpq/coq_nvim.
