@@ -333,6 +333,17 @@ return require('packer').startup(function()
     commit = '798e377ec859087132b81d2f347b5080580bd6b1', -- Bug in 6d0bf368 (2023-05-23) with virtual text.
   }
 
+
+  -- Code refactoring.
+  -- :'<,'>Refactor {extract_block_to_file, extract, extract_block, extract_var, extract_to_file}.
+  -- Extract function or variable from last visual selection.
+  use {'ThePrimeagen/refactoring.nvim',
+    requires = {
+        {'nvim-lua/plenary.nvim'},
+        {'nvim-treesitter/nvim-treesitter'}
+    },
+}
+
   -- Github's Copilot.
   -- Instead of the official copilot plugin (use {'github/copilot.vim'}).
   use {'zbirenbaum/copilot.lua',
