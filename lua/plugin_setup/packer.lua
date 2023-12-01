@@ -646,9 +646,6 @@ return require('packer').startup(function()
   -- :Wandbox
   use 'rhysd/wandbox-vim'
 
-  -- Asynchronous Lint Engine: asynchronous linting.
-  use 'dense-analysis/ale'
-
   -- Fade inactive buffers.
   use 'TaDaa/vimade'
 
