@@ -103,8 +103,8 @@ noremap <leader>cf :pyf /usr/lib/llvm-6.0/share/clang/clang-include-fixer.py<cr>
 nnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
 tnoremap <silent> <leader>tt <cmd>BufTermToggle<cr>
 
-nnoremap <C-n> :NeoTreeShowToggle<CR>
-nnoremap <leader>n :NeoTreeFocus<CR>
+nnoremap <C-n> :Neotree<CR>
+" nnoremap <leader>n :NeoTreeFocus<CR>
 
 " LSP
 " Bindings for LSP must be done at the same time as servers configuration.

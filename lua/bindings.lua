@@ -99,3 +99,7 @@ vim.keymap.set("v", "g<C-x>", dm.dec_gvisual(), opts)
 -- Aerial
 -- ------
 vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
+
+-- query-secretary
+-- ---------------
+vim.keymap.set('n', '<leader>s', function() require('query-secretary').query_window_initiate() end, opts)
