@@ -343,8 +343,8 @@ hi! link Label Statement
 hi! link Operator Statement
 hi! link Keyword Statement
 hi! link Exception Statement
-hi Comment cterm=NONE gui=NONE ctermfg=4 guifg=#0d73cc ctermbg=NONE
-hi Special cterm=NONE gui=NONE ctermfg=5 guifg=#800080 ctermbg=NONE
+hi Comment cterm=NONE gui=NONE ctermfg=4 guifg=#0d73cc ctermbg=NONE font='Monaspace Radon,Monaspace Radon Light:style=Light,Regular'
+hi Special cterm=NONE gui=NONE ctermfg=5 guifg=Grey ctermbg=NONE
 hi! link SpecialChar Special
 hi! link Tag Special
 hi! link Delimiter Special

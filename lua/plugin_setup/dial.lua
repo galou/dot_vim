@@ -1,5 +1,7 @@
+-- Configuration for 'monaqa/dial.nvim'
 -- Plugin for more `increment` (<C-a>)
-local augend = require("dial.augend")
+
+local augend = require('dial.augend')
 
 require("dial.config").augends:register_group{
   -- default augends used when no group name is specified

@@ -1,4 +1,7 @@
+-- Configuration for https://github.com/neovim/nvim-lspconfig
+
 local lspconfig = require('lspconfig')
+local configs = require('lspconfig.configs')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -35,7 +38,7 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = {
-  "bashls",  -- bash (npm i -g bash-language-server)
+  "bashls",  -- bash (`:LspInstall bashls` or `npm i -g bash-language-server`)
   -- "clangd",  -- C,C++ (:LspInstall), configured in clangd_extensions.lua.
   "cmake",  -- cmake (pip3 install cmake-language-server)
   "cssls",  -- CSS (LspInstall cssls)
@@ -46,7 +49,7 @@ local servers = {
   "lemminx", -- xml, (https://github.com/eclipse/lemminx.git), installed by mason.
   "ltex",  -- LaTeX, Markdown, and others. Installed by mason.
   "lua_ls",  -- Lua, installed by mason.
-  "pylsp", -- Python (https://github.com/python-lsp/python-lsp-server, pip3 install python-lsp-server)
+  "mojo",  -- Mojo (modular install mojo).
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
   "spectral", -- yaml (:LspInstall spectral)
   "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
@@ -64,13 +67,38 @@ end
 
 -- Special cases.
 
+-- black, Python (`:LspInstall black`)
+-- not in `server_configurations.md` from nvim-lspconfig.
+-- Check if the config is already defined (useful when reloading this file)
+-- if not configs.black then
+--  configs.black = {
+--    default_config = {
+--      cmd = {'black'},
+--      filetypes = {'python'},
+--      root_dir = function(fname)
+--        return lspconfig.util.find_git_ancestor(fname)
+--      end,
+--      settings = {},
+--    },
+--  }
+-- end
+-- call `setup()` to enable the FileType autocmd.
+-- lspconfig.black.setup{}
+
+-- pylsp, Python (https://github.com/python-lsp/python-lsp-server, pip3 install python-lsp-server)
 lspconfig.pylsp.setup({
   on_attach = on_attach,
   settings = {
     pylsp = {
       plugins = {
-	pyls_black = { enabled = true },
-	isort = { enabled = true, profile = "black" },
+	black = { enabled = true },
+	isort = { enabled = true, profile = 'black' },
+        pylsp_mypy = {
+          -- https://github.com/python-lsp/pylsp-mypy#configuration
+          enabled = true,
+          report_progress = true,
+          live_mode = true,
+        },
       },
     },
   },

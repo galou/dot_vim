@@ -102,7 +102,7 @@ return require('packer').startup(function()
   -- Debugging in vim with the Debug Adapter Protocol.
   -- :lua require('dap').continue() to launch.
   use {'mfussenegger/nvim-dap',
-    -- config = function() require('plugin_setup/nvim-dap') end,
+    -- config = function() require('plugin_setup/dap') end,
   }
 
   -- Extensions for nvim-dap.
@@ -118,6 +118,8 @@ return require('packer').startup(function()
 
   -- Browse files, buffers, lines ...
   -- Replacement for the deprecated 'Shougo/unite.vim'.
+  -- Telescope's which_key (insert mode: <C-/>, normal mode: ?) to list mappings attached to your picker.
+  -- Keys maps (mostly `<leader>f?`) in ../../bindings.vim.
   use {'nvim-telescope/telescope.nvim',
     requires = {'nvim-lua/plenary.nvim'},
     config = function() require('plugin_setup.telescope') end,
@@ -125,12 +127,13 @@ return require('packer').startup(function()
   -- Frequent/recent files for Telescope.
   use {'nvim-telescope/telescope-frecency.nvim',
     requires = {
-      {'kkharji/sqlite.lua'},
       {'nvim-telescope/telescope.nvim'},
     },
+    after = 'telescope.nvim',
     config = function() require('telescope').load_extension('frecency') end, -- plugin setup at vim startup.
   }
   -- Project-based file search for Telescope.
+  -- :Telescope project search for files in the current project.
   use {'nvim-telescope/telescope-project.nvim',
     requires = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('project') end,
@@ -138,38 +141,45 @@ return require('packer').startup(function()
   -- Tab switching for Telescope.
   use {'TC72/telescope-tele-tabby.nvim',
     requires = {'nvim-telescope/telescope.nvim'},
+    after = 'telescope.nvim',
     config = function() require('telescope').load_extension('tele_tabby') end,
   }
   -- find_files in a specific ROS package for Telescope.
   use {'bi0ha2ard/telescope-ros.nvim',
     requires = {'nvim-telescope/telescope.nvim'},
+    after = 'telescope.nvim',
     config = function() require('telescope').load_extension('ros') end,
   }
   -- Register LSP handlers for Telescope.
   use {'gbrlsnchs/telescope-lsp-handlers.nvim',
     requires = {'nvim-telescope/telescope.nvim'},
+    after = 'telescope.nvim',
     config = function() require('telescope').load_extension('lsp_handlers') end,
   }
   -- Switch between heading in Telescope.
   use {'crispgm/telescope-heading.nvim',
     requires = {'nvim-telescope/telescope.nvim'},
+    after = 'telescope.nvim',
     config = function() require('telescope').load_extension('heading') end,
   }
   -- Ctags outline for Telescope.
   use {'fcying/telescope-ctags-outline.nvim',
     requires = {'nvim-telescope/telescope.nvim'},
+    after = 'telescope.nvim',
     config = function() require('telescope').load_extension('ctags_outline') end,
   }
   -- Vimspector integration in Telescope.
   use {'nvim-telescope/telescope-vimspector.nvim',
     requires = {{'nvim-telescope/telescope.nvim'}, {'puremourning/vimspector'}},
+    after = 'telescope.nvim',
     config = function() require('telescope').load_extension('vimspector') end,
   }
   -- Tab switching for Telescope.
   use {'LukasPietzschmann/telescope-tabs',
-	requires = {'nvim-telescope/telescope.nvim'},
-	config = function() require'telescope-tabs'.setup({}) end,
-}
+    requires = {'nvim-telescope/telescope.nvim'},
+    after = 'telescope.nvim',
+    config = function() require'telescope-tabs'.setup({}) end,
+  }
 
   -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
   -- Alternatives: https://github.com/ms-jpq/coq_nvim.
@@ -192,7 +202,7 @@ return require('packer').startup(function()
       {'lukas-reineke/cmp-under-comparator'}, -- Sort private members at the end.
     },
     config = function()
-      require('plugin_setup.nvim-cmp')
+      require('plugin_setup.cmp')
       require('plugin_setup.luasnip')
     end,
   }
@@ -201,6 +211,7 @@ return require('packer').startup(function()
   use 'majutsushi/tagbar'
 
   -- Regenerate tag files on the go.
+  -- Alternative: https://github.com/JMarkin/gentags.lua.git.
   use 'ludovicchabant/vim-gutentags'
 
   -- extended % matching for HTML, LaTeX, and many other languages
@@ -257,15 +268,14 @@ return require('packer').startup(function()
   -- :Diffview..
   use {'sindrets/diffview.nvim',
     requires = {
-      'nvim-lua/plenary.nvim',  -- Utility functions.
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
     }
   }
 
   -- Jump to the last location when opening.
   -- Used to be as autocommand but the autocommand didn't open folds.
   use {'ethanholz/nvim-lastplace',
-    config = function() require('plugin_setup.nvim-lastplace') end,
+    config = function() require('plugin_setup.lastplace') end,
   }
 
   -- Per-project LSP configuration.
@@ -294,6 +304,7 @@ return require('packer').startup(function()
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
     },
+    after = 'mason.nvim',
     config = function() require('mason-lspconfig').setup({}) end,
   }
 
@@ -320,7 +331,7 @@ return require('packer').startup(function()
 
   -- Provide some configurations for the built-in LSP client.
   use {'neovim/nvim-lspconfig',
-    config = function() require('plugin_setup.nvim-lspconfig') end,  -- Must be after mason and mason-lspconfig.
+    config = function() require('plugin_setup.lspconfig') end,  -- Must be after mason and mason-lspconfig.
   }
 
   -- Extra features for clangd LSP.
@@ -342,7 +353,8 @@ return require('packer').startup(function()
         {'nvim-lua/plenary.nvim'},
         {'nvim-treesitter/nvim-treesitter'}
     },
-}
+    config = function() require('plugin_setup.refactoring') end,
+  }
 
   -- Github's Copilot.
   -- Instead of the official copilot plugin (use {'github/copilot.vim'}).
@@ -360,23 +372,21 @@ return require('packer').startup(function()
     end
   }
 
+  -- Syntax highlighting.
+  -- :Inspect and :InspectTree for debugging.
   use {'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = function() require('plugin_setup.nvim-treesitter') end,
+    config = function() require('plugin_setup.treesitter') end,
   }
 
-  -- Debug TreeSitter.
-  -- Offers :TSHighlightCapturesUnderCursor.
-  -- :TSPlaygroundToggle, show TS tree.
-  use {'nvim-treesitter/playground',
-    requires = {'nvim-treesitter/nvim-treesitter'},
-  }
+  -- Write TreeSitter queries for you.
+  use {'ziontee113/query-secretary'}
 
   -- Always show the function prototype.
   -- :TSContextToggle.
   use {'nvim-treesitter/nvim-treesitter-context',
     requires = {'nvim-treesitter/nvim-treesitter'},
-    config = function() require('plugin_setup.nvim-treesitter-context') end,
+    config = function() require('plugin_setup.treesitter-context') end,
   }
 
   -- Jump or move elements according to their function
@@ -464,7 +474,7 @@ return require('packer').startup(function()
 
   -- Displays interactive vertical scrollbars and signs.
   use {'dstein64/nvim-scrollview',
-    config = function() require('plugin_setup.nvim-scrollview') end,
+    config = function() require('plugin_setup.scrollview') end,
   }
 
   -- Code outline window.
@@ -473,8 +483,12 @@ return require('packer').startup(function()
   -- The configuration doesn't work yet, `:lua require('aerial').setup({})`
   -- needs to be called manully.
   use {'stevearc/aerial.nvim',
-    config = function() require('aerial').setup({}) end,
-    cmd = {'AerialToggle', 'AerialNavToggle', 'Aerial*'},
+    after = 'telescope.nvim',
+    config = function()
+      require('aerial').setup({})
+      require('telescope').load_extension('aerial')
+    end,
+    cmd = {'AerialToggle', 'AerialNavToggle', 'Aerial*', 'Telescope aerial'},
   }
 
   ------------------
@@ -517,7 +531,7 @@ return require('packer').startup(function()
   use 'ConradIrwin/vim-bracketed-paste'
 
   -- Additional 'icons'.
-  use 'ryanoasis/vim-devicons'
+  use 'nvim-tree/nvim-web-devicons'
 
   -- Open Jupyter notebooks (*.ipynb) thanks to the external jupytext
   -- executable.
@@ -629,12 +643,12 @@ return require('packer').startup(function()
   -- File browser
   -- :Neotree
   use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
     requires = {
-      "MunifTanjim/nui.nvim",  -- UI Component Library.
-      "kyazdani42/nvim-web-devicons",  -- not strictly required, but recommended
-      "nvim-lua/plenary.nvim",  -- Utility functions.
+      'MunifTanjim/nui.nvim',  -- UI Component Library.
+      'nvim-tree/nvim-web-devicons',  -- not strictly required, but recommended
+      'nvim-lua/plenary.nvim',  -- Utility functions.
     }
   }
 
@@ -804,7 +818,7 @@ return require('packer').startup(function()
   -- Messes with `gt` and doesn't play nicely with splits as of 2022-09-01.
   -- use {'romgrk/barbar.nvim',
   --   requires = {
-  --     'kyazdani42/nvim-web-devicons',
+  --     'nvim-tree/nvim-web-devicons',
   --   }
   -- }
 
@@ -819,7 +833,7 @@ return require('packer').startup(function()
   -- use {
   --   'kyazdani42/nvim-tree.lua',
   --   requires = {
-  --     'kyazdani42/nvim-web-devicons', -- optional, for file icon
+  --     'nvim-tree/nvim-web-devicons', -- optional, for file icon
   --   },
   --   config = function() require'nvim-tree'.setup {} end
   -- }

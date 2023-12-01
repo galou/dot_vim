@@ -3,6 +3,7 @@ vim.filetype.add({
     FCMacro = 'python',
     fcmacro = 'python',
     ino = 'cpp',
+    inputbindings = 'xml',
     launch = 'xml',
     md = 'markdown',
     nc = 'cpp',
