@@ -513,6 +513,15 @@ return require('packer').startup(function()
     cmd = {'AerialToggle', 'AerialNavToggle', 'Aerial*', 'Telescope aerial'},
   }
 
+  -- Local LLM.
+  -- Start the ollama LLM server `ollama serve`.
+  -- Then `:Gen {prompt}`
+  -- Cf. `prompt.lua` for the list of prompts.
+  use {'David-Kunz/gen.nvim',
+    config = function() require('plugin_setup.gen_config') end,
+    cmd = {'Gen'},
+  }
+
   ------------------
   -- Color themes --
   ------------------
