@@ -1,3 +1,10 @@
+-- Configuration for https://github.com/nvim-telescope/telescope.nvim.git
+-- comprising the configuration for:
+-- - `frecency`
+-- - `tele_tabby`
+-- - `lsp_handlers`
+-- - `advanced_git_search`
+
 require('telescope').setup({
 
   defaults = {
@@ -18,22 +25,39 @@ require('telescope').setup({
 
   extensions = {
 
+    -- 'nvim-telescope/telescope-frecency.nvim'
     frecency = {
       ignore_patterns = {'*.git/*', '*/tmp/*'},
       workspaces = {
-        ['galactic'] = '/opt/ros/galactic',
+        ['humble'] = '/opt/ros/humble',
       },
     },
 
+    -- 'TC72/telescope-tele-tabby.nvim'
     tele_tabby = {
       use_highlighter = true,
     },
 
+    -- 'gbrlsnchs/telescope-lsp-handlers.nvim'
     lsp_handlers = {
       code_action = {
         telescope = require('telescope.themes').get_dropdown({}),
       },
     },
 
+    -- 'aaronhallaert/advanced-git-search.nvim'
+    advanced_git_search = {
+      -- fugitive or diffview
+      diff_plugin = 'diffview',
+      -- customize git in previewer
+      -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
+      git_flags = {},
+      -- customize git diff in previewer
+      -- e.g. flags such as { "--raw" }
+      git_diff_flags = {},
+      -- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
+      show_builtin_git_pickers = false,
+      entry_default_author_or_date = 'date', -- one of "author" or "date"
+    },
   },
 })

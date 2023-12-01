@@ -180,6 +180,28 @@ return require('packer').startup(function()
     after = 'telescope.nvim',
     config = function() require'telescope-tabs'.setup({}) end,
   }
+  -- File browser from the current directory.
+  use {'nvim-telescope/telescope-file-browser.nvim',
+    requires = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'},
+    after = 'telescope.nvim',
+    config = function() require('telescope').load_extension('file_browser') end,
+  }
+  -- Search through commit messages, content, authors, files, ...
+  -- Extension configuration in `telescope.lua`.
+  use {'aaronhallaert/advanced-git-search.nvim',
+    requires = {
+        'nvim-telescope/telescope.nvim',
+        -- to show diff splits and open commits in browser
+        'tpope/vim-fugitive',
+        -- to open commits in browser with fugitive
+        'tpope/vim-rhubarb',
+        -- optional: to replace the diff from fugitive with diffview.nvim
+        -- (fugitive is still needed to open in browser with vim-rhubarb)
+        'sindrets/diffview.nvim',
+    },
+    after = 'telescope.nvim',
+    config = function() require('telescope').load_extension('advanced_git_search') end,
+  }
 
   -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
   -- Alternatives: https://github.com/ms-jpq/coq_nvim.
