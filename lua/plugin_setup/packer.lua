@@ -585,6 +585,11 @@ return require('packer').startup(function()
     }
   }
 
+  -- Provide auto indent when cursor at the first column and press <TAB> key.
+  use {'vidocqh/auto-indent.nvim',
+    -- config = function() require('auto_indent') end,
+  }
+
   ------------------
   -- Color themes --
   ------------------
