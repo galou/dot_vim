@@ -289,7 +289,7 @@ endif
 " 255          Grey93                   #eeeeee rgb(238,238,238)
 
 " Alternatively for Normal, #0dcdcd.
-hi Normal cterm=NONE gui=NONE ctermfg=245 guifg=#8a8a8a ctermbg=NONE
+hi Normal cterm=NONE gui=NONE ctermfg=245 guifg=#8a8a8a guibg=Grey4
 hi Cursor cterm=NONE gui=NONE ctermfg=NONE ctermbg=NONE
 hi CursorLine cterm=underline gui=underline ctermfg=NONE ctermbg=NONE
 hi LineNrAbove cterm=NONE gui=NONE ctermfg=130 guifg=#af5f00 ctermbg=NONE
