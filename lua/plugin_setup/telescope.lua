@@ -5,7 +5,9 @@
 -- - `lsp_handlers`
 -- - `advanced_git_search`
 
-require('telescope').setup({
+local telescope = require("telescope")
+
+telescope.setup({
 
   defaults = {
     -- path_display = {
@@ -59,5 +61,23 @@ require('telescope').setup({
       show_builtin_git_pickers = false,
       entry_default_author_or_date = 'date', -- one of "author" or "date"
     },
+
+    -- 'nvim-telescope/telescope-live-grep-args.nvim'
+    live_grep_args = {
+      -- If the prompt value does not begin with ', " or - the entire prompt is treated as a single argument
+      -- This behaviour can be turned off by setting the auto_quoting option to false.
+      auto_quoting = true,
+      -- mappings = {
+      --   i = {
+      --     ["<C-\">"] = require('telescope-live-grep-args.actions').quote_prompt(), -- foo → "foo"
+      --     ["<C-i>"] = require('telescope-live-grep-args.actions').quote_prompt({ postfix = " --iglob " }), -- foo → "foo" --iblog
+      --     ["<C-t>"] = require('telescope-live-grep-args.actions').quote_prompt({ postfix = " -t " }), -- foo → "foo" -t
+      --   },
+      -- },
+      -- Theme settings, for example:
+      -- theme = "dropdown", -- use dropdown theme
+      -- theme = { }, -- use own theme spec
+      -- layout_config = { mirror=true }, -- mirror preview pane
+    }
   },
 })

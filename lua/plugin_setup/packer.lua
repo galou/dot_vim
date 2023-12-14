@@ -192,6 +192,24 @@ return require('packer').startup(function()
     after = 'telescope.nvim',
     config = function() require('telescope').load_extension('file_browser') end,
   }
+  -- Interface to fzf.
+  -- fzf syntax:
+  -- Token   Match type                 Description
+  -- ------- -------------------------- ------------
+  -- sbtrkt  fuzzy-match                Items that match sbtrkt
+  -- 'wild   exact-match (quoted)       Items that include wild
+  -- ^music  prefix-exact-match         Items that start with music
+  -- .mp4$   suffix-exact-match         Items that end with .mp3
+  -- !fire   inverse-exact-match        Items that do not include fire
+  -- !^music inverse-prefix-exact-match Items that do not start with music
+  -- !.mp4$  inverse-suffix-exact-match Items that do not end with .mp3
+  use {'nvim-telescope/telescope-fzf-native.nvim',
+    requires = {
+      'nvim-telescope/telescope.nvim',
+    },
+    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+    after = 'telescope.nvim',
+  }
   -- Search through commit messages, content, authors, files, ...
   -- Extension configuration in `telescope.lua`.
   use {'aaronhallaert/advanced-git-search.nvim',
@@ -207,6 +225,17 @@ return require('packer').startup(function()
     },
     after = 'telescope.nvim',
     config = function() require('telescope').load_extension('advanced_git_search') end,
+  }
+  -- Live grep args picker for telescope.nvim.
+  -- Enables passing arguments to the grep command.
+  -- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
+  -- `require("telescope-live-grep-args.shortcuts").grep_word_under_cursor()`
+  use {'nvim-telescope/telescope-live-grep-args.nvim',
+    requires = {
+      'nvim-telescope/telescope.nvim',
+    },
+    after = 'telescope.nvim',
+    config = function() require('telescope').load_extension('live_grep_args') end,
   }
 
   -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
