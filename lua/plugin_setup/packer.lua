@@ -548,6 +548,10 @@ return require('packer').startup(function()
     cmd = {'AerialToggle', 'AerialNavToggle', 'Aerial*', 'Telescope aerial'},
   }
 
+  use {'luukvbaal/statuscol.nvim',
+    config = function() require('plugin_setup.statuscol') end,
+  }
+
   -- Local LLM.
   -- Start the ollama LLM server `ollama serve`.
   -- Then `:Gen {prompt}`
