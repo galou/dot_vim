@@ -2,6 +2,7 @@
 
 local dap = require('dap')
 
+-- Python
 dap.adapters.python = function(cb, config)
   if config.request == 'attach' then
     ---@diagnostic disable-next-line: undefined-field
@@ -65,5 +66,33 @@ dap.configurations.python = {
         return '/usr/bin/python'
       end
     end,
+  },
+}
+
+-- C++
+
+dap.adapters.codelldb = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    -- CHANGE THIS to your path!
+    command = 'codelldb',
+    args = {'--port', '${port}'},
+  },
+  -- target = {
+  --   source-map = 
+  -- }
+}
+
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.expand('$HOME') .. '/' .. 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = true,
   },
 }

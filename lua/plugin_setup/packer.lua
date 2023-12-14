@@ -102,9 +102,8 @@ return require('packer').startup(function()
   -- Debugging in vim with the Debug Adapter Protocol.
   -- :lua require('dap').continue() to launch.
   use {'mfussenegger/nvim-dap',
-    -- config = function() require('plugin_setup/dap') end,
+    config = function() require('plugin_setup/dap') end,
   }
-
   -- Extensions for nvim-dap.
   use {'mfussenegger/nvim-dap-python',
     requires = {'mfussenegger/nvim-dap'},
