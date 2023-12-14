@@ -1,0 +1,13 @@
+{
+  "lua_script": {
+    "prefix": "LuaScript",
+    "description": "<LuaScript/>",
+    "body": [
+      "<LuaScript>",
+      "  <![CDATA[",
+      "  $1",
+      "  ]]>",
+      "</LuaScript>"
+    ]
+  }
+}
