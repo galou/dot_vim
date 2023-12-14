@@ -109,10 +109,12 @@ return require('packer').startup(function()
     requires = {'mfussenegger/nvim-dap'},
     config = function() require('dap-python').setup('python') end,
   }
-
   -- UI extension for 'nvim-dap'
+  -- Configured also in `neodev.lua`.
+  -- `:lua require("dapui").open()`.
   use {'rcarriga/nvim-dap-ui',
     requires = {'mfussenegger/nvim-dap'},
+    config = function() require('dapui').setup({}) end,
   }
 
   -- Browse files, buffers, lines ...
@@ -524,6 +526,13 @@ return require('packer').startup(function()
   use {'David-Kunz/gen.nvim',
     config = function() require('plugin_setup.gen_config') end,
     cmd = {'Gen'},
+  }
+
+  -- Neodev
+  -- Neovim setup for init.lua and plugin development with full signature
+  -- help, docs and completion for the nvim lua API.
+  use {'folke/neodev.nvim',
+    config = function() require('plugin_setup.neodev') end,
   }
 
   ------------------
