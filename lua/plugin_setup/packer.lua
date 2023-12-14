@@ -535,6 +535,23 @@ return require('packer').startup(function()
     config = function() require('plugin_setup.neodev') end,
   }
 
+  -- A framework for interacting with tests.
+  -- Configured also in `neodev.lua`.
+  use {'nvim-neotest/neotest',
+    requires = {
+      'nvim-lua/plenary.nvim',  -- Utility functions.
+      -- 'antoinemadec/FixCursorHold.nvim', -- Probably not needed as of 2023-12-04.
+    },
+    -- config = function() require('plugin_setup.neotest') end,
+  }
+  -- GTest adapter for neotest.
+  -- Configured in `neotest.lua`.
+  use {'alfaix/neotest-gtest',
+    requires = {
+      'nvim-neotest/neotest',
+    }
+  }
+
   ------------------
   -- Color themes --
   ------------------
