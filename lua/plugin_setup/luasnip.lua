@@ -103,7 +103,7 @@ augroup END
 -- Snippets from friendly-snippets.
 require('luasnip.loaders.from_vscode').lazy_load {
   paths = {
-    vim.fn.stdpath "data" .. "/site/pack/packer/start/friendly-snippets",
+    vim.fn.stdpath "data" .. "/lazy/friendly-snippets",
   },
   exclude = {
     'cpp',  -- Deactivated because most snippets assume opening curly bracket on the same line.

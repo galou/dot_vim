@@ -29,7 +29,7 @@ syntax on
 
 " Load plugins.
 if has('nvim')
-  lua require('plugin_setup/packer') -- file `lua/plugin_setup/packer.lua`.
+  lua require('plugin_setup/lazy') -- file `lua/plugin_setup/lazy.lua`.
 endif
 
 " Custom filetypes are defined in ~/.config/nvim/filetype.lua.

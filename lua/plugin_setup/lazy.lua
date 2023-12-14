@@ -1,197 +1,194 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+-- Bootstrap lazy.nvim if it doesn't exist.
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup(function()
-
-  -- Packer manages Packer.
-  use 'wbthomason/packer.nvim'
-
+require('lazy').setup({
   ------------------------
   -- Personal must-have --
   ------------------------
 
   -- git integration.
-  use 'tpope/vim-fugitive'
+  'tpope/vim-fugitive',
 
   -- Interactive git log viewer.
   -- Provides :GitLog.
-  use {'kablamo/vim-git-log',
-    requires = {'tpope/vim-fugitive'}
-  }
+  {'kablamo/vim-git-log',
+    dependencies = {'tpope/vim-fugitive'},
+  },
 
   -- Snippets.
-  use 'L3MON4D3/LuaSnip'
+  'L3MON4D3/LuaSnip',
   -- Some common snippets.
-  use 'rafamadriz/friendly-snippets'
+  'rafamadriz/friendly-snippets',
 
-  -- use 'SirVer/ultisnips'
+  -- 'SirVer/ultisnips',
 
   -- Default snippets for UltiSnips
-  use 'honza/vim-snippets'
+  'honza/vim-snippets',
 
   -- Basic support for .env files, ':Dotenv {file}'.
-  use {'tpope/vim-dotenv',
-    ft = {'python'}
-  }
+  {'tpope/vim-dotenv',
+    ft = {'python'},
+  },
 
   -- Show a tip on vim startup.
-  use 'hobbestigrou/vimtips-fortune'
+  'hobbestigrou/vimtips-fortune',
 
   -- Editing ROS source files.
-  -- use 'taketwo/vim-ros'
+  -- 'taketwo/vim-ros',
 
-  use {'othree/xml.vim',
-    ft = {'xml'}
-  }
+  {'othree/xml.vim',
+    ft = {'xml'},
+  },
 
-  use {'ivanov/vim-ipython',
-    ft = {'python'}
-  }
+  {'ivanov/vim-ipython',
+    ft = {'python'},
+  },
 
-  use {'jupyter-vim/jupyter-vim',
-    ft = {'python'}
-  }
+  {'jupyter-vim/jupyter-vim',
+    ft = {'python'},
+  },
 
   -- Pairs of handy bracket mappings.
-  use 'tpope/vim-unimpaired'
+  'tpope/vim-unimpaired',
 
   -- Automatic indent detection.
-  use 'tpope/vim-sleuth'
+  'tpope/vim-sleuth',
 
   -- Block commenting.
   -- Supports line comment (gc{move}) or block comment (gb{move}).
-  use {'numToStr/Comment.nvim',
+  {'numToStr/Comment.nvim',
     config = function() require('plugin_setup.comment') end,
-  }
+	event = {'BufEnter', 'BufRead'},
+  },
 
   -- Repeat ('.') also for complex mapping.
-  use 'tpope/vim-repeat'
+  'tpope/vim-repeat',
 
   -- vim-abolish provides:
   -- - ':Subvert': replace a word with another while respecting case and plural.
   -- - Change between variable conventions (dash-case, MixedCase, camelCase, ...).
   --   Mapped to 'cr_', 'cr-', 'crm', 'crc', 'cr.',
-  use 'tpope/vim-abolish'
+  'tpope/vim-abolish',
 
   -- Argumentative aids with manipulating and moving between function
   -- arguments.
   -- Shifting arguments with `<,` and `>,`.
-  use 'PeterRincker/vim-argumentative'
+  'PeterRincker/vim-argumentative',
 
   -- Set the `path` variable for more efficient jump to file (gf).
-  use 'tpope/vim-apathy'
+  'tpope/vim-apathy',
 
   -- TeX support, work better than atp with NeoVim.
-  use 'lervag/vimtex'
+  'lervag/vimtex',
 
   -- Editor agnostic configuration.
-  use 'editorconfig/editorconfig-vim'
+  'editorconfig/editorconfig-vim',
 
   -- Use airline as alternative to unsupported powerline.
-  use 'vim-airline/vim-airline'
+  {'vim-airline/vim-airline',
+	  lazy = false,
+  },
 
   -- Debugging in vim.
-  use {'puremourning/vimspector',
-    -- run = './install_gadget.py --enable-python --enable-c --enable-bash --enable-go',
-    run = ':VimspectorInstall python c bash go'  -- post-install/update hook.
-  }
+  {'puremourning/vimspector',
+    -- build = './install_gadget.py --enable-python --enable-c --enable-bash --enable-go',
+    build = ':VimspectorInstall python c bash go'  -- post-install/update hook.
+  },
 
   -- Debugging in vim with the Debug Adapter Protocol.
   -- :lua require('dap').continue() to launch.
-  use {'mfussenegger/nvim-dap',
+  {'mfussenegger/nvim-dap',
     config = function() require('plugin_setup/dap') end,
-  }
+  },
   -- Extensions for nvim-dap.
-  use {'mfussenegger/nvim-dap-python',
-    requires = {'mfussenegger/nvim-dap'},
+  {'mfussenegger/nvim-dap-python',
+    dependencies = {'mfussenegger/nvim-dap'},
     config = function() require('dap-python').setup('python') end,
-  }
+  },
   -- UI extension for 'nvim-dap'
   -- Configured also in `neodev.lua`.
   -- `:lua require("dapui").open()`.
-  use {'rcarriga/nvim-dap-ui',
-    requires = {'mfussenegger/nvim-dap'},
+  {'rcarriga/nvim-dap-ui',
+    dependencies = {'mfussenegger/nvim-dap'},
     config = function() require('dapui').setup({}) end,
-  }
+  },
 
   -- Browse files, buffers, lines ...
   -- Replacement for the deprecated 'Shougo/unite.vim'.
   -- Telescope's which_key (insert mode: <C-/>, normal mode: ?) to list mappings attached to your picker.
   -- Keys maps (mostly `<leader>f?`) in ../../bindings.vim.
-  use {'nvim-telescope/telescope.nvim',
-    requires = {
+  {'nvim-telescope/telescope.nvim',
+    dependencies = {
       'nvim-lua/plenary.nvim',  -- Utility functions.
     },
     config = function() require('plugin_setup.telescope') end,
-  }
+	lazy = false,
+  },
   -- Frequent/recent files for Telescope.
-  use {'nvim-telescope/telescope-frecency.nvim',
-    requires = {
-      {'nvim-telescope/telescope.nvim'},
-    },
-    after = 'telescope.nvim',
+  {'nvim-telescope/telescope-frecency.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('frecency') end, -- plugin setup at vim startup.
-  }
+  },
   -- Project-based file search for Telescope.
   -- :Telescope project search for files in the current project.
-  use {'nvim-telescope/telescope-project.nvim',
-    requires = {'nvim-telescope/telescope.nvim'},
+  {'nvim-telescope/telescope-project.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('project') end,
-  }
+  },
   -- Tab switching for Telescope.
-  use {'TC72/telescope-tele-tabby.nvim',
-    requires = {'nvim-telescope/telescope.nvim'},
-    after = 'telescope.nvim',
+  {'TC72/telescope-tele-tabby.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('tele_tabby') end,
-  }
+  },
   -- find_files in a specific ROS package for Telescope.
-  use {'bi0ha2ard/telescope-ros.nvim',
-    requires = {'nvim-telescope/telescope.nvim'},
-    after = 'telescope.nvim',
+  {'bi0ha2ard/telescope-ros.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('ros') end,
-  }
+  },
   -- Register LSP handlers for Telescope.
-  use {'gbrlsnchs/telescope-lsp-handlers.nvim',
-    requires = {'nvim-telescope/telescope.nvim'},
-    after = 'telescope.nvim',
+  {'gbrlsnchs/telescope-lsp-handlers.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('lsp_handlers') end,
-  }
+  },
   -- Switch between heading in Telescope.
-  use {'crispgm/telescope-heading.nvim',
-    requires = {'nvim-telescope/telescope.nvim'},
-    after = 'telescope.nvim',
+  {'crispgm/telescope-heading.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('heading') end,
-  }
+  },
   -- Ctags outline for Telescope.
-  use {'fcying/telescope-ctags-outline.nvim',
-    requires = {'nvim-telescope/telescope.nvim'},
-    after = 'telescope.nvim',
+  {'fcying/telescope-ctags-outline.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('ctags_outline') end,
-  }
+  },
   -- Vimspector integration in Telescope.
-  use {'nvim-telescope/telescope-vimspector.nvim',
-    requires = {{'nvim-telescope/telescope.nvim'}, {'puremourning/vimspector'}},
-    after = 'telescope.nvim',
+  {'nvim-telescope/telescope-vimspector.nvim',
+    dependencies = {{'nvim-telescope/telescope.nvim'}, {'puremourning/vimspector'}},
     config = function() require('telescope').load_extension('vimspector') end,
-  }
+  },
   -- Tab switching for Telescope.
-  use {'LukasPietzschmann/telescope-tabs',
-    requires = {'nvim-telescope/telescope.nvim'},
-    after = 'telescope.nvim',
+  {'LukasPietzschmann/telescope-tabs',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require'telescope-tabs'.setup({}) end,
-  }
+  },
   -- File browser from the current directory.
-  use {'nvim-telescope/telescope-file-browser.nvim',
-    requires = {
+  {'nvim-telescope/telescope-file-browser.nvim',
+    dependencies = {
       'nvim-telescope/telescope.nvim',
       'nvim-lua/plenary.nvim',  -- Utility functions.
     },
-    after = 'telescope.nvim',
     config = function() require('telescope').load_extension('file_browser') end,
-  }
+  },
   -- Interface to fzf.
   -- fzf syntax:
   -- Token   Match type                 Description
@@ -203,17 +200,14 @@ return require('packer').startup(function()
   -- !fire   inverse-exact-match        Items that do not include fire
   -- !^music inverse-prefix-exact-match Items that do not start with music
   -- !.mp4$  inverse-suffix-exact-match Items that do not end with .mp3
-  use {'nvim-telescope/telescope-fzf-native.nvim',
-    requires = {
-      'nvim-telescope/telescope.nvim',
-    },
-    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-    after = 'telescope.nvim',
-  }
+  {'nvim-telescope/telescope-fzf-native.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
+    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+  },
   -- Search through commit messages, content, authors, files, ...
   -- Extension configuration in `telescope.lua`.
-  use {'aaronhallaert/advanced-git-search.nvim',
-    requires = {
+  {'aaronhallaert/advanced-git-search.nvim',
+    dependencies = {
         'nvim-telescope/telescope.nvim',
         -- to show diff splits and open commits in browser
         'tpope/vim-fugitive',
@@ -223,26 +217,22 @@ return require('packer').startup(function()
         -- (fugitive is still needed to open in browser with vim-rhubarb)
         'sindrets/diffview.nvim',
     },
-    after = 'telescope.nvim',
     config = function() require('telescope').load_extension('advanced_git_search') end,
-  }
+  },
   -- Live grep args picker for telescope.nvim.
   -- Enables passing arguments to the grep command.
   -- https://github.com/nvim-telescope/telescope-live-grep-args.nvim
   -- `require("telescope-live-grep-args.shortcuts").grep_word_under_cursor()`
-  use {'nvim-telescope/telescope-live-grep-args.nvim',
-    requires = {
-      'nvim-telescope/telescope.nvim',
-    },
-    after = 'telescope.nvim',
+  {'nvim-telescope/telescope-live-grep-args.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('live_grep_args') end,
-  }
+  },
 
   -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
   -- Alternatives: https://github.com/ms-jpq/coq_nvim.
   -- Deprecates hrsh7th/compe.
-  use {'hrsh7th/nvim-cmp',
-    requires = {
+  {'hrsh7th/nvim-cmp',
+    dependencies = {
       -- Completion sources for cmp.
       {'f3fora/cmp-spell'}, -- Suggestion from spell.
       {'hrsh7th/cmp-buffer'},
@@ -262,38 +252,40 @@ return require('packer').startup(function()
       require('plugin_setup.cmp')
       require('plugin_setup.luasnip')
     end,
-  }
+	-- event = {'BufEnter', 'BufRead'},
+	lazy = false,
+  },
 
   -- A class outline viewer, requires ctags.
-  use 'majutsushi/tagbar'
+  'majutsushi/tagbar',
 
   -- Regenerate tag files on the go.
   -- Alternative: https://github.com/JMarkin/gentags.lua.git.
-  use 'ludovicchabant/vim-gutentags'
+  'ludovicchabant/vim-gutentags',
 
   -- extended % matching for HTML, LaTeX, and many other languages
-  use 'tmhedberg/matchit'
+  'tmhedberg/matchit',
 
   -- Lego Mindstorms (nxc) syntax.
-  use 'vim-scripts/nxc.vim'
+  'vim-scripts/nxc.vim',
 
   -- SIP syntax (Python binding for C++).
-  use 'vim-scripts/sip.vim'
+  'vim-scripts/sip.vim',
 
   -- ABB Rapid support.
-  use 'KnoP-01/rapid-for-vim'
+  'KnoP-01/rapid-for-vim',
 
   -- Support for csv files
-  use 'chrisbra/csv.vim'
+  'chrisbra/csv.vim',
 
   -- Highlight yanked text briefly
   -- Can also be done via autocmd
   -- (https://alpha2phi.medium.com/neovim-for-beginners-lua-autocmd-and-keymap-functions-3bdfe0bebe42)
   -- but not nice with hl_IncSearch.
-  use 'machakann/vim-highlightedyank'
+  'machakann/vim-highlightedyank',
 
   -- Syntax highlighting for i3 config.
-  use 'mboughaba/i3config.vim'
+  'mboughaba/i3config.vim',
 
   -- Integration of cheatsheets from https://cht.sh/.
   -- <leader>KK: show in pager.
@@ -301,11 +293,11 @@ return require('packer').startup(function()
   -- <leader>Kp, <leader>KP, <leader>KR: paste
   -- <leader>KE: query the error
   -- <leader>KC: toggle comments (switch comments off)
-  use 'dbeniamine/cheat.sh-vim'
+  'dbeniamine/cheat.sh-vim',
 
   -- Switch between header and source file.
   -- Alternatively: https://github.com/LucHermitte/alternate-lite
-  use 'derekwyatt/vim-fswitch'
+  'derekwyatt/vim-fswitch',
 
   -- Collection of minimal, independent, and fast Lua modules.
   -- mini.align: text alignment, replacement of 'junegunn/vim-easy-align'.
@@ -314,26 +306,26 @@ return require('packer').startup(function()
   -- mini.trailspace: Automatically highlight trailing whitespaces:
   -- mini.surround: Add surrounding brackets.
   --   `lua MiniTrailspace.trim()`.
-  use {'echasnovski/mini.nvim',
+  {'echasnovski/mini.nvim',
     config = function() require('plugin_setup.mini') end,
-  }
+  },
 
   -- Show cursors jumps.
-  use 'danilamihailov/beacon.nvim'
+  'danilamihailov/beacon.nvim',
 
   -- Interface to cycle through git diffs.
   -- :Diffview..
-  use {'sindrets/diffview.nvim',
-    requires = {
+  {'sindrets/diffview.nvim',
+    dependencies = {
       'nvim-tree/nvim-web-devicons',
-    }
-  }
+    },
+  },
 
   -- Jump to the last location when opening.
   -- Used to be as autocommand but the autocommand didn't open folds.
-  use {'ethanholz/nvim-lastplace',
+  {'ethanholz/nvim-lastplace',
     config = function() require('plugin_setup.lastplace') end,
-  }
+  },
 
   -- Per-project LSP configuration.
   -- `:LspSettings buffer`: Open the global settings file that
@@ -341,29 +333,30 @@ return require('packer').startup(function()
   -- `:LspSettings local buffer`: Open the local settings file
   --                              of the server corresponding
   --                              to the current buffer.
-  use {'tamago324/nlsp-settings.nvim',
-    requires = {'neovim/nvim-lspconfig'},
+  {'tamago324/nlsp-settings.nvim',
+    dependencies = {'neovim/nvim-lspconfig'},
     -- Optional: 'rcarriga/nvim-notify'
     config = function() require('plugin_setup.nlspsettings') end,
-  }
+  },
 
   -- Provide some installation scripts for some LSP servers, DAP servers,
   -- linters, and formatters.
   -- Replacement for 'williamboman/nvim-lsp-installer'
-  use {'williamboman/mason.nvim',
+  {'williamboman/mason.nvim',
     config = function() require('mason').setup({}) end,
-  }
+	event = {'BufEnter', 'BufRead'},
+  },
 
   -- Companion to mason.nvim.
   -- Provides :LspInstall.
-  use {'williamboman/mason-lspconfig.nvim',
-    requires = {
+  {'williamboman/mason-lspconfig.nvim',
+    dependencies = {
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
     },
-    after = 'mason.nvim',
     config = function() require('mason-lspconfig').setup({}) end,
-  }
+	event = {'BufEnter', 'BufRead'},
+  },
 
   -- LSP extra functionnalities.
   -- :Lspsaga finder: UI to show LSP methods search result.
@@ -375,76 +368,78 @@ return require('packer').startup(function()
   -- :Lspsaga preview_definition: UI to show definition preview.
   -- :Lspsaga hover_doc: UI to show hover doc.
   -- :Lspsaga incoming_calls and :Lspsaga outgoing_calls.
-  use {'nvimdev/lspsaga.nvim',
-    requires = {
-        'nvim-treesitter/nvim-treesitter',  -- optional
-        'nvim-tree/nvim-web-devicons', -- optional
+  {'nvimdev/lspsaga.nvim',
+    dependencies = {
+	  'neovim/nvim-lspconfig',
+      'nvim-treesitter/nvim-treesitter',  -- optional
+      'nvim-tree/nvim-web-devicons', -- optional
     },
-    after = 'nvim-lspconfig',
-    config = function()
-        require('lspsaga').setup({})
-    end,
-  }
+    config = function() require('lspsaga').setup({}) end,
+	event = {'BufEnter', 'BufRead'},
+  },
 
   -- Provide some configurations for the built-in LSP client.
-  use {'neovim/nvim-lspconfig',
-    config = function() require('plugin_setup.lspconfig') end,  -- Must be after mason and mason-lspconfig.
-  }
+  {'neovim/nvim-lspconfig',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    },
+    config = function() require('plugin_setup.lspconfig') end,
+	event = {'BufEnter', 'BufRead'},
+  },
 
   -- Extra features for clangd LSP.
   -- Configuration in `clangd_extensions.lua`.
   -- :ClangdSymbolInfo
   -- :ClangdTypeHierarchy
   -- :ClangdSwitchHeader
-  use {'https://git.sr.ht/~p00f/clangd_extensions.nvim',
+  {'https://git.sr.ht/~p00f/clangd_extensions.nvim',
     config = function() require('plugin_setup.clangd_extensions') end,
     commit = '798e377ec859087132b81d2f347b5080580bd6b1', -- Bug in 6d0bf368 (2023-05-23) with virtual text.
-  }
+  },
 
 
   -- Code refactoring.
   -- :'<,'>Refactor {extract_block_to_file, extract, extract_block, extract_var, extract_to_file}.
   -- Extract function or variable from last visual selection.
-  use {'ThePrimeagen/refactoring.nvim',
-    requires = {
+  {'ThePrimeagen/refactoring.nvim',
+    dependencies = {
         'nvim-lua/plenary.nvim',  -- Utility functions.
         'nvim-treesitter/nvim-treesitter',
     },
     config = function() require('plugin_setup.refactoring') end,
-  }
+  },
 
   -- Github's Copilot.
-  -- Instead of the official copilot plugin (use {'github/copilot.vim'}).
-  use {'zbirenbaum/copilot.lua',
+  -- Instead of the official copilot plugin ('github/copilot.vim').
+  {'zbirenbaum/copilot.lua',
     cmd = 'Copilot',  -- Lazy-load with :Copilot.
     event = 'InsertEnter',  -- Lazy-load on InsertEnter.
     config = function() require('plugin_setup.copilot') end,
-  }
+  },
 
   -- Integration of zbirenbaum/copilot with cmp.
-  use {'zbirenbaum/copilot-cmp',
-    after = {'copilot.lua'},
-    config = function ()
-      require('copilot_cmp').setup()
-    end
-  }
+  {'zbirenbaum/copilot-cmp',
+    dependencies = {'zbirenbaum/copilot.lua'},
+    config = function () require('copilot_cmp').setup() end
+  },
 
   -- Syntax highlighting.
   -- :Inspect and :InspectTree for debugging.
-  use {'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+  {'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
     config = function() require('plugin_setup.treesitter') end,
-  }
+  },
 
   -- Write TreeSitter queries for you.
-  use {'ziontee113/query-secretary'}
+  {'ziontee113/query-secretary'},
 
   -- Always show the function prototype.
   -- :TSContextToggle.
-  use {'nvim-treesitter/nvim-treesitter-context',
-    requires = {'nvim-treesitter/nvim-treesitter'},
+  {'nvim-treesitter/nvim-treesitter-context',
+    dependencies = {'nvim-treesitter/nvim-treesitter'},
     config = function() require('plugin_setup.treesitter-context') end,
-  }
+  },
 
   -- Jump or move elements according to their function
   -- E.g. move arguments in a function prototype, elements in a list.
@@ -454,16 +449,16 @@ return require('packer').startup(function()
   -- vU, vD: in normal mode, swap master nodes (vu, vd for current nodes).
   -- gfu + f or j: in normal mode, jump to the previous, next function declaration.
   -- <A-n>, <A-p>: in normal mode, repeat the last jump.
-  use {'ziontee113/syntax-tree-surfer',
-    requires = {'nvim-treesitter/nvim-treesitter'},
-  }
+  {'ziontee113/syntax-tree-surfer',
+    dependencies = {'nvim-treesitter/nvim-treesitter'},
+  },
 
   -- Toggle between one-liner and "open" code.
   -- :TSJToggle, :TSJSplit, :TSJJoin.
-  use {'Wansmer/treesj',
-    requires = {'nvim-treesitter'},
+  {'Wansmer/treesj',
+    dependencies = {'nvim-treesitter'},
     config = function() require('plugin_setup.treesj') end,
-  }
+  },
 
   -- Improve layout and preview of the Quickfix window.
   -- Shortcuts:
@@ -478,179 +473,171 @@ return require('packer').startup(function()
   --   crtl-t: in fzf, open in a new tab
   --   crtl-v: in fzf, open in a new vertical split
   --   crtl-x: in fzf, open in a new horizontal split
-  use {'kevinhwang91/nvim-bqf',
+  {'kevinhwang91/nvim-bqf',
     ft = 'qf',
     config = function() require('plugin_setup.nvim_bqf') end,
-  }
+  },
 
   -- Diff on part of files.
   -- Visual selection + :'<,'>Linediff twice on non-overlapping parts.
-  use 'AndrewRadev/linediff.vim'
+  'AndrewRadev/linediff.vim',
 
   -- Run code chunks.
   -- :'<,'>SnipRun
-  use {'michaelb/sniprun',
-    run = 'bash install.sh'
-  }
+  {'michaelb/sniprun',
+    build = 'bash install.sh'
+  },
 
   -- Visualize indent.
   -- Enable with `:IndentGuidesEnable`.
-  use 'nathanaelkane/vim-indent-guides'
+  'nathanaelkane/vim-indent-guides',
 
   -- Manage a terminal buffer easierly.
   -- Bound to '<leader>tt'
   -- Alternatively, cf. https://github.com/caenrique/nvim-toggle-terminal.
-  use 'itmecho/bufterm.nvim'
+  'itmecho/bufterm.nvim',
 
   -- Search for different pattern in different buffers.
   -- Activate with "<leader>/"
-  use 'mox-mox/vim-localsearch'
+  'mox-mox/vim-localsearch',
 
   -- More `increment` commands (<C-a>, <C-x>).
   -- Alternatively: RutaTang/compter.nvim.
-  use {'monaqa/dial.nvim',
+  {'monaqa/dial.nvim',
     config = function() require('plugin_setup.dial') end,
-  }
+  },
 
   -- Notifications as pop-up rather than :messages.
   -- `:lua vim.notify = require('notify')` to activate.
-  use {'rcarriga/nvim-notify'}
+  {'rcarriga/nvim-notify'},
 
   -- Completely replace the UI for messages, cmdline and the popupmenu.
-  -- use {'folke/noice.nvim',
-  --   requires = {
+  -- {'folke/noice.nvim',
+  --   dependencies = {
   --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
   --     'MunifTanjim/nui.nvim',
   --     -- OPTIONAL:
-  --     --   `nvim-notify` is only needed, if you want to use the notification view.
-  --     --   If not available, we use `mini` as the fallback
+  --     --   `nvim-notify` is only needed, if you want to the notification view.
+  --     --   If not available, we `mini` as the fallback
   --     'rcarriga/nvim-notify',
-  --     {'nvim-treesitter', opt = true},
-  --   }
-  -- }
+  --     {'nvim-treesitter', lazy = true},
+  --   },
+  -- },
 
   -- Displays interactive vertical scrollbars and signs.
-  use {'dstein64/nvim-scrollview',
+  {'dstein64/nvim-scrollview',
     config = function() require('plugin_setup.scrollview') end,
-  }
+  },
 
   -- Code outline window.
   -- :AerialToggle
   -- :AerialToggle! to stay in the same window.
   -- The configuration doesn't work yet, `:lua require('aerial').setup({})`
   -- needs to be called manully.
-  use {'stevearc/aerial.nvim',
-    after = 'telescope.nvim',
+  {'stevearc/aerial.nvim',
+    dependencies = {'nvim-telescope/telescope.nvim'},
     config = function()
       require('aerial').setup({})
       require('telescope').load_extension('aerial')
     end,
-    cmd = {'AerialToggle', 'AerialNavToggle', 'Aerial*', 'Telescope aerial'},
-  }
+    cmd = {'AerialToggle', 'AerialNavToggle'},
+  },
 
-  use {'luukvbaal/statuscol.nvim',
+  {'luukvbaal/statuscol.nvim',
     config = function() require('plugin_setup.statuscol') end,
-  }
+  },
 
   -- Local LLM.
   -- Start the ollama LLM server `ollama serve`.
   -- Then `:Gen {prompt}`
   -- Cf. `prompt.lua` for the list of prompts.
-  use {'David-Kunz/gen.nvim',
+  {'David-Kunz/gen.nvim',
     config = function() require('plugin_setup.gen_config') end,
     cmd = {'Gen'},
-  }
+  },
 
   -- Neodev
   -- Neovim setup for init.lua and plugin development with full signature
   -- help, docs and completion for the nvim lua API.
-  use {'folke/neodev.nvim',
+  {'folke/neodev.nvim',
     config = function() require('plugin_setup.neodev') end,
-  }
+  },
 
   -- A framework for interacting with tests.
   -- Configured also in `neodev.lua`.
-  use {'nvim-neotest/neotest',
-    requires = {
+  {'nvim-neotest/neotest',
+    dependencies = {
       'nvim-lua/plenary.nvim',  -- Utility functions.
       -- 'antoinemadec/FixCursorHold.nvim', -- Probably not needed as of 2023-12-04.
     },
     -- config = function() require('plugin_setup.neotest') end,
-  }
+  },
   -- GTest adapter for neotest.
   -- Configured in `neotest.lua`.
-  use {'alfaix/neotest-gtest',
-    requires = {
+  {'alfaix/neotest-gtest',
+    dependencies = {
       'nvim-neotest/neotest',
-    }
-  }
+    },
+  },
 
   -- Provide auto indent when cursor at the first column and press <TAB> key.
-  use {'vidocqh/auto-indent.nvim',
+  {'vidocqh/auto-indent.nvim',
     -- config = function() require('auto_indent') end,
-  }
+  },
 
   ------------------
   -- Color themes --
   ------------------
 
-  -- use 'folke/tokyonight.nvim'
-
-  -------------------
-  -- Local plugins --
-  -------------------
-
-  use {fn.stdpath('config')..'/bundle/local/castem'}
-  use {fn.stdpath('config')..'/bundle/local/mbdyn'}
-  use {fn.stdpath('config')..'/bundle/local/orocos'}
+  -- 'folke/tokyonight.nvim',
 
   ----------------------------------
   -- Not often used but practical --
   ----------------------------------
 
   -- Undo management (:GundoToggle).
-  use 'sjl/gundo.vim'
+  'sjl/gundo.vim',
 
   -- Syntax highlighting support for Pweave files, scientific report with
   -- LaTeX and Python.
-  use 'naught101/vim-pweave'
+  'naught101/vim-pweave',
 
   -- JSON bindings.
   -- aj provides a text object for the outermost JSON object, array, string, number, or keyword.
   -- gqaj pretty prints (wraps/indents/sorts keys/otherwise cleans up) the JSON construct under the cursor.
   -- gwaj takes the JSON object on the clipboard and extends it into the JSON object under the cursor.
-  use 'tpope/vim-jdaddy'
+  'tpope/vim-jdaddy',
 
   -- Rust support.
-  use 'rust-lang/rust.vim'
-  use 'racer-rust/vim-racer'
+  'rust-lang/rust.vim',
+  'racer-rust/vim-racer',
 
   -- Treat new lines from pasted text differently than typed ones.
   -- Allow to indent already indented text.
-  use 'ConradIrwin/vim-bracketed-paste'
+  'ConradIrwin/vim-bracketed-paste',
 
   -- Additional 'icons'.
-  use 'nvim-tree/nvim-web-devicons'
+  'nvim-tree/nvim-web-devicons',
 
   -- Open Jupyter notebooks (*.ipynb) thanks to the external jupytext
   -- executable.
-  use 'goerz/jupytext.vim'
+  'goerz/jupytext.vim',
 
   -- Show diffs in git repositories.
   -- Enable with :GitGutterEnable.
-  use 'airblade/vim-gitgutter'
+  'airblade/vim-gitgutter',
 
   -- Manage tabs.
   -- Enter vim-tabmode with <leader><Tab> or :TabmodeEnter.
   -- Can be replaced by barbar.nvim.
-  use {'Iron-E/nvim-tabmode',
-    requires = {{'Iron-E/nvim-libmodal'}}
-  }
+  {'Iron-E/nvim-tabmode',
+    dependencies = {{'Iron-E/nvim-libmodal'}},
+  },
 
   -- Set some variables for project scope.
   -- Drop a '_vimrc_local.vim' file into any project root directory to use.
   -- Also takes .editorconfig into account.
-  -- use 'LucHermitte/local_vimrc'
+  -- 'LucHermitte/local_vimrc',
 
   -- User ranger as file browser.
   -- The difference with francoiscabrol/ranger.vim is the rnvimr is a floating
@@ -659,9 +646,9 @@ return require('packer').startup(function()
   -- - <C-t>: tabedit,
   -- - <C-x>: split,
   -- - <C-v>: vsplit,
-  use {'kevinhwang91/rnvimr',
+  {'kevinhwang91/rnvimr',
     branch = 'lua'
-  }
+  },
 
   -- Create intelligent implementations for C++.
   -- Provides:
@@ -671,16 +658,17 @@ return require('packer').startup(function()
   --     obey the Rule of 3.
   -- - TSCppRuleOf5: adds the missing function declarations to the class to
   --     obey the Rule of 5.
-  use {'Badhi/nvim-treesitter-cpp-tools',
-    requires = 'nvim-treesitter/nvim-treesitter',
-    ft = {'cpp'}
-  }
+  {'Badhi/nvim-treesitter-cpp-tools',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    ft = {'cpp'},
+  },
 
   -- Standalone UI for nvim-lsp progress.
-  use {'j-hui/fidget.nvim',
+  {'j-hui/fidget.nvim',
     branch = 'legacy',  -- Fixed on 2023-06-19 before announced breaking changes.
     config = function() require('fidget').setup{} end,
-  }
+	lazy = false,
+  },
 
   ----------------------
   -- In testing phase --
@@ -689,8 +677,8 @@ return require('packer').startup(function()
   -- Various helper for C++.
   -- <C-X>i: add #include for symbol under cursor.
   -- <M-i>: add #include for symbol under cursor and add scope.
-  -- use {'LucHermitte/lh-cpp',
-  --   requires = {
+  -- {'LucHermitte/lh-cpp',
+  --   dependencies = {
   --     {'LucHermitte/lh-vim-lib'},
   --     {'LucHermitte/lh-style'},
   --     {'LucHermitte/lh-tags'},
@@ -699,107 +687,107 @@ return require('packer').startup(function()
   --     {'LucHermitte/searchInRuntime'},
   --     {'LucHermitte/mu-template'},
   --     {'tomtom/stakeholders_vim'},
-  --     {'LucHermitte/alternate-lite'}
-  --   }
-  -- }
+  --     {'LucHermitte/alternate-lite'},
+  --   },
+  -- },
 
   -- Edit tables the spreadsheet way in Markdown.
   -- Requires sc-im (https://github.com/andmarti1424/sc-im.git).
   -- Provides :OpenInScim.
-  use {'mipmip/vim-scimark',
+  {'mipmip/vim-scimark',
     config = function() require('plugin_setup.scimark') end,
-  }
+  },
 
   -- Use Wandbox (https://wandbox.org/) in vim.
   -- :Wandbox
-  use 'rhysd/wandbox-vim'
+  'rhysd/wandbox-vim',
 
   -- Fade inactive buffers.
-  use 'TaDaa/vimade'
+  'TaDaa/vimade',
 
   -- Minimap.
-  use {'wfxr/minimap.vim',
-    run = 'cargo install --locked code-minimap'
-  }
+  {'wfxr/minimap.vim',
+    build = 'cargo install --locked code-minimap'
+  },
   -- Replacement for :make.
-  use 'neomake/neomake'
+  'neomake/neomake',
 
   -- Easily configure neomake to recognize your PlatformIO project's include
   -- path.
-  use 'coddingtonbear/neomake-platformio'
+  'coddingtonbear/neomake-platformio',
 
   -- Show hunks and add them to the index.
   -- `:Gitsigns toggle_signs` then `<leader>hs`.
   -- Has more features then gitgutter but gitgutter better handles folds, as of
   -- 2022-09-01.
-  use {'lewis6991/gitsigns.nvim',
+  {'lewis6991/gitsigns.nvim',
     config = function() require('plugin_setup.gitsigns') end,
-  }
+  },
 
   -- File browser
   -- :Neotree
-  use {
+  {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
-    requires = {
+    dependencies = {
       'MunifTanjim/nui.nvim',  -- UI Component Library.
       'nvim-tree/nvim-web-devicons',  -- not strictly required, but recommended
       'nvim-lua/plenary.nvim',  -- Utility functions.
-    }
-  }
+    },
+  },
 
   -- Sets filetype for dotfiles in chezmoi source path.
-  use {'alker0/chezmoi.vim'}
+  {'alker0/chezmoi.vim'},
 
   -- Runs `chezmoi apply` on save.
   -- Doesn't work since chezmoi creates a temporary file to edit (2022-09).
-  use {'Lilja/vim-chezmoi'}
+  {'Lilja/vim-chezmoi'},
 
   ---------------------------------------------
   -- Why not but short startup time prefered --
   ---------------------------------------------
 
-  -- use 'tmhedberg/SimpylFold'
-  -- use 'vim-scripts/taglist.vim'
-  -- use 'trotter/autojump.vim'
+  -- 'tmhedberg/SimpylFold',
+  -- 'vim-scripts/taglist.vim',
+  -- 'trotter/autojump.vim',
 
-  -- use 'vim-scripts/project.tar.gz'
+  -- 'vim-scripts/project.tar.gz',
 
   -- Show a VCS diff using Vim's sign column
-  -- use 'mhinz/vim-signify'
+  -- 'mhinz/vim-signify',
 
   -- Experimental minimap
-  -- use 'severin-lemaignan/vim-minimap'
+  -- 'severin-lemaignan/vim-minimap',
 
   -----------------------------------------------
   -- Functionalities provided by other plugins --
   -----------------------------------------------
 
   -- minimal commenting plugin.
-  -- use 'vim-scripts/vim-addon-commenting'
+  -- 'vim-scripts/vim-addon-commenting',
 
   -- Most recently used (:MRU)
   -- Deactivated in favor of Unite.
-  -- use 'vim-scripts/mru.vim'
+  -- 'vim-scripts/mru.vim',
 
   -- Python completion (included in YouCompleteMe)
-  -- use 'davidhalter/jedi-vim.git'
+  -- 'davidhalter/jedi-vim.git',
 
   -- snipMate is incompatible with YouCompleteMe
   -- UltiSnips is used instead of snipMate because of compatibility with YCM
-  -- use 'msanders/snipmate.vim'
+  -- 'msanders/snipmate.vim',
 
   -- Fast file navigation.
   -- Deactivated in favor of Unite (:Unite file).
-  -- use 'wincent/command-t'
+  -- 'wincent/command-t',
 
   -- quickly and easily switch between buffers.
   -- Deactivated in favor of Unite (:Unite buffer).
-  -- use 'c9s/bufexplorer'
+  -- 'c9s/bufexplorer',
 
   -- buffer/file/command/tag/etc explorer with fuzzy matching
   -- Deactivated in favor of Unite.
-  -- use 'vim-scripts/FuzzyFinder'
+  -- 'vim-scripts/FuzzyFinder',
 
   -- A code-completion engine.
   -- Replaced with the built-in LSP client in Neovim.
@@ -811,7 +799,7 @@ return require('packer').startup(function()
   --   call dein#add('Valloric/YouCompleteMe',
   --               \ {'build': 'python3 install.py --clang-completer',
   --               \  'timeout': 600
-  --               \ }
+  --               \ },
   --               \ )
   --               " '--gocode-completer' requires go >= 1.11, so deactivated on
   --               " Ubuntu 18.04 which has 1.10.
@@ -821,28 +809,28 @@ return require('packer').startup(function()
   --                 \ {'build': 'python install.py --clang-completer --gocode-completer',
   --                 \  'timeout': 600,
   --                 \  'rev': 'f928f7dd975d26b608d5310a9139dc5fc310e4a9'
-  --                 \ }
+  --                 \ },
   --                 \ )
   --   else
   --     call dein#add('Valloric/YouCompleteMe',
   --                 \ {'build': 'python install.py --clang-completer --gocode-completer',
   --                 \  'timeout': 600
-  --                 \ }
+  --                 \ },
   --                 \ )
   --   endif
   -- endif
 
   -- Generation of .ycm_extra_conf.py
-  -- use 'rdnetto/YCM-Generator'
+  -- 'rdnetto/YCM-Generator',
 
   -- Configure YouCompleteMe thanks to cmake compile information.
-  -- use 'kgreenek/vim-ros-ycm'
+  -- 'kgreenek/vim-ros-ycm',
 
   -- Help complete parameters of functions (requires YouCompleteMe).
-  -- use 'tenfyzhong/CompleteParameter.vim'
+  -- 'tenfyzhong/CompleteParameter.vim',
 
   -- call dein#add('whiledoing/cmakecomplete',
-  --             \ {'on_ft': 'cmake'}
+  --             \ {'on_ft': 'cmake'},
   --             \ )
 
   -- Alternative to YouCompleteMe based on the Language Server Protocol.
@@ -854,36 +842,36 @@ return require('packer').startup(function()
   --       \ })
 
   -- Replacement for netrw and The-NERD-tree.
-  -- use 'vim-scripts/The-NERD-tree'
+  -- 'vim-scripts/The-NERD-tree',
 
   -- Integrate ranger in vim.
   -- Replace with chadtree in the future?
   -- Replaced with rnvimr.
   -- ranger.vim has the issue that the directory is incorrect on the second
   -- invocation.
-  -- use {'francoiscabrol/ranger.vim',
-  --   requires = {'rbgrouleff/bclose.vim'}
-  -- }
+  -- {'francoiscabrol/ranger.vim',
+  --   dependencies = {'rbgrouleff/bclose.vim'},
+  -- },
 
   -- C/C++ debugger for Neovim, based on LLDB.
-  -- use 'critiqjo/lldb.nvim'
+  -- 'critiqjo/lldb.nvim',
 
   -- Alternative to Unite.
   -- Then `:Clap install-binary`.
-  -- use {'liuchengxu/vim-clap',
-  --   run = ':Clap install-binary',
-  --   requires = {'liuchengxu/vista.vim'}
-  -- }
+  -- {'liuchengxu/vim-clap',
+  --   build = ':Clap install-binary',
+  --   dependencies = {'liuchengxu/vista.vim'},
+  -- },
 
   -- Fuzzy finder
   -- Replaced by Telescope.
-  -- use {'junegunn/fzf',
-  --   run = function() vim.fn['fzf#install']() end,
-  -- }
+  -- {'junegunn/fzf',
+  --   build = function() vim.fn['fzf#install']() end,
+  -- },
 
   -- Syntax checking.
   -- Replaced by nvim-treesitter.
-  -- use 'vim-scripts/syntastic'
+  -- 'vim-scripts/syntastic',
 
   ------------------------------------
   -- Useless or problematic plugins --
@@ -894,45 +882,45 @@ return require('packer').startup(function()
   --call dein#add('vim-scripts/ProjectBrowse', {'rev': 'unix-eol'})
 
   -- cmake.vim changes makeprg in a way that is incompatible with vim-ros
-  -- use 'jalcine/cmake.vim'
+  -- 'jalcine/cmake.vim',
 
   -- delimitMate was not really satisfying (didn't insert <CR> after '{',
   -- broke '.' for repeat last insert
   -- https://github.com/Raimondi/delimitMate/issues/138)
-  -- use 'Raimondi/delimitMate'
+  -- 'Raimondi/delimitMate',
 
   -- Syntax and occurences highlighting
   -- requires Vim 7.4p330+
-  -- use 'bbchung/clighter.git'
+  -- 'bbchung/clighter.git',
 
   -- Nicer tab line with buffers and tabs.
   -- I would prefer not to show hidden buffers.
   -- There was also an issue with the current completer.
-  -- use 'bagrat/vim-buffet'
+  -- 'bagrat/vim-buffet',
 
   -- Nicer tabs.
   -- Messes with `gt` and doesn't play nicely with splits as of 2022-09-01.
-  -- use {'romgrk/barbar.nvim',
-  --   requires = {
+  -- {'romgrk/barbar.nvim',
+  --   dependencies = {
   --     'nvim-tree/nvim-web-devicons',
-  --   }
-  -- }
+  --   },
+  -- },
 
   -- Auto-sessions.
   -- `nvim .` to avoid. `:RestoreSession` to force.
   -- `:SaveSession` to force save.
   -- Pollutes the directory where vim is launched with '~/.cache/nvim/sessions'.
-  -- use 'rmagatti/auto-session'
+  -- 'rmagatti/auto-session',
 
   -- File browser
   -- Doesn't make the tree automatically jump to show the current directory.
-  -- use {
+  -- {
   --   'kyazdani42/nvim-tree.lua',
-  --   requires = {
+  --   dependencies = {
   --     'nvim-tree/nvim-web-devicons', -- optional, for file icon
   --   },
   --   config = function() require'nvim-tree'.setup {} end
-  -- }
+  -- },
 
   -----------------
   -- Interesting --
@@ -958,10 +946,11 @@ return require('packer').startup(function()
   --   call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'build': 'python3 -m chadtree deps'})
   -- endif
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if Packer_bootstrap then
-    require('packer').sync()
-  end
-end
-)
+},
+
+-- Configuration of Lazy.
+{
+  defaults = {
+    lazy = true,
+  },
+})
