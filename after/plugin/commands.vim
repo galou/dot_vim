@@ -1,5 +1,6 @@
-" FSHeaderAbove is defined in fswitch.vim.
-command! A FSHeaderAbove
+" ClangdSwitchSourceHeader is defined by clangd_extensions.nvim
+" (https://git.sr.ht/~p00f/clangd_extensions.nvim)
+command! A ClangdSwitchSourceHeader
 
 function! s:delete_trailing_whitespace()
     " TODO: do not modify the '/' register.

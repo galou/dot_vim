@@ -121,7 +121,9 @@ return require('packer').startup(function()
   -- Telescope's which_key (insert mode: <C-/>, normal mode: ?) to list mappings attached to your picker.
   -- Keys maps (mostly `<leader>f?`) in ../../bindings.vim.
   use {'nvim-telescope/telescope.nvim',
-    requires = {'nvim-lua/plenary.nvim'},
+    requires = {
+      'nvim-lua/plenary.nvim',  -- Utility functions.
+    },
     config = function() require('plugin_setup.telescope') end,
   }
   -- Frequent/recent files for Telescope.
@@ -182,7 +184,10 @@ return require('packer').startup(function()
   }
   -- File browser from the current directory.
   use {'nvim-telescope/telescope-file-browser.nvim',
-    requires = {'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim'},
+    requires = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim',  -- Utility functions.
+    },
     after = 'telescope.nvim',
     config = function() require('telescope').load_extension('file_browser') end,
   }
@@ -372,8 +377,8 @@ return require('packer').startup(function()
   -- Extract function or variable from last visual selection.
   use {'ThePrimeagen/refactoring.nvim',
     requires = {
-        {'nvim-lua/plenary.nvim'},
-        {'nvim-treesitter/nvim-treesitter'}
+        'nvim-lua/plenary.nvim',  -- Utility functions.
+        'nvim-treesitter/nvim-treesitter',
     },
     config = function() require('plugin_setup.refactoring') end,
   }

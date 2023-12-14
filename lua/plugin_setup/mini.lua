@@ -140,7 +140,7 @@ require('mini.bracketed').setup({
 })
 
 -- mini.clue
--- Show next key clues.
+-- Show next key clues (show keybindings).
 local miniclue = require('mini.clue')
 miniclue.setup({
   triggers = {
@@ -239,7 +239,7 @@ require('mini.cursorword').setup({
 -- Activate but disable.
 -- let g:miniindentscope_disable=v:false or let b:miniindentscope_disable=v:false to enable.
 require('mini.indentscope').setup({})
-vim.g.miniindentscope_diable=true
+vim.g.miniindentscope_disable=true
 
 -- Improved f, t, F, T.
 -- Repeat with f, t, F, T.

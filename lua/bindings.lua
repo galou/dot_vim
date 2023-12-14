@@ -102,4 +102,7 @@ vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
 
 -- query-secretary
 -- ---------------
-vim.keymap.set('n', '<leader>s', function() require('query-secretary').query_window_initiate() end, opts)
+vim.keymap.set('n', '<leader>s', require('query-secretary').query_window_initiate, opts)
+
+-- <C-*> for * with telescope-live-grep-args.
+-- vim.keymap.set('n', '<C-*>', require('telescope-live-grep-args.shortcuts').live_grep_args_shortcuts.grep_word_under_cursor, opts)

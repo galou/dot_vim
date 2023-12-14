@@ -5,7 +5,7 @@ local close_with_q = api.nvim_create_augroup('close_with_q', { clear = true })
 api.nvim_create_autocmd(
   'FileType',
   {
-    pattern = { 'help', 'startuptime', 'qf' },
+    pattern = { 'help', 'startuptime', 'qf', 'fugitive' },
     command = [[nnoremap <buffer><silent> q :close<CR>]],
     group = close_with_q,
   }
@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd(
       vim.wo.signcolumn = 'no'
       vim.wo.foldcolumn = '0'
       vim.wo.colorcolumn = ''
-      vim.wo.cursorline = false
+      vim.wo.cursorline = true
       vim.wo.cursorcolumn = false
       vim.wo.list = false
       vim.wo.spell = false

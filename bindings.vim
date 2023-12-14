@@ -6,9 +6,16 @@ inoremap <C-S>		<C-O>:update<CR>
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+" Search and highlight but not jump.
 " Map '*' to stay on the current word.
+"
 " TODO: jumps backward in history when there is only one match.
 " nnoremap * *<C-O>
+"
+" TODO: solve the recursive-function issue.
+" nnoremap * :keepjumps normal *``<cr>
+"
+" <C-*> mapped in lua/bindings.lua.
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -17,10 +24,6 @@ inoremap <C-U> <C-G>u<C-U>
 " Select last pasted text with 'gV', cf.
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text.
 nnoremap <expr> gV '`[' . strpart(getregtype(), 0, 1) . '`]'
-
-" Search and highlight but not jump.
-" TODO: solve the recursive-function issue.
-" nnoremap * :keepjumps normal *``<cr>
 
 " TODO
 " :'a,'by* -- Yank range into paste -- yank to paste buffer (ex mode)
