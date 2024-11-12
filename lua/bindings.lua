@@ -113,6 +113,16 @@ vim.keymap.set('n', '<leader>s', require('query-secretary').query_window_initiat
 -- <C-*> for * with telescope-live-grep-args.
 -- vim.keymap.set('n', '<C-*>', require('telescope-live-grep-args.shortcuts').live_grep_args_shortcuts.grep_word_under_cursor, opts)
 
+-- BufferChad
+-- ----------
+-- In normal mode
+-- <leader>fb: opens the bufferchad window.
+-- <leader>f': opens the bufferchad window with only the marked buffers.
+-- mset: mark buffer
+-- 1set, 2set, ...: mark buffer 1, 2, ...
+-- 1nav, 2nav, ...: jump to buffer 1, 2, ...
+-- mdel: delete mark
+
 -- before.nvim
 -- -----------
 local before = require('before')

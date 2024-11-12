@@ -274,6 +274,21 @@ require('lazy').setup({
     dependencies = {'nvim-telescope/telescope.nvim'},
     config = function() require('telescope').load_extension('live_grep_args') end,
   },
+  -- Buffer Manager
+  -- https://github.com/mrquantumcodes/bufferchad.nvim.
+  -- Keybindinds defined in plugin_setup.bufferchad.lua:
+  -- - \bb show all, \bm show marked
+  -- - 1set, 2set, ...: mark buffer 1, 2, ...
+  -- - 1nav, 2nav, ...: jump to buffer 1, 2, ...
+  {'mrquantumcodes/bufferchad.nvim',
+    dependencies = {
+    --    {"nvim-lua/plenary.nvim"},
+    --    {"MunifTanjim/nui.nvim"},
+    --    {"stevearc/dressing.nvim"},
+       {'nvim-telescope/telescope.nvim'} -- needed for fuzzy search, but should work fine even without it
+    },
+    config = function() require('plugin_setup.bufferchad') end,
+  },
 
   -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
   -- Alternatives: https://github.com/ms-jpq/coq_nvim.
