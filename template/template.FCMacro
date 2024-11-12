@@ -15,3 +15,7 @@ __Status__ = ''
 __Requires__ = 'FreeCAD ?.??'
 __Communication__ = 'https://github.com/FreeCAD/FreeCAD-macros/issues/'
 __Files__ = ''
+
+import FreeCAD as app
+
+import FreeCADGui as gui

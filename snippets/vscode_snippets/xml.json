@@ -9,5 +9,19 @@
       "  ]]>",
       "</LuaScript>"
     ]
+  },
+  "port_remapping": {
+    "prefix": "pr",
+    "description": "<1>=`{<1>}`",
+    "body": [
+      "$1=\"{$1}\"$0"
+    ]
+  },
+  "port_remapping_private": {
+    "prefix": "pr_",
+    "description": "<1>=`{_<1>}`",
+    "body": [
+      "$1=\"{_$1}\"$0"
+    ]
   }
 }

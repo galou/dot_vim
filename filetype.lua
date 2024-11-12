@@ -14,6 +14,7 @@ vim.filetype.add({
     sdf = 'xml',
     sip = 'sip',
     tikz = 'tex',
+    wbt = 'vrml',
     world = 'xml',
   },
   -- filename = {
