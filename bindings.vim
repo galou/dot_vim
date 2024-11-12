@@ -73,7 +73,10 @@ nnoremap <leader>f<S-k> <cmd>Telescope command_history<CR>
 nnoremap <leader>fm <cmd>Telescope frecency<CR>
 nnoremap <leader>fo <cmd>Telescope vim_options<CR>
 nnoremap <leader>fp <cmd>Telescope project<CR>
-nnoremap <leader>fr <cmd>lua require'telescope'.extensions.ros.packages{cwd=os.getenv("ROS_WORKSPACE") or "."}<CR>
+" bi0ha2ard/telescope-ros.nvim:
+" nnoremap <leader>fr <cmd>lua require'telescope'.extensions.ros.packages{cwd=os.getenv("ROS_WORKSPACE") or "."}<CR>
+" tadachs/ros-nvim:
+nnoremap <leader>fr <cmd>Telescope ros ros<CR>
 nnoremap <Leader>f<S-r> <cmd>lua require'telescope.builtin'.live_grep({search_dirs={os.getenv('ROS_WORKSPACE'), '/opt/ros', '.'}})<CR>
 nnoremap <leader>fs <cmd>Telescope lsp_document_symbols<CR>
 " nnoremap <leader>ft <cmd>Telescope current_buffer_tags<CR> " Slow

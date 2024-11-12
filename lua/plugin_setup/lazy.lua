@@ -710,7 +710,36 @@ require('lazy').setup({
     -- config = function() require('auto_indent') end,
   },
 
+  -- Utilities for ROS.
+  -- :Rosed.
+  -- <leader>rol: follow links in launch files.
+  -- <leader>rdi: show definition for interfaces (messages/services) in floating window.
+  {'tadachs/ros-nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',  -- optional
+      'nvim-treesitter/nvim-treesitter',  -- optional
+    },
+    config = function() require('ros-nvim').setup({only_workspace = true}) end,
+  },
 
+  -- Utilities for ROS2.
+  -- https://github.com/ErickKramer/nvim-ros2
+  -- :Telescope ros2 {actions,interfaces,nodes,services,topics}
+  -- Run `:TSInstall ros2` after installation.
+  {'ErickKramer/nvim-ros2',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      -- Add any custom options here
+      autocmds = true,
+      telescope = true,
+      treesitter = true,
+    }
+  },
 
   -- Undo management (:GundoToggle).
   {'sjl/gundo.vim',

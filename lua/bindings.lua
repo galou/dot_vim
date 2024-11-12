@@ -123,6 +123,13 @@ vim.keymap.set('n', '<leader>s', require('query-secretary').query_window_initiat
 -- 1nav, 2nav, ...: jump to buffer 1, 2, ...
 -- mdel: delete mark
 
+-- ros-nvim
+-- --------
+-- <leader>fr: Telescope ros ros
+-- follow links in launch files
+vim.keymap.set('n', '<leader>rol', function() require('ros-nvim.ros').open_launch_include() end, opts)
+-- show definition for interfaces (messages/services) in floating window
+vim.keymap.set('n', '<leader>rdi', function() require('ros-nvim.ros').show_interface_definition() end, opts)
 -- before.nvim
 -- -----------
 local before = require('before')
