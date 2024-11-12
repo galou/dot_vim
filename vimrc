@@ -23,14 +23,15 @@ let g:loaded_python_provider = 1  " Python 2.
 let g:loaded_ruby_provider = 1
 let g:loaded_perl_provider = 1
 
-" General configuration
-filetype plugin indent on
-syntax on
-
 " Load plugins.
 if has('nvim')
   lua require('plugin_setup/lazy') -- file `lua/plugin_setup/lazy.lua`.
 endif
+
+" General configuration
+" chezmoi.vim requires `filetype on` to be called after loading the plugin.
+filetype plugin indent on
+syntax on
 
 " Custom filetypes are defined in ~/.config/nvim/filetype.lua.
 
