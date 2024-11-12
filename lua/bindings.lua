@@ -130,6 +130,14 @@ vim.keymap.set('n', '<leader>s', require('query-secretary').query_window_initiat
 vim.keymap.set('n', '<leader>rol', function() require('ros-nvim.ros').open_launch_include() end, opts)
 -- show definition for interfaces (messages/services) in floating window
 vim.keymap.set('n', '<leader>rdi', function() require('ros-nvim.ros').show_interface_definition() end, opts)
+
+-- delimited.nvim
+-- --------------
+local del = require('delimited')
+vim.keymap.set('n', '[d', del.goto_prev, opts)
+vim.keymap.set('n', ']d', del.goto_next, opts)
+vim.keymap.set('n', '[D', function() del.goto_prev({severity = vim.diagnostic.severity.ERROR}) end, opts)
+vim.keymap.set('n', ']D', function() del.goto_next({severity = vim.diagnostic.severity.ERROR}) end, opts)
 -- before.nvim
 -- -----------
 local before = require('before')

@@ -502,6 +502,13 @@ require('lazy').setup({
     cmd = "Trouble",
   },
 
+  -- Highlight the exact range of a diagnostic.
+  -- https://github.com/mizlan/diagnostic-nvim
+  -- ]d, [d, ]D, [D: navigate through diagnostics (configured in bindings.lua).
+  {'mizlan/delimited.nvim',
+    event = {'BufEnter', 'BufRead'},
+  },
+
   -- Code refactoring.
   -- :'<,'>Refactor {extract_block_to_file, extract, extract_block, extract_var, extract_to_file}.
   -- Extract function or variable from last visual selection.

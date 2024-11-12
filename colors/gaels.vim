@@ -423,6 +423,12 @@ hi TreesitterContext ctermfg=0 guifg=Black ctermbg=241 guibg=#626262
 " mini.lua
 " hi MiniClueNextKey ctermfg=15 guifg=White  " next key label in clue window
 
+" delimited-nvim.
+" hi! link DelimitedError DiagnosticVirtualTextError
+" hi! link DelimitedWarn DiagnosticVirtualTextWarn
+" hi! link DelimitedInfo DiagnosticVirtualTextInfo
+" hi! link DelimitedHint DiagnosticVirtualTextHint
+
 let g:colors_name = "gaels"
 
 " vim: sw=2
