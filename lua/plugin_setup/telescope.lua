@@ -5,7 +5,9 @@
 -- - `lsp_handlers`
 -- - `advanced_git_search`
 
-local telescope = require("telescope")
+local telescope = require('telescope')
+local actions = require('telescope.actions')
+local builtin = require('telescope.builtin')
 
 telescope.setup({
 
@@ -21,7 +23,7 @@ telescope.setup({
 
   pickers = {
     find_files = {
-      theme = "dropdown",
+      theme = 'dropdown',
     }
   },
 
@@ -78,6 +80,20 @@ telescope.setup({
       -- theme = "dropdown", -- use dropdown theme
       -- theme = { }, -- use own theme spec
       -- layout_config = { mirror=true }, -- mirror preview pane
-    }
+    },
+
+    -- 'nvim-telescope/telescope-project.nvim'
+    project = {
+      on_project_selected = function(prompt_bufnr, hidden_files)
+          -- Inspired from upstream find_project_files.
+          -- M.find_project_files = function(prompt_bufnr, hidden_files)
+          local project_actions = require('telescope._extensions.project.actions')
+          local project_path = project_actions.get_selected_path(prompt_bufnr)
+          actions._close(prompt_bufnr, true)
+          vim.schedule(function()
+            builtin.find_files({cwd = project_path, hidden = hidden_files})
+          end)
+        end,
+    },
   },
 })

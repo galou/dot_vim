@@ -56,17 +56,18 @@ autocmd FileType text map <buffer> j gj
 autocmd FileType text map <buffer> k gk
 
 " Telescope
-inoremap <C-t> <ESC><cmd>Telescope tele_tabby<CR>
-nnoremap <C-t> <cmd>Telescope tele_tabby list<CR>
+" inoremap <C-t> <ESC><cmd>Telescope tele_tabby<CR>  " Overwrites `indent line`.
+" nnoremap <C-t> <cmd>Telescope tele_tabby list<CR>  " Overwrite `jump to the last entry in thne tag stack
 nnoremap <leader>f" <cmd>Telescope registers<CR>
 " nnoremap <leader>f/ <cmd>Telescope search_history<CR>  " Doesn't bring much
 nnoremap <leader>f/ :vimgrep /<C-r>// %<CR><cmd>Telescope quickfix<CR>  " Search with vimgrep (to quickfix) and Telescope quickfix
+" bufferchad could be used for the same purpose (cf. lua/plugin_setup/bufferchad.lua).
 nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<CR>
 nnoremap <leader>fg <cmd>Telescope git_files<CR>
 nnoremap <Leader>f<S-g> <cmd>Telescope live_grep<CR>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fi <cmd>Telescope jumplist<CR>
+nnoremap <leader>fj <cmd>Telescope jumplist<CR>
 nnoremap <leader>fk <cmd>Telescope commands<CR>
 nnoremap <leader>f<S-k> <cmd>Telescope command_history<CR>
 nnoremap <leader>fm <cmd>Telescope frecency<CR>

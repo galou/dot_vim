@@ -289,6 +289,12 @@ require('lazy').setup({
     },
     config = function() require('plugin_setup.bufferchad') end,
   },
+  {'davvid/telescope-git-grep.nvim',
+    dependencies = {
+       {'nvim-telescope/telescope.nvim'}
+    },
+    config = function() require('telescope').load_extension('git_grep') end,
+  },
 
   -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
   -- Alternatives: https://github.com/ms-jpq/coq_nvim.
