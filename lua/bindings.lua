@@ -157,3 +157,28 @@ vim.keymap.set('n', '<leader>oq', before.show_edits_in_quickfix, opts)
 
 -- Look for previous edits in telescope (needs telescope, obviously)
 vim.keymap.set('n', '<leader>oe', before.show_edits_in_telescope, opts)
+
+-- multicursor.nvim
+-- ----------------
+local mc = require("multicursor-nvim")
+
+vim.keymap.set("n", "<esc>", function()
+  if mc.hasCursors() then
+    mc.clearCursors()
+  else
+    -- default <esc> handler
+  end
+end)
+
+-- add cursors above/below the main cursor
+-- vim.keymap.set("n", "<up>", function() mc.addCursor("k") end)
+-- vim.keymap.set("n", "<down>", function() mc.addCursor("j") end)
+
+-- add a cursor and jump to the next word under cursor
+-- vim.keymap.set("n", "<c-n>", function() mc.addCursor("*") end)
+
+-- jump to the next word under cursor but do not add a cursor
+-- vim.keymap.set("n", "<c-s>", function() mc.skipCursor("*") end)
+
+-- add and remove cursors with control + left click
+vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)

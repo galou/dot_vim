@@ -433,6 +433,10 @@ hi BiscuitColor guifg=Grey23
 " hi! link DelimitedInfo DiagnosticVirtualTextInfo
 " hi! link DelimitedHint DiagnosticVirtualTextHint
 
+" multicursor.nvim
+hi! link MultiCursorCursor Cursor
+hi! link MultiCursorVisual Visual
+
 let g:colors_name = "gaels"
 
 " vim: sw=2

@@ -925,6 +925,12 @@ require('lazy').setup({
     lazy = false,
   },
 
+  -- Multiple cursor
+  -- https:://github.com/jake-stewart/multicursor
+  -- Bindings in `bindings.lua`.
+  {'jake-stewart/multicursor.nvim',
+    config = function() require('multicursor-nvim').setup() end,
+  },
 
   -- Various helper for C++.
   -- <C-X>i: add #include for symbol under cursor.
