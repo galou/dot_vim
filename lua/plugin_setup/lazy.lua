@@ -58,6 +58,15 @@ require('lazy').setup({
   'L3MON4D3/LuaSnip',
   -- Some common snippets.
   'rafamadriz/friendly-snippets',
+  -- Automatic snippet creation.
+  -- Bindings defined in ../bindings.lua.
+  {
+    'chrisgrieser/nvim-scissors',
+    dependencies= {'nvim-telescope/telescope.nvim'}, -- optional
+    opts = {
+      snippetDir = vim.fn.stdpath("data") .. "/snippets",
+    },
+  },
 
   -- Basic support for .env files, ':Dotenv {file}'.
   {'tpope/vim-dotenv',
