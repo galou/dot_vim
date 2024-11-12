@@ -492,6 +492,15 @@ require('lazy').setup({
     }
   },
 
+  -- A pretty list for showing diagnostics, references, telescope results,
+  -- quickfix and location lists to help you solve all the trouble your code is causing.
+  -- https://github.com/folke/trouble.nvim
+  -- :Trouble diagnostics filter.severity=vim.diagnostic.severity.ERROR pinned=true follow=true
+  -- :Trouble symbols toggle pinned=true follow=true win.relative=win win.position=right
+  {'folke/trouble.nvim',
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+  },
 
   -- Code refactoring.
   -- :'<,'>Refactor {extract_block_to_file, extract, extract_block, extract_var, extract_to_file}.
