@@ -597,6 +597,14 @@ require('lazy').setup({
 
   -- Undo management (:GundoToggle).
   'sjl/gundo.vim',
+  -- Jump to changes, also accross files.
+  -- https://github.com/bloznelis/before.nvim
+  -- Key bindings in bindings.lua.
+  {
+  'bloznelis/before.nvim',
+   config = function() require('plugin_setup.before') end,
+   event = {'BufModifiedSet'},
+  },
 
   -- Syntax highlighting support for Pweave files, scientific report with
   -- LaTeX and Python.
