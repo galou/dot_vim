@@ -706,6 +706,22 @@ require('lazy').setup({
     cmd = {'Gen'},
   },
 
+  -- Local and remote LLM.
+  -- Works with ollama and OpenAI.
+  -- Start the ollama LLM server `ollama serve`.
+  -- https://github.com/dustinblackman/oatmeal.nvim
+  {
+    'dustinblackman/oatmeal.nvim',
+    cmd = {'Oatmeal'},
+    -- keys = {
+    --   {'<leader>om', mode = 'n', desc = 'Start Oatmeal session'},
+    -- },
+    opts = {
+      backend = 'ollama',
+      model = 'mistral:instruct',
+    },
+  },
+
   -- Neodev
   -- Neovim setup for init.lua and plugin development with full signature
   -- help, docs and completion for the nvim lua API.

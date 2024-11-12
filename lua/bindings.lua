@@ -110,6 +110,10 @@ vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
 -- ---------------
 vim.keymap.set('n', '<leader>s', require('query-secretary').query_window_initiate, opts)
 
+-- Oatmeal
+-- -------
+vim.keymap.set('n', '<leader>om', '<cmd>Oatmeal<CR>', opts)
+
 -- <C-*> for * with telescope-live-grep-args.
 -- vim.keymap.set('n', '<C-*>', require('telescope-live-grep-args.shortcuts').live_grep_args_shortcuts.grep_word_under_cursor, opts)
 
