@@ -13,12 +13,40 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  ------------------------
-  -- Personal must-have --
-  ------------------------
 
   -- git integration.
-  'tpope/vim-fugitive',
+  {'tpope/vim-fugitive',
+    cmd = {
+      'GBrowse',
+      'GDelete',
+      'GMove',
+      'GRemove',
+      'GRename',
+      'GUnlink',
+      'Gbrowse',
+      'GcLog',
+      'Gcd',
+      'Gclog',
+      'Gdiffsplit',
+      'Gdrop',
+      'Gedit',
+      'Ggrep',
+      'Ghdiffsplit',
+      'Git',
+      'GlLog',
+      'Glcd',
+      'Glgrep',
+      'Gllog',
+      'Gpedit',
+      'Gread',
+      'Gsplit',
+      'Gtabedit',
+      'Gvdiffsplit',
+      'Gvsplit',
+      'Gwq',
+      'Gwrite',
+    },
+  },
 
   -- Interactive git log viewer.
   -- Provides :GitLog.
@@ -31,18 +59,15 @@ require('lazy').setup({
   -- Some common snippets.
   'rafamadriz/friendly-snippets',
 
-  -- 'SirVer/ultisnips',
-
-  -- Default snippets for UltiSnips
-  'honza/vim-snippets',
-
   -- Basic support for .env files, ':Dotenv {file}'.
   {'tpope/vim-dotenv',
     ft = {'python'},
   },
 
   -- Show a tip on vim startup.
-  'hobbestigrou/vimtips-fortune',
+  {'hobbestigrou/vimtips-fortune',
+    event = {'VimEnter'},
+  },
 
   -- Editing ROS source files.
   -- 'taketwo/vim-ros',
@@ -63,13 +88,19 @@ require('lazy').setup({
   'tpope/vim-unimpaired',
 
   -- Automatic indent detection.
-  'tpope/vim-sleuth',
+  -- Alternative: 'nathanaelkane/vim-indent-guides',
+  {'tpope/vim-sleuth',
+    -- event= {'BufEnter', 'BufRead'},
+    even = {'VimEnter'},
+  },
 
   -- Block commenting.
   -- Supports line comment (gc{move}) or block comment (gb{move}).
+  -- https://github.com/numToStr/Comment.nvim
+  -- Alternative: https://github.com/alexshelto/boringcomment.nvim
   {'numToStr/Comment.nvim',
     config = function() require('plugin_setup.comment') end,
-	event = {'BufEnter', 'BufRead'},
+    keys = {'gc', 'gb'},
   },
 
   -- Repeat ('.') also for complex mapping.
@@ -79,7 +110,10 @@ require('lazy').setup({
   -- - ':Subvert': replace a word with another while respecting case and plural.
   -- - Change between variable conventions (dash-case, MixedCase, camelCase, ...).
   --   Mapped to 'cr_', 'cr-', 'crm', 'crc', 'cr.',
-  'tpope/vim-abolish',
+  {'tpope/vim-abolish',
+    keys = {'cr'},
+    cmd = {'Subvert'},
+  },
 
   -- Argumentative aids with manipulating and moving between function
   -- arguments.
@@ -97,7 +131,7 @@ require('lazy').setup({
 
   -- Use airline as alternative to unsupported powerline.
   {'vim-airline/vim-airline',
-	  lazy = false,
+    lazy = false,
   },
 
   -- Debugging in vim.
@@ -120,7 +154,10 @@ require('lazy').setup({
   -- Configured also in `neodev.lua`.
   -- `:lua require("dapui").open()`.
   {'rcarriga/nvim-dap-ui',
-    dependencies = {'mfussenegger/nvim-dap'},
+    dependencies = {
+      'mfussenegger/nvim-dap',
+      'nvim-neotest/nvim-nio',
+    },
     config = function() require('dapui').setup({}) end,
   },
 
@@ -133,7 +170,7 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',  -- Utility functions.
     },
     config = function() require('plugin_setup.telescope') end,
-	lazy = false,
+    lazy = false,
   },
   -- Frequent/recent files for Telescope.
   {'nvim-telescope/telescope-frecency.nvim',
@@ -152,10 +189,11 @@ require('lazy').setup({
     config = function() require('telescope').load_extension('tele_tabby') end,
   },
   -- find_files in a specific ROS package for Telescope.
-  {'bi0ha2ard/telescope-ros.nvim',
-    dependencies = {'nvim-telescope/telescope.nvim'},
-    config = function() require('telescope').load_extension('ros') end,
-  },
+  -- Too slow compared with tadachs/ros-nvim.
+  -- {'bi0ha2ard/telescope-ros.nvim',
+  --   dependencies = {'nvim-telescope/telescope.nvim'},
+  --   config = function() require('telescope').load_extension('ros') end,
+  -- },
   -- Register LSP handlers for Telescope.
   {'gbrlsnchs/telescope-lsp-handlers.nvim',
     dependencies = {'nvim-telescope/telescope.nvim'},
@@ -179,7 +217,7 @@ require('lazy').setup({
   -- Tab switching for Telescope.
   {'LukasPietzschmann/telescope-tabs',
     dependencies = {'nvim-telescope/telescope.nvim'},
-    config = function() require'telescope-tabs'.setup({}) end,
+    config = function() require('telescope-tabs').setup({}) end,
   },
   -- File browser from the current directory.
   {'nvim-telescope/telescope-file-browser.nvim',
@@ -252,11 +290,12 @@ require('lazy').setup({
       require('plugin_setup.cmp')
       require('plugin_setup.luasnip')
     end,
-	-- event = {'BufEnter', 'BufRead'},
-	lazy = false,
+    -- event = {'BufEnter', 'BufRead'},
+    lazy = false,
   },
 
   -- A class outline viewer, requires ctags.
+  -- :Tagbar
   'majutsushi/tagbar',
 
   -- Regenerate tag files on the go.
@@ -282,7 +321,9 @@ require('lazy').setup({
   -- Can also be done via autocmd
   -- (https://alpha2phi.medium.com/neovim-for-beginners-lua-autocmd-and-keymap-functions-3bdfe0bebe42)
   -- but not nice with hl_IncSearch.
-  'machakann/vim-highlightedyank',
+  {'machakann/vim-highlightedyank',
+    event = {'TextYankPost'},
+  },
 
   -- Syntax highlighting for i3 config.
   'mboughaba/i3config.vim',
@@ -295,11 +336,8 @@ require('lazy').setup({
   -- <leader>KC: toggle comments (switch comments off)
   'dbeniamine/cheat.sh-vim',
 
-  -- Switch between header and source file.
-  -- Alternatively: https://github.com/LucHermitte/alternate-lite
-  'derekwyatt/vim-fswitch',
-
   -- Collection of minimal, independent, and fast Lua modules.
+  -- https://github.com/echasnovski/mini.nvim
   -- mini.align: text alignment, replacement of 'junegunn/vim-easy-align'.
   -- mini.completion: two-stage completion, used to show the signature.
   -- mini.cursorword: highlight word under cursor.
@@ -308,6 +346,7 @@ require('lazy').setup({
   --   `lua MiniTrailspace.trim()`.
   {'echasnovski/mini.nvim',
     config = function() require('plugin_setup.mini') end,
+    event = {'BufEnter', 'BufRead'},
   },
 
   -- Show cursors jumps.
@@ -325,9 +364,11 @@ require('lazy').setup({
   -- Used to be as autocommand but the autocommand didn't open folds.
   {'ethanholz/nvim-lastplace',
     config = function() require('plugin_setup.lastplace') end,
+    event = {'BufEnter', 'BufRead'},
   },
 
   -- Per-project LSP configuration.
+  -- https://github.com/tamago324/nlsp-settings.nvim.git
   -- `:LspSettings buffer`: Open the global settings file that
   --                        matches the current buffer.
   -- `:LspSettings local buffer`: Open the local settings file
@@ -342,9 +383,11 @@ require('lazy').setup({
   -- Provide some installation scripts for some LSP servers, DAP servers,
   -- linters, and formatters.
   -- Replacement for 'williamboman/nvim-lsp-installer'
+  -- Alternative: https://github.com/dundalek/lazy-lsp.nvim.
   {'williamboman/mason.nvim',
     config = function() require('mason').setup({}) end,
-	event = {'BufEnter', 'BufRead'},
+    -- event = {'BufEnter', 'BufRead'},
+    lazy = false,
   },
 
   -- Companion to mason.nvim.
@@ -355,7 +398,8 @@ require('lazy').setup({
       'williamboman/mason.nvim',
     },
     config = function() require('mason-lspconfig').setup({}) end,
-	event = {'BufEnter', 'BufRead'},
+    -- event = {'BufEnter', 'BufRead'},
+    lazy = false,
   },
 
   -- LSP extra functionnalities.
@@ -370,32 +414,43 @@ require('lazy').setup({
   -- :Lspsaga incoming_calls and :Lspsaga outgoing_calls.
   {'nvimdev/lspsaga.nvim',
     dependencies = {
-	  'neovim/nvim-lspconfig',
+      'neovim/nvim-lspconfig',
       'nvim-treesitter/nvim-treesitter',  -- optional
       'nvim-tree/nvim-web-devicons', -- optional
     },
     config = function() require('lspsaga').setup({}) end,
-	event = {'BufEnter', 'BufRead'},
+    cmd = {'Lspsaga'},
   },
 
   -- Provide some configurations for the built-in LSP client.
+  -- https://github.com/neovim/nvim-lspconfig
   {'neovim/nvim-lspconfig',
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
     },
     config = function() require('plugin_setup.lspconfig') end,
-	event = {'BufEnter', 'BufRead'},
+    event = {'BufEnter', 'BufRead'},
   },
 
   -- Extra features for clangd LSP.
   -- Configuration in `clangd_extensions.lua`.
   -- :ClangdSymbolInfo
   -- :ClangdTypeHierarchy
-  -- :ClangdSwitchHeader
+  -- :ClangdSwitchSourceHeader
   {'https://git.sr.ht/~p00f/clangd_extensions.nvim',
     config = function() require('plugin_setup.clangd_extensions') end,
     commit = '798e377ec859087132b81d2f347b5080580bd6b1', -- Bug in 6d0bf368 (2023-05-23) with virtual text.
+    cmd = {
+      'ClangdDisableInlayHints',
+      'ClangdMemoryUsage',
+      'ClangdSetInlayHints',
+      'ClangdSwitchSourceHeader',
+      'ClangdSymbolInfo',
+      'ClangdToggleInlayHints',
+      'ClangdTypeHierarchy',
+      'ClangdAST',
+    }
   },
 
 
@@ -408,20 +463,24 @@ require('lazy').setup({
         'nvim-treesitter/nvim-treesitter',
     },
     config = function() require('plugin_setup.refactoring') end,
+    cmd = {'Refactor'},
   },
 
   -- Github's Copilot.
   -- Instead of the official copilot plugin ('github/copilot.vim').
   {'zbirenbaum/copilot.lua',
     cmd = 'Copilot',  -- Lazy-load with :Copilot.
-    event = 'InsertEnter',  -- Lazy-load on InsertEnter.
     config = function() require('plugin_setup.copilot') end,
+    -- event = 'InsertEnter',  -- Lazy-load on InsertEnter.
+    event = {'BufEnter', 'BufRead'},
   },
 
   -- Integration of zbirenbaum/copilot with cmp.
+  -- https://github.com/zbirenbaum/copilot-cmp
   {'zbirenbaum/copilot-cmp',
     dependencies = {'zbirenbaum/copilot.lua'},
-    config = function () require('copilot_cmp').setup() end
+    config = function () require('copilot_cmp').setup() end,
+    event = {'BufEnter', 'BufRead'},
   },
 
   -- Syntax highlighting.
@@ -429,6 +488,7 @@ require('lazy').setup({
   {'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function() require('plugin_setup.treesitter') end,
+    event = {'BufEnter', 'BufRead'},
   },
 
   -- Write TreeSitter queries for you.
@@ -439,6 +499,7 @@ require('lazy').setup({
   {'nvim-treesitter/nvim-treesitter-context',
     dependencies = {'nvim-treesitter/nvim-treesitter'},
     config = function() require('plugin_setup.treesitter-context') end,
+    cmd = {'TSContextToggle'},
   },
 
   -- Jump or move elements according to their function
@@ -458,6 +519,7 @@ require('lazy').setup({
   {'Wansmer/treesj',
     dependencies = {'nvim-treesitter'},
     config = function() require('plugin_setup.treesj') end,
+    cmd = {'TSJToggle', 'TSJSplit', 'TSJJoin'},
   },
 
   -- Improve layout and preview of the Quickfix window.
@@ -475,7 +537,7 @@ require('lazy').setup({
   --   crtl-x: in fzf, open in a new horizontal split
   {'kevinhwang91/nvim-bqf',
     ft = 'qf',
-    config = function() require('plugin_setup.nvim_bqf') end,
+    config = function() require('bqf').setup({}) end,
   },
 
   -- Diff on part of files.
@@ -487,10 +549,6 @@ require('lazy').setup({
   {'michaelb/sniprun',
     build = 'bash install.sh'
   },
-
-  -- Visualize indent.
-  -- Enable with `:IndentGuidesEnable`.
-  'nathanaelkane/vim-indent-guides',
 
   -- Manage a terminal buffer easierly.
   -- Bound to '<leader>tt'
@@ -551,6 +609,8 @@ require('lazy').setup({
   -- Start the ollama LLM server `ollama serve`.
   -- Then `:Gen {prompt}`
   -- Cf. `prompt.lua` for the list of prompts.
+  -- Cf. https://dev.to/ottercyborg/neovim-my-setup-for-developer-assistant-with-local-language-models-2nim
+  -- for the ability to switch between local and remote models.
   {'David-Kunz/gen.nvim',
     config = function() require('plugin_setup.gen_config') end,
     cmd = {'Gen'},
@@ -585,18 +645,15 @@ require('lazy').setup({
     -- config = function() require('auto_indent') end,
   },
 
-  ------------------
-  -- Color themes --
-  ------------------
 
-  -- 'folke/tokyonight.nvim',
-
-  ----------------------------------
-  -- Not often used but practical --
-  ----------------------------------
 
   -- Undo management (:GundoToggle).
-  'sjl/gundo.vim',
+  {'sjl/gundo.vim',
+    cmd = {
+      'GundoToggle',
+    },
+  },
+
   -- Jump to changes, also accross files.
   -- https://github.com/bloznelis/before.nvim
   -- Key bindings in bindings.lua.
@@ -608,17 +665,25 @@ require('lazy').setup({
 
   -- Syntax highlighting support for Pweave files, scientific report with
   -- LaTeX and Python.
-  'naught101/vim-pweave',
+  {'naught101/vim-pweave',
+    ft = {'pweave'},
+  },
 
   -- JSON bindings.
   -- aj provides a text object for the outermost JSON object, array, string, number, or keyword.
   -- gqaj pretty prints (wraps/indents/sorts keys/otherwise cleans up) the JSON construct under the cursor.
   -- gwaj takes the JSON object on the clipboard and extends it into the JSON object under the cursor.
-  'tpope/vim-jdaddy',
+  {'tpope/vim-jdaddy',
+    ft = {'json'},
+  },
 
   -- Rust support.
-  'rust-lang/rust.vim',
-  'racer-rust/vim-racer',
+  {'rust-lang/rust.vim',
+    ft = {'rust'},
+  },
+  {'racer-rust/vim-racer',
+    ft = {'rust'},
+  },
 
   -- Treat new lines from pasted text differently than typed ones.
   -- Allow to indent already indented text.
@@ -633,13 +698,46 @@ require('lazy').setup({
 
   -- Show diffs in git repositories.
   -- Enable with :GitGutterEnable.
-  'airblade/vim-gitgutter',
+  {'airblade/vim-gitgutter',
+    cmd = {
+      'GitGutter',
+      'GitGutterAll',
+      'GitGutterBufferDisable',
+      'GitGutterBufferEnable',
+      'GitGutterBufferToggle',
+      'GitGutterDebug',
+      'GitGutterDiffOrig',
+      'GitGutterDisable',
+      'GitGutterEnable',
+      'GitGutterFold',
+      'GitGutterLineHighlightsDisable',
+      'GitGutterLineHighlightsEnable',
+      'GitGutterLineHighlightsToggle',
+      'GitGutterLineNrHighlightsDisable',
+      'GitGutterLineNrHighlightsEnable',
+      'GitGutterLineNrHighlightsToggle',
+      'GitGutterNextHunk',
+      'GitGutterPrevHunk',
+      'GitGutterPreviewHunk',
+      'GitGutterQuickFix',
+      'GitGutterQuickFixCurrentFile',
+      'GitGutterSignsDisable',
+      'GitGutterSignsEnable',
+      'GitGutterSignsToggle',
+      'GitGutterStageHunk',
+      'GitGutterToggle',
+      'GitGutterUndoHunk',
+    },
+  },
 
   -- Manage tabs.
   -- Enter vim-tabmode with <leader><Tab> or :TabmodeEnter.
   -- Can be replaced by barbar.nvim.
   {'Iron-E/nvim-tabmode',
     dependencies = {{'Iron-E/nvim-libmodal'}},
+    cmd = {
+      'TabmodeEnter',
+    }
   },
 
   -- Set some variables for project scope.
@@ -669,18 +767,17 @@ require('lazy').setup({
   {'Badhi/nvim-treesitter-cpp-tools',
     dependencies = 'nvim-treesitter/nvim-treesitter',
     ft = {'cpp'},
+    cmd = {'TSCppMakeConcreteClass', 'TSCppRuleOf3', 'TSCppRuleOf5'},
+    -- event = {'VimEnter'},
   },
 
   -- Standalone UI for nvim-lsp progress.
   {'j-hui/fidget.nvim',
     branch = 'legacy',  -- Fixed on 2023-06-19 before announced breaking changes.
-    config = function() require('fidget').setup{} end,
-	lazy = false,
+    config = function() require('fidget').setup({}) end,
+    lazy = false,
   },
 
-  ----------------------
-  -- In testing phase --
-  ----------------------
 
   -- Various helper for C++.
   -- <C-X>i: add #include for symbol under cursor.
@@ -699,11 +796,14 @@ require('lazy').setup({
   --   },
   -- },
 
+  -- Show the documentation of a function when the cursor is on it.
+  -- Alternatively:
   -- Edit tables the spreadsheet way in Markdown.
   -- Requires sc-im (https://github.com/andmarti1424/sc-im.git).
   -- Provides :OpenInScim.
   {'mipmip/vim-scimark',
     config = function() require('plugin_setup.scimark') end,
+    ft = {'markdown'},
   },
 
   -- Use Wandbox (https://wandbox.org/) in vim.
@@ -733,7 +833,9 @@ require('lazy').setup({
   },
 
   -- File browser
+  -- https://github.com/nvim-neo-tree/neo-tree.nvim.
   -- :Neotree
+  -- Ctrl-n
   {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v3.x',
@@ -751,9 +853,6 @@ require('lazy').setup({
   -- Doesn't work since chezmoi creates a temporary file to edit (2022-09).
   {'Lilja/vim-chezmoi'},
 
-  ---------------------------------------------
-  -- Why not but short startup time prefered --
-  ---------------------------------------------
 
   -- 'tmhedberg/SimpylFold',
   -- 'vim-scripts/taglist.vim',
@@ -881,84 +980,5 @@ require('lazy').setup({
   -- Replaced by nvim-treesitter.
   -- 'vim-scripts/syntastic',
 
-  ------------------------------------
-  -- Useless or problematic plugins --
-  ------------------------------------
-
-  -- Project Management.
-  -- Deactivated because not used and problem with end of lines.
-  --call dein#add('vim-scripts/ProjectBrowse', {'rev': 'unix-eol'})
-
-  -- cmake.vim changes makeprg in a way that is incompatible with vim-ros
-  -- 'jalcine/cmake.vim',
-
-  -- delimitMate was not really satisfying (didn't insert <CR> after '{',
-  -- broke '.' for repeat last insert
-  -- https://github.com/Raimondi/delimitMate/issues/138)
-  -- 'Raimondi/delimitMate',
-
-  -- Syntax and occurences highlighting
-  -- requires Vim 7.4p330+
-  -- 'bbchung/clighter.git',
-
-  -- Nicer tab line with buffers and tabs.
-  -- I would prefer not to show hidden buffers.
-  -- There was also an issue with the current completer.
-  -- 'bagrat/vim-buffet',
-
-  -- Nicer tabs.
-  -- Messes with `gt` and doesn't play nicely with splits as of 2022-09-01.
-  -- {'romgrk/barbar.nvim',
-  --   dependencies = {
-  --     'nvim-tree/nvim-web-devicons',
-  --   },
-  -- },
-
-  -- Auto-sessions.
-  -- `nvim .` to avoid. `:RestoreSession` to force.
-  -- `:SaveSession` to force save.
-  -- Pollutes the directory where vim is launched with '~/.cache/nvim/sessions'.
-  -- 'rmagatti/auto-session',
-
-  -- File browser
-  -- Doesn't make the tree automatically jump to show the current directory.
-  -- {
-  --   'kyazdani42/nvim-tree.lua',
-  --   dependencies = {
-  --     'nvim-tree/nvim-web-devicons', -- optional, for file icon
-  --   },
-  --   config = function() require'nvim-tree'.setup {} end
-  -- },
-
-  -----------------
-  -- Interesting --
-  -----------------
-
-  -- More user-friendly registers.
-  -- https://github.com/svermeulen/vim-easyclip
-
-  -- A solid language pack for Vim.
-  -- https://github.com/sheerun/vim-polyglot
-
-  -- Project management (per-project sessions, ..):
-  -- https://github.com/charludo/projectmgr.nvim
-
-  ------------------
-  -- Incompatible --
-  ------------------
-
-  -- Replacement for netrw and The-NERD-tree.
-  -- Requires Python>=3.8.
-  -- Even the legacy branch is compatible because it requires Python>=3.7.
-  -- if has('nvim')
-  --   call dein#add('ms-jpq/chadtree', {'rev': 'chad', 'build': 'python3 -m chadtree deps'})
-  -- endif
-
-},
-
--- Configuration of Lazy.
-{
-  defaults = {
-    lazy = true,
-  },
 })
+
