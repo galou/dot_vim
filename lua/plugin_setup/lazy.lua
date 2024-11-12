@@ -490,6 +490,41 @@ require('lazy').setup({
     cmd = {'Refactor'},
   },
 
+  -- Adding/remove code for debug print.
+  -- https://github.com/andrewferrier/debugprint.nvim
+  -- Mode 	Default Key / Cmd 	Purpose 	Above/Below Line
+  -- Normal 	g?p 	Plain debug 	Below
+  -- Normal 	g?P 	Plain debug 	Above
+  -- Normal 	g?v 	Variable debug 	Below
+  -- Normal 	g?V 	Variable debug 	Above
+  -- Visual 	g?v 	Variable debug 	Below
+  -- Visual 	g?V 	Variable debug 	Above
+  -- Op-pending 	g?o 	Variable debug 	Below
+  -- Op-pending 	g?O 	Variable debug 	Above
+  -- Command 	:DebugPrintsDelete 	Delete debug lines in buffer 	-
+  -- Command 	:DebugPrintsToggleComment 	Comment/uncomment debug lines in buffer 	-
+  {'andrewferrier/debugprint.nvim',
+    dependencies = {
+        -- 'echasnovski/mini.nvim', -- Needed to enable :ToggleCommentDebugPrints for NeoVim <= 0.9
+        'nvim-treesitter/nvim-treesitter' -- Needed to enable treesitter for NeoVim 0.8
+    },
+    -- Remove the following line to use development versions,
+    -- not just the formal releases
+    version = "*",
+    config = function() require('plugin_setup.debugprint') end,
+    keys = {
+      { "g?p", mode = 'n' },
+      { "g?P", mode = 'n' },
+      { "g?v", mode = 'n' },
+      { "g?V", mode = 'n' },
+      { "g?o", mode = 'n' },
+      { "g?O", mode = 'n' },
+      { "g?v", mode = 'x' },
+      { "g?V", mode = 'x' },
+    },
+    cmd = {'DebugPrintsDelete', 'DebugPrintsToggleComment'},
+  },
+
   -- Github's Copilot.
   -- Instead of the official copilot plugin ('github/copilot.vim').
   {'zbirenbaum/copilot.lua',
