@@ -1,16 +1,16 @@
 -- Configuration for https://github.com/numToStr/Comment.nvim.git.
 
 require('Comment').setup({
-    ---Add a space b/w comment and the line
+    -- Add a space b/w comment and the line
     ---@type boolean
     padding = true,
 
-    ---Line which should be ignored while comment/uncomment
-    ---Example: Use '^$' to ignore empty lines
+    -- Line which should be ignored while comment/uncomment
+    -- Example: Use '^$' to ignore empty lines
     ---@type string Lua regex
     ignore = nil,
 
-    ---Whether to create basic (operator-pending) and extra mappings for NORMAL/VISUAL mode
+    -- Whether to create basic (operator-pending) and extra mappings for NORMAL/VISUAL mode
     ---@type table
     mappings = {
         ---operator-pending mapping
@@ -18,10 +18,10 @@ require('Comment').setup({
         basic = true,
         ---extended mapping
         ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
-        extra = false,
+        extra = true,
     },
 
-    ---LHS of line and block comment toggle mapping in NORMAL/VISUAL mode
+    -- Toggle mappings in NORMAL mode
     ---@type table
     toggler = {
         ---line-comment toggle
@@ -30,13 +30,23 @@ require('Comment').setup({
         block = 'gbc',
     },
 
-    ---LHS of line and block comment operator-mode mapping in NORMAL/VISUAL mode
+    -- Operator-pending mappings in NORMAL and VISUAL mode
     ---@type table
     opleader = {
         ---line-comment opfunc mapping
         line = 'gc',
         ---block-comment opfunc mapping
         block = 'gb',
+    },
+
+    ---LHS of extra mappings
+    extra = {
+        ---Add comment on the line above
+        above = 'gcO',
+        ---Add comment on the line below
+        below = 'gco',
+        ---Add comment at the end of line
+        eol = 'gcA',
     },
 
     ---Pre-hook, called before commenting the line
