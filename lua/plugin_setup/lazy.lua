@@ -295,6 +295,15 @@ require('lazy').setup({
     },
     config = function() require('telescope').load_extension('git_grep') end,
   },
+  -- Navigate through JSON files.
+  -- https://github.com/Myzel394/jsonfly.nvim
+  {'Myzel394/jsonfly.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
+    config = function() require('telescope').load_extension('jsonfly') end,
+    ft = {'json',},
+  },
 
   -- Provide autocompletion (i.e. no need to `<C-x><C-o>`.
   -- Alternatives: https://github.com/ms-jpq/coq_nvim.
