@@ -906,6 +906,18 @@ require('lazy').setup({
     -- event = {'VimEnter'},
   },
 
+  -- Show the text of the line where the corresponding opening parenthesis is.
+  -- Alternatively: https://github.com/coddingtonbear/vim-matchit
+  -- Alternatively: https://github.com/briangwaltney/paren-hint.nvim
+  -- {'code-biscuits/nvim-biscuits',
+  --   requires = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --   },
+  -- },
+  {'briangwaltney/paren-hint.nvim',
+    config = function() require('plugin_setup.paren-hint') end,
+  },
+
   -- Standalone UI for nvim-lsp progress.
   {'j-hui/fidget.nvim',
     branch = 'legacy',  -- Fixed on 2023-06-19 before announced breaking changes.
