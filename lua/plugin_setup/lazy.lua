@@ -949,6 +949,25 @@ require('lazy').setup({
   --   },
   -- },
 
+  -- WYSIWYG Markdown editor.
+  -- https://github.com/iamcco/markdown-preview.nvim
+  -- :MarkdownPreview.
+  {'iamcco/markdown-preview.nvim',
+    -- yarn or npm install.
+    -- build = 'cd app && npm install',
+    -- init = function()
+    --   vim.g.mkdp_filetypes = { "markdown" }
+    -- end,
+    -- install without yarn or npm
+    build = function() vim.fn["mkdp#util#install"]() end,
+    cmd = {
+      'MarkdownPreview',
+      'MarkdownPreviewStop',
+      'MarkdownPreviewToggle',
+    },
+    ft = {'markdown'},
+  },
+
   -- Show the documentation of a function when the cursor is on it.
   -- Alternatively:
   -- Edit tables the spreadsheet way in Markdown.
