@@ -343,7 +343,9 @@ hi! link Label Statement
 hi! link Operator Statement
 hi! link Keyword Statement
 hi! link Exception Statement
-hi Comment cterm=NONE gui=NONE ctermfg=4 guifg=#0d73cc ctermbg=NONE font='Monaspace Radon,Monaspace Radon Light:style=Light,Regular'
+" hi Comment cterm=NONE gui=NONE ctermfg=4 guifg=#0d73cc ctermbg=NONE font='Monaspace Radon,Monaspace Radon Light:style=Light,Regular'
+" hi Comment cterm=italic gui=NONE ctermfg=4 guifg=#0d73cc ctermbg=NONE font='VictorMono Nerd Font Propo,VictorMono NFP Medium:style=Medium Italic,Italic'
+hi Comment cterm=italic gui=italic ctermfg=4 guifg=#0d73cc ctermbg=NONE
 hi Special cterm=NONE gui=NONE ctermfg=5 guifg=Grey ctermbg=NONE
 hi! link SpecialChar Special
 hi! link Tag Special
@@ -375,7 +377,12 @@ hi SpellBad cterm=undercurl gui=undercurl ctermfg=NONE ctermbg=NONE
 hi SpellCap cterm=NONE gui=NONE ctermfg=NONE ctermbg=81 guibg=#5fd7ff
 hi SpellLocal cterm=NONE gui=NONE ctermfg=NONE ctermbg=14 guibg=#00ffff
 hi SpellRare cterm=NONE gui=NONE ctermfg=NONE ctermbg=225 guibg=#ffd7ff
-hi LspDiagnosticsDefaultError cterm=NONE gui=NONE ctermfg=30 guifg=#008787 ctermbg=NONE
+
+hi DiagnosticFloatingError gui=NONE guibg=Grey23 guifg=White
+" hi! link DiagnosticVirtualTextError DiagnosticError
+" hi! link DiagnosticVirtualTextWarn DiagnosticWarn
+" hi! link DiagnosticVirtualTextInfo DiagnosticInfo
+" hi! link DiagnosticVirtualTextHint DiagnosticHint
 
 " Treesitter highlighting.
 hi @type.qualifier ctermfg=3 guifg=#808000
@@ -414,7 +421,7 @@ hi CopilotSuggestion ctermfg=239 guifg=Grey42
 hi TreesitterContext ctermfg=0 guifg=Black ctermbg=241 guibg=#626262
 
 " mini.lua
-hi MiniClueNextKey ctermfg=0 guifg=Black  " next key label in clue window
+" hi MiniClueNextKey ctermfg=15 guifg=White  " next key label in clue window
 
 let g:colors_name = "gaels"
 
