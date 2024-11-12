@@ -1025,6 +1025,11 @@ require('lazy').setup({
   -- Doesn't work since chezmoi creates a temporary file to edit (2022-09).
   {'Lilja/vim-chezmoi'},
 
+  -- Allows you to jump anywhere in a document with as few keystrokes as possible.
+  -- Keybindings in `bindings.lua` (`|`).
+  {'smoka7/hop.nvim',
+    config = function() require('hop').setup() end,
+  }
 
   -- 'tmhedberg/SimpylFold',
   -- 'vim-scripts/taglist.vim',

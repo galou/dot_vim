@@ -182,3 +182,9 @@ end)
 
 -- add and remove cursors with control + left click
 vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
+
+-- hop.nvim
+-- --------
+local hop = require('hop')
+
+vim.keymap.set('n', '|', hop.hint_anywhere)
