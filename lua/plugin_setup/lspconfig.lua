@@ -1,7 +1,7 @@
 -- Configuration for https://github.com/neovim/nvim-lspconfig
 
 local lspconfig = require('lspconfig')
-local configs = require('lspconfig.configs')
+-- local configs = require('lspconfig.configs')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -14,7 +14,7 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = {noremap=true, silent=true, buffer=bufnr}
   local set = vim.keymap.set
-  set('n', '<leader>K', vim.lsp.buf.hover, opts)
+  set('n', '<leader>gh', vim.lsp.buf.hover, opts)
   set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
   set('n', '<leader>e', vim.diagnostic.open_float, opts)
   set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
@@ -102,6 +102,7 @@ lspconfig.pylsp.setup({
       },
     },
   },
+  capabilities = cmp_capabilities,
 })
 
 -- Cf. https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#jsonls.
@@ -109,27 +110,28 @@ lspconfig.jsonls.setup {
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
-    },
+  },
   commands = {
     Format = {
       function()
         vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
       end
       }
-    }
+  },
+  capabilities = cmp_capabilities,
 } -- json (npm i -g vscode-langservers-extracted).
 
 -- Special configuration for html (activation of snippet support).
 -- Cf. https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#html.
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local html_capabilities = vim.lsp.protocol.make_client_capabilities()
+html_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.html.setup {
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
-    },
-  capabilities = capabilities,
+  },
+  capabilities = html_capabilities,
 }
 
 -- Alternative installation for lemminx (for xml).
@@ -159,12 +161,17 @@ lspconfig.pyright.setup {
   on_attach = on_attach,
   flags = {
     debounce_text_changes = 150,
-  }
+  },
+  capabilities = cmp_capabilities,
 }
 -- Python, alternative to pyright
 lspconfig.jedi_language_server.setup {
   autostart = false,
   on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  capabilities = cmp_capabilities,
 }
 
 
@@ -232,13 +239,14 @@ vim.diagnostic.handlers.signs = {
 }
 
 -- Print diagnostics in the message area.
+-- Cf. https://github.com/casonadams/simple-diagnostics.nvim for an alternative.
 function PrintDiagnostics(opts, bufnr, line_nr, client_id)
   opts = opts or {}
 
   bufnr = bufnr or 0
   line_nr = line_nr or (vim.api.nvim_win_get_cursor(0)[1] - 1)
 
-  local line_diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr, line_nr, opts, client_id)
+  local line_diagnostics = vim.diagnostic.get(0, { lnum = line_nr })
   if vim.tbl_isempty(line_diagnostics) then
     return
   end
