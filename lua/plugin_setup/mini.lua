@@ -1,3 +1,6 @@
+-- Configuration for mini.nvim.
+-- https://github.com/echasnovski/mini.nvim
+
 -- mini.ai
 -- text objects with count (count is either level or neighbor)
 -- `va)a)` or `v2a)`: select 2-nd level parantheses
@@ -244,6 +247,37 @@ vim.g.miniindentscope_disable=true
 -- Improved f, t, F, T.
 -- Repeat with f, t, F, T.
 require('mini.jump').setup({})
+
+-- Move the selection.
+-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+-- left = '<M-h>',
+-- right = '<M-l>',
+-- down = '<M-j>',
+-- up = '<M-k>',
+--
+-- Move current line in Normal mode
+-- line_left = '<M-h>',
+-- line_right = '<M-l>',
+-- line_down = '<M-j>',
+-- line_up = '<M-k>',
+require('mini.move').setup({
+
+  -- Module mappings. Use `''` (empty string) to disable one.
+  mappings = {
+    -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+    left = '<M-S-h>',
+    right = '<M-S-l>',
+    down = '<M-S-j>',
+    up = '<M-S-k>',
+
+    -- Move current line in Normal mode
+    line_left = '<M-S-h>',
+    line_right = '<M-S-l>',
+    line_down = '<M-S-j>',
+    line_up = '<M-S-k>',
+  },
+
+})
 
 -- Manage pairs of parentheses, brackets, ...
 -- Add surrounding with Sa (in visual mode or on motion).
