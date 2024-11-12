@@ -5,7 +5,7 @@ local close_with_q = api.nvim_create_augroup('close_with_q', { clear = true })
 api.nvim_create_autocmd(
   'FileType',
   {
-    pattern = { 'help', 'startuptime', 'qf', 'fugitive' },
+    pattern = {'help', 'startuptime', 'qf', 'fugitive', 'fugitiveblame'},
     command = [[nnoremap <buffer><silent> q :close<CR>]],
     group = close_with_q,
   }
@@ -20,7 +20,7 @@ api.nvim_create_autocmd(
 )
 
 -- Activate Copilot suggestion.
-local copilot_suggestion = api.nvim_create_augroup('copilot_suggestion', { clear = true })
+local copilot_suggestion = api.nvim_create_augroup('copilot_suggestion', {clear = true})
 api.nvim_create_autocmd(
   'FileType',
   {
@@ -31,7 +31,7 @@ api.nvim_create_autocmd(
 )
 
 -- No line number and other "disturbances" in the special buffers.
-local special_buffer_config = api.nvim_create_augroup('special_buffer_config', { clear = true })
+local special_buffer_config = api.nvim_create_augroup('special_buffer_config', {clear = true})
 vim.api.nvim_create_autocmd(
   'FileType',
   {
@@ -55,3 +55,14 @@ vim.api.nvim_create_autocmd(
   }
 )
 
+local no_mini_cursorword = api.nvim_create_augroup('no_mini_cursorword', {clear = true})
+vim.api.nvim_create_autocmd(
+  'FileType',
+  {
+    pattern = {'markdown', 'rst', 'txt'},
+    group = no_mini_cursorword,
+    callback = function()
+      vim.b.minicursorword_disable = true
+    end,
+  }
+)
