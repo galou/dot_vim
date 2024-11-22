@@ -18,7 +18,7 @@ require('copilot').setup({
   },
   suggestion = {
     enabled = true,  -- Disable if interferes with copilot-cmp.
-    auto_trigger = false,
+    auto_trigger = true,
     debounce = 75,
     keymap = {
       accept = "<M-l>",

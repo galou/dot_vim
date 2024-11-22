@@ -142,6 +142,18 @@ vim.keymap.set('n', '[d', del.goto_prev, opts)
 vim.keymap.set('n', ']d', del.goto_next, opts)
 vim.keymap.set('n', '[D', function() del.goto_prev({severity = vim.diagnostic.severity.ERROR}) end, opts)
 vim.keymap.set('n', ']D', function() del.goto_next({severity = vim.diagnostic.severity.ERROR}) end, opts)
+
+-- copilot.lua
+-- -----------
+-- Workaround suggestion/accept (<W-l>) not working.
+local copilot_config = require("copilot.config")
+local copilot_suggestion = require('copilot.suggestion')
+vim.keymap.set('i', copilot_config.get('suggestion').keymap.accept, copilot_suggestion.accept, {
+  desc = "[copilot] accept suggestion",
+  silent = true,
+  noremap = false,
+})
+
 -- before.nvim
 -- -----------
 local before = require('before')

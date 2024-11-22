@@ -1,4 +1,5 @@
 -- Setup nvim-cmp (https://github.com/hrsh7th/nvim-cmp).
+-- TODO https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#disabling-completion-in-certain-contexts-such-as-comments
 
 local cmp = require('cmp')
 local ls = require('luasnip')
@@ -115,6 +116,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lua' },  -- nvim lua API completion.
   }, {
+    { name = 'copilot' },
     { name = 'buffer' },
     { name = 'rg' },
     { name = 'latex_symbols' },
@@ -125,6 +127,7 @@ cmp.setup({
       cmp.config.compare.score,
       cmp.config.compare.exact,
       cmp.config.compare.recently_used,
+      require('copilot_cmp.comparators').prioritize,
       require('clangd_extensions.cmp_scores'),
       require('cmp-under-comparator').under,
       cmp.config.compare.kind,
@@ -139,14 +142,15 @@ cmp.setup({
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
       -- Source
       vim_item.menu = ({
-        buffer = "[Buffer]",
-        latex_symbols = "[LaTeX]",
-        luasnip = "[LuaSnip]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[Lua]",
-        path = "[Path]",
-        rg = "[rg]",
-        ultisnips = "[UltiSnips]",
+        copilot = '[ ]',
+        buffer = '[Buffer]',
+        latex_symbols = '[LaTeX]',
+        luasnip = '[LuaSnip]',
+        nvim_lsp = '[LSP]',
+        nvim_lua = '[Lua]',
+        path = '[Path]',
+        rg = '[rg]',
+        ultisnips = '[UltiSnips]',
       })[entry.source.name]
       return vim_item
     end
