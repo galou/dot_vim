@@ -1,4 +1,6 @@
 -- Configuration for https://github.com/neovim/nvim-lspconfig
+--
+-- :LspInstall bashls cmake ccsls dockerls jsonls lemminx ltex lua_ls pylsp ruff spectral
 
 local lspconfig = require('lspconfig')
 -- local configs = require('lspconfig.configs')
@@ -40,16 +42,17 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local servers = {
   "bashls",  -- bash (`:LspInstall bashls` or `npm i -g bash-language-server`)
   -- "clangd",  -- C,C++ (:LspInstall), configured in clangd_extensions.lua.
-  "cmake",  -- cmake (pip3 install cmake-language-server)
+  "cmake",  -- cmake (`LspInstall cmake` or `pip3 install cmake-language-server`)
   "cssls",  -- CSS (LspInstall cssls)
-  "dockerls", -- dockerfile (npm install -g dockerfile-language-server-nodejs)
+  "dockerls", -- dockerfile (`LspInstall dockerls` or `npm install -g dockerfile-language-server-nodejs`)
   "dotls", -- Graphviz dot (https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally, then `npm i -g dot-language-server`)
   "gopls", -- Go (GO111MODULE=on go get golang.org/x/tools/gopls@latest) or sudo snap install gopls
   "jsonls", -- :LspInstall jsonls.
-  "lemminx", -- xml, (https://github.com/eclipse/lemminx.git), installed by mason.
-  "ltex",  -- LaTeX, Markdown, and others. Installed by mason.
+  "lemminx", -- xml, (https://github.com/eclipse/lemminx.git, :LspInstall lemminx).
+  "ltex",  -- LaTeX, Markdown, and others (:LspInstall ltex)
   "lua_ls",  -- Lua, installed by mason.
   "mojo",  -- Mojo (modular install mojo).
+  "ruff", -- Python (https://docs.astral.sh/ruff/, :LspInstall ruff)
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
   "spectral", -- yaml (:LspInstall spectral)
   "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
@@ -85,20 +88,29 @@ end
 -- call `setup()` to enable the FileType autocmd.
 -- lspconfig.black.setup{}
 
--- pylsp, Python (https://github.com/python-lsp/python-lsp-server, pip3 install python-lsp-server)
+-- pylsp, Python (https://github.com/python-lsp/python-lsp-server, `pip3 install python-lsp-server` or `LspInstall pylsp`)
 lspconfig.pylsp.setup({
   on_attach = on_attach,
   settings = {
     pylsp = {
       plugins = {
-	black = { enabled = true },
-	isort = { enabled = true, profile = 'black' },
+        autopep8 = { enabled = false },
+	black = { enabled = false },
+        flake8 = { enabled = false },
+	isort = { enabled = false, profile = 'black' },
+        jedi_completion = { enabled = true },
+        mccabe = { enabled = false },
+        pycodestyle = { enabled = false },
+        pylint = { enabled = false },
         pylsp_mypy = {
           -- https://github.com/python-lsp/pylsp-mypy#configuration
-          enabled = true,
+          enabled = false,
           report_progress = true,
           live_mode = true,
         },
+        rope = { enabled = false },
+        rope_autoimport = { enabled = true },  -- induces rope_autoimport.completions.enabled and rope_autoimport.code_actions.enabled
+        yapf = { enabled = false },
       },
     },
   },
