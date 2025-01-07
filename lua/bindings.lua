@@ -198,5 +198,11 @@ vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
 -- hop.nvim
 -- --------
 local hop = require('hop')
-
 vim.keymap.set('n', '|', hop.hint_anywhere)
+
+-- fastaction.nvim
+-- ---------------
+-- local fastaction = require('fastaction')
+-- vim.keymap.set('n', '<leader>fa', fastaction.code_action, opts)
+-- vim.keymap.set('v', '<leader>fa', fastaction.range_code_action, opts)
+

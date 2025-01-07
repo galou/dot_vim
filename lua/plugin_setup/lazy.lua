@@ -1044,6 +1044,11 @@ require('lazy').setup({
     cmd = {'ColorizerAttachToBuffer', 'ColorizerToggle'},
   },
 
+  -- Easier work with code actions.
+  -- https://github.com/Chaitanyabsprip/fastaction.nvim
+  -- Keybindings in `bindings.lua` (`<leader>fa`).
+  -- {'Chaitanyabsprip/fastaction.nvim'},
+
   -- 'tmhedberg/SimpylFold',
   -- 'vim-scripts/taglist.vim',
   -- 'trotter/autojump.vim',
