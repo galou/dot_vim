@@ -108,7 +108,7 @@ vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>', opts)
 
 -- query-secretary
 -- ---------------
-vim.keymap.set('n', '<leader>s', require('query-secretary').query_window_initiate, opts)
+-- Defined in lazy.lua for lazy loading.
 
 -- Oatmeal
 -- -------
