@@ -1,6 +1,6 @@
 -- Configuration for https://github.com/neovim/nvim-lspconfig
 --
--- :LspInstall bashls cmake ccsls dockerls jsonls lemminx ltex lua_ls pylsp ruff spectral
+-- :LspInstall bashls biome cmake ccsls dockerls jsonls lemminx ltex lua_ls pylsp ruff spectral texlab
 
 local lspconfig = require('lspconfig')
 -- local configs = require('lspconfig.configs')
@@ -41,6 +41,7 @@ local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- map buffer local keybindings when the language server attaches
 local servers = {
   "bashls",  -- bash (`:LspInstall bashls` or `npm i -g bash-language-server`)
+  "biome",  -- Javascript, Typescript (`:LspInstall biome`)
   -- "clangd",  -- C,C++ (:LspInstall), configured in clangd_extensions.lua.
   "cmake",  -- cmake (`LspInstall cmake` or `pip3 install cmake-language-server`)
   "cssls",  -- CSS (LspInstall cssls)
@@ -55,7 +56,7 @@ local servers = {
   "ruff", -- Python (https://docs.astral.sh/ruff/, :LspInstall ruff)
   "rust_analyzer", -- Rust (rustup +nightly component add rust-analyzer-preview)
   "spectral", -- yaml (:LspInstall spectral)
-  "texlab", -- LaTeX, cf. lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git.
+  "texlab", -- LaTeX, (lua/lspinstall/servers/latex.lua from https://github.com/kabouzeid/nvim-lspinstall.git, :LspInstall texlab)
   -- "yamlls" -- yaml (npm i -g yaml-language-server)
   }
 for _, server in ipairs(servers) do
@@ -188,15 +189,16 @@ lspconfig.jedi_language_server.setup {
 
 
 -- Change diagnostic symbols in the gutter.
--- Possible symbols:
--- error: ✗(\u2717), ✖, 
--- warning: ⚠ (\u26A0),  (\uf071),  (\uf529),  with Font Awesome.
+-- Possible symbols (the first is the default vim sign):
+-- error:  , ✗(\u2717), ✖
+-- warning:  ,⚠ (\u26A0),  (\uf071),  (\uf529),  with Font Awesome.
 -- Information: 
-local signs = { Error = "✗ ", Warning = " ", Hint = " ", Information = " " }
-for type, sign in pairs(signs) do
-  local hl = "LspDiagnosticsSign" .. type
-  vim.fn.sign_define(hl, { text = sign, texthl = hl, numhl = "" })
-end
+-- Hint: 
+-- local signs = { Error = "✗ ", Warning = " ", Hint = " ", Information = " " }
+-- for type, sign in pairs(signs) do
+--   local hl = "LspDiagnosticsSign" .. type
+--   vim.fn.sign_define(hl, { text = sign, texthl = hl, numhl = "" })
+-- end
 
 -- Show only the worst sign in the gutter.
 -- From :help diagnostic-handlers-example.
