@@ -23,6 +23,11 @@ let g:loaded_python_provider = 1  " Python 2.
 let g:loaded_ruby_provider = 1
 let g:loaded_perl_provider = 1
 
+" Use GUI colors in terminal.
+" Required by noice for some animations.
+" Required by the colorizer plugin (before loading the plugin).
+set termguicolors
+
 " Load plugins.
 if has('nvim')
   lua require('plugin_setup/lazy') -- file `lua/plugin_setup/lazy.lua`.
@@ -76,9 +81,6 @@ set smarttab
 set autoread
 " Automatically executes .nvimrc if found.
 set exrc
-" Use GUI colors in terminal.
-" Required by noice for some animations.
-set termguicolors
 
 set number
 set relativenumber

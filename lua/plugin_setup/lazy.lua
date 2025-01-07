@@ -959,6 +959,7 @@ require('lazy').setup({
   -- WYSIWYG Markdown editor.
   -- https://github.com/iamcco/markdown-preview.nvim
   -- :MarkdownPreview.
+  -- Post-install `npm install -g @chemzqm/neovim`?
   {'iamcco/markdown-preview.nvim',
     -- yarn or npm install.
     -- build = 'cd app && npm install',
@@ -1036,7 +1037,12 @@ require('lazy').setup({
   -- Keybindings in `bindings.lua` (`|`).
   {'smoka7/hop.nvim',
     config = function() require('hop').setup() end,
-  }
+  },
+
+  {'norcalli/nvim-colorizer.lua',
+    config = function() require('colorizer').setup() end,
+    cmd = {'ColorizerAttachToBuffer', 'ColorizerToggle'},
+  },
 
   -- 'tmhedberg/SimpylFold',
   -- 'vim-scripts/taglist.vim',
