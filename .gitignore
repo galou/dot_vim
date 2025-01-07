@@ -11,7 +11,6 @@ spell/*.sug
 /plugin/packer_compiled.lua
 /package-lock.json
 /package.json
-lazy-lock.json
 
 # Symbolic link to an external resource.
 spell/cs.utf-8.add
